@@ -89,14 +89,14 @@ Site owner's goal:
 The type of users for the BizNet are non-subscribers, subsribers, admin user. 
   
 **Non-subscribers**  
-As a non-ubsriber I want:  
+As a non-subsriber I want:  
 *	the signup process to be eazy and be understandable, so I won’t lose interest.
 *	easily sign up for subscription, so I can get access to all features on the platform.
 *	to see many users using it, so I can see how it will benefit me.
 *	easy access to information to how the page work, to understand the purpose it serves.
 
 **Subsribers**  
-As a ubsriber user I want:  
+As a subsriber user I want:  
 *	navigation to be easy on the website, so I won’t be discouraged to use the website.
 
   
