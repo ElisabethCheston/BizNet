@@ -305,7 +305,7 @@ Responsive links to view other profiles.
   
 **Profile Form:**  
 
-Includes input fields for name,... A dropdown menu for cooking time, difficulty options, categories, portions. The information saved in  database.  
+Includes input fields for name,...
   
 **Edit/delete Profile:**  
 
@@ -313,7 +313,7 @@ If user wants to edit or delete their profile ..... If user choose to delete pro
   
 **Images:** 
 
-All images are taken from internet and box sized to fit the recipes pages, except for the logo and category pictures. They are save in the project with reference under media.  
+All images .... 
   
 
 **Add Image to Profile** Code from [Gazza J MS3](https://github.com/GazzaJ/CI-MS3-W3Recipes/blob/main/templates/add_recipe.html)  
@@ -332,9 +332,7 @@ When register an account or login there is a confirmation button at the end.
 
 Confirmation...  
   
-**Footer** [From Materialized](https://) 
 
-Repetition links at the bottom from the navbars, copyright information, and a back to top button.
   
 **Bring to Top Button:**  
   
@@ -358,7 +356,7 @@ Repetition links at the bottom from the navbars, copyright information, and a ba
   * [MongoDB](https://mongodb.com/) – cloud based service used for managing the database. 
    
 **Platform Host:**
-  * [Heroku](https://heroku.com/) – Cloud based platform for deployment of app.  
+  * [Heroku](https://heroku.com/) – cloud based platform for deployment of app.  
   
 **Key Generator:**
  *	[MiniWebTool](https://miniwebtool.com/django-secret-key-generator/) - For generating Django secretkey.  
