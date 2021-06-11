@@ -1,4 +1,4 @@
-## Testing Cooking with Kids
+## Testing BizNet
   
 ### [Manual Testing](#manual)  
 
@@ -15,22 +15,8 @@
   * [Contact Form](#contact)  
   * [Contact Submit](#contactsub)  
   
-* [Recipes](#recipes)  
-  * [Add Recipes](#add)  
-  * [Edit Recipes](#edit)  
-  * [Delete Recipes](#delete)  
   
-* [Diffrent Users](#difux)  
-  * [User with recipes](#uwr)  
-  * [Admin Profile](#adminp)  
-  * [Contact Form](#contact)  
-  * [User with recipes](#uwr)
-  
-* [Admin Fuctions](#admin)  
-  * [Admin Profile](#adminp)  
-  * [Add Category](#addcat) 
-  * [Edit Categories](#editcat)  
-  * [Delete Categories](#deletecat)  
+* [Admin Fuctions](#admin)   
     
 
 ### [User Stories](#ustest)  
