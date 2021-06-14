@@ -25,8 +25,8 @@ Webpage: https://.com/
 [Skeleton Plane](#skeletonplane)  
   * [The structure of the website](#skeleton)  
   * [The database structure](#database)  
-  * [Recipe categories](#recipecat)  
-  * [Recipe information](#recipeinfo) 
+  * [Industries](#indust)  
+  * [Profession matches](#profess) 
   
 [Surface Plane](#surfaceplane)  
   * [Wireframes](#wireframes)  
@@ -89,15 +89,25 @@ Site owner's goal:
 The type of users for the BizNet are non-subscribers, subsribers, admin user. 
   
 **Non-subscribers**  
-As a non-subsriber I want:  
+As a user I want:  
 *	the signup process to be eazy and be understandable, so I won’t lose interest.
 *	easily sign up for subscription, so I can get access to all features on the platform.
 *	to see many users using it, so I can see how it will benefit me.
 *	easy access to information to how the page work, to understand the purpose it serves.
+*	to login with social login, so that I don't have to enter a username/email and password.
+* to be able to navigate between the different sections in the app, so that I can view and use the different section's content and functions.
+* to use my email and password, so that I can login to the app.
+* to reset my password if I forget my password, so that I can be able to create a new password.
+* to create a new password, so that I can login to the app.
+* to register my account quick and easy, so that I can create my account and login to the app.
+* to register my organisation number, so that I can register my company.
+* to be able to use different options to login to the app, so that I can choose what is easiest for me.
+* to check terms and conditions before I create an account, so that I can read about the terms and conditions for the app.
+* to register my details on my profile, so that I can present myself to my potential contacts.
 
 **Subsribers**  
 As a subsriber user I want:  
-*	navigation to be easy on the website, so I won’t be discouraged to use the website.
+*	to be able to save other users information, so I can easier contact them for potential prodjects..
 
   
 **Admin and Goals**  
@@ -127,30 +137,20 @@ The color used through the website are:
 ### Interactive Design & Informative Architecture<a name="idandia"></a>
 
   
-#### Recipes
-  
-In the top navbar there is a dropdown button with all recipe categories open for public. Once I select one of them rows with recipes are shown in the body. To view the you click on the name or pic.
 
 #### Create a profile
   
-For the first time user, the option to “Register” or “Sign In” on the first page. When choosing “Register” user have to fill in a username and a password. Then click “Create account” and the page automatically takes the user to their profile page. If user already has an account they just click on the “Sign In” button and fill in the username and password.
-
-#### Categories
+For the first time user, the option to “Register” or “Sign In” on the first page. When choosing “Register” user have to fill in a username and a password. Then click “Create account” and the page automatically takes the user to their profile page. If user already has an account they just click on the “Sign In” button and fill in the username and password. You also have the options to sign in with Google.  
   
-When you’re a logged in user you will see a button in the top navbar called “Categories”. When clicked a dropdown list shows of all category options shows. Once I select one of them a list with all of those recipes should show in the main window.
+#### Create Posts
   
-For Admin, the categories link in top navbar gives access to add/edit/delete the categories.
-
-
-#### Create Recipe Posts
-  
-As a registered user you should see a button called “Create Recipes” in your profile. Once clicked it should clear how to fill in the fields. 
+As a subscription user you should see a button called “Create post” in your profile. Once clicked it should clear how to fill in the fields. 
 
 #### Edit Profile  
 By clicking on the "Edit" button on your recipe you should be able to open up the edit form and save the changes. 
 
 #### Delete Profile  
-If you want to delete a post, it should be easily done by clicking on “Delete Recipe” button on the page of your recipe. You will get a confirmation message that the post has been deleted.
+If you want to delete a post, it should be easily done by clicking on the “Delete” button on your post. You will get a confirmation message that the post has been deleted.
 
 #### Sign In  
 In the top navbar the “Sign In” button should be displayed if your an unregistered user or if you not logged in yet.
@@ -164,7 +164,8 @@ The “Sign Out” button in the top navbar should be clickable and log you out 
 
 ### The structure of the website:<a name="skeleton"></a>   
 
-![Skeleton](https://.png)
+![Skeleton Plan](https://user-images.githubusercontent.com/70586630/121908539-65cba780-cd2d-11eb-8ced-52f1ac24c59b.png)
+
 
 
 ### The database structure:<a name="database"></a>   
@@ -173,14 +174,16 @@ Django default databases SQLite in gitpod environment and PostgreSQL database wi
 
 *	user  
 *	contacts  
-*	message  
+*	post  
 *	subscription 
 * ...   
  
   
-![Database](https://.png)
+![Database](https://user-images.githubusercontent.com/70586630/121908462-5187aa80-cd2d-11eb-9432-9ffd0b9c043f.png)  
+  
 
- ### Profile categories:<a name="recipecat"></a>   
+There is also a search/matching criteria based on:  
+ ### Users industry:<a name="indust"></a>   
      
 *	Carpenter  
 *	Electrician  
@@ -192,75 +195,70 @@ Django default databases SQLite in gitpod environment and PostgreSQL database wi
 *	....  
 
 
-### Profile information:<a name="recipeinfo"></a>   
+### Contact Profession:<a name="profess"></a>   
     
-*	First Name  
-*	Last Name  
-*	Title  
-*	Area  
-* .......
+*	Carpenter  
+*	Electrician  
+*	Accountant  
+*	IT Consultant  
+*	Graphic designer  
+*	Markerter
+*	Hair dresser
+*	.... 
 
 
 ## Surface Plane:<a name="surfaceplane"></a>   
  
 
-### Wireframes:<a name="wireframes"></a>   
- 
+### Wireframes:<a name="wireframes"></a>  
+  
+**Welcome**  
+  
+![Welcome](https://user-images.githubusercontent.com/70586630/121904792-cbb63000-cd29-11eb-9a67-ab5c962ea172.png)
+  
+**Signin with BizNet**  
+  
+![Signin with BizNet](https://user-images.githubusercontent.com/70586630/121904416-737f2e00-cd29-11eb-838c-17801f41c14b.png)  
+    
+**Signin with Google**  
+  
+![Signin with Google](https://user-images.githubusercontent.com/70586630/121904427-75e18800-cd29-11eb-9fec-efbe9f87a211.png)  
+  
+**Register**  
+  
+![Register](https://user-images.githubusercontent.com/70586630/121904447-7bd76900-cd29-11eb-9af4-9e15b77b589e.png)  
+  
+**Profile setup**  
+  
+![Profile Setup](https://user-images.githubusercontent.com/70586630/121905009-fbfdce80-cd29-11eb-8bd8-3deb5ba5b57c.png)
+  
+**Matching Preferences**  
+  
+![Matching Preferences](https://user-images.githubusercontent.com/70586630/121905047-08822700-cd2a-11eb-925d-4069861786b5.png)  
 
-**First Page** 
+**Lets get started**    
   
-![First Page](https://.png)
+![Lets get started!](https://user-images.githubusercontent.com/70586630/121905310-51d27680-cd2a-11eb-869b-53c36eb666d7.png)  
+    
+**Paymentplan**  
+  
+![Paymentplan](https://user-images.githubusercontent.com/70586630/121905522-86dec900-cd2a-11eb-8e86-0e8b26355697.png)  
 
+**Stripe payment**    
   
-**Login**
-    
-![Login](https://.png)  
-  
-**Forgot/Reset Password**  
-    
-![Forgot/Reset Password](https://.png)  
-
-  
-**Register Profile**  
-    
-![Register Profile](https://.png)  
-  
-**Register Profile - Matching Preferences**  
-    
-![Register Profile - Matching Preferences](https://.png)  
-  
+![Stripe Payment](https://user-images.githubusercontent.com/70586630/121905492-7fb7bb00-cd2a-11eb-934e-c6f219064bba.png)  
   
 **Profile**  
     
-![Profile](https://.png)  
-
-**New Matches**  
+![Profile](https://user-images.githubusercontent.com/70586630/121906686-a32f3580-cd2b-11eb-941b-37a5b8469a37.png)  
+  
+**My Network**  
+  
+![Network](https://user-images.githubusercontent.com/70586630/121907302-35373e00-cd2c-11eb-9534-5182d44b511b.png)   
+  
+**Settings**  
     
-![New Matches](https://.png)  
-  
-**My Contacts**  
-  
-![My Contacts](https://.png)  
-
-  
-**Network Search**  
-    
-![Network Search](https://.png)
-
-
-**Non-subscription User**  
-    
-![Subscription user](https://.png)
-  
-**Non-subscription User**  
-    
-![Subscription user](https://.png)
-
-  
-  **Subscription Form**  
-  
-![Subscription Form](https://.png)
-
+![Settings](https://user-images.githubusercontent.com/70586630/121906800-bf32d700-cd2b-11eb-88e0-25e78845649b.png)  
 
 
 ## Features:<a name="features"></a>   
