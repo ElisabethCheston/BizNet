@@ -107,7 +107,7 @@ As a user I want:
 
 **Subsribers**  
 As a subsriber user I want:  
-*	to be able to save other users information, so I can easier contact them for potential prodjects..
+*	to be able to save other users information, so I can easier contact them for potential projects.
 
   
 **Admin and Goals**  
@@ -135,30 +135,25 @@ The color used through the website are:
 
 
 ### Interactive Design & Informative Architecture<a name="idandia"></a>
-
   
-
-#### Create a profile
-  
+#### Create a profile  
 For the first time user, the option to “Register” or “Sign In” on the first page. When choosing “Register” user have to fill in a username and a password. Then click “Create account” and the page automatically takes the user to their profile page. If user already has an account they just click on the “Sign In” button and fill in the username and password. You also have the options to sign in with Google.  
   
-#### Create Posts
-  
-As a subscription user you should see a button called “Create post” in your profile. Once clicked it should clear how to fill in the fields. 
-
 #### Edit Profile  
 By clicking on the "Edit" button on your recipe you should be able to open up the edit form and save the changes. 
 
 #### Delete Profile  
-If you want to delete a post, it should be easily done by clicking on the “Delete” button on your post. You will get a confirmation message that the post has been deleted.
+If you want to delete your profile, it should be easily done by clicking on the “Delete” button in your profile. You will get a confirmation message that your profile has been deleted, and the page will bring you back to the first page.
 
 #### Sign In  
 In the top navbar the “Sign In” button should be displayed if your an unregistered user or if you not logged in yet.
 
 #### Sign Out
-The “Sign Out” button in the top navbar should be clickable and log you out of your account. You will get a confirmation popup message that you've been logged out.
+The “Sign Out” button in the top navbar should be clickable and log you out of your account. You will get a confirmation popup message that you've been logged out.  
   
-
+#### Contacts  
+As a subscription user you have the option to save contact. For every user presented in the main page you can see how many contact you have in common and the option to accept or dismiss them to your network.  
+  
 
 ## Skeleton Plane<a name="skeletonplane"></a>
 
@@ -245,7 +240,7 @@ There is also a search/matching criteria based on:
 **Lets get started**  
   <details><summary>Lets get started (click to view)</summary>
   
-  ![Lets get started!](https://user-images.githubusercontent.com/70586630/121905310-51d27680-cd2a-11eb-869b-53c36eb666d7.png)</details>  
+  ![Lets get started!](https://user-images.githubusercontent.com/70586630/121919511-5e110080-cd37-11eb-982a-6361086111a4.png)</details>    
     
 **Paymentplan**  
   <details><summary>Paymentplan (click to view)</summary>
