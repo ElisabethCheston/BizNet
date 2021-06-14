@@ -162,13 +162,12 @@ The “Sign Out” button in the top navbar should be clickable and log you out 
 
 ## Skeleton Plane<a name="skeletonplane"></a>
 
-### The structure of the website:<a name="skeleton"></a>   
+### The structure of the website:<a name="skeleton"></a>  
+  
+  <details><summary>Skeleton (click to view)</summary>
+   ![Skeleton Plan](https://user-images.githubusercontent.com/70586630/121908539-65cba780-cd2d-11eb-8ced-52f1ac24c59b.png)</details> 
 
-![Skeleton Plan](https://user-images.githubusercontent.com/70586630/121908539-65cba780-cd2d-11eb-8ced-52f1ac24c59b.png)
-
-
-
-### The database structure:<a name="database"></a>   
+### The database structure:<a name="database"></a>    
   
 Django default databases SQLite in gitpod environment and PostgreSQL database with Heroku as production enviroment. Contains 4 collections:
 
@@ -177,9 +176,10 @@ Django default databases SQLite in gitpod environment and PostgreSQL database wi
 *	post  
 *	subscription 
 * ...   
- 
   
-![Database](https://user-images.githubusercontent.com/70586630/121908462-5187aa80-cd2d-11eb-9432-9ffd0b9c043f.png)  
+   <details><summary>Database (click to view)</summary>  
+    
+  ![Database](https://user-images.githubusercontent.com/70586630/121908462-5187aa80-cd2d-11eb-9432-9ffd0b9c043f.png)</details>  
   
 
 There is also a search/matching criteria based on:  
@@ -213,57 +213,67 @@ There is also a search/matching criteria based on:
 ### Wireframes:<a name="wireframes"></a>  
   
 **Welcome**  
+  <details><summary>Welcome (click to view)</summary>
   
-![Welcome](https://user-images.githubusercontent.com/70586630/121904792-cbb63000-cd29-11eb-9a67-ab5c962ea172.png)
+  ![Welcome](https://user-images.githubusercontent.com/70586630/121904792-cbb63000-cd29-11eb-9a67-ab5c962ea172.png)</details>
   
 **Signin with BizNet**  
+  <details><summary>Signin with BizNet (click to view)</summary>
   
-![Signin with BizNet](https://user-images.githubusercontent.com/70586630/121904416-737f2e00-cd29-11eb-838c-17801f41c14b.png)  
+  ![Signin with BizNet](https://user-images.githubusercontent.com/70586630/121904416-737f2e00-cd29-11eb-838c-17801f41c14b.png)</details>  
     
 **Signin with Google**  
+  <details><summary>Signin with Google (click to view)</summary>
   
-![Signin with Google](https://user-images.githubusercontent.com/70586630/121904427-75e18800-cd29-11eb-9fec-efbe9f87a211.png)  
+  ![Signin with Google](https://user-images.githubusercontent.com/70586630/121904427-75e18800-cd29-11eb-9fec-efbe9f87a211.png)</details>  
   
 **Register**  
+  <details><summary>Register (click to view)</summary>
   
-![Register](https://user-images.githubusercontent.com/70586630/121904447-7bd76900-cd29-11eb-9af4-9e15b77b589e.png)  
+  ![Register](https://user-images.githubusercontent.com/70586630/121904447-7bd76900-cd29-11eb-9af4-9e15b77b589e.png)</details>  
   
 **Profile setup**  
+  <details><summary>Profile Setup (click to view)</summary>
   
-![Profile Setup](https://user-images.githubusercontent.com/70586630/121905009-fbfdce80-cd29-11eb-8bd8-3deb5ba5b57c.png)
+  ![Profile Setup](https://user-images.githubusercontent.com/70586630/121905009-fbfdce80-cd29-11eb-8bd8-3deb5ba5b57c.png)</details>
   
 **Matching Preferences**  
+  <details><summary>Matching Preferences (click to view)</summary>
   
-![Matching Preferences](https://user-images.githubusercontent.com/70586630/121905047-08822700-cd2a-11eb-925d-4069861786b5.png)  
+  ![Matching Preferences](https://user-images.githubusercontent.com/70586630/121905047-08822700-cd2a-11eb-925d-4069861786b5.png)  
 
-**Lets get started**    
+**Lets get started**  
+  <details><summary>Lets get started (click to view)</summary>
   
-![Lets get started!](https://user-images.githubusercontent.com/70586630/121905310-51d27680-cd2a-11eb-869b-53c36eb666d7.png)  
+  ![Lets get started!](https://user-images.githubusercontent.com/70586630/121905310-51d27680-cd2a-11eb-869b-53c36eb666d7.png)</details>  
     
 **Paymentplan**  
+  <details><summary>Paymentplan (click to view)</summary>
   
-![Paymentplan](https://user-images.githubusercontent.com/70586630/121905522-86dec900-cd2a-11eb-8e86-0e8b26355697.png)  
+  ![Paymentplan](https://user-images.githubusercontent.com/70586630/121905522-86dec900-cd2a-11eb-8e86-0e8b26355697.png)</details>  
 
-**Stripe payment**    
+**Stripe payment**  
+  <details><summary>Stipe Payment (click to view)</summary>
   
-![Stripe Payment](https://user-images.githubusercontent.com/70586630/121905492-7fb7bb00-cd2a-11eb-934e-c6f219064bba.png)  
+  ![Stripe Payment](https://user-images.githubusercontent.com/70586630/121905492-7fb7bb00-cd2a-11eb-934e-c6f219064bba.png)</details>  
   
 **Profile**  
+  <details><summary>Profile (click to view)</summary>
     
-![Profile](https://user-images.githubusercontent.com/70586630/121906686-a32f3580-cd2b-11eb-941b-37a5b8469a37.png)  
+  ![Profile](https://user-images.githubusercontent.com/70586630/121906686-a32f3580-cd2b-11eb-941b-37a5b8469a37.png)</details>  
   
 **My Network**  
+  <details><summary>My Network (click to view)</summary>
   
-![Network](https://user-images.githubusercontent.com/70586630/121907302-35373e00-cd2c-11eb-9534-5182d44b511b.png)   
+  ![Network](https://user-images.githubusercontent.com/70586630/121907302-35373e00-cd2c-11eb-9534-5182d44b511b.png)</details>   
   
 **Settings**  
+  <details><summary>Settings (click to view)</summary>
     
-![Settings](https://user-images.githubusercontent.com/70586630/121906800-bf32d700-cd2b-11eb-88e0-25e78845649b.png)  
-
-
+  ![Settings](https://user-images.githubusercontent.com/70586630/121906800-bf32d700-cd2b-11eb-88e0-25e78845649b.png)</details>  
+  
 ## Features:<a name="features"></a>   
- 
-
+  
 ### Existing Features:<a name="existingfeat"></a>   
   
 **Popup Info Links:** [From Source](https://)  
