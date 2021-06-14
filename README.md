@@ -136,21 +136,24 @@ The color used through the website are:
 
 ### Interactive Design & Informative Architecture<a name="idandia"></a>
   
-#### Create a profile  
-For the first time user, the option to “Register” or “Sign In” on the first page. When choosing “Register” user have to fill in a username and a password. Then click “Create account” and the page automatically takes the user to their profile page. If user already has an account they just click on the “Sign In” button and fill in the username and password. You also have the options to sign in with Google.  
-  
-#### Edit Profile  
-By clicking on the "Edit" button on your recipe you should be able to open up the edit form and save the changes. 
-
-#### Delete Profile  
-If you want to delete your profile, it should be easily done by clicking on the “Delete” button in your profile. You will get a confirmation message that your profile has been deleted, and the page will bring you back to the first page.
-
 #### Sign In  
-In the top navbar the “Sign In” button should be displayed if your an unregistered user or if you not logged in yet.
-
+On the first page user will have the option to signin with their BinNet login or signin with Google. Their will also be an option for changing your password if user forgot it.
+  
+#### Register  
+When a user choose the register button, they will end up filling out a user inform with personal information, aswell as potential occupations and industry they like to be connected to. Under the "My Skills", user can choose their merits as well as location. This will later be the search criterias for the contact presented in your network.
+  
 #### Sign Out
 The “Sign Out” button in the top navbar should be clickable and log you out of your account. You will get a confirmation popup message that you've been logged out.  
   
+#### Create a profile  
+In the profile page, user can present them self with a picture and personal information that might be of intrest to other users. If user is a subscription user, they will have the option to save other users to their contact newtwork. 
+  
+#### Edit Profile  
+In users profile there is a button for editing the information. 
+
+#### Delete Profile  
+In users profile there is a button for deleting the the profile. 
+   
 #### Contacts  
 As a subscription user you have the option to save contact. For every user presented in the main page you can see how many contact you have in common and the option to accept or dismiss them to your network.  
   
@@ -167,14 +170,13 @@ As a subscription user you have the option to save contact. For every user prese
 Django default databases SQLite in gitpod environment and PostgreSQL database with Heroku as production enviroment. Contains 4 collections:
 
 *	user  
-*	contacts  
-*	post  
+*	contacts   
 *	subscription 
 * ...   
   
    <details><summary>Database (click to view)</summary>  
     
-  ![Database](https://user-images.githubusercontent.com/70586630/121908462-5187aa80-cd2d-11eb-9432-9ffd0b9c043f.png)</details>  
+  ![Database](https://user-images.githubusercontent.com/70586630/121936154-99b4c600-cd49-11eb-9121-077313ef668b.png)</details>  
   
 
 There is also a search/matching criteria based on:  
