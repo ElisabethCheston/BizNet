@@ -240,7 +240,7 @@ There is also a search/matching criteria based on:
 **Matching Preferences**  
   <details><summary>Matching Preferences (click to view)</summary>
   
-  ![Matching Preferences](https://user-images.githubusercontent.com/70586630/121905047-08822700-cd2a-11eb-925d-4069861786b5.png)  
+  ![Matching Preferences](https://user-images.githubusercontent.com/70586630/121905047-08822700-cd2a-11eb-925d-4069861786b5.png)</details>  
 
 **Lets get started**  
   <details><summary>Lets get started (click to view)</summary>
