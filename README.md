@@ -24,9 +24,7 @@ Webpage: https://.com/
 
 [Skeleton Plane](#skeletonplane)  
   * [The structure of the website](#skeleton)  
-  * [The database structure](#database)  
-  * [Industries](#indust)  
-  * [Profession matches](#profess) 
+  * [The database structure](#database) 
   
 [Surface Plane](#surfaceplane)  
   * [Wireframes](#wireframes)  
@@ -86,7 +84,8 @@ Site owner's goal:
 
 ## User Stories (Scope Plane)<a name="ux"></a>
 
-The type of users for the BizNet are non-subscribers, subsribers, admin user. 
+The type of users for the BizNet are non-subscribers, subsribers, admin user.  
+  
   
 **Non-subscribers**  
 As a user I want:  
@@ -116,7 +115,8 @@ As an admin I want:
 * to be able to edit or delete profiles, if it's needed. 
 * users to be able to contact me if something is wrong with the website.
 
-
+ 
+  
 ## Structure plane<a name="structureplane"></a>
 
 
@@ -127,14 +127,24 @@ Font style used for the website is Ubuntu and Oswald. Ubuntu for headers and log
 
 ### Color<a name="color"></a>
 
+
+    
 The color used through the website are:  
   
-•	Light gray    
-•	Blue  
-•	White  
+*	Dark blue    
+*	Blue  
+*	Light blue  
+*	White    
+*	Light gray  
+*	Black 
 
+![schemecolor](https://user-images.githubusercontent.com/70586630/122001939-6443c300-cdb1-11eb-9087-5b8989e16dca.png)
 
-### Interactive Design & Informative Architecture<a name="idandia"></a>
+ 
+
+### Interactive Design & Informative Architecture<a name="idandia"></a>  
+  
+ 
   
 #### Sign In  
 On the first page user will have the option to signin with their BinNet login or signin with Google. Their will also be an option for changing your password if user forgot it.
@@ -157,31 +167,45 @@ In users profile there is a button for deleting the the profile.
 #### Contacts  
 As a subscription user you have the option to save contact. For every user presented in the main page you can see how many contact you have in common and the option to accept or dismiss them to your network.  
   
-
+ 
+  
 ## Skeleton Plane<a name="skeletonplane"></a>
 
 ### The structure of the website:<a name="skeleton"></a>  
   
-  <details><summary>Skeleton (click to view)</summary>
-   ![Skeleton Plan](https://user-images.githubusercontent.com/70586630/121908539-65cba780-cd2d-11eb-8ced-52f1ac24c59b.png)</details> 
+ 
+The layout of the app has 2 sections; the signin and registration part, and the profile, contact, jobposts. Depending on if you are a member or not you will have sertain restrictions.  
+   
+  <details><summary> (click to view)</summary> 
+    
+   ![New skeleton](https://user-images.githubusercontent.com/70586630/122012611-a5da6b00-cdbd-11eb-88aa-3629506f5840.png)   
+  
+</details> 
 
 ### The database structure:<a name="database"></a>    
   
-Django default databases SQLite in gitpod environment and PostgreSQL database with Heroku as production enviroment. Contains 4 collections:
+  
+Django default databases SQLite in gitpod environment and PostgreSQL database with Heroku as production enviroment.  
+   
+<details><summary>Database (click to view)</summary>
+  
+Contains 4 collections:
 
 *	user  
 *	contacts   
-*	subscription 
+*	membership
+*	post 
 * ...   
-  
-   <details><summary>Database (click to view)</summary>  
-    
-  ![Database](https://user-images.githubusercontent.com/70586630/121936154-99b4c600-cd49-11eb-9121-077313ef668b.png)</details>  
-  
+   
+Search contact based on selecting skills:
 
-There is also a search/matching criteria based on:  
- ### Users industry:<a name="indust"></a>   
-     
+*	  
+*	   
+* ... 
+   
+Matching criteria based on 2 sections:    
+   
+  Industry:  
 *	Carpenter  
 *	Electrician  
 *	Accountant  
@@ -192,8 +216,7 @@ There is also a search/matching criteria based on:
 *	....  
 
 
-### Contact Profession:<a name="profess"></a>   
-    
+ Profession:   
 *	Carpenter  
 *	Electrician  
 *	Accountant  
@@ -202,193 +225,203 @@ There is also a search/matching criteria based on:
 *	Markerter
 *	Hair dresser
 *	.... 
+  
+
+      
+  ![Database](https://user-images.githubusercontent.com/70586630/122012644-affc6980-cdbd-11eb-8f82-351961ad55e7.png)  
+  
+</details> 
+
 
 
 ## Surface Plane:<a name="surfaceplane"></a>   
  
 
 ### Wireframes:<a name="wireframes"></a>  
-  
-**Welcome**  
+   
+  <details><summary> (click to view)</summary>
+   
+   
+#### Welcome  
   <details><summary>Welcome (click to view)</summary>
   
   ![Welcome](https://user-images.githubusercontent.com/70586630/121904792-cbb63000-cd29-11eb-9a67-ab5c962ea172.png)</details>
   
-**Signin with BizNet**  
+#### Signin with BizNet  
   <details><summary>Signin with BizNet (click to view)</summary>
   
   ![Signin with BizNet](https://user-images.githubusercontent.com/70586630/121904416-737f2e00-cd29-11eb-838c-17801f41c14b.png)</details>  
     
-**Signin with Google**  
+#### Signin with Google  
   <details><summary>Signin with Google (click to view)</summary>
   
   ![Signin with Google](https://user-images.githubusercontent.com/70586630/121904427-75e18800-cd29-11eb-9fec-efbe9f87a211.png)</details>  
   
-**Register**  
+#### Register  
   <details><summary>Register (click to view)</summary>
   
   ![Register](https://user-images.githubusercontent.com/70586630/121904447-7bd76900-cd29-11eb-9af4-9e15b77b589e.png)</details>  
   
-**Profile setup**  
+#### Profile setup  
   <details><summary>Profile Setup (click to view)</summary>
   
   ![Profile Setup](https://user-images.githubusercontent.com/70586630/121905009-fbfdce80-cd29-11eb-8bd8-3deb5ba5b57c.png)</details>
   
-**Matching Preferences**  
+#### Matching Preferences  
   <details><summary>Matching Preferences (click to view)</summary>
   
   ![Matching Preferences](https://user-images.githubusercontent.com/70586630/121905047-08822700-cd2a-11eb-925d-4069861786b5.png)</details>  
 
-**Lets get started**  
+#### Lets get started  
   <details><summary>Lets get started (click to view)</summary>
   
   ![Lets get started!](https://user-images.githubusercontent.com/70586630/121919511-5e110080-cd37-11eb-982a-6361086111a4.png)</details>    
     
-**Paymentplan**  
+#### Paymentplan  
   <details><summary>Paymentplan (click to view)</summary>
   
   ![Paymentplan](https://user-images.githubusercontent.com/70586630/121905522-86dec900-cd2a-11eb-8e86-0e8b26355697.png)</details>  
 
-**Stripe payment**  
+#### Stripe payment  
   <details><summary>Stipe Payment (click to view)</summary>
   
   ![Stripe Payment](https://user-images.githubusercontent.com/70586630/121905492-7fb7bb00-cd2a-11eb-934e-c6f219064bba.png)</details>  
   
-**Profile**  
+#### Profile  
   <details><summary>Profile (click to view)</summary>
     
   ![Profile](https://user-images.githubusercontent.com/70586630/121906686-a32f3580-cd2b-11eb-941b-37a5b8469a37.png)</details>  
   
-**My Network**  
+#### My Network  
   <details><summary>My Network (click to view)</summary>
   
   ![Network](https://user-images.githubusercontent.com/70586630/121907302-35373e00-cd2c-11eb-9534-5182d44b511b.png)</details>   
   
-**Settings**  
+#### Settings  
   <details><summary>Settings (click to view)</summary>
     
   ![Settings](https://user-images.githubusercontent.com/70586630/121906800-bf32d700-cd2b-11eb-88e0-25e78845649b.png)</details>  
+  
+  </details> 
   
 ## Features:<a name="features"></a>   
   
 ### Existing Features:<a name="existingfeat"></a>   
   
-**Popup Info Links:** [From Source](https://)  
+  <details><summary> (click to view)</summary>  
+   
+#### Popup Info Links: [From Source](https://)  
   
 Popup with link to subscription.  
 
-**Static Top Navbar:** [From Source](https://) 
+#### Static Top Navbar: [From Source](https://) 
 
 Navbar with dropdown links aligned to the right for message, settings, , login, register and search.  
   
-**Static Bottom Navbar:** [From Source](https://) 
+#### Static Bottom Navbar: [From Source](https://) 
 
 With search options.  
   
-**Register Form:** [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization) 
+#### Register Form: [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization) 
 
 User create a username and password that get stored in the database under user.
   
-**Login Form:** [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization) 
+#### Login Form: [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization) 
 
 Login with username and password.   
   
-**Logout Function:** [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization)  
+#### Logout Function: [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization)  
   
   When user logout it brings them back to the login site.
 
   
-**Profile Page setup:** [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization) 
+#### Profile Page setup: [From TravelTim at CI ](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/02-UserAuthenticationAndAuthorization) 
 
-Personalized profile page for logged in user. If you have created any recipes then they will show here.
+Personalized profile page for logged in user. If you have created any recipes then they will show here.    
   
-   
-    
-  
-**Links:** 
+#### Links: 
 Responsive links to view other profiles.  
   
-**Profile Form:**  
+#### Profile Form:  
 
 Includes input fields for name,...
   
-**Edit/delete Profile:**  
+#### Edit/delete Profile:   
 
 If user wants to edit or delete their profile ..... If user choose to delete profile it will bring them back to first page.  
   
-**Images:** 
+#### Images:   
 
 All images .... 
   
 
-**Add Image to Profile** Code from [Gazza J MS3](https://github.com/GazzaJ/CI-MS3-W3Recipes/blob/main/templates/add_recipe.html)  
+#### Add Image to Profile: Code from [Gazza J MS3](https://github.com/GazzaJ/CI-MS3-W3Recipes/blob/main/templates/add_recipe.html)  
 
 Used the function of adding url picture for the profile picture.
   
-**Flash messages:** 
+#### Flash messages: 
 
 Verification to users when creating, editing or deleting post or deleting account. 
   
-**Buttons:** 
+#### Buttons: 
 
 When register an account or login there is a confirmation button at the end.  
   
-**Boxes:** 
-
-Confirmation...  
   
-
-  
-**Bring to Top Button:**  
+#### Bring to Top Button:  
   
   [Icon](https://fontawesome.com/icons/chevron-up) used. Code from [w3s](https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-chevron-up).
 
-
+  </details>
 
 ### Features Left to Implement:<a name="featimpl"></a>   
- 
-
+<details><summary> (click to view)</summary>  
+    
+</details>
 
 ## Technologies Used:<a name="usertech"></a>   
+  
+  <details><summary> (click to view)</summary>
  
-**Text Editor:**
+#### Text Editor:
   * [GitPod](https://gitpod.com/) – the editor to build, commit, and push data to GitHub.  
   
-**Control System:**
+#### Control System:
   * [GitHub](https://github.com/) – used to host the project.  
   
-**Database:**
+#### Database:
   * [MongoDB](https://mongodb.com/) – cloud based service used for managing the database. 
    
-**Platform Host:**
+#### Platform Host:
   * [Heroku](https://heroku.com/) – cloud based platform for deployment of app.  
   
-**Key Generator:**
+#### Key Generator:
  *	[MiniWebTool](https://miniwebtool.com/django-secret-key-generator/) - For generating Django secretkey.  
   
-**Languages:**
+##### Languages:
   * [HTML](https://sv.wikipedia.org/wiki/HTML) – for the basic structure of the project.
   * [CSS](https://sv.wikipedia.org/wiki/Cascading_Style_Sheets) –for the overall style of website.
   * [JavaScript](https://developer.mozilla.org/sv-SE/docs/Web/JavaScript) - used to activate functions
   *	[jQuery](https://jquery.com/) – used as the main JavaScript function.
   *	[Python](https://www.python.org/) – for the backend of project.  
   
-**Frameworks:**
+#### Frameworks:
   * [Django](https://www.djangoproject.com/) – Framework used for project.  
   
   
-**Style:**
+#### Style:
   *	[Google Fonts](https://fonts.google.com/) – For using and Oswald and Ubuntu fonts on website.
   *	[Balsamiq Wireframes](https://balsamiq.com/wireframes/) – used for the websites wireframes. 
    
-**Validations:**
+#### Validations:
   *	[W3C CSS Validator]() - Validate CSS
   *	[W3C HTML Validator]() - Validate HTML
   *	[Chrome DevTools]() - Errors in console
   *	Jshint](https://jshint.com/) - Validate JavaScript
   *	[PEP8](http://pep8online.com/) – for validate the Python code.  
   
-
+  </details>  
+  
 ## Testing<a name="testing"></a>  
   
 [Testing.md](Testing.md)  
@@ -397,7 +430,9 @@ Confirmation...
 
 ## Deployment<a name="deployment"></a>
 Deployment for this GitHub repository project is done through Heroku through the following steps;
-
+  
+<details><summary> (click to view)</summary>  
+   
 **1. Heroku**
   * Create an account on Heroku and Login
   *	We have to register the MongoDB database information for the project. Under “Settings” scroll down to “Config Vars”. We need to add following variables for our env.py to secure the webpage;
@@ -509,10 +544,16 @@ Clone to GitHub Desktop:
 *	Click on the “Open with GitHub Desktop.  
 *	Then follow the prompts GitHub Desktop instructions to complete the clone.  
 
-
+</details>  
+  
+  
+  
 ## Credits:<a name="credit"></a>
 
+
+
 ### Content:<a name="content"></a>
+
 
 
 ### Media:<a name="media"></a>
@@ -524,6 +565,7 @@ Link to [Media.md](Media.md) information.
   
 ### Acknowledgements<a name=”acknowled”></a>
 •	I received inspiration for this project from X
+
 
 
 ### LINKS<a name=”link”></a>
