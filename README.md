@@ -76,15 +76,15 @@ To join a social network community and purchase, ad contacts and purchase monthl
   
 Site owner's goal:  
   
-* Build an active community around the social network based on subscription and individual payments models.
-* Add new contacts and build a relationship database
-* Sell Monthly subscriptions from free version to paid
+* Build an active community around the social network based with a payment model for premium members and a free version for regular members.
+* Add new contacts and build a relationship database.
+* Sell premium membership for job listing possibilities and saving contacts.
   
 
 
 ## User Stories (Scope Plane)<a name="ux"></a>
 
-The type of users for the BizNet are non-subscribers, subsribers, admin user.  
+The type of users for the BizNet are members, premium members, and admin.  
   
   
 **Non-subscribers**  
@@ -104,9 +104,10 @@ As a user I want:
 * to check terms and conditions before I create an account, so that I can read about the terms and conditions for the app.
 * to register my details on my profile, so that I can present myself to my potential contacts.
 
-**Subsribers**  
-As a subsriber user I want:  
-*	to be able to save other users information, so I can easier contact them for potential projects.
+**Premium Account**  
+As a premium user I want:  
+*	to be able to save other users information, so I can easier contact them for potential projects.  
+*	to be able to post gigs or jobs I need people for, so I can get in contact with potential employees or independent contractors.  
 
   
 **Admin and Goals**  
@@ -156,7 +157,7 @@ When a user choose the register button, they will end up filling out a user info
 The “Sign Out” button in the top navbar should be clickable and log you out of your account. You will get a confirmation popup message that you've been logged out.  
   
 #### Create a profile  
-In the profile page, user can present them self with a picture and personal information that might be of intrest to other users. If user is a subscription user, they will have the option to save other users to their contact newtwork. 
+In the profile page, user can present them self with a picture and personal information that might be of intrest to other users. If user is a premium member, they will have the option to save contacts in their newtwork as well as creating and posting gigs for the job listing site. 
   
 #### Edit Profile  
 In users profile there is a button for editing the information. 
@@ -166,8 +167,21 @@ In users profile there is a button for deleting the the profile.
    
 #### Contacts  
 As a subscription user you have the option to save contact. For every user presented in the main page you can see how many contact you have in common and the option to accept or dismiss them to your network.  
+   
+#### Premium Account  
+If memberes choose to pay the premium fee they will have access to is where the members can choose to sign up for. This link will bring you to the Stripe payment page where members fill out the creditcard information and choose "Pay". A vertification message will appear on the screen and user will also get a confirmation email. 
   
- 
+#### Gigs - Browse Gigs  
+..  
+  
+#### Gigs - Apply to Gigs  
+..  
+  
+#### Gigs - Create New  
+..  
+  
+#### Settings  
+..  
   
 ## Skeleton Plane<a name="skeletonplane"></a>
 
@@ -265,7 +279,9 @@ Matching criteria based on 2 sections:
 #### Profile setup  
   <details><summary>Profile Setup (click to view)</summary>
   
-  ![Profile Setup](https://user-images.githubusercontent.com/70586630/121905009-fbfdce80-cd29-11eb-8bd8-3deb5ba5b57c.png)</details>
+![Profile Setup](https://user-images.githubusercontent.com/70586630/122392734-70c44900-cf74-11eb-99b3-0a3e4f4f8d55.png)
+
+</details>
   
 #### Matching Preferences  
   <details><summary>Matching Preferences (click to view)</summary>
@@ -275,32 +291,56 @@ Matching criteria based on 2 sections:
 #### Lets get started  
   <details><summary>Lets get started (click to view)</summary>
   
-  ![Lets get started!](https://user-images.githubusercontent.com/70586630/121919511-5e110080-cd37-11eb-982a-6361086111a4.png)</details>    
+![Lets get started!](https://user-images.githubusercontent.com/70586630/122395001-d4e80c80-cf76-11eb-8f85-e2ff2f4a2342.png)
+</details>    
     
 #### Paymentplan  
   <details><summary>Paymentplan (click to view)</summary>
   
-  ![Paymentplan](https://user-images.githubusercontent.com/70586630/121905522-86dec900-cd2a-11eb-8e86-0e8b26355697.png)</details>  
+![Paymentplan](https://user-images.githubusercontent.com/70586630/122391940-bc2a2780-cf73-11eb-8175-ce78b47d3d69.png)
+</details>  
 
 #### Stripe payment  
   <details><summary>Stipe Payment (click to view)</summary>
   
-  ![Stripe Payment](https://user-images.githubusercontent.com/70586630/121905492-7fb7bb00-cd2a-11eb-934e-c6f219064bba.png)</details>  
+![Stripe Payment](https://user-images.githubusercontent.com/70586630/122392013-cba97080-cf73-11eb-9886-9823ea2f83b2.png)
+</details>  
   
 #### Profile  
   <details><summary>Profile (click to view)</summary>
     
-  ![Profile](https://user-images.githubusercontent.com/70586630/121906686-a32f3580-cd2b-11eb-941b-37a5b8469a37.png)</details>  
+![Profile Page](https://user-images.githubusercontent.com/70586630/122392115-e4198b00-cf73-11eb-9360-c6083173e917.png)
+</details>  
   
 #### My Network  
   <details><summary>My Network (click to view)</summary>
   
-  ![Network](https://user-images.githubusercontent.com/70586630/121907302-35373e00-cd2c-11eb-9534-5182d44b511b.png)</details>   
+![Network](https://user-images.githubusercontent.com/70586630/122393944-b7667300-cf75-11eb-9a8a-85332741f437.png)
+</details>   
   
+#### Gigs - Browse gigs    
+  <details><summary>Gigs - Browse gigs (click to view)</summary>
+  
+![Gigs - Browse gigs](https://user-images.githubusercontent.com/70586630/122393896-aa498400-cf75-11eb-9c6f-6d15531c6755.png)
+</details> 
+  
+#### Gig - Apply to gig  
+  <details><summary>Gig - Apply to gig (click to view)</summary>
+  
+![Gig - Apply to gig](https://user-images.githubusercontent.com/70586630/122393872-a289df80-cf75-11eb-951a-1881c4422d96.png)
+</details>  
+  
+#### Gig - Create new  
+  <details><summary>Gig - Create new (click to view)</summary>
+  
+![Gig - Create new](https://user-images.githubusercontent.com/70586630/122393853-9c93fe80-cf75-11eb-9f13-1af73925dedb.png)
+</details> 
+   
 #### Settings  
   <details><summary>Settings (click to view)</summary>
     
-  ![Settings](https://user-images.githubusercontent.com/70586630/121906800-bf32d700-cd2b-11eb-88e0-25e78845649b.png)</details>  
+![Settings](https://user-images.githubusercontent.com/70586630/122392807-8174bf00-cf74-11eb-84c2-e730b7eac265.png)
+</details>  
   
   </details> 
   
