@@ -2,44 +2,57 @@
 {% load static %}
 
 {% block content %}
-
-<nav class="navbar sticky-top navbar-light bg-light">
-    <div class="row justify-content-start col-6">
-        <div class="col">
-            <h1 class="blue">BizNet</h1>
-        </div>
-        <div class="col">
-            <h5><i>- A network for job opportunities.</i></h5>
-        </div>
+<h1> </h1>
+<h1> </h1>
+<h1> </h1>
+<h1> </h1>
 
 
-    </div>
+<!-- Nav tabs -->
+<header class="container-fluid nav-justified">
 
-    <ul class="nav justify-content-end nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                role="tab" aria-controls="home" aria-selected="true">Home</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                role="tab" aria-controls="profile" aria-selected="false">Profile</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+            <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button"
+                role="tab" aria-controls="messages" aria-selected="false">Messages</button>
         </li>
-
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
+                role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+        </li>
     </ul>
+</header>
 
-</nav>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+    <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
+    <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
+</div>
 
 
-<nav class="navbar fixed-bottom navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Profile</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#">Network</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#">Gigs</a>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <img src="/workspace/BizNet/static/images/profile.png" class="card-img-top" alt="">
+        <h5 class="card-title">Profile Name</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        <a href="#" class="card-link">Accept</a>
+        <a href="#" class="card-link">Decline</a>
     </div>
-</nav>
+</div>
+
 
 {% endblock %}
