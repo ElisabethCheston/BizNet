@@ -1,57 +1,85 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+{% block page_header %}
+
+{% endblock %}
+
 {% block content %}
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-
-
 <!-- Nav tabs -->
-<header class="container-fluid nav-justified">
+<div class="container h-100 my-5 py-5">
+    <div class="row justify-content-md-center">
+        <div class="col-10">
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                role="tab" aria-controls="home" aria-selected="true">Home</button>
+                role="tab" aria-controls="home" aria-selected="true">New</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button"
-                role="tab" aria-controls="messages" aria-selected="false">Messages</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
-                role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+                role="tab" aria-controls="profile" aria-selected="false">Saved</button>
         </li>
     </ul>
-</header>
 
-
-<!-- Tab panes -->
-<div class="tab-content">
-    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-    <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
-    <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
+        </div>
+    </div>
 </div>
 
-
-
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <img src="/workspace/BizNet/static/images/profile.png" class="card-img-top" alt="">
-        <h5 class="card-title">Profile Name</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        <a href="#" class="card-link">Accept</a>
-        <a href="#" class="card-link">Decline</a>
+<!-- Contact cards -->
+<div class="container-fluid h-80 my-5 py-8">
+    <div class="row justify-content-md-center">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
+                <h5 class="card-title">Profile Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <a href="#" class="card-link">Accept</a>
+                <a href="#" class="card-link">Decline</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
+                <h5 class="card-title">Profile Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <a href="#" class="card-link">Accept</a>
+                <a href="#" class="card-link">Decline</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
+                <h5 class="card-title">Profile Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <a href="#" class="card-link">Accept</a>
+                <a href="#" class="card-link">Decline</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
+                <h5 class="card-title">Profile Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <a href="#" class="card-link">Accept</a>
+                <a href="#" class="card-link">Decline</a>
+            </div>
+        </div>
     </div>
+
 </div>
 
 
