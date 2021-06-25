@@ -1,20 +1,125 @@
 
-.top-background {
-    background: url('media/images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
+body {
+	background: url('/media/images/background.jpg') no-repeat center center fixed;
+	background-size: cover;
     height: calc(100vh - 164px);
+    color: #555;
+    font-family: "Lato";
 }
 
 .nav-2 {
-margin-top: 50px;
-padding-top: 50px;
-}
-
-.fas {
-    size: large;
+    height: 55px;
 }
 
 
+button, li, a {
+    font-family: "Poppins";
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: small;
+}
+
+.search-bar {
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
+
+/* Bottom & Top links */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wrapper {
+  display: inline-flex;
+}
+
+.wrapper .icon {
+  position: relative;
+  font-size: 24px;
+  color: #6495ED;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: transparent;
+  color: transparent;
+  padding: 5px 8px;
+  align-items: center;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 6px;
+  width: 6px;
+  background-color: transparent;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .user-circle:hover .tooltip,
+.wrapper .user-circle:hover .tooltip::before,
+.wrapper .search:hover .tooltip,
+.wrapper .search:hover .tooltip::before,
+.wrapper .suitcase:hover .tooltip,
+.wrapper .suitcase:hover .tooltip::before,
+.wrapper .cog:hover .tooltip,
+.wrapper .cog:hover .tooltip::before,
+.wrapper .envelope:hover .tooltip,
+.wrapper .envelope:hover .tooltip::before {
+  background-color: rgba(107, 155, 219, 0.79);
+  color: #ffffff;
+}
+
+.wrapper .user-circle:hover,
+.wrapper .search:hover,
+.wrapper .suitcase:hover,
+.wrapper .cog:hover,
+.wrapper .envelope:hover {
+    color: rgba(107, 155, 219, 0.79);
+}
+
+
+/* Content Pages */
+
+.container-tab {
+    padding: 5%;
+}
 
 /* -------------------------------- Media Queries from Buetiq Ado */
 

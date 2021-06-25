@@ -18,8 +18,11 @@
 
     {% block corecss %}
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <!-- Google Fonts CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
@@ -33,43 +36,61 @@
     <script src="https://kit.fontawesome.com/5c25e53934.js" crossorigin="anonymous"></script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
 
     <title>BizNet</title>
-</head>
-
-<body>
 
     </head>
 
     <body>
         <header class="container-fluid fixed-top">
-            <div id="topnav" class="row bg-white pt-lg-2 d-lg-flex">
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+            <div id="topnav" class="row bg-white pt-lg-2 d-lg-flex justify-content-between">
+                    
+                <!-- BizNet Logo -->
+                <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
                     <a href="{% url 'home' %}" class="nav-link main-logo-link">
                         <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-                            alt="" width="210" height="50"> </a>
+                            alt="" width="210" height="50"class="logo img-fluid"> </a>
                 </div>
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+
+                <!-- Top navbar links  -->
+                <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 wrapper justify-content-end toplinks">
+
+                    <ul class="list-inline nav justify-content-end my-0">
+                        <li class="list-inline-item">
+                            <a class="nav-link" href="#">
+                                    <div class="icon envelope">
+                                        <div class=""></div>
+                                        <span><i class="fas fa-envelope"></i></span>       
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="nav-link" href="">
+                                <div class="icon cog">
+                                    <div class=""></div>
+                                    <span><i class="fas fa-cog"></i></span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+<!-- 
+            <div class="container-fluid search-bar justify-content-center">
+                <div class="col-6 col-lg-4 my-auto py-1 py-lg-0">
+
                     <form method="GET" action="">
-                        <div class="input-group w-100">
+                        <div class="input-group w-80">
                             <input class="form-control border border-black rounded-0" type="text" name="q"
                                 placeholder="Search our site">
                             <div class="input-group-append">
@@ -82,84 +103,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                        <li class="list-inline-item dropdown">
-                            <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <div class="text-center">
-                                    <div><i class="fas fa-user fa-lg"></i></div>
-                                    <p class="my-0">My Account</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                                {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                <a href="" class="dropdown-item">User Management</a>
-                                {% endif %}
-                                <a href="" class="dropdown-item">Profile Pge</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                                {% else %}
-                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                                {% endif %}
-                            </div>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link" href="">
-                                <div class="text-center">
-                                    <div><i class="fas fa-cog fa-lg"></i></div>
-                                    <p class="my-0">
-                                        Settings
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
+            -->
+            {% include 'includes/mobile-top-header.html' %}
+            <br>
         </header>
-
-        <!-- 
-    <header class="container-fluid fixed-top bg-white pt-lg-2 d-lg-flex">
-
-        <div class="row" id="topnav">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp" alt="" width="220" height="60">
-                </a>
-            </div>
-
-            <div class="col justify-content-end btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <ul class="nav">
-                    <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">Profile</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                    <a href="" class="dropdown-item">User Management</a>
-                                {% endif %}
-                                <a href="" class="dropdown-item">Profile Page</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                            {% else %}
-                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                            {% endif %}
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fas fa-cog fa-lg" id="fas" href="#"></a>
-                </ul>
-            </div>
-        </div>
-
-    </header>
--->
 
         {% if messages %}
         <div class="message-container"></div>
@@ -172,31 +120,32 @@
         <!-- Main BizNet site -->
         {% block content %}
         {% endblock %}
-
+        
         {% block postloadjs %}
         {% endblock %}
 
         <!-- Fixed footer nav -->
         <nav class="navbar fixed-bottom navbar-light bg-light nav-2">
-            <div class="container-fluid">
-                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" aria-current="page" href="#">
-                    <div class="text-center">
-                    <div><i class="fas fa-user-circle fa-lg"></i></div>
-                    <p class="my-1">Profile</p>
+            <div class="container-fluid wrapper">
+                <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="#">
+                    <div class="icon user-circle text-center">
+                        <div class="tooltip">PROFILE</div>
+                        <span><i class="fas fa-user-circle"></i></span>
                     </div>
                 </a>
                 <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
-                    <div class="text-center">
-                    <div><i class="fas fa-network-wired fa-lg"></i></div>
-                    <p class="my-1">Network</p>
+                    <div class="icon search text-center">
+                        <div class="tooltip">NETWORK</div>
+                        <span><i class="fas fa-search"></i></span>
                     </div>
                 </a>
                 <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
-                    <div class="text-center">
-                    <div><i class="fas fa-suitcase fa-lg"></i></div>
-                    <p class="my-1">Gig</p>
+                    <div class="icon suitcase text-center">
+                        <div class="tooltip">GIG</div>
+                        <span><i class="fas fa-suitcase"></i></span>
                     </div>
                 </a>
+
             </div>
         </nav>
     </body>
