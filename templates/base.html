@@ -120,26 +120,26 @@
         <!-- Main BizNet site -->
         {% block content %}
         {% endblock %}
-        
+
         {% block postloadjs %}
         {% endblock %}
 
         <!-- Fixed footer nav -->
         <nav class="navbar fixed-bottom navbar-light bg-light nav-2">
             <div class="container-fluid wrapper">
-                <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="#">
+                <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="{% url 'profileuser' %}">
                     <div class="icon user-circle text-center">
                         <div class="tooltip">PROFILE</div>
                         <span><i class="fas fa-user-circle"></i></span>
                     </div>
                 </a>
-                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
+                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'network' %}">
                     <div class="icon search text-center">
                         <div class="tooltip">NETWORK</div>
                         <span><i class="fas fa-search"></i></span>
                     </div>
                 </a>
-                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
+                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'gig' %}">
                     <div class="icon suitcase text-center">
                         <div class="tooltip">GIG</div>
                         <span><i class="fas fa-suitcase"></i></span>
