@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+<script src="{% static 'app.js' %}"></script>
 
 
 {% block page_header %}
@@ -33,10 +34,10 @@
 
 {% block content %}
 
-<div class="container container-tab">
+<div class="container container-content">
 
     <!-- gig cards -->
-    <div class="container-fluid h-80 my-3 py-3">
+    <div class="container-fluid h-60 my-3 py-3">
         <div class="row">
             <div class="card" style="width: 46rem;">
                 <div class="card-body">
@@ -45,6 +46,7 @@
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's
                         content.</p>
+
                     <div class="col">
                         <a href="#" class="card-link">View</a>
                         <a href="#" class="card-link">Save</a>
@@ -54,12 +56,24 @@
                 </div>
             </div>
             <div class="card" style="width: 46rem;">
-                <div class="card-body">
+                <div class="">
                     <h5 class="card-title">Gig 2</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's
                         content.</p>
+
+                    <button class="btn btn-primary gig-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        View more details.
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            Some placeholder content for the collapse component. This panel is hidden by default but
+                            revealed when the user activates the relevant trigger.
+                        </div>
+                    </div>
                     <div class="col">
                         <a href="#" class="card-link">View</a>
                         <a href="#" class="card-link">Save</a>

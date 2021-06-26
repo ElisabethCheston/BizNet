@@ -19,6 +19,17 @@ button, li, a {
     font-size: small;
 }
 
+.gig-button {
+    color: white;
+    background-color: lightslategrey;
+    border-style: none;
+    size: 16px;
+}
+.gig-button:hover {
+    background-color: slategrey;
+    size: 18px;
+}
+
 .search-bar {
     align-items: baseline;
     justify-content: space-evenly;
@@ -122,23 +133,27 @@ button, li, a {
     padding-top: 10%;
 }
 .container-content {
-    padding-bottom: 4%;
+    padding-bottom: 6%;
 }
-.container-profile {
-    padding: 3%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
-}
+.container-profile,
 .card {
     padding: 3%;
     background-color: #FFFFFF;
     justify-content: center;
     align-items: center;
+    margin-bottom: 4%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.container-profile:hover,
+.card:hover {
+    padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 3%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
 }
 
 
