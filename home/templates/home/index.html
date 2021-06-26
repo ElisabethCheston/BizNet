@@ -4,14 +4,8 @@
 
 {% block page_header %}
 
-{% endblock %}
-
-{% block content %}
-
-<div class="container container-tab">
-
-    <!-- Nav tabs -->
-    <div class="container h-80 my-1 py-2">
+ <!-- Nav tabs -->
+    <div class="container tab-container">
         <div class="row justify-content-md-center">
             <div class="col-12">
                 <h3><strong>Contacts</strong></h3>
@@ -24,65 +18,22 @@
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
                             type="button" role="tab" aria-controls="profile" aria-selected="false">Saved</button>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">Tab</button>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container container-content">
 
     <!-- Contact cards -->
-    <div class="container-fluid h-60 my-3 py-3">
-        <div class="row">
-            <div class="card" style="width: 16rem;">
-                <div class="card-body">
-                    <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
-                    <h5 class="card-title">Profile Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="card-link">Accept</a>
-                    <a href="#" class="card-link">Decline</a>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <div class="card-body">
-                    <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
-                    <h5 class="card-title">Profile Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="card-link">Accept</a>
-                    <a href="#" class="card-link">Decline</a>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <div class="card-body">
-                    <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
-                    <h5 class="card-title">Profile Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="card-link">Accept</a>
-                    <a href="#" class="card-link">Decline</a>
-                </div>
-            </div>
-            <div class="card" style="width: 16rem;">
-                <div class="card-body">
-                    <img src="media/images/profile-img.jpg" class="card-img-top" alt="">
-                    <h5 class="card-title">Profile Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="card-link">Accept</a>
-                    <a href="#" class="card-link">Decline</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <h3>Regisration and Login</h3>
 </div>
 
 {% endblock %}

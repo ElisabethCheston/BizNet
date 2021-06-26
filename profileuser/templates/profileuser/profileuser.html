@@ -3,39 +3,69 @@
 
 
 {% block page_header %}
-
+<!-- Nav tabs -->
+<div class="container tab-container">
+    <div class="row justify-content-md-center">
+        <div class="col-12">
+            <h3><strong>My Profile</strong></h3>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        type="button" role="tab" aria-controls="home" aria-selected="true">Edit</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                        type="button" role="tab" aria-controls="profile" aria-selected="false">Delete Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                        type="button" role="tab" aria-controls="profile" aria-selected="false">Tab</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block content %}
+<br>
+<div class="container-profile container-fluid col-11">
 
-<div class="container container-tab">
 
-    <!-- Nav tabs -->
-    <div class="container h-80 my-1 py-2">
-        <div class="row justify-content-md-center">
-            <div class="col-12">
-                <h3><strong>Profile</strong></h3>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true">Edit</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                            type="button" role="tab" aria-controls="profile" aria-selected="false">Delete</button>
-                    </li>
-                </ul>
+    <!-- Profile cards -->
+
+    <div class="col-12 profile-card">
+        <div class="row g-0">
+            <div class="col-md-4 col-sm-12">
+                <img src="workspace/BizNet/media/images/profile-img.jpg" class="img-fluid rounded-start" alt="">
+            </div>
+            <div class="col-md-7 col-sm-12">
+                <div class="card-body">
+                    <h5 class="card-title">Name</h5>
+                    <h5 class="card-title">Title</h5>
+                    <h5 class="card-title">Company</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"> City</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> Country</h6>
+                    <h5 class="card-title">Other</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <h5>Presentation</h5>
+            <p>Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            <div class="col">
+                <a href="#" class="card-link">Edit</a>
+                <a href="#" class="card-link">Delete</a>
             </div>
         </div>
     </div>
 
-    <!-- Profile cards -->
-    <div class="container-fluid h-60 my-3 py-3">
-        <div class="row">
-
-        </div>
-
-    </div>
 </div>
 
 {% endblock %}

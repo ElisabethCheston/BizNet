@@ -115,11 +115,32 @@ button, li, a {
 }
 
 
-/* Content Pages */
+/* Containers Header and Content */
 
-.container-tab {
-    padding: 5%;
+
+.tab-container {
+    padding-top: 10%;
 }
+.container-content {
+    padding-bottom: 4%;
+}
+.container-profile {
+    padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+.card {
+    padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
 
 /* -------------------------------- Media Queries from Buetiq Ado */
 
