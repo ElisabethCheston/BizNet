@@ -38,7 +38,16 @@
     <div class="col-12 profile-card">
         <div class="row g-0">
             <div class="col-md-4 col-sm-12">
-                <img src="{{ MEDIA_URL }}profile-img.jpg"" class="img-fluid rounded-start" alt="{{ MEDIA_URL }} media/images/profile-img.jpg">
+                {% if profileuser.image %}
+                <a href="{{ profileuser.image.url }}" target="_blank">
+                    <img class="card-img-top img-fluid" src="{{ profileuser.image.url }}" alt="{{ profileuser.name }}">
+                </a>
+                {% else %}
+                <a href="media/images/profile-img.jpg">
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }} profile-img.jpg"
+                        alt="{{ profileuser.name }}">
+                </a>
+                {% endif %}
             </div>
             <div class="col-md-7 col-sm-12">
                 <div class="card-body">
@@ -69,4 +78,9 @@
 
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'profileuser/js/countryfield.js' %}"></script>
 {% endblock %}
