@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'gig',
     'network',
     'profileuser',
+    'settings',
 ]
 
 MIDDLEWARE = [

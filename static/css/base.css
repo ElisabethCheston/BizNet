@@ -1,3 +1,4 @@
+/* Body content */
 
 body {
 	background: url('/media/images/background.jpg') no-repeat center center fixed;
@@ -7,10 +8,42 @@ body {
     font-family: "Lato";
 }
 
+/* Containers Header and Content */
+
+.tab-container {
+    padding-top: 10%;
+}
+.container-content {
+    padding-bottom: 6%;
+}
+.container-profile,
+.card {
+    padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container-profile:hover,
+.card:hover {
+    padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
+}
+/* Navbars */
+
 .nav-2 {
     height: 55px;
 }
 
+.nav-2 {
+    height: 55px;
+}
 
 button, li, a {
     font-family: "Poppins";
@@ -18,6 +51,9 @@ button, li, a {
     font-weight: bold;
     font-size: small;
 }
+
+/* Bottom & Top links */
+
 
 .gig-button {
     color: white;
@@ -35,8 +71,6 @@ button, li, a {
     justify-content: space-evenly;
 }
 
-
-/* Bottom & Top links */
 * {
   margin: 0;
   padding: 0;
@@ -128,7 +162,6 @@ button, li, a {
 
 /* Containers Header and Content */
 
-
 .tab-container {
     padding-top: 10%;
 }
@@ -144,7 +177,6 @@ button, li, a {
     margin-bottom: 4%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 .container-profile:hover,
 .card:hover {

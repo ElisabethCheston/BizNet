@@ -18,17 +18,19 @@
 
     {% block corecss %}
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <!-- Fonts Awesome Kit CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Fonts Awesome Kit CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@200;300;400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     <!-- Optional JavaScript; choose one of the two! -->
-
     {% endblock %}
 
     {% block corejs %}
@@ -36,58 +38,59 @@
     <script src="https://kit.fontawesome.com/5c25e53934.js" crossorigin="anonymous"></script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-   
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
     {% endblock %}
 
     {% block extra_js %}
-    
     {% endblock %}
 
-    <title>BizNet</title>
+    <title>BizNet {% block extra_title %}{% endblock %}</title>
 
-    </head>
+</head>
 
-    <body>
-        <header class="container-fluid fixed-top">
-            <div id="topnav" class="row bg-white pt-lg-2 d-lg-flex justify-content-between">
-                    
-                <!-- BizNet Logo -->
-                <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
-                    <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                        <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-                            alt="" width="210" height="50"class="logo img-fluid"> </a>
-                </div>
+<body>
+    
+    <header class="container-fluid fixed-top">
+        <div id="topnav" class="row bg-white pt-lg-2 d-lg-flex justify-content-between">
 
-                <!-- Top navbar links  -->
-                <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 wrapper justify-content-end toplinks">
+            <!-- BizNet Logo -->
+            <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
+                        alt="" width="210" height="50" class="logo img-fluid">
+                </a>
+            </div>
 
-                    <ul class="list-inline nav justify-content-end my-0">
-                        <li class="list-inline-item">
-                            <a class="nav-link" href="#">
-                                    <div class="icon envelope">
-                                        <div class=""></div>
-                                        <span><i class="fas fa-envelope"></i></span>       
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link" href="">
-                                <div class="icon cog">
-                                    <div class=""></div>
-                                    <span><i class="fas fa-cog"></i></span>
-                                </div>
-                            </a>
-                        </li>
+            <!-- Top navbar links  -->
+            <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 wrapper justify-content-end toplinks">
+
+                <div class="dropdown">
+                    <a href="{% url 'settings' %}" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span><i class="fas fa-cog"></i></span>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
             </div>
-<!-- 
+        </div>
+        <!-- 
             <div class="container-fluid search-bar justify-content-center">
                 <div class="col-6 col-lg-4 my-auto py-1 py-lg-0">
 
@@ -107,53 +110,55 @@
                 </div>
             </div>
             -->
-            {% include 'includes/mobile-top-header.html' %}
-            <br>
-        </header>
+        
+    </header>
 
-        {% if messages %}
-        <div class="message-container"></div>
-        {% endif %}
+    {% if messages %}
+    <div class="message-container"></div>
+    {% endif %}
 
-        <!-- Signin and Registration part -->
-        {% block page_header %}
-        {% endblock %}
+    <!-- Tabs and links for pages -->
+    {% block page_header %}
+    {% endblock %}
 
-        <!-- Main BizNet site -->
-        {% block content %}
-        {% endblock %}
-
+    <!-- Main BizNet site -->
+    {% block content %}
+    {% endblock %}
 
 
-        <!-- Fixed footer nav -->
-        <nav class="navbar fixed-bottom navbar-light bg-light nav-2">
-            <div class="container-fluid wrapper">
-                <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="{% url 'profileuser' %}">
-                    <div class="icon user-circle text-center">
-                        <div class="tooltip">PROFILE</div>
-                        <span><i class="fas fa-user-circle"></i></span>
-                    </div>
-                </a>
-                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'network' %}">
-                    <div class="icon search text-center">
-                        <div class="tooltip">NETWORK</div>
-                        <span><i class="fas fa-search"></i></span>
-                    </div>
-                </a>
-                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'gig' %}">
-                    <div class="icon suitcase text-center">
-                        <div class="tooltip">GIG</div>
-                        <span><i class="fas fa-suitcase"></i></span>
-                    </div>
-                </a>
 
-            </div>
-        </nav>
+    <!-- Fixed footer nav -->
+    <nav class="navbar fixed-bottom navbar-light bg-light nav-2">
+        <div class="container-fluid wrapper">
+            <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page"
+                href="{% url 'profileuser' %}">
+                <div class="icon user-circle text-center">
+                    <div class="tooltip">PROFILE</div>
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+            </a>
+            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'network' %}">
+                <div class="icon search text-center">
+                    <div class="tooltip">NETWORK</div>
+                    <span><i class="fas fa-search"></i></span>
+                </div>
+            </a>
+            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'gig' %}">
+                <div class="icon suitcase text-center">
+                    <div class="tooltip">GIG</div>
+                    <span><i class="fas fa-suitcase"></i></span>
+                </div>
+            </a>
 
-        <!-- Custom js -->
-                {% block postloadjs %}
-            <script src="/workspace/BizNet/static/js/app.js" crossorigin="anonymous"></script>
-        {% endblock %}
-    </body>
+        </div>
+    </nav>
+
+    <!-- Custom js -->
+    {% block postloadjs %}
+
+
+
+    {% endblock %}
+</body>
 
 </html>
