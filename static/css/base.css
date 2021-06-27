@@ -143,6 +143,8 @@ button, li, a {
 .wrapper .search:hover .tooltip::before,
 .wrapper .suitcase:hover .tooltip,
 .wrapper .suitcase:hover .tooltip::before,
+.wrapper .users:hover .tooltip,
+.wrapper .users:hover .tooltip::before,
 .wrapper .cog:hover .tooltip,
 .wrapper .cog:hover .tooltip::before,
 .wrapper .envelope:hover .tooltip,
@@ -155,6 +157,7 @@ button, li, a {
 .wrapper .search:hover,
 .wrapper .suitcase:hover,
 .wrapper .cog:hover,
+.wrapper .users:hover,
 .wrapper .envelope:hover {
     color: rgba(107, 155, 219, 0.79);
 }
