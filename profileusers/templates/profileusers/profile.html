@@ -38,20 +38,20 @@
     <div class="col-12 profile-card">
         <div class="row g-0">
             <div class="col-md-4 col-sm-12">
-                {% if profileuser.image %}
-                <a href="{{ profileuser.image.url }}" target="_blank">
-                    <img class="card-img-top img-fluid" src="{{ profileuser.image.url }}" alt="{{ profileuser.name }}">
+                {% if profileusers.image %}
+                <a href="{{ profileusers.image.url }}" target="_blank">
+                    <img class="card-img-top img-fluid" src="{{ profileusers.image.url }}" alt="{{ profileusers.name }}">
                 </a>
                 {% else %}
-                <a href="media/images/profile-img.jpg">
+                <a href="media/profile-img.jpg">
                     <img class="card-img-top img-fluid" src="{{ MEDIA_URL }} profile-img.jpg"
-                        alt="{{ profileuser.name }}">
+                        alt="{{ profileusers.username }}">
                 </a>
                 {% endif %}
             </div>
             <div class="col-md-7 col-sm-12">
                 <div class="card-body">
-                    <h5 class="card-title">Name</h5>
+                    <h5 class="card-title">{{ profileusers.username }}'s Profile</h5>
                     <h5 class="card-title">Title</h5>
                     <h5 class="card-title">Company</h5>
                     <h6 class="card-subtitle mb-2 text-muted"> City</h6>
@@ -82,5 +82,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'profileuser/js/countryfield.js' %}"></script>
+    <script type="text/javascript" src="{% static 'profileusers/js/countryfield.js' %}"></script>
 {% endblock %}

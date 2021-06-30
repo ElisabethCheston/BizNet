@@ -15,6 +15,10 @@ body {
 }
 .container-content {
     padding-bottom: 6%;
+    padding: 2%;
+}
+.welcome {
+    padding-left: 3%;
 }
 .container-profile,
 .card {

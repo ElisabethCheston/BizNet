@@ -7,17 +7,15 @@ from django_countries.fields import CountryField
 
 # Create your models here.
 
-
 class Profileuser(models.Model):
     """
-    Membership, network and profile user information 
+    Profile user information 
     """
-    username = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=254)
     password = models.CharField(max_length=254, null=True, blank=True)
     firstname = models.CharField(max_length=254)
     lastname = models.CharField(max_length=254)
     title = models.CharField(max_length=254, blank=True)
-
     company_name = models.CharField(max_length=254)
     company_number_vat = models.CharField(max_length=254, blank=True)
     industry = models.ForeignKey(
@@ -31,21 +29,24 @@ class Profileuser(models.Model):
     phone = models.CharField(max_length=20, null=True, blank=True)
     city = models.CharField(max_length=40, null=True, blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
-   
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username} Profileuser'
+
 
 class Industry(models.Model):
-
-    class Meta:
-        verbose_name_plural = 'Industries'
-
-    _id_prof = models.CharField(max_length=254)
     prof_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
-        return self._id_prof
-
-    def get_prof_name(self):
         return self.prof_name
+
+
+@receiver(post_save, sender=User)
+def create_or_edit_profileuser(sender, instance, created, **kwargs):
+    """
+    Create or update the user profile
+    """
+    if created:
+        Profileuser.objects.create(user=instance)
+    # Existing users: just save the profile
+    instance.profileuser.save()
