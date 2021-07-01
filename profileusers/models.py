@@ -31,22 +31,15 @@ class Profileuser(models.Model):
     country = CountryField(blank_label='Country', null=True, blank=False)
 
     def __str__(self):
-        return f'{self.user.username} Profileuser'
+        return self.name
 
 
 class Industry(models.Model):
     prof_name = models.CharField(max_length=254, null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = 'Industries'
+
     def __str__(self):
-        return self.prof_name
+        return self.name
 
-
-@receiver(post_save, sender=User)
-def create_or_edit_profileuser(sender, instance, created, **kwargs):
-    """
-    Create or update the user profile
-    """
-    if created:
-        Profileuser.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.profileuser.save()
