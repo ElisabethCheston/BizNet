@@ -26,7 +26,7 @@ class Profileuser(models.Model):
     description = models.TextField(blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(default='profile-img.jpg', null=True, blank=True)
-    email = models.EmailField(max_length=254, null=False, blank=False)
+    email = models.EmailField(max_length=50, null=False, blank=False)
     phone = models.CharField(max_length=20, null=True, blank=True)
     city = models.CharField(max_length=40, null=True, blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
@@ -36,8 +36,10 @@ class Profileuser(models.Model):
 
 
 class Industry(models.Model):
-    prof_name = models.CharField(max_length=254, null=True, blank=True)
+    prof_name = models.CharField(max_length=50, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Industries'
 
     def __str__(self):
         return self.prof_name
-

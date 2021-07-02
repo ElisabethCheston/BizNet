@@ -3,6 +3,27 @@ from .models import Profileuser, Industry
 
 
 class ProfilesAdmin(admin.ModelAdmin):
+
+    fields = (
+        'username',
+        'password',
+        'firstname',
+        'lastname',
+        'title',
+        'company_name',
+        'company_number_vat',
+        # 'industry',
+        'profession',
+        'skill',     
+        'description',
+        'image_url',
+        'image',
+        'email',
+        'phone',
+        'city',
+        'country',
+    )
+
     list_display = (
         'user_id',
         'username',
@@ -12,7 +33,7 @@ class ProfilesAdmin(admin.ModelAdmin):
         'title',
         'company_name',
         'company_number_vat',
-        'industry',
+        # 'industry',
         'profession',
         'skill',     
         'description',

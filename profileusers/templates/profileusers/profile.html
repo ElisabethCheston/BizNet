@@ -35,11 +35,11 @@
 <br>
 <div class="container-profile container-fluid col-11">
 
-
+    {% for profile in profileusers %}
     <!-- Profile cards -->
-
     <div class="col-12 profile-card">
         <div class="row g-0">
+            <!-- 
             <div class="col-md-4 col-sm-12">
                 {% if profileusers.image %}
                 <a href="{{ media.image.url }}" target="_blank">
@@ -52,14 +52,18 @@
                 </a>
                 {% endif %}
             </div>
+            -->
+
+
             <div class="col-md-7 col-sm-12">
                 <div class="card-body">
-                    <h5 class="card-title">{{ profileusers.username }}'s Profile</h5>
-                    <h5 class="card-title">Title</h5>
-                    <h5 class="card-title">Company</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"> City</h6>
-                    <h6 class="card-subtitle mb-2 text-muted"> Country</h6>
-                    <h5 class="card-title">Other</h5>
+                    <h5 class="card-title">{{ profile.firstname }}</h5>
+                    <h5 class="card-title">{{ profile.lastname }}</h5>
+                    <h5 class="card-title">{{ profile.title }}</h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted"> {{ profile.city }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> {{ profile.country }}</h6>
+                    <h5 class="card-title"> Other</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional
                         content. This content is a little bit longer.</p>
@@ -68,22 +72,26 @@
             </div>
         </div>
         <div class="col-12">
-            <h5>Presentation</h5>
+            <h5> {{ profile.presentation }}Presentation</h5>
             <p>Some quick example text to build on the card title and make up the bulk of the
                 card's
                 content.</p>
+
+            {% endfor %}
+
             <div class="col">
                 <a href="#" class="card-link">Edit</a>
                 <a href="#" class="card-link">Delete</a>
             </div>
         </div>
     </div>
-
 </div>
 
 {% endblock %}
 
+
+
 {% block postloadjs %}
-    {{ block.super }}
-    <script type="text/javascript" src="{% static 'profileusers/js/countryfield.js' %}"></script>
+{{ block.super }}
+<script type="text/javascript" src="{% static 'profile/js/countryfield.js' %}"></script>
 {% endblock %}
