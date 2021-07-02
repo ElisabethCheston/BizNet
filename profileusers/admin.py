@@ -4,6 +4,7 @@ from .models import Profileuser, Industry
 
 class ProfilesAdmin(admin.ModelAdmin):
     list_display = (
+        'user_id',
         'username',
         'password',
         'firstname',

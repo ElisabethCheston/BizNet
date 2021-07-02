@@ -1,9 +1,10 @@
 [
     {
-        "model": "profileusers.profileusers",
-        "pk": "1",
+        "model": "profileusers.profileuser",
+        "pk": 1,
         "fields": {
             "username": "danielC",
+            "user_id": 100001,
             "password": "biznet001",
             "first_name": "Daniel",
             "last_name": "Cedergren",
@@ -23,10 +24,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "2",
+        "model": "profileusers.profileuser",
+        "pk": 2,
         "fields": {
             "username": "michaelK",
+            "user_id": 100002,
             "password": "biznet002",
             "first_name": "Michael ",
             "last_name": "Keaton",
@@ -46,10 +48,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "3",
+        "model": "profileusers.profileuser",
+        "pk": 3,
         "fields": {
             "username": "sandraD",
+            "user_id": 100003,
             "password": "biznet003",
             "first_name": "Sandra ",
             "last_name": "Durken",
@@ -69,10 +72,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "4",
+        "model": "profileusers.profileuser",
+        "pk": 4,
         "fields": {
             "username": "sofiaW",
+            "user_id": 100004,
             "password": "biznet004",
             "first_name": "Sofia",
             "last_name": "Wood",
@@ -92,10 +96,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "5",
+        "model": "profileusers.profileuser",
+        "pk": 5,
         "fields": {
             "username": "kentF",
+            "user_id": 100005,
             "password": "biznet005",
             "first_name": "Kent ",
             "last_name": "Fieldwork",
@@ -115,10 +120,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "6",
+        "model": "profileusers.profileuser",
+        "pk": 6,
         "fields": {
             "username": "joeL",
+            "user_id": 100006,
             "password": "biznet006",
             "first_name": "Joe ",
             "last_name": "Labero",
@@ -138,10 +144,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "7",
+        "model": "profileusers.profileuser",
+        "pk": 7,
         "fields": {
             "username": "liahC",
+            "user_id": 100007,
             "password": "biznet007",
             "first_name": "Liah",
             "last_name": "Cheston",
@@ -161,10 +168,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "8",
+        "model": "profileusers.profileuser",
+        "pk": 8,
         "fields": {
             "username": "rickR",
+            "user_id": 100008,
             "password": "biznet008",
             "first_name": "Rick",
             "last_name": "Rucker",
@@ -184,10 +192,11 @@
         }
     },
     {
-        "model": "profileusers.profileusers",
-        "pk": "9",
+        "model": "profileusers.profileuser",
+        "pk": 9,
         "fields": {
             "username": "gabrielW",
+            "user_id": 100009,
             "password": "biznet009",
             "first_name": "Gabriel",
             "last_name": "Wärmby",

@@ -11,6 +11,7 @@ class Profileuser(models.Model):
     """
     Profile user information 
     """
+    user_id = models.CharField(max_length=254)
     username = models.CharField(max_length=254)
     password = models.CharField(max_length=254, null=True, blank=True)
     firstname = models.CharField(max_length=254)
@@ -31,7 +32,7 @@ class Profileuser(models.Model):
     country = CountryField(blank_label='Country', null=True, blank=False)
 
     def __str__(self):
-        return f'{self.user.username} Profileuser'
+        return self.username
 
 
 class Industry(models.Model):
@@ -40,13 +41,3 @@ class Industry(models.Model):
     def __str__(self):
         return self.prof_name
 
-
-@receiver(post_save, sender=User)
-def create_or_edit_profileuser(sender, instance, created, **kwargs):
-    """
-    Create or update the user profile
-    """
-    if created:
-        Profileuser.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.profileuser.save()

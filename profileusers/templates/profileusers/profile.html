@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
+{% endblock %}
 
 
 {% block page_header %}
@@ -39,12 +42,12 @@
         <div class="row g-0">
             <div class="col-md-4 col-sm-12">
                 {% if profileusers.image %}
-                <a href="{{ profileusers.image.url }}" target="_blank">
-                    <img class="card-img-top img-fluid" src="{{ profileusers.image.url }}" alt="{{ profileusers.name }}">
+                <a href="{{ media.image.url }}" target="_blank">
+                    <img class="card-img-top img-fluid" src="{{ media.image.url }}" alt="{{ profileusers.username }}">
                 </a>
                 {% else %}
-                <a href="media/profile-img.jpg">
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }} profile-img.jpg"
+                <a href="media/images/profileefault.jpg">
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}profileefault.jpg"
                         alt="{{ profileusers.username }}">
                 </a>
                 {% endif %}
