@@ -3,14 +3,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
 # from .models import User
-
-from .models import Profileuser, Industry
+from .models import Gig
 
 # Create your views here.
 
-def profile(request):
-    # profiles = Profileusers.objects.all()
+def gig(request):
+    # gigs = Profileusers.objects.all()
     # context = {
-    #    'profiles': profiles
+    #    'gigs': gigs
     # }
-    return render(request, 'profileusers/profile.html')
+    return render(request, 'gigs/gig.html')

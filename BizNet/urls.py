@@ -26,6 +26,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('profileusers', include('profileusers.urls')),
     path('network', include('network.urls')),
-    path('gig', include('gig.urls')),
+    path('gigs', include('gigs.urls')),
     path('', include('settings.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

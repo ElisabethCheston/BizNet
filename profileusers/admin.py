@@ -5,6 +5,7 @@ from .models import Profileuser, Industry
 class ProfilesAdmin(admin.ModelAdmin):
 
     fields = (
+        'user_id',
         'username',
         'password',
         'firstname',
@@ -25,6 +26,7 @@ class ProfilesAdmin(admin.ModelAdmin):
     )
 
     list_display = (
+        'user_id',
         'user_id',
         'username',
         'password',
