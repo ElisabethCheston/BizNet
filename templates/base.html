@@ -32,7 +32,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
-    <link rel="manifest" href="static/favicon/site.webmanifest">
 -->
     {% block extra_css %}
     {% endblock %}
@@ -89,7 +88,7 @@
                                 <a href="{% url 'profile' %}" class="dropdown-item">Profile</a>
                                 <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
                                 <a href="{% url 'network' %}" class="dropdown-item">Network</a>
-                                <a href="{% url '' %}" class="dropdown-item">Members</a>
+                                <a href="{% url 'member' %}" class="dropdown-item">Members</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                             {% else %}
                                 <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
@@ -169,7 +168,6 @@
                     <span><i class="fas fa-suitcase"></i></span>
                 </div>
             </a>
-
         </div>
     </nav>
 

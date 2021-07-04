@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from members.views import get_member_profile
 
 
 urlpatterns = [
@@ -28,7 +27,7 @@ urlpatterns = [
     path('profileusers', include('profileusers.urls')),
     path('network', include('network.urls')),
     path('gigs', include('gigs.urls')),
-    path('', get_member_profile, name='get_member_profile'),
+    path('members', include('members.urls')),
     path('', include('settings.urls')),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
