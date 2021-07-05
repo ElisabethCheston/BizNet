@@ -39,6 +39,14 @@
 <a href="{% url 'network' %}">Sign Up</a>
 {% endif %}
 
+<table>
+    {% for profile in profileusers %}
+    
+    {{ profileusers.username }}
+
+    {% endfor %}
+</table>
+
 {% endblock %}
 
 

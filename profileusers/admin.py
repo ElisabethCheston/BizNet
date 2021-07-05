@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profileuser, Industry
+from .models import Profileuser
 
 
 class ProfilesAdmin(admin.ModelAdmin):
@@ -47,13 +47,10 @@ class ProfilesAdmin(admin.ModelAdmin):
         'country',
     )
 
-
 class IndustryAdmin(admin.ModelAdmin):
     list_display = (
         'prof_name',
     )
 
-
 # Register your models here.
 admin.site.register(Profileuser, ProfilesAdmin)
-admin.site.register(Industry, IndustryAdmin)

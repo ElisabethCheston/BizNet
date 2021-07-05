@@ -4,13 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
 # from .models import User
 
-from .models import Profileuser, Industry
+from .models import Profileuser
 
 # Create your views here.
 
 def profile(request):
     # profiles = Profileusers.objects.all()
-    # context = {
-    #    'profiles': profiles
-    # }
-    return render(request, 'profileusers/profile.html')
+    template = 'profileusers/profile.html'
+    context = {
+       'profiles': profile,
+    }
+    return render(request, template, context)
