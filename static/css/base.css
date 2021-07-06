@@ -8,11 +8,27 @@ body {
     font-family: "Lato";
 }
 
+/* Top Navbar */
+.fa-user-cog,
+.icon-text {
+  color: rgba(47, 156, 245, 0.99);
+}
 /* Containers Header and Content */
 
 .tab-container {
-    padding-top: 10%;
+  padding-top: 4%;;
 }
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
+
+.container,
+.nav-tabs {
+    margin-top: 10px;
+    padding-top: 80px;
+}
+.tab-content {
+  padding: 30px;
+}
+
 .container-content {
     padding-bottom: 6%;
     padding: 2%;
@@ -45,19 +61,16 @@ body {
     height: 55px;
 }
 
-.nav-2 {
-    height: 55px;
-}
-
 button, li, a {
     font-family: "Poppins";
     text-transform: uppercase;
     font-weight: bold;
     font-size: small;
+    color: rgba(47, 156, 245, 0.99);
+
 }
 
 /* Bottom & Top links */
-
 
 .gig-button {
     color: white;
@@ -94,7 +107,7 @@ button, li, a {
 .wrapper .icon {
   position: relative;
   font-size: 24px;
-  color: #6495ED;
+  color: rgba(47, 156, 245, 0.99);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,7 +124,7 @@ button, li, a {
   color: transparent;
   padding: 5px 8px;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 70%;
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -153,8 +166,10 @@ button, li, a {
 .wrapper .cog:hover .tooltip::before,
 .wrapper .envelope:hover .tooltip,
 .wrapper .envelope:hover .tooltip::before {
-  background-color: rgba(107, 155, 219, 0.79);
-  color: #ffffff;
+  color: rgba(47, 156, 245, 0.89);
+  font-weight: bold;
+  font-size: large;
+  background-color: rgba(217, 255, 4, 0.05);
 }
 
 .wrapper .user-circle:hover,
@@ -163,15 +178,18 @@ button, li, a {
 .wrapper .cog:hover,
 .wrapper .users:hover,
 .wrapper .envelope:hover {
-    color: rgba(107, 155, 219, 0.79);
+  color: rgba(47, 156, 245, 0.89);
 }
 
+/* Header Tab container */
 
-/* Containers Header and Content */
-
-.tab-container {
-    padding-top: 10%;
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
+.container {
+    margin-top: 10px;
 }
+
+/* Containers Content */
+
 .container-content {
     padding-bottom: 6%;
 }
@@ -196,7 +214,7 @@ button, li, a {
 }
 
 
-/* -------------------------------- Media Queries from Buetiq Ado */
+/*  Media Queries from Buetiq Ado */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
@@ -218,4 +236,55 @@ button, li, a {
     .header-container {
         padding-top: 164px;
     }
+}
+
+@include media-breakpoint-only(xs) {
+  .tab-container {
+    padding: 6%;
+    position: fixed;
+    overflow-y: scroll;
+    height: 40%;
+  }
+}
+@include media-breakpoint-only(sm) {
+  .tab-container {
+    position: fixed;
+    padding: 2%;
+    overflow-y: scroll;
+    height: 40%;
+  }
+}
+@include media-breakpoint-only(md) {
+  .tab-container {
+    position: fixed;
+    padding: 1%;
+    overflow-y: scroll;
+    height: 40%;
+  }
+}
+
+@include media-breakpoint-only(lg) {
+  .tab-container {
+    position: fixed;
+    overflow-y: scroll;
+    height: 40%;
+  }
+}
+@include media-breakpoint-only(xl) {
+  .tab-container {
+    position: fixed;
+    overflow-y: scroll;
+    height: 40%;
+  }
+}
+@include media-breakpoint-only(xxl) {
+  .tab-container {
+    position: fixed;
+    overflow-y: scroll;
+    height: 40%,
+    position:absolute;
+    top:20px;
+    left:60px;
+    margin-right:30px;
+  }
 }

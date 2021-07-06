@@ -4,31 +4,22 @@
 
 {% block page_header %}
 <!-- Nav tabs -->
-<div class="container tab-container">
-    <div class="row justify-content-md-center">
-        <div class="col-12">
-            <h3><strong>Gig</strong></h3>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                        type="button" role="tab" aria-controls="home" aria-selected="true">New</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">Saved</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">Applied</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">Hidden</button>
-                </li>
-            </ul>
-        </div>
-    </div>
+
+<ul class="nav nav-tabs justify-content-evenly">
+    <li class="active"><a href="#new-gig" data-toggle="tab">New</a></li>
+    <li><a href="#saved-gig" data-toggle="tab">Saved</a></li>
+    <li><a href="#apply-gig" data-toggle="tab">Applied</a></li>
+    <li><a href="#hide-gig" data-toggle="tab">Hidden</a></li>
+</ul>
+
+<div class="tab-content" id="tabs">
+    <div class="tab-pane" id="new-gig">Show new gigs:</div>
+    <div class="tab-pane active" id="saved-gig">Your saved gigs:</div>
+    <div class="tab-pane" id="apply-gig">Gigs you applied for:</div>
+    <div class="tab-pane" id="hide-gig">Hidden gigs</div>
+
 </div>
+
 {% endblock %}
 
 {% block content %}
@@ -36,7 +27,7 @@
 <div class="container container-content">
 
     <!-- gig cards -->
-    <div class="container-fluid h-60 my-3 py-3">
+    <div class="tab-container h-60 my-3 py-3">
         <div class="row">
             <div class="card" style="width: 46rem;">
                 <div class="card-body">
@@ -48,9 +39,9 @@
                     <p>
                         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
                             aria-controls="collapseExample1">
-                            More Information 
+                            More Information
                         </a>
- 
+
                     </p>
                     <div class="collapse" id="collapseExample1">
                         <div class="card card-body">
@@ -77,9 +68,9 @@
                     <p>
                         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
                             aria-controls="collapseExample">
-                            More Information 
+                            More Information
                         </a>
- 
+
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
@@ -101,5 +92,7 @@
 
     </div>
 </div>
+
+
 {{hello}}
 {% endblock %}
