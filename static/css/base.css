@@ -8,6 +8,10 @@ body {
     font-family: "Lato";
 }
 
+.not-visible {
+  display: none;
+}
+
 /* Top Navbar */
 .fa-user-cog,
 .icon-text {
@@ -24,14 +28,14 @@ body {
 .nav-tabs {
     margin-top: 10px;
     padding-top: 80px;
-}
+  }
 .tab-content {
   padding: 30px;
 }
 
 .container-content {
-    padding-bottom: 6%;
-    padding: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 .welcome {
     padding-left: 3%;
