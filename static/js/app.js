@@ -7,21 +7,30 @@ var collapseList = collapseElementList.map(function (collapseEl) {
 
 // -- For tabs from Bootstraps -- //
 
-function activaTab(tab){
+function activaTab(tab) {
   $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
 
-//activaTab('bbb');
+// -- Activate welcome message -- //
 
-/*
-$(document).ready(function(){
-  activaTab('aaa');
-});
+console.log('Welcome!')
+console.log(document)
 
-function activaTab(tab){
-  $('.nav-tabs a[href="#new-gig"]').tab('show');
-  $('.nav-tabs a[href="#saved-gig"]').tab('show');
-  $('.nav-tabs a[href="#apply-gig"]').tab('show');
-  $('.nav-tabs a[href="#hide-gig"]]').tab('show');
-};
-*/
+const test = document.getElementById('test')
+console.log(test)
+
+setTimeout(() => {
+  test.textContent = "Check out the lastest updates below."
+}, 2000)
+
+
+$.ajax({
+  type: 'GET',
+  url: '/gigs-json/',
+  success: function (response) {
+    console.log(response.data)
+  },
+  error: function (error) {
+    console.log(error)
+  }
+})

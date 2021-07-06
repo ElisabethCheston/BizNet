@@ -24,9 +24,14 @@
 
 {% block content %}
 
+<div id="test">
+    {{ greeting }}
+  </div>
+  
+
 <div class="container container-content">
 
-    {{ hello }}
+
 
     <div id="gigs">
         {% for obj in qs %}

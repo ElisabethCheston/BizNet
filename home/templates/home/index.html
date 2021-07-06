@@ -7,7 +7,11 @@
 
 {% block content %}
 
+
+
 <div class="container">
+
+
 
   {% if user.is_authenticated %}
 <h3>Welcome to BizNet {{ user.username }} !!!</h3>
@@ -16,7 +20,7 @@
 {% endif %}
 
 </div>
-<div class="container-content">
+<div class="container-content container">
 
   <!-- Contact cards -->
   <h3>Information</h3>
@@ -27,15 +31,18 @@
       aria-controls="collapseExample">
       What is BizNet?
     </a>
+    <!-- 
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
       aria-expanded="false" aria-controls="collapseExample">
       What can BizNet do for me?
     </button>
+    -->
   </p>
   <div class="collapse" id="collapseExample">
     <div class="card card-body">
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-      keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      At BizNet we believe in the power of strong and relevant professional networks. Your network is the most important asset to succeed with your business. </br></br>
+      Be the go-to place where small business owners build active and strong networks to generate new business opportunities and exchange experience. </br></br>
+      BizNet helps small business owners to find new business opportunities through a strong and relevant network, share experiences and stay social. </br>
     </div>
   </div>
 </div>
