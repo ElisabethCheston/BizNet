@@ -11,7 +11,13 @@ class Profileuser(models.Model):
     """
     Profile user information 
     """
-    user_id = models.CharField(max_length=254)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='avatars', default='avatar.png')
+    background = models.ImageField(upload_to='backgrounds', default='profilebackground.png')
+    following = models.ManyToManyField(User, related_name='following', blank=True)
+    # user_id = models.CharField(max_length=254)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(default=timezone.now, blank=True, null=True)
     username = models.CharField(max_length=254)
     password = models.CharField(max_length=254, null=True, blank=True)
     firstname = models.CharField(max_length=254)
@@ -32,7 +38,7 @@ class Profileuser(models.Model):
     country = CountryField(blank_label='Country', null=True, blank=False)
 
     def __str__(self):
-        return self.username
+        return str(self.user)
 
 
 class Industry(models.Model):
