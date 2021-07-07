@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     avatar = models.ImageField(upload_to='avatars', default='avatar.png')
     # following = models.ManyToManyField(User, related_name='following', blank=True)
     description = models.TextField(blank=True)
