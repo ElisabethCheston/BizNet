@@ -10,7 +10,7 @@ class Member(models.Model):
     # following = models.ManyToManyField(User, related_name='following', blank=True)
     description = models.TextField(blank=True)
     updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(default=timezone.now, blank=True, null=True)
+    # created = models.DateTimeField(default=timezone.now, blank=True, null=True)
     username = models.CharField(max_length=50, null=False, blank=False)
     firstname = models.CharField(max_length=100, null=False, blank=False)
     lastname = models.CharField(max_length=100, null=False, blank=False)
