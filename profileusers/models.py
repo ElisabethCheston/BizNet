@@ -14,7 +14,7 @@ class Profileuser(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatars', default='profileavatar.png')
-    background = models.ImageField(upload_to='backgrounds', default='backgroundpic.jpg')
+    background = models.ImageField(upload_to='media/images', default='media/images/backgroundpic.jpg')
     following = models.ManyToManyField(User, related_name='following', blank=True)
     # user_id = models.CharField(max_length=254)
     updated = models.DateTimeField(auto_now=True)
