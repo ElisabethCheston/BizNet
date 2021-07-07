@@ -17,6 +17,12 @@ body {
 .icon-text {
   color: rgba(47, 156, 245, 0.99);
 }
+.fa-user-cog:hover,
+.icon-text:hover,
+.fa-user-cog:active,
+.icon-text:active {
+  color: rgba(47, 156, 245, 0.79);
+}
 /* Containers Header and Content */
 
 .tab-container {
@@ -29,17 +35,32 @@ body {
     margin-top: 10px;
     padding-top: 80px;
   }
-.tab-content {
-  padding: 30px;
-}
-
+.tab-content,
 .container-content {
+  padding: 10px;
   padding-left: 3%;
   padding-right: 3%;
 }
+
 .welcome {
     padding-left: 3%;
 }
+
+/* Collapeble boxes */
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  @include transition($transition-collapse);
+}
+
+/* Profile Layout */
+
 .container-profile,
 .card {
     padding: 3%;
@@ -71,7 +92,15 @@ button, li, a {
     font-weight: bold;
     font-size: small;
     color: rgba(47, 156, 245, 0.99);
+}
 
+.btn {
+  background-color: rgba(47, 156, 245, 0.99);
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+  background-color: rgba(47, 156, 245, 0.79);
 }
 
 /* Bottom & Top links */
