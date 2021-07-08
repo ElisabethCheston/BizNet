@@ -17,10 +17,10 @@ console.log('Welcome!')
 console.log(document)
 
 const test = document.getElementById('test')
-const gigs2 = document.getElementById('gigs2')
+// const gigs2 = document.getElementById('gigs2')
 console.log(test)
 
-setTimeout(() => {
+setTimeout(()=>{
   test.textContent = "Check out the lastest updates below."
 }, 2000)
 
