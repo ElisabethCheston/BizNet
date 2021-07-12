@@ -271,6 +271,8 @@ button, li, a {
     }
 }
 
+/* Screen layout */
+
 @include media-breakpoint-only(xs) {
   .tab-container {
     padding: 6%;

@@ -33,19 +33,34 @@
 
 {% block content %}
 
+{{profile}}
+
 {% if user.is_authenticated %}
 <p>Welcome {{ user.username }} !!!</p>
+<br>
+<p><b>My posts:</b> {{gigs.get_my_gigs}}</p>
+<p><b>My posts number:</b> {{gigs.num_gigs}}</p>
+
 {% else %}
 <a href="{% url 'network' %}">Sign Up</a>
+
+<br>
+
+
 {% endif %}
 
 <table>
     {% for profile in profileusers %}
     
-    {{ profileusers.username }}
+    <tr>
+        <td>{{ profile.firstname }}</td>
+        <td>{{ profile.lastname }}</td>
+    </tr>
 
     {% endfor %}
 </table>
+
+template = 'profileusers/profile.html'
 
 {% endblock %}
 
