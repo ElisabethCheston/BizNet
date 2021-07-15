@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'network',
     'profileusers',
     'settings',
-    # 'members',
 ]
 
 MIDDLEWARE = [

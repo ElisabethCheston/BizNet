@@ -1,0 +1,794 @@
+[
+  {
+    "pk": 100001,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Daniel",
+      "last_name": "Cedergren",
+      "company_name": "GSD Consulting",
+      "company_number_vat": 7509100231,
+      "industry": "Accounting Services",
+      "industry_id": 1,
+      "profession": "UX designer",
+      "skill": "research, usability testing, protoyping, interaction design, front end programming",
+      "email": "daniel@biznet.app",
+      "mobile": 708660053,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100002,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Michael ",
+      "last_name": "Keaton",
+      "company_name": "Keaton Publishing",
+      "company_number_vat": 7709100231,
+      "industry": "Accommodation and Food Services",
+      "industry_id": 2,
+      "profession": "Devops engineer",
+      "skill": "Python, data bases, Java, agile methods, windows server, Linux 1, AWS cloud, Google cloud, automation, continous integration and delivery",
+      "email": "michael@keaton.com",
+      "mobile": 708660054,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100003,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Sandra ",
+      "last_name": "Durken",
+      "company_name": "Durken PR",
+      "company_number_vat": 6509100231,
+      "industry": "Administrative and Support Services",
+      "industry_id": 3,
+      "profession": "PR consultant",
+      "skill": "Communication writing, speach, Press releases, Internal communication, crisis communication, management training, research",
+      "email": "sandra@durken.net",
+      "mobile": 708660055,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100004,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Sofia",
+      "last_name": "Wood",
+      "company_name": "Wook Constructions",
+      "company_number_vat": 7104159306,
+      "industry": "Apparel Manufacturing",
+      "industry_id": 4,
+      "profession": "Carpenter",
+      "skill": "furniture building, wood types & varieties, cabinet making, refinishing & retouching, general repairs & maintenance, sanding, sawing & general woodworking, drilling & framing",
+      "email": "wood@wood.com",
+      "mobile": 708660056,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100005,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Kent ",
+      "last_name": "Fieldwork",
+      "company_name": "Fieldwork accountants",
+      "company_number_vat": 6805220467,
+      "industry": "Arts, Entertainment, and Recreation",
+      "industry_id": 5,
+      "profession": "Accountant",
+      "skill": "Debit, credit, coporate, public, governmental accounting, GAAP, tax accounting",
+      "email": "kent@fieldwork.com",
+      "mobile": 708660057,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100006,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Joe ",
+      "last_name": "Labero",
+      "company_name": "Labero Masters",
+      "company_number_vat": 5906170231,
+      "industry": "Banking",
+      "industry_id": 6,
+      "profession": "Scrum master",
+      "skill": "Scrum team agreement and activities: standups, backlog meetings, sprint planning, team review, retrospectives, SAFE, ",
+      "email": "joe@laberomasters.se",
+      "mobile": 708660058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100007,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Liah",
+      "last_name": "Cheston",
+      "company_name": "Cheston Electrics",
+      "company_number_vat": 7704150691,
+      "industry": "Communication",
+      "industry_id": 7,
+      "profession": "Electrician",
+      "skill": "Repairing and maintaining electrical equipment\nMaintaining and Installing Fire Alarm Systems\nInstalling wiring and fixtures\nCutting and installing electrical conduits\nImplementing blueprints",
+      "email": "liah@chestonelectrics.com",
+      "mobile": 708660059,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100008,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Rucker",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8245400819,
+      "industry": "Computer and Electronic Product Manufacturing",
+      "industry_id": 8,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "rick@copycats.io",
+      "mobile": 708660060,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100009,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Gabriel",
+      "last_name": "Wärmby",
+      "company_name": "Code 24",
+      "company_number_vat": 8811239899,
+      "industry": "Construction Services",
+      "industry_id": 9,
+      "profession": "UX designer",
+      "skill": "People management, leadership management, reading blueprints, OSHA compliance, interior and exterior renovation, design and planning, best building practices, building, demolition and renovation ",
+      "email": "gabriel@code24.com",
+      "mobile": 708660061,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100010,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Andersson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 82091007879,
+      "industry": "Couriers and Messengers",
+      "industry_id": 10,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Andersson@copycats.io",
+      "mobile": 708707058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100011,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Petterson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209105519,
+      "industry": "Credit Intermediation and Related Activities",
+      "industry_id": 11,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Petterson@copycats.io",
+      "mobile": 708665158,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100012,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Persson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8255100819,
+      "industry": "Data Processing, Hosting, and Related Services",
+      "industry_id": 12,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Persson@copycats.io",
+      "mobile": 708666568,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100013,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Jansson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209104567,
+      "industry": "Educational Services",
+      "industry_id": 13,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Jansson@copycats.io",
+      "mobile": 708663738,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100014,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Eriksson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209101234,
+      "industry": "Electrical Equipment, Appliance, and Component Manufacturing",
+      "industry_id": 14,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Eriksson@copycats.io",
+      "mobile": 708666788,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100015,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Olsson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100333,
+      "industry": "Electronics and Appliance Stores",
+      "industry_id": 15,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Olsson@copycats.io",
+      "mobile": 708456058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100016,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Bauer",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100222,
+      "industry": "Fabricated Metal Product Manufacturing",
+      "industry_id": 16,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Bauer@copycats.io",
+      "mobile": 704965058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100017,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Tesfay",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100321,
+      "industry": "Finance and Insurance",
+      "industry_id": 17,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Tesfay@copycats.io",
+      "mobile": 708629358,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100018,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Karlsson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100654,
+      "industry": "Food Manufacturing",
+      "industry_id": 18,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Karlsson@copycats.io",
+      "mobile": 708129058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100019,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Carlberg",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209106549,
+      "industry": "Funds, Trusts, and Other Financial Vehicles",
+      "industry_id": 19,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Carlberg@copycats.io",
+      "mobile": 708121058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100020,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Stenberg",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8200980819,
+      "industry": "General Merchandise Stores",
+      "industry_id": 20,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Stenberg@copycats.io",
+      "mobile": 703430058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100021,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Stensson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100989,
+      "industry": "Goods-Producing Industries",
+      "industry_id": 21,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Stensson@copycats.io",
+      "mobile": 708698958,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100022,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Edberg",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100098,
+      "industry": "Health Care and Social Assistance",
+      "industry_id": 22,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Edberg@copycats.io",
+      "mobile": 708678758,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100023,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Larsson",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100678,
+      "industry": "Heavy and Civil Engineering Construction",
+      "industry_id": 23,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Larsson@copycats.io",
+      "mobile": 708454058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100024,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Fierro",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100123,
+      "industry": "Hospitals",
+      "industry_id": 24,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Fierro@copycats.io",
+      "mobile": 708432058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100025,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Eng",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100234,
+      "industry": "IT",
+      "industry_id": 25,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "eng@copycats.io",
+      "mobile": 708456058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100026,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Ström",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100000,
+      "industry": "Management of Companies and Enterprises",
+      "industry_id": 26,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "anna@copycats.io",
+      "mobile": 708661238,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100027,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Lind",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100877,
+      "industry": "Motion Picture and Sound Recording Industries",
+      "industry_id": 27,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "lind@copycats.io",
+      "mobile": 708663218,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100028,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Falk",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100779,
+      "industry": "Natural Resources and Mining",
+      "industry_id": 28,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "falk@copycats.io",
+      "mobile": 708678958,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100029,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Elisabeth",
+      "last_name": "Strid",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8207700819,
+      "industry": "Information Services",
+      "industry_id": 29,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Strid@copycats.io",
+      "mobile": 708669878,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100030,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Berglöv",
+      "company_name": "Copy Cats",
+      "company_number_vat": 7709100819,
+      "industry": "Product Manufacturing",
+      "industry_id": 30,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "lina@copycats.io",
+      "mobile": 708676558,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100031,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Turinen",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100889,
+      "industry": "Professional and Business Services",
+      "industry_id": 31,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Turinen@copycats.io",
+      "mobile": 708663458,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100032,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Sahlin",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8288100819,
+      "industry": "Publishing & inforrmation Services",
+      "industry_id": 32,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Sahlin@copycats.io",
+      "mobile": 708677058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100033,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Ekvall",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8999100819,
+      "industry": "Real Estate and Rental and Leasing Services",
+      "industry_id": 33,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Ekvall@copycats.io",
+      "mobile": 708880058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100034,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Rosenholm",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209199819,
+      "industry": "Repair and Maintenance",
+      "industry_id": 34,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Rosenholm@copycats.io",
+      "mobile": 708990058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100035,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Holm",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100999,
+      "industry": "Retail Trade",
+      "industry_id": 35,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "holm@copycats.io",
+      "mobile": 708629058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100036,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Estafio",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100009,
+      "industry": "Security",
+      "industry_id": 36,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Estafio@copycats.io",
+      "mobile": 708660448,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100037,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Malmgren",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100899,
+      "industry": "Service-Providing Industries",
+      "industry_id": 37,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Malmgren@copycats.io",
+      "mobile": 708660077,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100038,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Bogestam",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100816,
+      "industry": "Social Assistance",
+      "industry_id": 38,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Bogestam@copycats.io",
+      "mobile": 708668858,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100039,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Aukofely",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100815,
+      "industry": "Telecommunications",
+      "industry_id": 39,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Aukofely@copycats.io",
+      "mobile": 708666658,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100040,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Ullmark",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209103819,
+      "industry": "Transportation Equipment Manufacturing",
+      "industry_id": 40,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Ullmark@copycats.io",
+      "mobile": 708660998,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100041,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Opira",
+      "company_name": "Copy Cats",
+      "company_number_vat": 70209100819,
+      "industry": "Transportation",
+      "industry_id": 41,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Opira@copycats.io",
+      "mobile": 708633058,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100042,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Granath",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8009100819,
+      "industry": "Warehousing and Storage",
+      "industry_id": 42,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Granath@copycats.io",
+      "mobile": 708660888,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100043,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Högdahl",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209100819,
+      "industry": "Waste Management",
+      "industry_id": 43,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "lars@copycats.io",
+      "mobile": 708660448,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  },
+  {
+    "pk": 100044,
+    "model": "profileusers.profile_details",
+    "fields": {
+      "first_name": "Rick",
+      "last_name": "Henning",
+      "company_name": "Copy Cats",
+      "company_number_vat": 8209109819,
+      "industry": "Wholesale Markets",
+      "industry_id": 44,
+      "profession": "Copy writer",
+      "skill": "cross channel copy for web, press releases, newsletters, advertising material. writing content for blogs, feature articles, headlines, emails, podcasts and social media",
+      "email": "Henning@copycats.io",
+      "mobile": 708663358,
+      "city": "Stockholm",
+      "country": "Sweden"
+    }
+  }
+]

@@ -235,6 +235,10 @@ button, li, a {
     margin-bottom: 4%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
+.card-frame {
+  padding-left: 3%;
+  padding-right: 3%;
+}
 
 .container-profile:hover,
 .card:hover {
@@ -271,53 +275,3 @@ button, li, a {
     }
 }
 
-@include media-breakpoint-only(xs) {
-  .tab-container {
-    padding: 6%;
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(sm) {
-  .tab-container {
-    position: fixed;
-    padding: 2%;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(md) {
-  .tab-container {
-    position: fixed;
-    padding: 1%;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-
-@include media-breakpoint-only(lg) {
-  .tab-container {
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(xl) {
-  .tab-container {
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(xxl) {
-  .tab-container {
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%,
-    position:absolute;
-    top:20px;
-    left:60px;
-    margin-right:30px;
-  }
-}
