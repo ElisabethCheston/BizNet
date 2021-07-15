@@ -235,6 +235,10 @@ button, li, a {
     margin-bottom: 4%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
+.card-frame {
+  padding-left: 3%;
+  padding-right: 3%;
+}
 
 .container-profile:hover,
 .card:hover {
@@ -271,6 +275,7 @@ button, li, a {
     }
 }
 
+<<<<<<< HEAD
 /* Screen layout */
 
 @include media-breakpoint-only(xs) {
@@ -323,3 +328,5 @@ button, li, a {
     margin-right:30px;
   }
 }
+=======
+>>>>>>> 488e657 (Recover project files and update migrations.)

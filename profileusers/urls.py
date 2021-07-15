@@ -6,5 +6,11 @@ from .views import profile_view
 app_name = 'profileusers'
 
 urlpatterns = [
+<<<<<<< HEAD
     path('test/', profile_view, name='profile')
 ]
+=======
+    path('', views.all_profiles, name='profiles'),
+    path('profile_details/', views.profile_details, name='profile_details')
+]
+>>>>>>> 488e657 (Recover project files and update migrations.)
