@@ -61,3 +61,6 @@ class Profileuser(models.Model):
         # return self.user.username
         return str(self.user)
 
+    def get_my_gigs(self):
+        # pylint: disable=maybe-no-member
+        return self.gig_set.all()

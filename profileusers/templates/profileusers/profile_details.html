@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
+{% endblock %}
+
+
+{% block page_header %}
+<!-- Profile tabs -->
+
+<ul class="nav nav-tabs justify-content-evenly">
+    <li class="active"><a href="#profile" data-toggle="tab">My Profile</a></li>
+    <li><a href="#edit-profile" data-toggle="tab">Edit My Profile</a></li>
+    <li><a href="#create-gig" data-toggle="tab">Create New Gig</a></li>
+    <li><a href="#my-gigs" data-toggle="tab">My Gigs</a></li>
+</ul>
+
+<div class="tab-content" id="tabs">
+    <div class="tab-pane" id="new-gig">My Profile:</div>
+    <div class="tab-pane active" id="edit-profile">Edit My Profile</div>
+    <div class="tab-pane" id="create-gig">Create new gig:</div>
+    <div class="tab-pane" id="my-gigs">View My gigs</div>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h3><strong>My Profile</strong></h3>
+</div>
+
+
+{{profile.get_my_gigs}}
+
+{% if user.is_authenticated %}
+
+<div class="">
+<table>
+
+    <p>Welcome {{ user.username }} !!!</p>
+<br>
+<p><b>My posts:</b> {{gigs.get_my_gigs}}</p>
+<p><b>My posts number:</b> {{gigs.num_gigs}}</p>
+
+{% else %}
+<a href="{% url 'network' %}">Sign Up</a>
+
+<br>
+
+</table>
+</div>
+
+
+
+{% endif %}
+
+<table>
+    {% for profile in profileusers %}
+    
+    <tr>
+        <td>{{ profile.firstname }}</td>
+        <td>{{ profile.lastname }}</td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+template = 'profileusers/profile.html'
+
+{% endblock %}
+
+
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'profile/js/countryfield.js' %}"></script>
+{% endblock %}

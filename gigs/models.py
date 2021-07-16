@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from profileusers.models import Profileuser, Industry
-
 from django_countries.fields import CountryField
 
 
@@ -20,7 +19,7 @@ class Gig(models.Model):
     gigdescription = models.TextField(max_length=250, null=True)
     extrainfo = models.TextField(max_length=250, null=True)
     author = models.ForeignKey(
-        Profileuser, on_delete=models.CASCADE, null=True, related_name='gig')
+        Profileuser, on_delete=models.CASCADE, null=True)
     deadline = models.DateTimeField(null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
