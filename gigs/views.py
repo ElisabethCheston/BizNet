@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db.models.functions import Lower
 from django.core import serializers
 
-# Create your views here.
+# Create views for Gigs
 
 
 def gig(request):

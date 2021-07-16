@@ -250,6 +250,12 @@ button, li, a {
     box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
 }
 
+/*  Space between words */
+
+p {
+  white-space: pre;
+  font-family: monospace;
+}
 
 /*  Media Queries from Buetiq Ado */
 
