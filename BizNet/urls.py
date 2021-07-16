@@ -24,16 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-<<<<<<< HEAD
-    path('profileusers/', include('profileusers.urls', namespace='profileusers')),
-    path('network/', include('network.urls')),
-    path('gigs', include('gigs.urls')),
-=======
     path('profileusers/', include('profileusers.urls')),
     path('network/', include('network.urls')),
     path('gigs/', include('gigs.urls')),
     # path('members', include('members.urls')),
->>>>>>> 488e657 (Recover project files and update migrations.)
     path('', include('settings.urls')),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
