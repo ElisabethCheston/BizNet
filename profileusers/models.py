@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 from django_countries.fields import CountryField
 from itertools import chain
+import random
 
 
 
@@ -66,7 +67,6 @@ class Profileuser(models.Model):
         # pylint: disable=maybe-no-member
         return self.gig_set.all()
 
-
     @property
     def num_gigs(self):
         # pylint: disable=maybe-no-member
@@ -81,7 +81,6 @@ class Profileuser(models.Model):
         following_list = [p for p in self.get_followers()]
         return following_list
 
-
 # Call all gigs my contacts have made 
     def get_contact_gigs(self):
         # pylint: disable=maybe-no-member
@@ -94,4 +93,12 @@ class Profileuser(models.Model):
             gigs.append(p_gigs)
         if len(gigs) > 0:
             qs = sorted(chain(*gigs), reverse=True, key=lambda obj: obj.created)
-        return qs        
+        return qs
+
+
+    def get_proposal_contact(self):
+        profiles = Profileuser.objects.all().exclude(user=self.user)
+        followers_list = [p for p in self.get_followers()]
+        available = [p.user for p in profiles if p.user not in followers_list]
+        random.shuffle(available)
+        return available[:5]
