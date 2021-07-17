@@ -64,3 +64,9 @@ class Profileuser(models.Model):
     def get_my_gigs(self):
         # pylint: disable=maybe-no-member
         return self.gig_set.all()
+
+
+    @property
+    def num_gigs(self):
+        # pylint: disable=maybe-no-member
+        return self.gig_set.all().count() 

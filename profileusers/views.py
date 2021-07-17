@@ -8,9 +8,8 @@ from django.http import JsonResponse
 from django.core import serializers
 # from .forms import ProfileuserForm
 
-"""
-# Create your views here.
-def profile_view(request):
+
+def profile_details(request):
     # pylint: disable=maybe-no-member
     profile = Profileuser.objects.get(user=request.user)
     template = 'profileusers/profile_details.html'
@@ -18,15 +17,6 @@ def profile_view(request):
         'profile': profile,
     }
     return render(request, template, context)
-"""
-
-def profile_details(request):
-
-    profile = Profileuser(Profileuser, user=request.user)
-    context = {
-        'profile': profile,
-    }
-    return render(request, 'profileusers/profile_details.html', context)
 
 
 def all_profiles(request):

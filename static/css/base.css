@@ -250,12 +250,6 @@ button, li, a {
     box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
 }
 
-/*  Space between words */
-
-p {
-  white-space: pre;
-  font-family: monospace;
-}
 
 /*  Media Queries from Buetiq Ado */
 
@@ -280,59 +274,3 @@ p {
         padding-top: 164px;
     }
 }
-
-<<<<<<< HEAD
-/* Screen layout */
-
-@include media-breakpoint-only(xs) {
-  .tab-container {
-    padding: 6%;
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(sm) {
-  .tab-container {
-    position: fixed;
-    padding: 2%;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(md) {
-  .tab-container {
-    position: fixed;
-    padding: 1%;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-
-@include media-breakpoint-only(lg) {
-  .tab-container {
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(xl) {
-  .tab-container {
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%;
-  }
-}
-@include media-breakpoint-only(xxl) {
-  .tab-container {
-    position: fixed;
-    overflow-y: scroll;
-    height: 40%,
-    position:absolute;
-    top:20px;
-    left:60px;
-    margin-right:30px;
-  }
-}
-=======
->>>>>>> 488e657 (Recover project files and update migrations.)

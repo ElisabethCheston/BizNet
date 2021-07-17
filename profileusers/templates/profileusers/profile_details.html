@@ -11,66 +11,93 @@
 
 <ul class="nav nav-tabs justify-content-evenly">
     <li class="active"><a href="#profile" data-toggle="tab">My Profile</a></li>
-    <li><a href="#edit-profile" data-toggle="tab">Edit My Profile</a></li>
-    <li><a href="#create-gig" data-toggle="tab">Create New Gig</a></li>
+    <li><a href="#edit-profile" data-toggle="tab">Edit Profile</a></li>
+    <li><a href="#my-contacts" data-toggle="tab">My Contacts</a></li>
+    <li><a href="#create-gig" data-toggle="tab">Create Gig</a></li>
     <li><a href="#my-gigs" data-toggle="tab">My Gigs</a></li>
 </ul>
 
 <div class="tab-content" id="tabs">
     <div class="tab-pane" id="new-gig">My Profile:</div>
     <div class="tab-pane active" id="edit-profile">Edit My Profile</div>
+    <div class="tab-pane" id="my-contacts">My Contacts:</div>
     <div class="tab-pane" id="create-gig">Create new gig:</div>
     <div class="tab-pane" id="my-gigs">View My gigs</div>
-
 </div>
 {% endblock %}
 
 {% block content %}
-<div>
+
+<div class="content">
     <h3><strong>My Profile</strong></h3>
+
+
+    {% if user.is_authenticated %}
+
+    <div class="my-3 py-3">
+        <table>
+            <div class="my-3 py-3">
+
+                <p>Welcome {{ user.username }} !</p>
+                <br>
+                <p><b>My posts:</b> {{profile.get_my_gigs}}</p>
+                <p><b>My posts number:</b> {{profile.num_gigs}}</p>
+
+                {% else %}
+                <a href="{% url 'network' %}">Sign Up</a>
+            </div>
+
+
+        </table>
+    </div>
 </div>
 
 
-{{profile.get_my_gigs}}
-
-{% if user.is_authenticated %}
-
-<div class="">
 <table>
 
-    <p>Welcome {{ user.username }} !!!</p>
-<br>
-<p><b>My posts:</b> {{gigs.get_my_gigs}}</p>
-<p><b>My posts number:</b> {{gigs.num_gigs}}</p>
+    <div class="container container-content">
 
-{% else %}
-<a href="{% url 'network' %}">Sign Up</a>
+        <!-- gig cards -->
+        <div class="tab-container h-60 my-3 py-3">
+            <div class="row">
+                <div class="card" style="width: 46rem;">
+{{profile}}
+                    <div class="card-body my-3 py-3">
+                        <h3 class="card-title">{{ obj.username }} {{user.username}}</h3><br>
+                        <div>
+                            <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ profileusersfirstname }} </p>
+                            <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ profile.lastname }} </p>
+                            <p class="card-subtitle mb-2 small""> Application deadline: &nbsp; {{ profile.title }} </p>
+                        </div>
 
-<br>
+                        <br>
+                        <div>
+                            <p>{{ profile.company_name }}</p>
+                            <p>
+                                <a class=" btn btn-primary" data-toggle="collapse" href="#collapseExample1" 
+                                aria-expanded="false" aria-controls="collapseExample1">
+                                More Information
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="my-3 py-3">
+                            <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small">{{ obj.created }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small""> Updated: &nbsp; {{ obj.updated }} </h6>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </table>
-</div>
-
-
 
 {% endif %}
 
-<table>
-    {% for profile in profileusers %}
-    
-    <tr>
-        <td>{{ profile.firstname }}</td>
-        <td>{{ profile.lastname }}</td>
-    </tr>
-
-    {% endfor %}
-</table>
-
-template = 'profileusers/profile.html'
-
 {% endblock %}
-
-
 
 {% block postloadjs %}
 {{ block.super }}
