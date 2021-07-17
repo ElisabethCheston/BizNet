@@ -42,6 +42,11 @@
                 <br>
                 <p><b>My posts:</b> {{profile.get_my_gigs}}</p>
                 <p><b>My posts number:</b> {{profile.num_gigs}}</p>
+                <p><b>Following profiles:</b> {{profile.get_followers}}</p>
+                <p><b>Following profiles list:</b> {{profile.get_followings_users}}</p>
+                <p><b>Contact gigs :</b> {{profile.get_contact_gigs}}</p>
+
+
 
                 {% else %}
                 <a href="{% url 'network' %}">Sign Up</a>
