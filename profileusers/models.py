@@ -97,8 +97,14 @@ class Profileuser(models.Model):
 
 
     def get_proposal_contact(self):
+        # pylint: disable=maybe-no-member
         profiles = Profileuser.objects.all().exclude(user=self.user)
         followers_list = [p for p in self.get_followers()]
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
         return available[:5]
+
+
+    @property
+    def count_contacts(self):
+        return self.get_followers().count()
