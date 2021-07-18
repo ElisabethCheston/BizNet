@@ -97,7 +97,7 @@ class Profileuser(models.Model):
         followers_list = [p for p in self.get_following()]
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
-        return available[:5]
+        return available[:2]
 
 # Following list
     def get_followings_contact(self):

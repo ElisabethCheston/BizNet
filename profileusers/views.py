@@ -6,8 +6,8 @@ from .models import Profileuser
 
 from django.http import JsonResponse
 from django.core import serializers
-# from .forms import ProfileuserForm
-
+from django.views.generic import TemplateView, View
+from django.http import JsonResponse
 
 def profile_details(request):
     # pylint: disable=maybe-no-member
@@ -27,5 +27,9 @@ def all_profiles(request):
         'profiles': profiles,
     }
     return render(request, template, context)
+
+
+class MyProfileView(TemplateView):
+    template_name = 'profiles/my_profile.html'
 
 
