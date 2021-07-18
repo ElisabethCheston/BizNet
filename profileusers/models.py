@@ -63,28 +63,23 @@ class Profileuser(models.Model):
         # return self.user.username
         return str(self.user)
 
+
+# All my posted gigs
     def get_my_gigs(self):
         # pylint: disable=maybe-no-member
         return self.gig_set.all()
 
+# Number of my posted gigs
     @property
     def num_gigs(self):
         # pylint: disable=maybe-no-member
         return self.gig_set.all().count() 
 
-    def get_followers(self):
-        # pylint: disable=maybe-no-member
-        return self.following.all()
 
-    def get_followings_users(self):
-        # pylint: disable=maybe-no-member
-        following_list = [p for p in self.get_followers()]
-        return following_list
-
-# Call all gigs my contacts have made 
+# All gigs my contacts have created 
     def get_contact_gigs(self):
         # pylint: disable=maybe-no-member
-        users = [user for user in self.get_followers()]
+        users = [user for user in self.get_following()]
         gigs = []
         qs = None
         for u in users:
@@ -95,16 +90,42 @@ class Profileuser(models.Model):
             qs = sorted(chain(*gigs), reverse=True, key=lambda obj: obj.created)
         return qs
 
-
+# Suggested contacts
     def get_proposal_contact(self):
         # pylint: disable=maybe-no-member
         profiles = Profileuser.objects.all().exclude(user=self.user)
-        followers_list = [p for p in self.get_followers()]
+        followers_list = [p for p in self.get_following()]
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
         return available[:5]
 
+# Following list
+    def get_followings_contact(self):
+        # pylint: disable=maybe-no-member
+        following_list = [p for p in self.get_following()]
+        return following_list
 
+# People that am following
+    def get_following(self):
+        # pylint: disable=maybe-no-member
+        return self.following.all()
+
+# Count of people am following
     @property
-    def count_contacts(self):
-        return self.get_followers().count()
+    def following_count(self):
+        return self.get_following().count()
+
+# People that are following me
+    def get_followers(self):
+        # pylint: disable=maybe-no-member
+        qs = Profileuser.objects.all()
+        followers_list = []
+        for profile in qs:
+            if self.user in profile.get_following():
+                followers_list.append(profile)
+        return followers_list
+
+# Count of people that are following me
+    @property
+    def followers_count(self):
+        return len(self.get_followers())
