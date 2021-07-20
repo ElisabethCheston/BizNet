@@ -8,14 +8,12 @@ var collapseList = collapseElementList.map(function (collapseEl) {
 
 
 // -- For tabs from Bootstraps -- //
-
 function activaTab(tab) {
   $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
 
 
 /*
-
 // -- Activate welcome message -- //
 
 console.log('Welcome!')
@@ -49,8 +47,8 @@ $.ajax({
 */
 // -- To call the json data for industry --//
 var industryChoice = {
-  id: fields._id_prof, 
-  prof_name: fields.prof_name, 
+  // id: fields._id_prof, 
+  industry_name: fields.industry_name,
 };
 
 $.ajax({
