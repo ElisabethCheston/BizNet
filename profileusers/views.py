@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
@@ -41,13 +41,14 @@ class ProfileData(View):
         # pylint: disable=maybe-no-member
         profile = Profileuser.objects.get(user=self.request.user)
         qs = profile.get_proposal_contact()
-        to_follow_list = []
+        profile_to_follow_list = []
         for user in qs:
+            # Select random profiles
             p = Profileuser.objects.get(user__username=user.username)
             profile_item = {
-                'id': p.id,
+                'id': p.member_id,
                 'user': p.user.username,
                 'avatar': p.avatar.url,
             }
-            to_follow_list.append(profile_item)
-        return JsonResponse({'pf_data': to_follow_list})
+            profile_to_follow_list.append(profile_item)
+        return JsonResponse({'pf_data': profile_to_follow_list})

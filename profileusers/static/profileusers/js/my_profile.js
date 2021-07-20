@@ -8,7 +8,7 @@ console.log(spinnerBox)
 
 $.ajax( {
     type: 'GET',
-    url: '/my_profile/profile_data',
+    url: '/profileusers/profile-data',
     success: function (response) {
         console.log(response)
         const pfData = response.pf_data
