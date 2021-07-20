@@ -49,7 +49,7 @@ body {
 /* Collapeble boxes */
 /*
 .collapse {
-  &:not(.show) {
+  &:not(.hide) {
     display: none;
   }
 }
@@ -60,6 +60,12 @@ body {
   @include transition($transition-collapse);
 }
 */
+
+/* js modal */
+
+.not-visible {
+  display: none;
+}
 
 /* Profile Layout */
 
@@ -81,6 +87,10 @@ body {
     align-items: center;
     margin-bottom: 3%;
     box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
+}
+
+.gig-card {
+  padding: 10px !important;
 }
 /* Navbars */
 

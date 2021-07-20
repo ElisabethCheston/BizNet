@@ -1,9 +1,13 @@
 
+// better off with targeting element by its ID.
+document.getElementById("collapseExample").addEventListener("click"); 
+
 // -- For card info box to collaps. From Bootstraps -- //
 var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
 var collapseList = collapseElementList.map(function (collapseEl) {
   return new bootstrap.Collapse(collapseEl)
 })
+
 
 // -- For tabs from Bootstraps -- //
 
@@ -44,12 +48,13 @@ $.ajax({
     console.log(error)
   }
 })
+*/
 // -- To call the json data for industry --//
 var industryChoice = {
   id: fields._id_prof, 
   prof_name: fields.prof_name, 
 };
-/*
+
 $.ajax({
   type: 'POST',
   url: 'profileusers/fixtures/industry.json',
@@ -60,4 +65,3 @@ $.ajax({
     alert(result.Result);
   }
 });
-*/
