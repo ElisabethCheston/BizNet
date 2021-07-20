@@ -27,7 +27,6 @@ class Gig(models.Model):
     def __str__(self):
         return str(self.title)
 
-
     def get_liked(self):
         # pylint: disable=maybe-no-member
         return self.liked.all()

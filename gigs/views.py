@@ -9,6 +9,7 @@ from django.core import serializers
 # Create views for Gigs
 
 
+
 def gig(request):
     # pylint: disable=maybe-no-member
     qs = Gig.objects.all()
@@ -60,6 +61,10 @@ def gig(request):
         'qs': qs,
     }
     return render(request, template, context)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 488e657 (Recover project files and update migrations.)
 
 def gig_json(request):
     # pylint: disable=maybe-no-member
