@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db.models.functions import Lower
 from django.core import serializers
 
-# Create your views here.
+# Create views for Gigs
 
 
 def gig(request):
@@ -17,7 +17,6 @@ def gig(request):
     """
     sort = None
     industry = None
-
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -32,25 +31,20 @@ def gig(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             industry = industry.order_by(sortkey)
-
         if 'industry' in request.GET:
             categories = request.GET['industry'].split(',')
             industry = industry.filter(industry__name__in=categories)
             categories = Industry.objects.filter(name__in=industry)
-
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
                 messages.error(
                     request, "You didn't enter any search criteria!")
                 return redirect(reverse('industry'))
-
             queries = Q(name__icontains=query) | Q(
                 description__icontains=query)
             industry = industry.filter(queries)
-
     current_sorting = f'{sort}_{direction}'
-
     if request.GET:
         if 'industry' in request.GET:
             industry = request.GET['industry'].split(',')
@@ -60,7 +54,6 @@ def gig(request):
         'qs': qs,
     }
     return render(request, template, context)
-
 
 def gig_json(request):
     # pylint: disable=maybe-no-member

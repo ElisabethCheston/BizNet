@@ -47,6 +47,7 @@ body {
 }
 
 /* Collapeble boxes */
+/*
 .collapse {
   &:not(.show) {
     display: none;
@@ -58,6 +59,7 @@ body {
   overflow: hidden;
   @include transition($transition-collapse);
 }
+*/
 
 /* Profile Layout */
 
@@ -274,4 +276,3 @@ button, li, a {
         padding-top: 164px;
     }
 }
-

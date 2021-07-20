@@ -1,3 +1,4 @@
+"""
 from django.shortcuts import render
 from .models import Member
 
@@ -10,3 +11,4 @@ def get_member_profile(request):
         'members': members
     }
     return render(request, template, context)
+    """

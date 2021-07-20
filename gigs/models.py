@@ -16,8 +16,10 @@ class Gig(models.Model):
                             blank=False, default='City')
     country = CountryField(blank_label='Country', null=True, blank=False)
     gigdescription = models.TextField(max_length=250, null=True)
+    extrainfo = models.TextField(max_length=250, null=True)
     author = models.ForeignKey(
-        Profileuser, on_delete=models.CASCADE, null=True, related_name='gig')
+        Profileuser, on_delete=models.CASCADE, null=True)
+    deadline = models.DateTimeField(null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
 
