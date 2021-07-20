@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block scripts %}
-  <script type=" text/javascript" src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
+<script type=" text/javascript" src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block title %}
@@ -13,19 +13,19 @@ my profile
 
 <!-- Profile tabs -->
 <ul class="nav nav-tabs justify-content-evenly">
-    <li class="active"><a href="#profile" data-toggle="tab">My Profile</a></li>
-    <li><a href="#edit-profile" data-toggle="tab">Edit Profile</a></li>
-    <li><a href="#my-contacts" data-toggle="tab">My Contacts</a></li>
-    <li><a href="#create-gig" data-toggle="tab">Create Gig</a></li>
-    <li><a href="#my-gigs" data-toggle="tab">My Gigs</a></li>
+  <li class="active"><a href="#profile" data-toggle="tab">My Profile</a></li>
+  <li><a href="#edit-profile" data-toggle="tab">Edit Profile</a></li>
+  <li><a href="#my-contacts" data-toggle="tab">My Contacts</a></li>
+  <li><a href="#create-gig" data-toggle="tab">Create Gig</a></li>
+  <li><a href="#my-gigs" data-toggle="tab">My Gigs</a></li>
 </ul>
 
 <div class="tab-content" id="tabs">
-    <div class="tab-pane" id="new-gig">My Profile:</div>
-    <div class="tab-pane active" id="edit-profile">Edit My Profile</div>
-    <div class="tab-pane" id="my-contacts">My Contacts:</div>
-    <div class="tab-pane" id="create-gig">Create new gig:</div>
-    <div class="tab-pane" id="my-gigs">View My gigs</div>
+  <div class="tab-pane" id="new-gig">My Profile:</div>
+  <div class="tab-pane active" id="edit-profile">Edit My Profile</div>
+  <div class="tab-pane" id="my-contacts">My Contacts:</div>
+  <div class="tab-pane" id="create-gig">Create new gig:</div>
+  <div class="tab-pane" id="my-gigs">View My gigs</div>
 </div>
 
 {% endblock %}
@@ -35,36 +35,40 @@ my profile
 <br>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myProfileModal">
+  Follow Suggestions
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;
+        </span>
+        </button>
+      </div>
+      <div class="modal-body" id="to-follow-modal">
+        <div class="text-center" id="spinner-box">
+          <div class="spinner-border" role="status"></div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
 {% endblock %}
 
 
 {% block postloadjs %}
 
-    {{ block.super }}
+{{ block.super }}
 
-    <script type=" text/javascript" src="{% static 'profileusers/js/countryfield.js' %}"></script>
+<script type=" text/javascript" src="{% static 'profileusers/js/countryfield.js' %}"></script>
 
 {% endblock %}

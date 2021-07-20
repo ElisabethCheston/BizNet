@@ -1,6 +1,4 @@
 
-// better off with targeting element by its ID.
-document.getElementById("collapseExample").addEventListener("click"); 
 
 // -- For card info box to collaps. From Bootstraps -- //
 var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
