@@ -12,7 +12,6 @@ from django.http import JsonResponse
 
 def profile_details(request):
     # pylint: disable=maybe-no-member
-    # profile = Profileuser.objects.get(user=request.user)
     profile = get_object_or_404(Profileuser, user=request.user)
     template = 'profileusers/profile_details.html'
     context = {
@@ -46,8 +45,9 @@ class ProfileData(View):
         for user in qs:
             # Select random profiles
             p = Profileuser.objects.get(user__username=user.username)
+            # p = get_object_or_404(Profileuser, user__username=user.username)
             profile_item = {
-                'id': p.member_id,
+                'id': p.id,
                 'user': p.user.username,
                 'avatar': p.avatar.url,
             }

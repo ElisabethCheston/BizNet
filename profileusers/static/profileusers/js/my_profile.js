@@ -6,6 +6,7 @@ const spinnerBox = document.getElementById('spinner-box')
 console.log(toFollowModalBody)
 console.log(spinnerBox)
 
+
 $.ajax( {
     type: 'GET',
     url: '/profileusers/profile-data',
