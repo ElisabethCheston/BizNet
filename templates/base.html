@@ -108,7 +108,7 @@
                             <a href="{% url 'profile_details' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
                             <a href="{% url 'network' %}" class="dropdown-item">Membership</a>
-                            <a href="{% url 'profile_details' %}" class="dropdown-item">Profile Details</a>
+                            <!-- <a href="{% url 'profile_details' %}" class="dropdown-item">Profile Details</a> -->
                             <a href="{% url 'network' %}" class="dropdown-item">Network</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
 
@@ -124,26 +124,6 @@
                 </ul>
             </div>
         </div>
-        <!-- 
-            <div class="container-fluid search-bar justify-content-center">
-                <div class="col-6 col-lg-4 my-auto py-1 py-lg-0">
-
-                    <form method="GET" action="">
-                        <div class="input-group w-80">
-                            <input class="form-control border border-black rounded-0" type="text" name="q"
-                                placeholder="Search our site">
-                            <div class="input-group-append">
-                                <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                                    <span class="icon">
-                                        <i class="fas fa-search"></i>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            -->
 
     </header>
 
@@ -163,12 +143,25 @@
     <!-- Fixed footer nav -->
     <nav class="navbar fixed-bottom navbar-light bg-light nav-2">
         <div class="container-fluid wrapper">
-            <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="{% url 'network' %}">
+            
+            {% if user.is_authenticated %}
+            <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href=" {% url 'network' %}">
                 <div class="icon users text-center">
                     <div class="tooltip">NETWORK</div>
                     <span><i class="fas fa-users"></i></span>
                 </div>
             </a>
+                {% else %}
+            <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="#">
+                <div class="icon users text-center">
+                    <div class="tooltip">NOT AUTHORIZED</div>
+                    <span><i class="fas fa-users"></i></span>
+                </div>
+            </a>
+                {% endif %}
+
+
+
             <!-- 
             <div class="col-5 col-lg-3 my-auto py-1 py-lg-0">
                 <form method="GET" action="">
@@ -186,12 +179,23 @@
                 </form>
             </div>
                 -->
-            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'gig' %}">
+                {% if user.is_authenticated %}
+
+                <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'gig' %}">
                 <div class="icon suitcase text-center">
                     <div class="tooltip">GIGS</div>
                     <span><i class="fas fa-suitcase"></i></span>
                 </div>
             </a>
+            {% else %}
+            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
+                <div class="icon suitcase text-center">
+                    <div class="tooltip">NOT AUTHORIZED</div>
+                    <span><i class="fas fa-suitcase"></i></span>
+                </div>
+            </a>
+            {% endif %}
+
         </div>
     </nav>
 
