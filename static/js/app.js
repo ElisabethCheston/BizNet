@@ -12,8 +12,8 @@ function activaTab(tab) {
   $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
 
-
 /*
+
 // -- Activate welcome message -- //
 
 console.log('Welcome!')
@@ -44,12 +44,16 @@ $.ajax({
     console.log(error)
   }
 })
-*/
+
+
+
 // -- To call the json data for industry --//
+
 var industryChoice = {
-  // id: fields._id_prof, 
+  id: fields._id_prof, 
   industry_name: fields.industry_name,
 };
+
 
 $.ajax({
   type: 'POST',
