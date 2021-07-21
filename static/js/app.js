@@ -46,7 +46,6 @@ $.ajax({
 })
 
 
-
 // -- To call the json data for industry --//
 
 var industryChoice = {
@@ -65,3 +64,4 @@ $.ajax({
     alert(result.Result);
   }
 });
+*/
