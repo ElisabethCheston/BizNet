@@ -24,7 +24,7 @@ class Gig(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return str(self.title)
+        return str(self.pk)
 
     def get_liked(self):
         # pylint: disable=maybe-no-member
