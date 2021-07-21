@@ -8,10 +8,6 @@ body {
     font-family: "Lato";
 }
 
-.not-visible {
-  display: none;
-}
-
 /* Top Navbar */
 .fa-user-cog,
 .icon-text {
@@ -23,6 +19,7 @@ body {
 .icon-text:active {
   color: rgba(47, 156, 245, 0.79);
 }
+
 /* Containers Header and Content */
 
 .tab-container {
@@ -67,6 +64,9 @@ body {
   display: none;
 }
 
+.border-box {
+  align-items: center;
+}
 /* Profile Layout */
 
 .container-profile,

@@ -92,6 +92,13 @@ class Profileuser(models.Model):
 
 # Suggested contacts
     def get_proposal_contact(self):
+        """
+        - Get the profiles
+        - Create followers list for login user
+        - Loop through list, find contacts we're not connected to.
+        - Shuffle the list on every refresh
+        - Return 2 available contacts
+        """
         # pylint: disable=maybe-no-member
         profiles = Profileuser.objects.all().exclude(user=self.user)
         followers_list = [p for p in self.get_following()]
