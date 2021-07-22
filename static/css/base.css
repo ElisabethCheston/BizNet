@@ -23,7 +23,7 @@ body {
 /* Containers Header and Content */
 
 .tab-container {
-  padding-top: 4%;;
+  padding-top: 4%;
 }
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 
@@ -41,6 +41,10 @@ body {
 
 .welcome {
     padding-left: 3%;
+}
+
+.container-content {
+  align-items: center;
 }
 
 /* Collapeble boxes */
@@ -64,12 +68,43 @@ body {
   display: none;
 }
 
-
-/* Profile Layout */
-
+/* Containers Content */
+/*
+.container-content {
+  align-items: center;
+  padding-bottom: 6%;
+}
 .container-profile,
 .card {
     padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+.card-frame {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.container-profile:hover,
+.card:hover {
+    padding: 3%;
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
+}
+
+
+
+/* Profile Layout */
+/*
+.container-profile,
+.card {
+    padding: 2%;
     background-color: #FFFFFF;
     justify-content: center;
     align-items: center;
@@ -90,6 +125,8 @@ body {
 .gig-card {
   padding: 10px !important;
 }
+*/
+
 /* Navbars */
 
 .nav-2 {
@@ -231,34 +268,6 @@ button, li, a {
     margin-top: 10px;
 }
 
-/* Containers Content */
-
-.container-content {
-    padding-bottom: 6%;
-}
-.container-profile,
-.card {
-    padding: 3%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-}
-.card-frame {
-  padding-left: 3%;
-  padding-right: 3%;
-}
-
-.container-profile:hover,
-.card:hover {
-    padding: 3%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3%;
-    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
-}
 
 
 /*  Media Queries from Buetiq Ado */

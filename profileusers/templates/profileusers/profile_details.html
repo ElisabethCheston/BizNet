@@ -49,12 +49,12 @@
                                     {% if profileusers.avatar %}
 
                                     <img src="{{ profile.avatar.url }}" class="img-fluid profile-img rounded-start"
-                                    alt="{{ profile.username}}">
+                                        alt="{{ profile.username}}">
 
                                     {% else %}
 
                                     <img src="{{ profile.avatar.url }}" class="img-fluid profile-img rounded-start"
-                                    alt="{{ user.profile.image.url }}">
+                                        alt="{{ user.profile.image.url }}">
 
                                     {% endif %}
 
@@ -193,18 +193,59 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
 
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
+        </table>
+        
     </div>
 
 </div>
+
+
+                                    <!-- Contact suggestions -->
+                                    <div class="col">
+                                        <div>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#myProfileModal">
+                                                    Contact Suggestions
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="myProfileModal" tabindex="-1"
+                                                    aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body" id="to-follow-modal">
+                                                                <div class="text-center" id="spinner-box">
+                                                                    <div class="spinner-border" role="status"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
 
 {% endif %}
 
