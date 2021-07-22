@@ -48,13 +48,13 @@
 
                                     {% if profileusers.avatar %}
 
-                                    <img src="{{ profile.avatar.url }}" class="img-fluid avatar-img rounded-start"
-                                        alt="{{ user.profile.image.url }}">
+                                    <img src="{{ profile.avatar.url }}" class="img-fluid profile-img rounded-start"
+                                    alt="{{ profile.username}}">
 
                                     {% else %}
 
-                                    <img src="{{ profile.avatar.url }}" class="img-fluid avatar-img rounded-start"
-                                        alt="{{ profile.username}}">
+                                    <img src="{{ profile.avatar.url }}" class="img-fluid profile-img rounded-start"
+                                    alt="{{ user.profile.image.url }}">
 
                                     {% endif %}
 
@@ -205,8 +205,6 @@
     </div>
 
 </div>
-
-
 
 {% endif %}
 

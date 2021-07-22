@@ -10,19 +10,9 @@ console.log(spinnerBox)
 
 $.ajax({
     type: 'GET',
-    url: '/profileusers/profile_data/',
+    url: '/profileusers/my_profile/',
     success: function(response){
         console.log(response)
-        const pfData = response.pf_data
-        console.log(pfData)
-        setTimeout(()=>{
-            spinnerBox.classList.add('not-visible')
-            pfData.forEach(el=>{
-                toFollowModalBody.innerHTML += `
-                <div>hellow <b> world </b></div>
-                `
-            })
-        }, 2000)
     },
     error: function(error) {
         console.log(error)
