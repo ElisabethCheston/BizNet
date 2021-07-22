@@ -24,81 +24,84 @@
 {% endblock %}
 
 {% block content %}
-<h4>
-    My saved contacts
-</h4>
-                                    <!-- Contact suggestions -->
-                                    <div class="col-10">
-                                        <p><b>Contact suggestions :</b></p>
-                                        <p> {{profile.get_proposal_contact}}</p>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#myProfileModal">
-                                            Contact Suggestions
-                                        </button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="myProfileModal" tabindex="-1"
-                                            aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                                                        <button type="button" class="btn-close"
-                                                            data-bs-dismiss="modal" aria-label="Close">
+<div class="container-content">
 
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body" id="to-follow-modal">
-                                                        <div class="text-center" id="spinner-box">
-                                                            <div class="spinner-border" role="status"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <br>
-                                    <br>
-<div class="container">
 
     <!-- Contact cards -->
-    <div class="container-fluid h-60 my-3 py-3">
-        <div class="row">
-            <div class="card" style="width: 16rem;">
-                <div class="card-body">
-                    <div class="col-md-4 col-sm-12">
-                        {% if profileusers.image %}
-                        <a href="{{ profileusers.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ profileusers.image.url }}"
-                                alt="{{ profileusers.name }}">
-                        </a>
-                        {% else %}
-                        <a href="media/profile-img.jpg">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }} profile-img.jpg"
-                                alt="{{ profileusers.name }}">
-                        </a>
-                        {% endif %}
+    <table>
+
+        <h4>
+            My saved contacts
+        </h4>
+        <!-- Contact suggestions -->
+        <div class="col-10">
+            <p><b>Contact suggestions :</b></p>
+            <p> {{profile.get_proposal_contact}}</p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myProfileModal">
+                Contact Suggestions
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+                            </button>
+                        </div>
+                        <div class="modal-body" id="to-follow-modal">
+                            <div class="text-center" id="spinner-box">
+                                <div class="spinner-border" role="status"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <h5 class="card-title">{{ profiles }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="card-link">Accept</a>
-                    <a href="#" class="card-link">Decline</a>
                 </div>
             </div>
 
         </div>
+        <br>
 
-    </div>
+        <div class="container-fluid h-60 my-3 py-3">
+            <div class="row">
+                <div class="card" style="width: 16rem;">
+                    <div class="card-body">
+                        <div class="col-md-4 col-sm-12">
+                            {% if profileusers.image %}
+                            <a href="{{ profileusers.image.url }}" target="_blank">
+                                <img class="card-img-top img-fluid" src="{{ profileusers.image.url }}"
+                                    alt="{{ profileusers.name }}">
+                            </a>
+                            {% else %}
+                            <a href="media/profile-img.jpg">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }} profile-img.jpg"
+                                    alt="{{ profileusers.name }}">
+                            </a>
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title">{{ profiles }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's
+                            content.</p>
+                        <a href="#" class="card-link">Accept</a>
+                        <a href="#" class="card-link">Decline</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </table>
+
 </div>
-
 
 {% endblock %}

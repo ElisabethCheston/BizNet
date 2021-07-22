@@ -26,17 +26,12 @@
 
 {% for obj in qs %}
 
-<table>
-
-    <div class="container container-content">
-
+    <div class="container">
         <!-- gig cards -->
-        <div class="tab-container h-60 my-3 py-3">
-            <div class="row">
-                <div class="card" style="width: 46rem;">
 
-                    <div class="card-body my-3 py-3">
-                        <h3 class="card-title">{{ obj.title }}</h3><br>
+                <div class="card" style="max-width: 840px;">
+                    <div class="card-body" style="max-width: 740px;">
+                        <h4 class="card-title">{{ obj.title }}</h4><br>
                         <div>
                             <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ obj.industry }} </p>
                             <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ obj.city }} </p>
@@ -47,17 +42,17 @@
                         <div>
                             <p>{{ obj.gigdescription }}</p>
                             <p>
-                                <a class=" btn btn-primary" data-toggle="collapse" href="#collapseExample1" 
+                                <a class=" btn btn-primary btn-sm" data-toggle="collapse" href="#collapseExample1" 
                                 aria-expanded="false" aria-controls="collapseExample1">
                                 More Information
                                 </a>
                             </p>
                         </div>
 
-                        <div class="collapse my-3 py-3" id="collapseExample1">
+                        <div class="collapse" id="collapseExample1">
                             <div class="card card-body">
                                 {{ obj.extrainfo }}
-                            </div><br>
+                            </div>
                         </div>
 
                         <div class="my-3 py-3">
@@ -75,11 +70,9 @@
 
                     </div>
                 </div>
-            </div>
-        </div>
+
     </div>
 
-</table>
 
 {% endfor %}
 

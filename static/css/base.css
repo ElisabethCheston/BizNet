@@ -1,11 +1,19 @@
+
 /* Body content */
 
 body {
 	background: url('/media/images/background.jpg') no-repeat center center fixed;
 	background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: "Lato";
+  height: calc(100vh - 164px);
+  color: #555;
+  font-family: "Lato";
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid rgb(49, 49, 49);
+  padding: 15px;
 }
 
 /* Top Navbar */
@@ -27,40 +35,23 @@ body {
 }
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 
-.container,
+
+/* Containers */
+
 .nav-tabs {
     margin-top: 10px;
     padding-top: 80px;
   }
-.tab-content,
-.container-content {
+.tab-content {
   padding: 10px;
   padding-left: 3%;
   padding-right: 3%;
+  align-items: center;
 }
-
 .welcome {
     padding-left: 3%;
 }
 
-.container-content {
-  align-items: center;
-}
-
-/* Collapeble boxes */
-/*
-.collapse {
-  &:not(.hide) {
-    display: none;
-  }
-}
-
-.collapsing {
-  height: 0;
-  overflow: hidden;
-  @include transition($transition-collapse);
-}
-*/
 
 /* js modal */
 
@@ -70,77 +61,77 @@ body {
 
 /* Containers Content */
 /*
+.container-profile,
 .container-content {
   align-items: center;
+  padding-top: 0% !important;
   padding-bottom: 6%;
+  display: flex;
+  justify-content: center;
 }
-.container-profile,
+*/
+/* Cards */
+/*
 .card {
-    padding: 3%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px !important;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+}
+
+.card-body {
+  padding: 4%;
+  background-color: #FFFFFF;
+  color: rgba(175, 172, 172, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
 }
 .card-frame {
   padding-left: 3%;
   padding-right: 3%;
 }
 
-.container-profile:hover,
 .card:hover {
-    padding: 3%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3%;
-    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
+  padding: 3%;
+  background-color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3%;
+  box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
 }
-
-
+*/
 
 /* Profile Layout */
 /*
-.container-profile,
-.card {
-    padding: 2%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-}
-
-.container-profile:hover,
-.card:hover {
-    padding: 3%;
-    background-color: #FFFFFF;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3%;
-    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
-}
-
-.gig-card {
-  padding: 10px !important;
+.container {
+  margin: none !important;
+  padding-top: 0% !important;
+  margin-bottom: 70px !important;
+  padding: 3%;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3%;
+  box-shadow: 0 15px 15px rgba(240, 239, 239, 0.6);
 }
 */
 
 /* Navbars */
 
-.nav-2 {
-    height: 55px;
-}
+/* Buttons and links */
 
 button, li, a {
-    font-family: "Poppins";
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: small;
-    color: rgba(47, 156, 245, 0.99);
+  font-family: "Poppins";
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: small;
+  color: rgba(47, 156, 245, 0.99);
 }
-
 .btn {
   background-color: rgba(47, 156, 245, 0.99);
 }
@@ -150,35 +141,7 @@ button, li, a {
   background-color: rgba(47, 156, 245, 0.79);
 }
 
-/* Bottom & Top links */
-
-.gig-button {
-    color: white;
-    background-color: lightslategrey;
-    border-style: none;
-    size: 16px;
-}
-.gig-button:hover {
-    background-color: slategrey;
-    size: 18px;
-}
-
-.search-bar {
-    align-items: baseline;
-    justify-content: space-evenly;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-*:focus,
-*:active {
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent;
-}
+/* Icons */
 
 .wrapper {
   display: inline-flex;
@@ -261,14 +224,15 @@ button, li, a {
   color: rgba(47, 156, 245, 0.89);
 }
 
-/* Header Tab container */
 
+
+/* Header Tab container */
+/*
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 .container {
-    margin-top: 10px;
+    margin-top: 0px;
 }
-
-
+*/
 
 /*  Media Queries from Buetiq Ado */
 
@@ -287,9 +251,5 @@ button, li, a {
         right: 0;
         left: 0;
         z-index: 1030;
-    }
-
-    .header-container {
-        padding-top: 164px;
     }
 }
