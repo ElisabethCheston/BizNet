@@ -5,27 +5,22 @@
 {% block page_header %}
 
 <!-- Nav tabs -->
-<div class="container container-content tab-container">
-    <div class="row justify-content-md-center">
-        <div class="col-12">
-            <h3><strong>Contacts</strong></h3>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                        type="button" role="tab" aria-controls="home" aria-selected="true">New</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">Saved</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">Tab</button>
-                </li>
-            </ul>
-        </div>
-    </div>
+
+<ul class="nav nav-tabs justify-content-evenly">
+    <li class="active"><a href="#new-contacts" data-toggle="tab">New Contacts</a></li>
+    <li><a href="#saved-contacts" data-toggle="tab">Saved Contacts</a></li>
+    <li><a href="#apply-contacts" data-toggle="tab">Followers</a></li>
+    <li><a href="#hide-contacts" data-toggle="tab">Following</a></li>
+</ul>
+
+<div class="tab-content" id="tabs">
+    <div class="tab-pane" id="new-contacts">Show new contacts:</div>
+    <div class="tab-pane active" id="saved-contacts">Your saved contacts:</div>
+    <div class="tab-pane" id="apply-contacts">People that follow me:</div>
+    <div class="tab-pane" id="hide-contacts">People that am following: </div>
+
 </div>
+
 {% endblock %}
 
 {% block content %}
