@@ -44,8 +44,7 @@
     {% block corejs %}
 
     <!-- jQuery-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Fonts Awesome Kit JS -->
     <script src="https://kit.fontawesome.com/5c25e53934.js" crossorigin="anonymous"></script>
 
@@ -109,7 +108,7 @@
                             <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
                             <a href="{% url 'network' %}" class="dropdown-item">Membership</a>
                             <!-- <a href="{% url 'profile_details' %}" class="dropdown-item">Profile Details</a> -->
-                            <a href="{% url 'network' %}" class="dropdown-item">Network</a>
+                            <a href="{% url 'my_profile' %}" class="dropdown-item">Network</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
 
                             {% else %}

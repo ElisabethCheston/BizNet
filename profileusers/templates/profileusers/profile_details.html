@@ -45,13 +45,19 @@
 
                             <div class="row g-0">
                                 <div class="col-md-5">
+
                                     {% if profileusers.avatar %}
-                                    <img src="{{ profile.avatar }}" class="img-fluid rounded-start"
-                                        alt="{{ profile.avatar }}">
-                                        {% else %}
-                                        <img src="{{ MEDIA_URL }}profileavatar.png" class="img-fluid rounded-start"
-                                        alt="{{ profile.avatar }}">
-                                        {% endif %}
+
+                                    <img src="{{ profile.avatar.url }}" class="img-fluid avatar-img rounded-start"
+                                        alt="{{ user.profile.image.url }}">
+
+                                    {% else %}
+
+                                    <img src="{{ profile.avatar.url }}" class="img-fluid avatar-img rounded-start"
+                                        alt="{{ profile.username}}">
+
+                                    {% endif %}
+
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body">
@@ -59,11 +65,11 @@
                                         <h6 class="card-title"></h6>
                                         <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
                                         <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
-                                        <h6 class="card-title">Industry: &nbsp; {profile.industry}}</h6>
+                                        <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
                                         <br>
 
                                         <p class="card-text">Profession: &nbsp; {{profile.profession}}</p>
-                                        <p class="card-text">Skills. &nbsp; {{profile.skill}}</p>
+                                        <p class="card-text">Skills: &nbsp {{profile.skill}}</p>
                                         <br>
                                         <p class="card-text">Email: &nbsp; {{profile.email}}</p>
                                         <p class="card-text">City: &nbsp; {{profile.city}}</p>
@@ -82,6 +88,7 @@
                                 <br>
                                 <br>
 
+
                                 <div class="col-12">
 
                                     <!-- My gigs -->
@@ -90,7 +97,7 @@
                                             <div class="row justify-content-between">
                                                 <div class="col-9">
                                                     <p><b>My Gigs:</b></p>
-                                                    <p> {{profile.get_my_gigs}}</p>
+                                                    <p>{{profile.get_my_gigs}}</p>
                                                 </div>
                                                 <div class="col-3">
                                                     <p class="text-center"><b>Number of Gigs:</b></p>
@@ -133,63 +140,60 @@
                                         </div>
                                     </div>
 
-                                <br>
+                                    <br>
 
-                                <!-- Followings posted gigs -->
-                                <div class="col">
-                                    <div>
-                                        <div class="col-10">
-                                            <p><b>Contact gigs :</b></p>
-                                            <p>{{profile.get_contact_gigs}}</p>
+                                    <!-- Followings posted gigs -->
+                                    <div class="col">
+                                        <div>
+                                            <div class="col-10">
+                                                <p><b>Contact gigs :</b></p>
+                                                <p>{{profile.get_contact_gigs}}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br>
+                                    <br>
 
-                                <!-- Contact suggestions -->
-                                <div class="col">
-                                    <div>
-                                        <div class="col-10">
-                                            <p><b>Contact suggestions :</b></p>
-                                            <p> {{profile.get_proposal_contact}}</p>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#myProfileModal">
-                                                Contact Suggestions
-                                            </button>
+                                    <!-- Contact suggestions -->
+                                    <div class="col">
+                                        <div>
+                                            <div class="col-10">
+                                                <p><b>Contact suggestions :</b></p>
+                                                <p> {{profile.get_proposal_contact}}</p>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#myProfileModal">
+                                                    Contact Suggestions
+                                                </button>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myProfileModal" tabindex="-1"
-                                                aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="myProfileModal" tabindex="-1"
+                                                    aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
 
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body" id="to-follow-modal">
-                                                            <div class="text-center" id="spinner-box">
-                                                                <div class="spinner-border" role="status"></div>
+                                                                </button>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary"
-                                                                data-bs-dismiss="modal">Close</button>
+                                                            <div class="modal-body" id="to-follow-modal">
+                                                                <div class="text-center" id="spinner-box">
+                                                                    <div class="spinner-border" role="status"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-
-
 
                             </div>
                         </div>
@@ -197,15 +201,8 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-
-
-                </div>
-            </div>
 
     </div>
-
 
 </div>
 
