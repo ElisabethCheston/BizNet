@@ -7,8 +7,8 @@
 <!-- Nav tabs -->
 
 <ul class="nav nav-tabs justify-content-evenly">
-    <li class="active"><a href="{% url 'network' %}" data-toggle="tab">New Contacts</a></li>
-    <li><a href="{{%url 'my_contacts' %}" data-toggle="tab">Saved Contacts</a></li>
+    <li><a href="{% url 'network' %}" data-toggle="tab">New Contacts</a></li>
+    <li><a href="{% url 'my_contacts' %}" data-toggle="my_contacts">Saved Contacts</a></li>
     <li><a href="#apply-contacts" data-toggle="tab">Followers</a></li>
     <li><a href="#hide-contacts" data-toggle="tab">Following</a></li>
 </ul>
@@ -24,7 +24,9 @@
 {% endblock %}
 
 {% block content %}
-
+<h4>
+    My saved contacts
+</h4>
                                     <!-- Contact suggestions -->
                                     <div class="col-10">
                                         <p><b>Contact suggestions :</b></p>

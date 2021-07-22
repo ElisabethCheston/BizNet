@@ -7,7 +7,6 @@ from .models import Profileuser
 from django.http import JsonResponse
 from django.core import serializers
 from django.views.generic import TemplateView, View
-from django.http import JsonResponse
 
 
 def profile_details(request):
