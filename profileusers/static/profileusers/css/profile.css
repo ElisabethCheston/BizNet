@@ -27,14 +27,13 @@
   .profile-img {
     width: 250px;
   }
-
+/*
   .center {
     margin: auto;
     width: 80%;
-    border: 3px solid rgb(49, 49, 49);
     padding: 15px;
   }
-/*
+
 .card {
     padding: 3%;
     background-color: #FFFFFF;

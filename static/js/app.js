@@ -11,7 +11,7 @@ function activaTab(tab) {
   $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
 
-/*
+
 
 // -- Activate welcome message -- //
 
@@ -63,4 +63,3 @@ $.ajax({
     alert(result.Result);
   }
 });
-*/

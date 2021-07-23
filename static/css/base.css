@@ -9,13 +9,6 @@ body {
   font-family: "Lato";
 }
 
-.center {
-  margin: auto;
-  width: 50%;
-  border: 3px solid rgb(49, 49, 49);
-  padding: 15px;
-}
-
 /* Top Navbar */
 .fa-user-cog,
 .icon-text {
@@ -36,8 +29,6 @@ body {
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 
 
-/* Containers */
-
 .nav-tabs {
     margin-top: 10px;
     padding-top: 80px;
@@ -52,31 +43,35 @@ body {
     padding-left: 3%;
 }
 
-
 /* js modal */
-
 .not-visible {
   display: none;
 }
 
 /* Containers Content */
-/*
-.container-profile,
+
 .container-content {
   align-items: center;
-  padding-top: 0% !important;
-  padding-bottom: 6%;
-  display: flex;
-  justify-content: center;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  height: 70%;
 }
-*/
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 15px;
+  border: none !important;
+}
+
 /* Cards */
-/*
+
 .card {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 70px !important;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border: none;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
 }
 
@@ -84,10 +79,6 @@ body {
   padding: 4%;
   background-color: #FFFFFF;
   color: rgba(175, 172, 172, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4%;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
 }
 .card-frame {
@@ -103,10 +94,10 @@ body {
   margin-bottom: 3%;
   box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
 }
-*/
+
 
 /* Profile Layout */
-/*
+
 .container {
   margin: none !important;
   padding-top: 0% !important;
