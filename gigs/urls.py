@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import gig, gig_json
+from .views import gig, gigs_json
 
 # app_name = 'gigs'
 
@@ -9,5 +9,5 @@ urlpatterns = [
     path('', gig, name='gig'),
 
     # endpoints
-    path('gigs-json/', gig_json, name='gig-json'),
+    path('gigs-json/', gigs_json, name='gigs-json'),
 ]

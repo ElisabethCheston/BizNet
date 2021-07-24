@@ -20,7 +20,7 @@ def gig(request):
     return render(request, template, context)
 
 
-def gig_json(request):
+def gigs_json(request):
     # pylint: disable=maybe-no-member
     qs = Gig.objects.all()
     data = serializers.serialize('json', qs)

@@ -19,34 +19,34 @@ console.log('Welcome!')
 console.log(document)
 
 const test = document.getElementById('test')
-// const gigs2 = document.getElementById('gigs2')
+const gigs2 = document.getElementById('gigs2')
 console.log(test)
-
+/*
 setTimeout(() => {
   test.textContent = "Check out the lastest updates below."
 }, 2000)
-
+*/
 // -- Fetch json for gigs  -- //
 
-$.ajax({
+$.ajax( {
   type: 'GET',
   url: '/gigs-json/',
   success: function (response) {
-    console.log(response.data)
-    const data = JSON.parse(response.data)
-    console.log(data)
+    console.log(response.data);
+    const data = JSON.parse(response.data);
+    console.log(data);
     data.forEach(el => {
-      gigs2.innerHTML += `${el.fields.updated}`
-    })
+      gigs2.innerHTML += `${el.fields.updated}`;
+    });
   },
   error: function (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 
 // -- To call the json data for industry --//
-
+/*
 var industryChoice = {
   id: fields._id_prof, 
   industry_name: fields.industry_name,
@@ -63,3 +63,4 @@ $.ajax({
     alert(result.Result);
   }
 });
+*/
