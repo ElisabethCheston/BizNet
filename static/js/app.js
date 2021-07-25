@@ -19,7 +19,7 @@ console.log('Welcome!')
 console.log(document)
 
 const test = document.getElementById('test')
-const gigs2 = document.getElementById('gigs2')
+// const gigs2 = document.getElementById('gigs2')
 console.log(test)
 /*
 setTimeout(() => {
@@ -43,6 +43,10 @@ $.ajax( {
     console.log(error);
   }
 });
+
+
+
+
 
 
 // -- To call the json data for industry --//

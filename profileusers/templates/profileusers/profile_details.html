@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
 {% endblock %}
 
+{% block scripts %}
+<script src="{% static 'profileusers/my_profile.js' %}" defer></script>
+{% endblock scripts %}
+
 
 {% block page_header %}
 <!-- Profile tabs -->
@@ -216,6 +220,8 @@
                         </button>
                     </div>
                     <div class="modal-body" id="to-follow-modal">
+                        <p>                            Test text
+                        </p>
                         <div class="text-center" id="spinner-box">
                             <div class="spinner-border" role="status"></div>
                         </div>

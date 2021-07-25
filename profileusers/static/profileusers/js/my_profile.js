@@ -1,6 +1,6 @@
 console.log('hello world')
 
-
+/*
 const toFollowModalBody = document.getElementById('to-follow-modal')
 const spinnerBox = document.getElementById('spinner-box')
 

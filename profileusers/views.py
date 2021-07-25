@@ -11,7 +11,8 @@ from django.views.generic import TemplateView, View
 
 def profile_details(request):
     # pylint: disable=maybe-no-member
-    profile = get_object_or_404(Profileuser, user=request.user)
+    #profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
     template = 'profileusers/profile_details.html'
     context = {
         'profile': profile,
@@ -32,11 +33,11 @@ def all_profiles(request):
 class for random contacts to add
 """
 class MyProfile(TemplateView):
-    template_name = 'profileusers/my_profile.html'
+    template_name = 'profileusers/profile_details.html'
 
 
 class ProfileData(View):
-    def get(self, *args, **kwargs):
+    def get(self): # , *args, **kwargs
         # pylint: disable=maybe-no-member
         profile = Profileuser.objects.get(user=self.request.user)
         qs = profile.get_proposal_contact()

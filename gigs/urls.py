@@ -7,7 +7,5 @@ from .views import gig, gigs_json
 
 urlpatterns = [
     path('', gig, name='gig'),
-
-    # endpoints
-    path('gigs-json/', gigs_json, name='gigs-json'),
+    path('gigs-json/', gigs_json, name='gigs-json'), # endpoints
 ]
