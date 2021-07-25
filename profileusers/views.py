@@ -37,17 +37,17 @@ class MyProfile(TemplateView):
 
 
 class ProfileData(View):
-    def get(self): # , *args, **kwargs
+    def get(self, *args, **kwargs): # , *args, **kwargs
         # pylint: disable=maybe-no-member
         profile = Profileuser.objects.get(user=self.request.user)
         qs = profile.get_proposal_contact()
         profile_to_follow_list = []
         for user in qs:
             # Select random profiles
-            p = Profileuser.objects.get(user__username=user.username)
-            # p = get_object_or_404(Profileuser, user__username=user.username)
+            # p = Profileuser.objects.get(user__username=user.username)
+            p = get_object_or_404(Profileuser, user__username=user.username)
             profile_item = {
-                'id': p.id,
+                # 'id': p.id,
                 'user': p.user.username,
                 'avatar': p.avatar.url,
             }
