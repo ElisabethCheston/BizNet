@@ -54,6 +54,22 @@ body {
 }
 
 /* Containers Content */
+/*
+.container-fluid {
+  width: 100%;
+  color: rgba(240, 239, 239, 0.377);
+  background-color: rgba(240, 239, 239, 0.377);
+}
+*/
+
+.gig-container {
+  justify-items: center;
+  margin-bottom: 15vh;
+}
+
+*, ::after, ::before {
+  box-sizing: none;
+}
 
 .container-content {
   align-items: center;
@@ -68,38 +84,46 @@ body {
   border: none !important;
 }
 
+.card-center {
+  height: 80%;
+  align-content: center;
+  padding: 10px;
+  border: none !important;
+}
 /* Cards */
 
+/*
+.column {
+  float: left;
+  width: 90%;
+  padding: 5px;
+}
+*/
+
 .card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border: none;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  text-align: center;
+  background-color: #f1f1f1;
 }
 
 .card-body {
-  padding: 4%;
   background-color: #FFFFFF;
   color: rgba(129, 129, 129, 0.7);
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
+
+.card:hover {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+*/
+
+/*
 .card-frame {
   padding-left: 3%;
   padding-right: 3%;
 }
-
-.card:hover {
-  padding: 3%;
-  background-color: #FFFFFF;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3%;
-  box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
-}
-
+*/
 
 /* Profile Layout */
 
