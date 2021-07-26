@@ -155,6 +155,6 @@ class Profileuser(models.Model):
         followers_list = [p for p in self.get_following()]
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
-        return available[:2]
+        return available[:3]
 
 

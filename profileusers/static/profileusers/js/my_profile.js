@@ -29,8 +29,11 @@ toFollowBtn.addEventListener('click', () => {
 
                             </div>
                             <div class="col-3">
-                            <div class="text-muted">${el.user}</div>
+                                
+                                <div class="text-muted"><strong>${el.firstname}</strong></div>
+                                <div class="text-muted"><strong>${el.lastname}</strong></div>
 
+                                <div class="text-muted">${el.profession}</div>
                             </div>
                             <div class="col text-right">
                             <button class="btn btn-sm btn-success">Follow Me</button>                                
