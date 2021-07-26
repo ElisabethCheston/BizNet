@@ -53,6 +53,7 @@ class ProfileData(View):
                 'lastname': p.lastname,
                 'avatar': p.avatar.url,
                 'profession': p.profession,
+                'company_name': p.company_name,
             }
             profile_to_follow_list.append(profile_item)
         return JsonResponse({'pf_data': profile_to_follow_list})
