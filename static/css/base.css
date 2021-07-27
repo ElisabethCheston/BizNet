@@ -21,52 +21,63 @@ body {
   color: rgba(47, 156, 245, 0.79);
 }
 
-/* Containers Header and Content */
+/* Tabs Containers Header and Content */
 
 .tab-container {
-  padding-top: 4%;
+  padding-top: 3%;
 }
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 
 
-.nav-tabs {
+.nav-tab {
     margin-top: 10px;
-    padding-top: 80px;
-  }
+    padding-top: 70px;
+}
+.gig-tab {
+    border: none;
+    color: rgba(47, 156, 245, 0.79);
+    font-weight: bolder;
+    font-size: medium;
+    background-color: transparent;
+}
+.git-tab:hover,
+.git-tab:active {
+  color: rgba(47, 156, 245, 0.75);
+  text-decoration: rgba(240, 239, 239, 0.2);
+}
+/*
 .tab-content {
-  padding: 10px;
   padding-left: 3%;
   padding-right: 3%;
   align-items: center;
 }
+*/
 .welcome {
     padding-left: 3%;
 }
 
-/* js modal */
-.not-visible {
-  display: none;
-}
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-/* Containers Content */
-/*
-.container-fluid {
-  width: 100%;
-  color: rgba(240, 239, 239, 0.377);
-  background-color: rgba(240, 239, 239, 0.377);
-}
-*/
 
 .gig-container {
   justify-items: center;
   margin-bottom: 15vh;
 }
 
+
+[data-tab-content] {
+  display: none;
+}
+.active[data-tab-content] {
+  display: block;
+}
+.gig-tab {
+  list-style-type: none;
+}
+
+.tab:hover {
+  background-color: rgba(47, 156, 245, 0.1);
+}
+
+/* Layout */
 *, ::after, ::before {
   box-sizing: none;
 }
@@ -92,13 +103,6 @@ body {
 }
 /* Cards */
 
-/*
-.column {
-  float: left;
-  width: 90%;
-  padding: 5px;
-}
-*/
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -145,13 +149,23 @@ body {
 }
 */
 
-/* Navbars */
+/* js modal */
+.not-visible {
+  display: none;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 
 /* Buttons and links */
 
 button, li, a {
   font-family: "Poppins";
   text-transform: uppercase;
+  text-decoration: none;
   font-weight: bold;
   font-size: small;
   color: rgba(47, 156, 245, 0.99);

@@ -3,10 +3,6 @@ from . import views
 from .views import (
     gig,
     gigs_json,
-    NewGig,
-    SavedGig,
-    AppliedGig,
-    HideGig,
 )
 
 # app_name = 'gigs'
