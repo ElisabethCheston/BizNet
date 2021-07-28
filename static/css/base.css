@@ -10,6 +10,7 @@ body {
 }
 
 /* Top Navbar */
+
 .fa-user-cog,
 .icon-text {
   color: rgba(47, 156, 245, 0.99);
@@ -28,6 +29,11 @@ body {
 }
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 
+.home-container {
+  padding-top: 5%;
+  margin: 10%;
+  padding-bottom: 10%;
+}
 
 .nav-tab {
     margin-top: 10px;
@@ -90,7 +96,7 @@ body {
 }
 .center {
   margin: auto;
-  width: 50%;
+  width: 70%;
   padding: 15px;
   border: none !important;
 }
@@ -101,9 +107,34 @@ body {
   padding: 10px;
   border: none !important;
 }
-/* Cards */
+/* CARDS */
 
+/* Start/Home page */
 
+.home-profile {
+  padding-top: 0%;
+}
+.start-info {
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.questions {
+  margin: auto;
+  width: 90%;
+  padding: 15px;
+  border: none !important;
+}
+.card-start {
+  justify-content: center;
+  background: rgba(250, 253, 255, 0.6);
+}
+.start-card-body {
+  border-style: solid;
+  border-radius: 1px;
+  border-color: rgba(47, 156, 245, 0.2);
+  padding: 3%;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 15px;
@@ -126,12 +157,12 @@ body {
   color: rgba(47, 156, 245, 0.2);
 }
 
-/*
+
 .card-frame {
   padding-left: 3%;
   padding-right: 3%;
 }
-*/
+
 
 /* Profile Layout */
 
@@ -162,21 +193,29 @@ body {
 
 /* Buttons and links */
 
+.start-buttons {
+  width: 68%;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 button, li, a {
   font-family: "Poppins";
   text-transform: uppercase;
   text-decoration: none;
   font-weight: bold;
   font-size: small;
-  color: rgba(47, 156, 245, 0.99);
+  color: rgba(47, 156, 245, 0.69);
 }
 .btn {
-  background-color: rgba(47, 156, 245, 0.99);
+  background-color: rgba(47, 156, 245, 0.6);
 }
 .btn:hover,
 .btn:active,
 .btn:focus {
-  background-color: rgba(47, 156, 245, 0.79);
+  background-color: rgba(100, 166, 219, 0.6);
 }
 
 /* Icons */
