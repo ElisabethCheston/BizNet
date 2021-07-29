@@ -11,34 +11,24 @@ body {
 
 /* Top Navbar */
 
-.fa-user-cog,
-.icon-text {
-  color: rgba(47, 156, 245, 0.99);
-}
-.fa-user-cog:hover,
-.icon-text:hover,
-.fa-user-cog:active,
-.icon-text:active {
-  color: rgba(47, 156, 245, 0.79);
-}
 
-/* Tabs Containers Header and Content */
+
+/*TABS */
+
+/* Layout */
 
 .tab-container {
   padding-top: 3%;
 }
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
 
-.home-container {
-  padding-top: 5%;
-  margin: 10%;
-  padding-bottom: 10%;
-}
-
 .nav-tab {
     margin-top: 10px;
     padding-top: 70px;
 }
+
+/* Tabs */
+
 .gig-tab {
     border: none;
     color: rgba(47, 156, 245, 0.79);
@@ -51,22 +41,6 @@ body {
   color: rgba(47, 156, 245, 0.75);
   text-decoration: rgba(240, 239, 239, 0.2);
 }
-/*
-.tab-content {
-  padding-left: 3%;
-  padding-right: 3%;
-  align-items: center;
-}
-*/
-.welcome {
-    padding-left: 3%;
-}
-
-.gig-container {
-  justify-items: center;
-  margin-bottom: 15vh;
-}
-
 [data-tab-content] {
   display: none;
 }
@@ -76,7 +50,6 @@ body {
 .gig-tab {
   list-style-type: none;
 }
-
 .tab:hover {
   background-color: rgba(47, 156, 245, 0.1);
 }
@@ -94,16 +67,19 @@ body {
   border-radius: 0;
   box-shadow: 0 15px 15px rgba(240, 239, 239, 0.6);
 }
+.home-container {
+  padding-top: 5%;
+  margin: 10%;
+  padding-bottom: 10%;
+}
 .container-profile {
   margin: 10%;
   padding-bottom: 10%;
 }
-
-
-*, ::after, ::before {
-  box-sizing: none;
+.gig-container {
+  justify-items: center;
+  margin-bottom: 15vh;
 }
-
 .container-content {
   padding: 5% 10%;
   margin: 5% 10%;
@@ -114,13 +90,17 @@ body {
   padding: 15px;
   border: none !important;
 }
-
-.card-center {
-  height: 80%;
-  align-content: center;
-  padding: 10px;
-  border: none !important;
+*, ::after, ::before {
+  box-sizing: none;
 }
+
+/* Start modal */
+
+.modal-btn {
+  color: ivory;
+  width: 15%;
+}
+
 /* CARDS */
 
 /* Start/Home page */
@@ -149,36 +129,39 @@ body {
   border-color: rgba(47, 156, 245, 0.2);
   padding: 3%;
 }
+
+
+/* Profile, gigs and network */
+
+.btn-card {
+  background-color: rgba(240, 239, 239, 0.2);
+  color: rgba(47, 156, 245, 0.2);
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 3%;
   text-align: left;
   background-color: rgba(234, 236, 236, 0.8);
 }
-
-
 .card-body {
   background-color: rgba(246, 249, 250, 0.8);
 }
-
 .card:hover {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 }
-
-.btn-card {
-  background-color: rgba(240, 239, 239, 0.2);
-  color: rgba(47, 156, 245, 0.2);
-}
-
 .card-frame {
   padding-left: 3%;
   padding-right: 3%;
 }
+.card-center {
+  height: 80%;
+  align-content: center;
+  padding: 10px;
+  border: none !important;
+}
 
 
-/* Profile Layout */
-
-
+/* IMAGES & PICTURES */
 
 /* js modal */
 .not-visible {
@@ -190,8 +173,9 @@ body {
   border-radius: 50%;
 }
 
+/* BUTTONS & LINKS */
 
-/* Buttons and links */
+/* Home/Index page */
 
 .start-buttons {
   width: 68%;
@@ -201,9 +185,12 @@ body {
   text-align: center;
 }
 
+/* Default */
+
 button, li, a {
   font-family: "Poppins";
   text-transform: uppercase;
+  border-radius: 1px;
   text-decoration: none;
   font-weight: bold;
   font-size: small;
@@ -218,12 +205,24 @@ button, li, a {
   background-color: rgba(100, 166, 219, 0.6);
 }
 
-/* Icons */
+/* ICONS */
 
+/* Style */
+
+.fa-user-cog,
+.icon-text {
+  color: rgba(47, 156, 245, 0.99);
+}
+.fa-user-cog:hover,
+.icon-text:hover,
+.fa-user-cog:active,
+.icon-text:active {
+  color: rgba(47, 156, 245, 0.79);
+}
+/* Wrappers */
 .wrapper {
   display: inline-flex;
 }
-
 .wrapper .icon {
   position: relative;
   font-size: 24px;
@@ -235,7 +234,6 @@ button, li, a {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
 .wrapper .tooltip {
   position: absolute;
   top: 0;
@@ -249,7 +247,6 @@ button, li, a {
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
 .wrapper .tooltip::before {
   position: absolute;
   content: "";
@@ -261,19 +258,16 @@ button, li, a {
   transform: translate(-50%) rotate(45deg);
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
 .wrapper .icon:hover .tooltip {
   top: -45px;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-
 .wrapper .icon:hover span,
 .wrapper .icon:hover .tooltip {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 }
-
 .wrapper .user-circle:hover .tooltip,
 .wrapper .user-circle:hover .tooltip::before,
 .wrapper .search:hover .tooltip,
@@ -291,7 +285,6 @@ button, li, a {
   font-size: large;
   background-color: rgba(217, 255, 4, 0.05);
 }
-
 .wrapper .user-circle:hover,
 .wrapper .search:hover,
 .wrapper .suitcase:hover,
@@ -301,7 +294,7 @@ button, li, a {
   color: rgba(47, 156, 245, 0.89);
 }
 
-
+/* SCREEN LAYOUTS */
 
 /* Header Tab container */
 /*

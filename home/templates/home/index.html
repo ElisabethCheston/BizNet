@@ -1,21 +1,304 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
+
+<!--
+  {% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}
+{% trans "Sign In" %}
 {% endblock %}
+-->
+
+
 
 {% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="container-start" id="justify-center">
 
-<div class="home-container">
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <a class="btn btn-primary" href="https://8000-lime-prawn-3qijzk6g.ws-eu11.gitpod.io/accounts/login/"
+      role="button">Sign
+      In</a>
+    <button class="btn btn-primary" type="button">Connect with LinkedIn</button>
+    <button class="btn btn-primary" type="button">Connect with Google</button>
+    <a class="btn btn-primary" data-bs-toggle="modal" href="#startModalToggle" role="button">Create Account</a>
 
-  <div class="start">
+  </div>
 
-    {% if user.is_authenticated %}
+  <div class="user_card" id="justify-center">
+    <div class="d-flex justify-content-center form_container">
 
-    <h3 class="text-center">Welcome to BizNet {{ user.username }} !</h3>
-    <br>
-    <br>
-    <!-- Information cards -->
+
+      <!-- 2 links to Login or Registration -->
+      <div class="modal fade" id="startModalToggle" aria-hidden="true" aria-labelledby="startModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="startModalToggleLabel">Login or Register</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Links to login and registration.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#startModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="startModalToggle3" aria-hidden="true" aria-labelledby="startModalToggleLabel3"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="startModalToggleLabel3">Modal 3</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Hide this modal and show the first or 3rd with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#startModalToggle2" href="{% url 'profile_details' %}"
+              data-bs-toggle="modal" data-bs-dismiss="modal">Back to 2nd</button>
+
+            <button class="btn btn-primary" data-bs-target="#startModalToggle" data-bs-toggle="modal"
+              data-bs-dismiss="modal">Submit Registration</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="startModalToggle2" aria-hidden="true" aria-labelledby="startModalToggleLabel2"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="startModalToggleLabel2">Modal 2</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Hide this modal and show the first with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#startModalToggle" data-bs-toggle="modal"
+              data-bs-dismiss="modal">Back</button>
+            <button class="btn btn-primary" data-bs-target="#startModalToggle3" data-bs-toggle="modal"
+              data-bs-dismiss="modal">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="startModalToggle3" aria-hidden="true" aria-labelledby="startModalToggleLabel3"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="startModalToggleLabel3">Modal 3</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Hide this modal and show the first or 3rd with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#startModalToggle2" href="#"
+              data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+
+            <button class="btn btn-primary" data-bs-target="#startModalToggle" data-bs-toggle="modal"
+              data-bs-dismiss="modal">Submit Registration</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+{% endblock %}
+
+<!-- Information cards -->
+<!--
+      <div class="home-profile row text-center">
+
+        <div class="col-4 start-info">
+          <p>
+            <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
+              aria-controls="collapsestart1">
+              My Profile
+            </a>
+          </p>
+          <div class="col collapse card-frame" style="max-width: 450px;" id="collapsestart1">
+            <div class="card-start start-card-body">
+              <h6><strong>My Profile</strong></h6>
+              <p>
+                At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
+                important
+                asset to succeed with your business.
+              </p>
+            </div>
+            <br>
+          </div>
+        </div>
+  
+        <div class="col-4 start-info">
+          <p>
+            <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
+              aria-controls="collapsestart2">
+              My Network
+            </a>
+          </p>
+          <div class="col collapse card-frame" style="max-width: 450px;" id="collapsestart2">
+            <div class="card-start start-card-body">
+              <br>
+              <h6><strong>My Network</strong></h6>
+              <p>
+                At BizNet we believe in the power of strong and relevant professional
+                networks. Your network is the most important asset to succeed with your
+                business.
+              </p>
+            </div>
+            <br>
+          </div>
+        </div>
+  
+        <div class="row col-4 start-info">
+          <p>
+            <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
+              aria-controls="collapsestart3">
+              My Gigs
+            </a>
+          </p>
+          <div class="col collapse card-frame" style="max-width: 450px;" id="collapsestart3">
+            <div class="card-start start-card-body">
+              <br>
+              <h6><strong>My Gigs</strong></h6>
+              <p>
+                With a smart matching algorithm BizNet finds the right contact to invite
+                and start networking with. You can also discover and search manually to
+                connect and invite your existing network to BizNet. To interact with your
+                new contact BizNet suggest CTA's as next best action like message, video call,
+                phone call or a lunch meeting.
+              </p>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+<div class="questions">
+
+  <div class="start-info">
+    <p>
+      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
+        aria-controls="collapsestart1">
+        What is BizNet?
+      </a>
+    </p>
+    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart1">
+      <div class="card-start start-card-body">
+        <p>
+          At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
+          important
+          asset to succeed with your business.
+        </p>
+        <p>
+          Be the go-to place where small business owners build active and strong networks to generate new business
+          opportunities and exchange experience.
+        </p>
+        <p>
+          BizNet helps small business owners to find new business opportunities through a strong and relevant
+          network,
+          share
+          experiences and stay social.
+        </p>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="start-info">
+    <p>
+      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
+        aria-controls="collapsestart2">
+        Who is BizNet?
+      </a>
+    </p>
+    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart2">
+      <div class="card-start start-card-body">
+        <br>
+        <h6><strong>Match Contacts</strong></h6>
+        <p>
+          At BizNet we believe in the power of strong and relevant professional
+          networks. Your network is the most important asset to succeed with your
+          business.
+        </p>
+        <br>
+        <h6><strong>Our Vision</strong></h6>
+        <p>
+          Be the go-to place where small business owners build active and strong
+          networks to generate new business opportunities and exchange experience.
+        </p>
+        <br>
+        <h6><strong>Solution</strong></h6>
+        <p>
+          BizNet helps small business owners to find new business opportunities
+          through a strong and relevant network, share experiences and stay social.
+        </p>
+        <br>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="start-info">
+    <p>
+      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
+        aria-controls="collapsestart3">
+        How does BizNet work?
+      </a>
+    </p>
+    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart3">
+      <div class="card-start start-card-body">
+        <br>
+        <h6><strong>Match Contacts</strong></h6>
+        <p>
+          With a smart matching algorithm BizNet finds the right contact to invite
+          and start networking with. You can also discover and search manually to
+          connect and invite your existing network to BizNet. To interact with your
+          new contact BizNet suggest CTA's as next best action like message, video call,
+          phone call or a lunch meeting.
+        </p>
+        </br>
+        <h6><strong>Find business</strong></h6>
+        <p>
+          All users automatically receive gigs which are matching their profile and
+          skillset. This is a social marketplace feature. You apply through the app
+          and get contacted by the gig owner. To build trust and reputation you can
+          get rated or recommended by the gig owner or a user who you have helped.
+          Users can post gigs within their network or publicly (pro version).
+        </p>
+        <br>
+        <h6><strong>Stay updated</strong></h6>
+        <p>
+          The feed is the core engagement feature to keep you updated about what is
+          happening in your network. BizNet notifies you to various events that you
+          should act on to create more value and rewards when interacting with your
+          network.
+        </p>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
     <div class="home-profile row text-center">
 
       <div class="col-4 start-info">
@@ -81,202 +364,5 @@
         </div>
       </div>
 
-
     </div>
-
-    {% else %}
-
-    <h3>Welcome to BizNet!</h3>
-    <br>
-    <br>
-
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Show a second modal and hide this one with the button below.
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Open second modal</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Hide this modal and show the first with the button below.
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Back to first</button>
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Go to third</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel3">Modal 3</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Hide this modal and show the first or 3rd with the button below.
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Back to 2nd</button>
-
-            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Submit Registration</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Registration</a>
-
-
-
-    <br>
-    <br>
-
-
-
-    <!-- Information cards -->
-    <div class="questions">
-
-      <div class="start-info">
-        <p>
-          <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
-            aria-controls="collapsestart1">
-            What is BizNet?
-          </a>
-        </p>
-        <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart1">
-          <div class="card-start start-card-body">
-            <p>
-              At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
-              important
-              asset to succeed with your business.
-            </p>
-            <p>
-              Be the go-to place where small business owners build active and strong networks to generate new business
-              opportunities and exchange experience.
-            </p>
-            <p>
-              BizNet helps small business owners to find new business opportunities through a strong and relevant
-              network,
-              share
-              experiences and stay social.
-            </p>
-          </div>
-          <br>
-        </div>
-      </div>
-
-      <div class="start-info">
-        <p>
-          <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
-            aria-controls="collapsestart2">
-            Who is BizNet?
-          </a>
-        </p>
-        <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart2">
-          <div class="card-start start-card-body">
-            <br>
-            <h6><strong>Match Contacts</strong></h6>
-            <p>
-              At BizNet we believe in the power of strong and relevant professional
-              networks. Your network is the most important asset to succeed with your
-              business.
-            </p>
-            <br>
-            <h6><strong>Our Vision</strong></h6>
-            <p>
-              Be the go-to place where small business owners build active and strong
-              networks to generate new business opportunities and exchange experience.
-            </p>
-            <br>
-            <h6><strong>Solution</strong></h6>
-            <p>
-              BizNet helps small business owners to find new business opportunities
-              through a strong and relevant network, share experiences and stay social.
-            </p>
-            <br>
-          </div>
-          <br>
-        </div>
-      </div>
-
-      <div class="start-info">
-        <p>
-          <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
-            aria-controls="collapsestart3">
-            How does BizNet work?
-          </a>
-        </p>
-        <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart3">
-          <div class="card-start start-card-body">
-            <br>
-            <h6><strong>Match Contacts</strong></h6>
-            <p>
-              With a smart matching algorithm BizNet finds the right contact to invite
-              and start networking with. You can also discover and search manually to
-              connect and invite your existing network to BizNet. To interact with your
-              new contact BizNet suggest CTA's as next best action like message, video call,
-              phone call or a lunch meeting.
-            </p>
-            </br>
-
-            <h6><strong>Find business</strong></h6>
-            <p>
-              All users automatically receive gigs which are matching their profile and
-              skillset. This is a social marketplace feature. You apply through the app
-              and get contacted by the gig owner. To build trust and reputation you can
-              get rated or recommended by the gig owner or a user who you have helped.
-              Users can post gigs within their network or publicly (pro version).
-            </p>
-            <br>
-
-            <h6><strong>Stay updated</strong></h6>
-            <p>
-              The feed is the core engagement feature to keep you updated about what is
-              happening in your network. BizNet notifies you to various events that you
-              should act on to create more value and rewards when interacting with your
-              network.
-            </p>
-            <br>
-
-
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-    {% endif %}
-
-
-  </div>
-
-</div>
-
-
-{% endblock %}
+  -->
