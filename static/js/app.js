@@ -5,6 +5,20 @@ var collapseList = collapseElementList.map(function (collapseEl) {
   return new bootstrap.Collapse(collapseEl)
 })
 
+$(function () {
+  $('[data-toggle="popover-term"]'), poopover()
+})
+
+/*
+// -- Popover function -- //
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+var popover = new bootstrap.Popover(document.querySelector('[data-bs-toggle="popover"]'), {
+  container: 'body'
+})
+*/
 
 // -- For tabs from Bootstraps -- //
 function activaTab(tab) {

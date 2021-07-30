@@ -29,91 +29,72 @@
     <a class="btn btn-primary" data-bs-toggle="modal" href="#startModalToggle" role="button">Create Account</a>
 
   </div>
+  <!--TEST-->
+  <div class="modal-body">
+    <h5>Popover in a modal</h5>
+    <p> <a href="#" role="button" class="btn btn-secondary popover-test" data-bs-toggle="popover-terms"
+        title="Popover title" data-bs-content="Popover body content is set in this attribute.">button</a></p>
+    <hr>
+  </div>
+
 
   <div class="user_card" id="justify-center">
     <div class="d-flex justify-content-center form_container">
 
 
-      <!-- 2 links to Login or Registration -->
+      <!-- Registration Form -->
       <div class="modal fade" id="startModalToggle" aria-hidden="true" aria-labelledby="startModalToggleLabel"
         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="startModalToggleLabel">Login or Register</h5>
+              <h5 class="modal-title" id="startModalToggleLabel">Register for an account</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Links to login and registration.
+
+              <!-- Registration User -->
+              <div class="container-start">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="First Name" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Last Name" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+                <br>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Email" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Password" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Company ID" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <br>
+
+              <!-- Terms and Conditions -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                </label>
+                <a href="#" role="button" class="btn btn-sm btn-secondary popover-test" data-toggle="popover-term" data-bs-toggle="popover-terms"
+                  title="Popover title" data-bs-content="Popover body content is set in this attribute.">Terms &
+                  Conditions</a>
+              </div>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-primary" data-bs-target="#startModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+            <br>
+            <!-- Submit Registration Button -->
+            <div class="modal-footer" id="justify-center">
+              <button class="btn btn-primary" data-bs-target="#startModalToggle2" data-bs-toggle="modal"
+                data-bs-dismiss="modal">Submit</button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="startModalToggle3" aria-hidden="true" aria-labelledby="startModalToggleLabel3"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="startModalToggleLabel3">Modal 3</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Hide this modal and show the first or 3rd with the button below.
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#startModalToggle2" href="{% url 'profile_details' %}"
-              data-bs-toggle="modal" data-bs-dismiss="modal">Back to 2nd</button>
-
-            <button class="btn btn-primary" data-bs-target="#startModalToggle" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Submit Registration</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="startModalToggle2" aria-hidden="true" aria-labelledby="startModalToggleLabel2"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="startModalToggleLabel2">Modal 2</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Hide this modal and show the first with the button below.
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#startModalToggle" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Back</button>
-            <button class="btn btn-primary" data-bs-target="#startModalToggle3" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Next</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="startModalToggle3" aria-hidden="true" aria-labelledby="startModalToggleLabel3"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="startModalToggleLabel3">Modal 3</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Hide this modal and show the first or 3rd with the button below.
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" data-bs-target="#startModalToggle2" href="#"
-              data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-
-            <button class="btn btn-primary" data-bs-target="#startModalToggle" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Submit Registration</button>
           </div>
         </div>
       </div>
