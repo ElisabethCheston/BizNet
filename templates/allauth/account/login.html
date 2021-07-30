@@ -24,6 +24,7 @@
     border: none !important;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
   .user_card {
@@ -39,6 +40,7 @@
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
   .form_container {
@@ -50,17 +52,19 @@
 
   #form-title {
     color: #fff;
-
   }
 
   .login_btn {
     width: 100%;
     background: rgba(141, 133, 133, 0.7) !important;
     color: white !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    font-weight: bold;
   }
 
   .login_btn:focus {
-    box-shadow: none !important;
+    box-shadow: none !important; 
     outline: 0px !important;
   }
 
@@ -106,23 +110,25 @@
 
   <div class="user_card" id="justify-center">
 
-    <div class="d-flex justify-content-center form_container">
+    <div class="d-flex form_container">
 
       <!-- Login Form -->
-      <form method="POST" id="justify-center action="">
+      <form method="POST" action="" id="justify-center">
         {% csrf_token %}
 
         <div class="input-group mb-3">
           {{ form.as_p }}
         </div>
 
-        <div class="input-group mb-2">
+<!--
+          <div class="input-group mb-2">
           {{ form.password }}
         </div>
 
-        <div class="d-flex mt-3 login_container" id="justify-center">
-          <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-        </div>
+-->
+
+          <br>
+          <button class="primaryAction login_btn" id="justify-center" type="submit">{% trans "Sign In" %}</button>
 
       </form>
 
