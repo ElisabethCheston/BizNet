@@ -9,9 +9,40 @@ body {
   font-family: "Lato";
 }
 
-/* Top Navbar */
+/* START PAGE */
 
+/* Start/Home page */
 
+.home-profile {
+  padding-top: 0%;
+}
+.start-info,
+.login-button,
+.signup-button {
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.questions {
+  margin: auto;
+  width: 90%;
+  padding: 15px;
+  border: none !important;
+}
+.card-start,
+.login-button,
+.signup-button {
+  justify-content: center;
+  background: rgba(250, 253, 255, 0.6);
+}
+.start-card-body,
+.login-button,
+.signup-button {
+  border-style: solid;
+  border-radius: 0px;
+  border-color: rgba(47, 156, 245, 0.2);
+  padding: 3%;
+}
 
 /*TABS */
 
@@ -103,32 +134,7 @@ body {
 
 /* CARDS */
 
-/* Start/Home page */
 
-.home-profile {
-  padding-top: 0%;
-}
-.start-info {
-  padding: 5px;
-  justify-content: center;
-  align-items: center;
-}
-.questions {
-  margin: auto;
-  width: 90%;
-  padding: 15px;
-  border: none !important;
-}
-.card-start {
-  justify-content: center;
-  background: rgba(250, 253, 255, 0.6);
-}
-.start-card-body {
-  border-style: solid;
-  border-radius: 0px;
-  border-color: rgba(47, 156, 245, 0.2);
-  padding: 3%;
-}
 
 
 /* Profile, gigs and network */

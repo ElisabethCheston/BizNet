@@ -4,22 +4,14 @@ var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
 var collapseList = collapseElementList.map(function (collapseEl) {
   return new bootstrap.Collapse(collapseEl)
 })
-/*
-$(function () {
-  $('[data-bs-toggle="popover-test"]'), poopover()
-})
-*/
+
 
 // -- Popover function -- //
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover-term"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
 })
-/*
-var popover = new bootstrap.Popover(document.querySelector('[data-toggle="popover-terms"]'), {
-  container: 'body'
-})
-*/
+
 
 // -- For tabs from Bootstraps -- //
 function activaTab(tab) {

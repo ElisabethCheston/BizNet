@@ -2,9 +2,9 @@
 {% load static %}
 
 
-<!--
-  {% load i18n %}
+{% load i18n %}
 {% load account socialaccount %}
+<!--
 
 {% block head_title %}
 {% trans "Sign In" %}
@@ -12,8 +12,97 @@
 -->
 
 
+{% get_providers as socialaccount_providers %}
 
 {% block content %}
+<style>
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #ffffff !important;
+  }
+
+  #justify-center {
+    margin: auto;
+    width: 70%;
+    padding: 15px;
+    border: none !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .user_card {
+    width: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .form_container {
+    margin-top: 30px;
+    width: 60%;
+    height: 60%;
+    align-items: center;
+  }
+
+  #form-title {
+    color: #fff;
+  }
+
+  .login_btn {
+    width: 100%;
+    background: rgba(141, 133, 133, 0.7) !important;
+    color: white !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .login_btn:focus {
+    box-shadow: none !important; 
+    outline: 0px !important;
+  }
+
+  .login_container {
+    padding: 0 2rem;
+  }
+
+  .input-group-text {
+    background: #f7ba5b !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+  }
+
+  .input_user,
+  .input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+  }
+
+  #messages {
+    background-color: grey;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    margin: 2%;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+</style>
 <br>
 <br>
 <br>
@@ -21,20 +110,42 @@
 <div class="container-start" id="justify-center">
 
   <div class="d-grid gap-2 col-6 mx-auto">
-    <a class="btn btn-primary" href="https://8000-lime-prawn-3qijzk6g.ws-eu11.gitpod.io/accounts/login/"
-      role="button">Sign
-      In</a>
+
+    <!-- Sign In-->
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+    </form>
+    <!--<a class="btn btn-primary" href="{{ login_url }}" role="button">Sign In</a>-->
+
+    <!-- Signup with social accounts -->
     <button class="btn btn-primary" type="button">Connect with LinkedIn</button>
     <button class="btn btn-primary" type="button">Connect with Google</button>
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#startModalToggle" role="button">Create Account</a>
+
+    <!-- Register Account -->
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="button secondaryAction login-button" type="submit">{% trans "Sign Up" %} &raquo;</button>
+    </form>
+
+
+    <!-- <a class="btn btn-primary" href="{{ signup_url }}" role="button">Create Account</a> -->
 
   </div>
 
-  <div class="user_card" id="justify-center">
+<!--
+    <div class="user_card" id="justify-center">
     <div class="d-flex justify-content-center form_container">
 
-
-      <!-- Registration Form -->
+      <!-- Registration Form 
       <div class="modal fade" id="startModalToggle" aria-hidden="true" aria-labelledby="startModalToggleLabel"
         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -45,7 +156,7 @@
             </div>
             <div class="modal-body">
 
-              <!-- Registration User -->
+              <!-- Registration User 
               <div class="container-start">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="First Name" aria-label="Sizing example input"
@@ -71,13 +182,13 @@
               </div>
               <br>
 
-              <!-- Terms and Conditions -->
+              <!-- Terms and Conditions 
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                 </label>
-                <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right" data-bs-toggle="popover-term"
-                  title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
+                <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right"
+                  data-bs-toggle="popover-term" title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
                   can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
                   around with respect to documentation is not very helpful in improving things. Please step in and 
                   file a pull request if you feel there is something unclear.
@@ -88,19 +199,23 @@
               </div>
             </div>
             <br>
-            <!-- Submit Registration Button -->
+
+            <!-- Submit Registration Button 
             <div class="modal-footer" id="justify-center">
               <button class="btn btn-primary" data-bs-target="#startModalToggle2" data-bs-toggle="modal"
-                data-bs-dismiss="modal">Submit</button>
+                data-bs-dismiss="modal"type="submit">{% trans "Sign Up" %} &raquo;</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+-->
+
 </div>
-</div>
+
+
+
 
 {% endblock %}
 
