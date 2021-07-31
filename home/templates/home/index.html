@@ -32,19 +32,17 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <!--<a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>-->
-      <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+      <button class="btn btn-primary col-12" type="submit">{% trans "Sign In" %}</button>
     </form>
-
-    <!--<a class="btn btn-primary" href="{{ login_url }}" role="button">Sign In</a>-->
 
     <!-- Signup with social accounts -->
 
     <form action="#">
-      <button class="btn btn-primary" type="button">Connect with LinkedIn</button>
+      <button class="btn btn-primary col-12" type="button">Connect with LinkedIn</button>
     </form>
 
     <form action="#">
-      <button class="btn btn-primary" type="button">Connect with Google</button>
+      <button class="btn btn-primary col-12" type="button">Connect with Google</button>
     </form>
     <!-- Register Account -->
     <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
@@ -53,11 +51,9 @@
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
+      <button class="btn btn-primary col-12" type="submit">Create Account</button>
     </form>
 
-
-    <!-- <a class="btn btn-primary" href="{{ signup_url }}" role="button">Create Account</a> -->
 
   </div>
 

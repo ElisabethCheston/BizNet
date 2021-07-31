@@ -22,14 +22,32 @@
 .errorlist {
 display: none !important;
 }
-/*
 label {
-display: none;
+  display: none;
 }
 p {
 height: 20px;
 }
-*/
+
+#id_login,
+#id_password,
+.primaryAction {
+  width: 70%;
+  height: 30px;
+  margin: 2%;
+  text-transform: uppercase;
+  text-align: center;
+}
+#id_remember {
+  display: none;
+}
+.primaryAction {
+  width: 70%;
+  height: 30px;
+  margin: 2%;
+  text-transform: uppercase;
+  text-align: center;
+}
 
 .user_card {
   width: 70%;
@@ -119,32 +137,10 @@ height: 20px;
 
 
 
-    <!-- Social Account Login (NOT SETUP YET)-->
-    <p>Sign In with:</p>
-
-    {% get_providers as socialaccount_providers %}
-    {% if socialaccount_providers %}
-
-    <div class="socialaccount_ballot">
-
-      <div class="socialaccount_providers">
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-      </div>
-
-      {% else %}
-
-      <p>{% blocktrans %}If you have not created an account yet, then please
-        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-      </p>
-
-      {% endif %}
-
-    </div>
-    <br>
     <!-- Account Register and Signin links-->
     <div class="mt-4 row justify-content-center">
       <div class="d-flex links">
-        <p>Not registered? <a href="{% url 'account_signup' %}" class="ml-2">Sign Up</a></p>
+        <p>Not registered? <a href="{% url 'account_signup' %}" class="ml-2">Create Account</a></p>
       </div>
     </div>
 
