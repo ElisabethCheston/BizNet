@@ -29,14 +29,6 @@
     <a class="btn btn-primary" data-bs-toggle="modal" href="#startModalToggle" role="button">Create Account</a>
 
   </div>
-  <!--TEST-->
-  <div class="modal-body">
-    <h5>Popover in a modal</h5>
-    <p> <a href="#" role="button" class="btn btn-secondary popover-test" data-bs-toggle="popover-terms"
-        title="Popover title" data-bs-content="Popover body content is set in this attribute.">button</a></p>
-    <hr>
-  </div>
-
 
   <div class="user_card" id="justify-center">
     <div class="d-flex justify-content-center form_container">
@@ -84,9 +76,15 @@
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                 </label>
-                <a href="#" role="button" class="btn btn-sm btn-secondary popover-test" data-toggle="popover-term" data-bs-toggle="popover-terms"
-                  title="Popover title" data-bs-content="Popover body content is set in this attribute.">Terms &
-                  Conditions</a>
+                <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right" data-bs-toggle="popover-term"
+                  title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
+                  can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
+                  around with respect to documentation is not very helpful in improving things. Please step in and 
+                  file a pull request if you feel there is something unclear.
+                  Project specific integration trouble: In cases where allauth is just one piece of the puzzle and 
+                  for example a stack trace indicates another module crashing, please try to come up stripped version 
+                  of the issue where it is clear that allauth is the one that is misbehaving.">
+                  Terms & Conditions</button>
               </div>
             </div>
             <br>
