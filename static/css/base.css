@@ -16,9 +16,7 @@ body {
 .home-profile {
   padding-top: 0%;
 }
-.start-info,
-.login-button,
-.signup-button {
+.start-info {
   padding: 5px;
   justify-content: center;
   align-items: center;
@@ -29,15 +27,11 @@ body {
   padding: 15px;
   border: none !important;
 }
-.card-start,
-.login-button,
-.signup-button {
+.card-start {
   justify-content: center;
   background: rgba(250, 253, 255, 0.6);
 }
-.start-card-body,
-.login-button,
-.signup-button {
+.start-card-body {
   border-style: solid;
   border-radius: 0px;
   border-color: rgba(47, 156, 245, 0.2);
@@ -190,7 +184,22 @@ body {
   align-items: center;
   text-align: center;
 }
+/*
+#login,
+#signin {
+  color: rgba(47, 156, 245, 0.69);
+  border-color: rgba(47, 156, 245, 0.75);
+  background-color: rgba(47, 156, 245, 0.6);
 
+}
+.signup-button,
+.login-button {
+  border: none;
+  background-color: rgba(47, 156, 245, 0.6);
+  color: rgba(246, 249, 250, 0.99);
+  font-size: medium;
+}
+*/
 /* Default */
 
 button, li, a {
@@ -328,4 +337,82 @@ button, li, a {
         left: 0;
         z-index: 1030;
     }
+}
+
+/* LOGIN */
+
+#justify-center {
+  margin: auto;
+  width: 70%;
+  padding: 15px;
+  border: none !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/*
+.errorlist {
+display: none !important;
+}
+label {
+display: none;
+}
+p {
+height: 20px;
+}
+*/
+.user_card {
+  width: 70%;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.form_container {
+  margin-top: 30px;
+  width: 670%;
+  align-items: center;
+}
+#form-title {
+  color: #fff;
+}
+.login_btn {
+  width: 100%;
+  background: rgba(141, 133, 133, 0.7) !important;
+  color: white !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
+  font-weight: bold;
+}
+.login_btn:focus {
+  box-shadow: none !important; 
+  outline: 0px !important;
+}
+.login_container {
+  padding: 0 2rem;
+}
+.input-group-text {
+  background: #f7ba5b !important;
+  color: white !important;
+  border: 0 !important;
+  border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+}
+#messages {
+  background-color: grey;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
 }

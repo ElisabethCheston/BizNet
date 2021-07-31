@@ -111,27 +111,15 @@
   <div class="user_card" id="justify-center">
 
     <div class="d-flex form_container">
-
       <!-- Login Form -->
       <form method="POST" action="" id="justify-center">
         {% csrf_token %}
-
         <div class="input-group mb-3">
           {{ form.as_p }}
         </div>
-
-<!--
-          <div class="input-group mb-2">
-          {{ form.password }}
-        </div>
-
--->
-
           <br>
           <button class="primaryAction login_btn" id="justify-center" type="submit">{% trans "Sign In" %}</button>
-
       </form>
-
     </div>
     <br>
 
@@ -143,19 +131,14 @@
     {% if socialaccount_providers %}
 
     <div class="socialaccount_ballot">
-
       <div class="socialaccount_providers">
         {% include "socialaccount/snippets/provider_list.html" with process="login" %}
       </div>
-
       {% else %}
-
       <p>{% blocktrans %}If you have not created an account yet, then please
         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
       </p>
-
       {% endif %}
-
     </div>
     <br>
     <!-- Account Register and Signin links-->
