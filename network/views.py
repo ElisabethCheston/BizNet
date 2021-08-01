@@ -13,4 +13,4 @@ def network(request):
 def myContacts(request):
     """ A view to return the My Contacts page """
 
-    return render(request, 'network/my_contacts.html')
+    return render(request, 'network/contacts.html')

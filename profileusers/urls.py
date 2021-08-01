@@ -14,6 +14,8 @@ urlpatterns = [
     path('profile_edit/', views.profile_edit, name='profile_edit'),
     path('create_gig/', views.create_gig, name='create_gig'),
     path('my_gigs/', views.my_gigs, name='my_gigs'),
+    path('my_contacts/', views.my_contacts, name='my_contacts'),
+
 
 
 ]

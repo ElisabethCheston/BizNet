@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+
+<!-- Profile tab links -->
+<div class="tab-container">
+    <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'profile_details' %}">
+                <input type="submit" value="My Profile" class="nav-link gig-tab" id="my_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'profile_edit' %}">
+                <input type="submit" value="Edit Profile" class="nav-link gig-tab" id="edit_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'my_contacts' %}">
+                <input type="submit" value="My Contacts" class="nav-link gig-tab" id="my_contacts_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'create_gig' %}">
+                <input type="submit" value="Create Gig" class="nav-link gig-tab" id="create_gig_tab"
+                    data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'my_gigs' %}">
+                <input type="submit" value="My Gigs" class="nav-link gig-tab active" id="my_gig_tab" data-bs-toggle="tab"
+                    data-bs-target="#my_gig" type="tab-button" role="tab" />
+            </form>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane show" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+
+        <div class="tab-pane" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile_tab"></div>
+
+        <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
+
+        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
+
+        <div class="tab-pane active" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2>
+        My Gigs
+    </h2>
+    <div class="row">
+        <div class="gig-container col-10 offset-1">
+            <div class="row">
+
+                {% for obj in qs %}
+
+                <!-- gig cards -->
+
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
+                    <div class="card h-100 border-1">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ obj.title }}</h5><br>
+                            <div>
+                                <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ obj.industry }} </p>
+                                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ obj.city }} </p>
+                                <p class="card-subtitle mb-2 small""> Deadline: &nbsp; {{ obj.deadline }} </p>
+                            </div>
+                            <br>
+
+                            <div class=" text-center">
+                                <p>{{ obj.gigdescription }}</p>
+                                <p>
+                                    <a class=" btn btn-primary btn-sm text-center" data-toggle="collapse"
+                                        href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                                        More Information
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class="collapse" id="collapseExample1">
+                                <div class="card card-body">
+                                    {{ obj.extrainfo }}
+                                </div>
+                            </div>
+
+                            <div class="my-3 py-3">
+                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }} </h6>
+                                <h6 class="card-subtitle mb-2 text-muted small">{{ obj.created }} </h6>
+                                <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ obj.updated }} </h6>
+                            </div>
+
+                            <div class="row align-items-end">
+                                <div class="col justify-content-evenly text-center">
+                                    <!-- <a href="#" class="card-link">View</a> -->
+                                    <a href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
+                                    <a href="#" id="addAppliedGig" value="Add to AppliedGig class="card-link">Apply</a>
+                                    <a href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
+                                </div>
+                            </div>
+
+<!--
+                            <input type="button" class="btn btn-info" id="addSavedGig" value="Add to SavedGig">
+                            <input type="button" class="btn btn-info" id="addAppliedGig" value="Add to AppliedGig">
+                            <input type="button" class="btn btn-info" id="addHideGig" value="Add to HideGig">
+
+-->
+
+                        </div>
+                    </div>
+                </div>
+
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-sm-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+    {% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>
+{% endblock %}
