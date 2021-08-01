@@ -20,6 +20,17 @@ def profile_details(request):
     return render(request, template, context)
 
 
+def profile_edit(request):
+    # pylint: disable=maybe-no-member
+    #profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/profile_edit.html'
+    context = {
+        'profile': profile,
+    }
+    return render(request, template, context)
+
+
 def all_profiles(request):
     # pylint: disable=maybe-no-member
     profiles = Profileuser.objects.all()
