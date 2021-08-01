@@ -31,6 +31,28 @@ def profile_edit(request):
     return render(request, template, context)
 
 
+def create_gig(request):
+    # pylint: disable=maybe-no-member
+    #profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/create_gig.html'
+    context = {
+        'profile': profile,
+    }
+    return render(request, template, context)
+
+
+def my_gigs(request):
+    # pylint: disable=maybe-no-member
+    #profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/my_gigs.html'
+    context = {
+        'profile': profile,
+    }
+    return render(request, template, context)
+
+
 def all_profiles(request):
     # pylint: disable=maybe-no-member
     profiles = Profileuser.objects.all()

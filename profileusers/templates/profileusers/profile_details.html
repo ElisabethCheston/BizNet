@@ -13,67 +13,42 @@
 {% block page_header %}
 <!-- Profile tabs -->
 
-<ul class="nav nav-tabs justify-content-evenly">
-    <li class="active"><a href="#profile" data-toggle="tab">My Profile</a></li>
-    <li><a href="#edit-profile" data-toggle="tab">Edit Profile</a></li>
-    <li><a href="#my-contacts" data-toggle="tab">My Contacts</a></li>
-    <li><a href="#create-gig" data-toggle="tab">Create Gig</a></li>
-    <li><a href="#my-gigs" data-toggle="tab">My Gigs</a></li>
-</ul>
-<div class="tab-content" id="tabs">
-    <div class="tab-pane active" id="new-gig">My Profile:</div>
-    <div class="tab-pane" id="edit-profile">Edit My Profile</div>
-    <div class="tab-pane" id="my-contacts">My Contacts:</div>
-    <div class="tab-pane" id="create-gig">Create new gig:</div>
-    <div class="tab-pane" id="my-gigs">View My gigs</div>
+<div class="tab-container">
+    <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link gig-tab active" id="my_profile_tab" data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab"">My Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link gig-tab" id="edit_profile_tab" data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab">Edit Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link gig-tab" id="my_contacts_tab" data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab">My Contacts</button>
+          </li>   
+          <li class="nav-item" role="presentation">
+            <button class="nav-link gig-tab" id="create_gig_tab" data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab">Create Gigs</button>
+          </li> 
+        <li class="nav-item" role="presentation">
+          <button class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab" data-bs-target="#my_gig" type="tab-button" role="tab">My Gigs</button>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab">..My profile...</div>
+        <div class="tab-pane" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile_tab">..Edit profile..</div>
+        <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab">..My contacts link..</div>
+        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab">.Create new gigs...</div>
+        <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab">..View My gigs..</div>
+      </div>
 </div>
+
 {% endblock %}
 
 
-
 {% block content %}
-
 {% if user.is_authenticated %}
-
-
-
 
 <div class="container-profile justify-center">
 
-    <!-- Contact suggestions -->
-    <div class="col">
-        <div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
-                data-bs-target="#myProfileModal">
-                Contact Suggestions
-            </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-                            </button>
-                        </div>
-                        <div class="modal-body" id="to-follow-modal">
-                            <div class="text-center" id="spinner-box">
-                                <div class="spinner-border" role="status"></div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
 
     <div class="row row-cols-10"></div>
 
@@ -196,51 +171,43 @@
                             </div>
                         </div>
                         <br>
-
-                        <!-- Contact suggestions -->
-                        <div class="col">
-                            <div>
-                                <div class="col-10">
-                                    <p><b>Contact suggestions :</b></p>
-                                    <p> {{profile.get_proposal_contact}}</p>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#myProfileModal">
-                                        Contact Suggestions
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myProfileModal" tabindex="-1"
-                                        aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close">
-
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body" id="to-follow-modal">
-                                                    <div class="text-center" id="spinner-box">
-                                                        <div class="spinner-border" role="status"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
+                <!-- Contact suggestions -->
+    <div class="col">
+        <div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
+                data-bs-target="#myProfileModal">
+                Contact Suggestions
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+                            </button>
+                        </div>
+                        <div class="modal-body" id="to-follow-modal">
+                            <div class="text-center" id="spinner-box">
+                                <div class="spinner-border" role="status"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
         </div>
     </div>
 </div>
