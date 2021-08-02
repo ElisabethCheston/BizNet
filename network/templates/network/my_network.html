@@ -8,7 +8,7 @@
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'network' %}">
-                <input type="submit" value="New Contact" class="nav-link gig-tab active" id="network_tab"
+                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab"
                     data-bs-toggle="tab" data-bs-target="#neetwork" type="tab-button" role="tab" />
             </form>
         </li>
@@ -19,23 +19,24 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'followers' %}">
-                <input type="submit" value="My Followers" class="nav-link gig-tab" id="my_followers_tab"
+            <form action="{% url 'my_followers' %}">
+        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+                <input type="submit" value="My Followers" class="nav-link gig-tab active" id="my_followers_tab"
                     data-bs-toggle="tab" data-bs-target="#my_followers" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'following' %}">
-                <input type="submit" value="Following " class="nav-link gig-tab" id="following_tab"
-                    data-bs-toggle="tab" data-bs-target="#following" type="tab-button" role="tab" />
+            <form action="{% url 'following_ppl' %}">
+                <input type="submit" value="Following " class="nav-link gig-tab" id="following_ppl_tab"
+                    data-bs-toggle="tab" data-bs-target="#following_ppl" type="tab-button" role="tab" />
             </form>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane active" id="network" role="tabpanel" aria-labelledby="network_tab"></div>
+        <div class="tab-pane" id="netwoork" role="tabpanel" aria-labelledby="network_tab"></div>
         <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>
-        <div class="tab-pane" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
-        <div class="tab-pane" id="following" role="tabpanel" aria-labelledby="following_tab"></div>
+        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+        <div class="tab-pane" id="following_ppl" role="tabpanel" aria-labelledby="following_ppl_tab"></div>
     </div>
 </div>
 

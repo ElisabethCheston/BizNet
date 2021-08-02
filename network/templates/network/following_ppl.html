@@ -13,29 +13,30 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'saved_contacts' %}">
-                <input type="submit" value="Saved Contacts" class="nav-link gig-tab" id="saved_contacts_tab"
-                    data-bs-toggle="tab" data-bs-target="#saved_contacts" type="tab-button" role="tab" />
+            <form action="{% url 'contacts' %}">
+                <input type="submit" value="Saved Contacts" class="nav-link gig-tab" id="contacts_tab"
+                    data-bs-toggle="tab" data-bs-target="#contacts" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_followers' %}">
-                <input type="submit" value="My Followers" class="nav-link gig-tab" id="my_followers_tab"
+        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+                <input type="submit" value="My Followers" class="nav-link gig-tab active" id="my_followers_tab"
                     data-bs-toggle="tab" data-bs-target="#my_followers" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'following' %}">
-                <input type="submit" value="Following " class="nav-link gig-tab active" id="following_tab"
-                    data-bs-toggle="tab" data-bs-target="#following" type="tab-button" role="tab" />
+            <form action="{% url 'following_ppl' %}">
+                <input type="submit" value="Following " class="nav-link gig-tab" id="following_ppl_tab"
+                    data-bs-toggle="tab" data-bs-target="#following_ppl" type="tab-button" role="tab" />
             </form>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane show" id="my_network" role="tabpanel" aria-labelledby="my_network_tab"></div>
-        <div class="tab-pane" id="saved_contacts" role="tabpanel" aria-labelledby="saved_contacts_tab"></div>
-        <div class="tab-pane" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
-        <div class="tab-pane active" id="following" role="tabpanel" aria-labelledby="following_tab"></div>
+        <div class="tab-pane" id="netwoork" role="tabpanel" aria-labelledby="network_tab"></div>
+        <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>
+        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+        <div class="tab-pane" id="following_ppl" role="tabpanel" aria-labelledby="following_ppl_tab"></div>
     </div>
 </div>
 
@@ -45,7 +46,7 @@
 <div class="container-content">
 
     <h2>
-        Folowing
+        Following
     </h2>
 
     <!-- Contact suggestions -->

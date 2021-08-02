@@ -10,6 +10,8 @@ let toFollowLoad = false
 console.log(toFollowModalBody)
 console.log(spinnerBox)
 
+// -- To follow button -- //
+
 toFollowBtn.addEventListener('click', () => {
     $.ajax({
         type: 'GET',
@@ -26,7 +28,7 @@ toFollowBtn.addEventListener('click', () => {
                         <div class="row mb-2">
                             <div class="col-3 text-center">
                                 <img class="avatar" src="${el.avatar}" alt="${el.user}">
-
+  
                             </div>
                             <div class="col-4 text-center">
                                 
@@ -53,5 +55,5 @@ toFollowBtn.addEventListener('click', () => {
             console.log(error);
         }
     });
-});
+  });
 
