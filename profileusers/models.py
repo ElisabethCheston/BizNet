@@ -58,8 +58,18 @@ class Profileuser(models.Model):
 
     def __str__(self):
         # pylint: disable=maybe-no-member
-        # return self.user.username
-        return str(self.user)
+        return self.user.username
+        # return f'{self.user} Profileuser'
+
+
+@receiver(post_save, sender=User)
+def create_or_update_profileuser(sender, instance, created, **kwargs):
+    """
+    Create or update the profileuser
+    """
+    if created:
+        Profileuser.objects.create(user=instance)
+    instance.profileuser.save()
 
 
         # ALL MY AND MY CONTACTS GIGS
@@ -156,5 +166,3 @@ class Profileuser(models.Model):
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
         return available[:3]
-
-

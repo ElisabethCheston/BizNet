@@ -7,6 +7,65 @@ from .models import Profileuser
 from django.http import JsonResponse
 from django.core import serializers
 from django.views.generic import TemplateView, View
+from .models import Profileuser
+from .forms import ProfileuserForm
+
+
+@login_required
+def profileuser(request):
+    profile = get_object_or_404(Profileuser, user=request.user)
+    profileuser = Profileuser.objects.get(user=request.user)
+    """
+    if request.method == 'POST':
+        form = ProfileuserForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Profile has been updated!')
+        else:
+            messages.error(request, 'Update failed. Kindly check\
+                that your inputs are valid.')
+    else:
+        form = ProfileuserForm()
+        context = {
+		'form':form,
+        'on_profile_page': True		
+    }
+    """
+    return render(request, 'profileusers/profile_details.html', context)
+
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileuserForm(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Profile has been updated!')
+            return redirect('profile_details')
+        else:
+            messages.error(request, 'Update failed. Kindly check\
+                that your inputs are valid.')
+    else:
+        form = ProfileuserForm(instance=request.user.profileuser)
+    context = {
+        'form':form,
+        'on_profile_page': True
+    }
+    return render(request, 'profileusers/profile_edit.html', context)
+
+
+"""
+    pylint: disable=maybe-no-member
+    profile = get_object_or_404(Profileuser, user=request.user)
+    profileuser = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/profile_edit.html'
+    context = {
+        'profileuser': profileuser,
+    }
+    return render(request, template, context)
+"""
 
 
 def profile_details(request):
@@ -14,17 +73,6 @@ def profile_details(request):
     #profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(user=request.user)
     template = 'profileusers/profile_details.html'
-    context = {
-        'profile': profile,
-    }
-    return render(request, template, context)
-
-
-def profile_edit(request):
-    # pylint: disable=maybe-no-member
-    #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/profile_edit.html'
     context = {
         'profile': profile,
     }

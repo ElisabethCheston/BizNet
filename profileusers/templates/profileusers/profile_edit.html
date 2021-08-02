@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
@@ -9,12 +10,7 @@
 <script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
 {% endblock scripts %}
 
-<form action="https://google.com">
-    <input type="submit" value="Go to Google" />
-</form>
-
 {% block page_header %}
-
 <!-- Profile tab links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
@@ -61,12 +57,11 @@
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
 
+{% if user.is_authenticated %}
 
 <h2>
     Edit Profile
@@ -74,177 +69,101 @@
 
 <div class="container-profile justify-center">
 
-    <div class="row row-cols-10"></div>
-
     <!-- Edit Profile -->
     <div class="card" style="max-width: 840px;">
+        <!--<div class="row">
+            <div class="col">
+                <img class="rounded-circle account-img avatar" src="{{profileuser.avatar}}" alt="{{profileuser.user}}">
+            </div>
+        </div>-->
+
         <div class="card-body">
             <div class="col-12">
 
-                <div class="row g-0">
-                    <div class="col-md-5">
-
-                        {% if profileusers.avatar %}
-
-                        <img src="{{ profile.avatar.url }}" class="img-fluid profile-img rounded-start"
-                            alt="{{ profile.username}}">
-
-                        {% else %}
-
-                        <img src="{{ profile.avatar.url }}" class="img-fluid profile-img rounded-start"
-                            alt="{{ user.profile.image.url }}">
-
-                        {% endif %}
-
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">{{profile.firstname}} {{profile.lastname}}</h5>
-                            <h6 class="card-title"></h6>
-                            <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
-                            <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
-                            <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
-                            <br>
-
-                            <p class="card-text">Profession: &nbsp; {{profile.profession}}</p>
-                            <p class="card-text">Skills: &nbsp {{profile.skill}}</p>
-                            <br>
-                            <p class="card-text">Email: &nbsp; {{profile.email}}</p>
-                            <p class="card-text">City: &nbsp; {{profile.city}}</p>
-                            <p class="card-text">{{profile.country}}</p>
-                            <br>
-
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <h6><strong>Presentation:</strong></h6>
-                        <p>{{profile.description}}</p>
-                    </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Profile Information</legend>
+                        {{ form|crispy }}
+                    </fieldset>
                     <br>
-                    <p class="card-text"><small class="text-muted">{{profile.updated}}</small>
-                    </p>
-                    <br>
-                    <br>
+                    <div class="row justify-content-center">
+                        <div class="col-3 text-center">
+                            <button class="btn btn-primary" type="submit">Update</button>
 
-                    <div class="col-12">
-
-                        <!-- My gigs -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>My Gigs:</b></p>
-                                        <p>{{profile.get_my_gigs}}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Gigs:</b></p>
-                                        <p class="text-center"> {{profile.num_gigs}}</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <br>
-
-                        <!-- Followings -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Following profiles:</b></p>
-                                        <p> {{ profile.get_followings_contact }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followings:</b></p>
-                                        <p class="text-center"> {{ profile.following_count }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <!-- Followers -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followers:</b></p>
-                                        <p class="text-center"> {{profile.followers_count}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-
-                        <!-- Followings posted gigs -->
-                        <div class="col">
-                            <div>
-                                <div class="col-10">
-                                    <p><b>Contact gigs :</b></p>
-                                    <p>{{profile.get_contact_gigs}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <!-- Contact suggestions -->
-                        <div class="col">
-                            <div>
-                                <div class="col-10">
-                                    <p><b>Contact suggestions :</b></p>
-                                    <p> {{profile.get_proposal_contact}}</p>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#myProfileModal">
-                                        Contact Suggestions
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <!--
-                                    <div class="modal fade" id="myProfileModal" tabindex="-1"
-                                        aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close">
-
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body" id="to-follow-modal">
-                                                    <div class="text-center" id="spinner-box">
-                                                        <div class="spinner-border" role="status"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    -->
-
-
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
+    <br>
+    <br>
+
 </div>
-</div>
-
-
-
 
 {% endif %}
 
+
 {% endblock %}
+
+<!--
+                            <div class="col">
+                                <div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-9">
+                                            <p><b>My Gigs:</b></p>
+                                            <p>{{profile.get_my_gigs}}</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="text-center"><b>Number of Gigs:</b></p>
+                                            <p class="text-center"> {{profile.num_gigs}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+    
+                            <div class="col">
+                                <div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-9">
+                                            <p><b>Following profiles:</b></p>
+                                            <p> {{ profile.get_followings_contact }}</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="text-center"><b>Number of Followings:</b></p>
+                                            <p class="text-center"> {{ profile.following_count }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+    
+                            <div class="col">
+                                <div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-9">
+                                            <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="text-center"><b>Number of Followers:</b></p>
+                                            <p class="text-center"> {{profile.followers_count}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <br>
+    
+                            <div class="col">
+                                <div>
+                                    <div class="col-10">
+                                        <p><b>Contact gigs :</b></p>
+                                        <p>{{profile.get_contact_gigs}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+-->
