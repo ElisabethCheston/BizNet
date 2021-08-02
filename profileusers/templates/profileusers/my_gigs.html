@@ -55,105 +55,139 @@
 {% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
-<div class="container-fluid">
+<div class="container-profile justify-center">
 
     <h2>
-        My Gigs
+        My Contacts
     </h2>
-    <div class="row">
-        <div class="gig-container col-10 offset-1">
-            <div class="row">
 
-                {% for obj in qs %}
 
-                <!-- gig cards -->
+    <div class="card" style="max-width: 840px;">
 
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
-                    <div class="card h-100 border-1">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ obj.title }}</h5><br>
+        <!-- Edit and Delete button -->
+        <div align="right">
+            <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"
+                aria-disabled="true">Edit</a>
+            <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1" role="button"
+                aria-disabled="true">Delete</a>
+        </div>
+        <br>
+        <div class="card-body">
+            <div class="col-12">
+
+                <div class="row g-0">
+                    <div class="col-12">
+
+                        <!-- My gigs -->
+                        <div class="col">
                             <div>
-                                <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ obj.industry }} </p>
-                                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ obj.city }} </p>
-                                <p class="card-subtitle mb-2 small""> Deadline: &nbsp; {{ obj.deadline }} </p>
-                            </div>
-                            <br>
-
-                            <div class=" text-center">
-                                <p>{{ obj.gigdescription }}</p>
-                                <p>
-                                    <a class=" btn btn-primary btn-sm text-center" data-toggle="collapse"
-                                        href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                                        More Information
-                                    </a>
-                                </p>
-                            </div>
-
-                            <div class="collapse" id="collapseExample1">
-                                <div class="card card-body">
-                                    {{ obj.extrainfo }}
+                                <div class="row justify-content-between">
+                                    <div class="col-9">
+                                        <p><b>My Gigs:</b></p>
+                                        <p>{{profile.get_my_gigs}}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="text-center"><b>Number of Gigs:</b></p>
+                                        <p class="text-center"> {{profile.num_gigs}}</p>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <br>
 
-                            <div class="my-3 py-3">
-                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }} </h6>
-                                <h6 class="card-subtitle mb-2 text-muted small">{{ obj.created }} </h6>
-                                <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ obj.updated }} </h6>
-                            </div>
-
-                            <div class="row align-items-end">
-                                <div class="col justify-content-evenly text-center">
-                                    <!-- <a href="#" class="card-link">View</a> -->
-                                    <a href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
-                                    <a href="#" id="addAppliedGig" value="Add to AppliedGig class="card-link">Apply</a>
-                                    <a href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
+                        <!-- Followings -->
+                        <div class="col">
+                            <div>
+                                <div class="row justify-content-between">
+                                    <div class="col-9">
+                                        <p><b>Following profiles:</b></p>
+                                        <p> {{ profile.get_followings_contact }}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="text-center"><b>Number of Followings:</b></p>
+                                        <p class="text-center"> {{ profile.following_count }}</p>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <br>
 
-<!--
-                            <input type="button" class="btn btn-info" id="addSavedGig" value="Add to SavedGig">
-                            <input type="button" class="btn btn-info" id="addAppliedGig" value="Add to AppliedGig">
-                            <input type="button" class="btn btn-info" id="addHideGig" value="Add to HideGig">
+                        <!-- Followers -->
+                        <div class="col">
+                            <div>
+                                <div class="row justify-content-between">
+                                    <div class="col-9">
+                                        <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="text-center"><b>Number of Followers:</b></p>
+                                        <p class="text-center"> {{profile.followers_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
--->
+                        <br>
 
+                        <!-- Followings posted gigs -->
+                        <div class="col">
+                            <div>
+                                <div class="col-10">
+                                    <p><b>Contact gigs :</b></p>
+                                    <p>{{profile.get_contact_gigs}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact suggestions -->
+            <div class="col">
+                <div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
+                        data-bs-target="#myProfileModal">
+                        Contact Suggestions
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="to-follow-modal">
+                                    <div class="text-center" id="spinner-box">
+                                        <div class="spinner-border" role="status"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-sm-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:3 %}
-                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-xl-block mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-
-
-                {% endfor %}
-
             </div>
+            <br>
+            <br>
         </div>
     </div>
-
 </div>
-    {% endblock %}
+</div>
+<br>
+<br>
 
-{% block postloadjs %}
-{{ block.super }}
-<script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>
+
+{% endif %}
+
 {% endblock %}

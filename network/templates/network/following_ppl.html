@@ -83,36 +83,46 @@
     <br>
     <br>
 
-    <!-- Contact cards -->
-    <div class="container-fluid h-60 my-3 py-3">
-        <div class="row">
-            <div class="card" style="width: 16rem;">
-                <div class="card-body">
-                    <div class="col-md-4 col-sm-12">
-                        {% if profileusers.image %}
-                        <a href="{{ profileusers.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ profileusers.image.url }}"
-                                alt="{{ profileusers.name }}">
-                        </a>
-                        {% else %}
-                        <a href="media/profile-img.jpg">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }} profile-img.jpg"
-                                alt="{{ profileusers.name }}">
-                        </a>
-                        {% endif %}
+    <!-- Following -->
+    <div class="card" style="max-width: 840px;">
+
+        <!-- Edit and Delete button -->
+        <div align="right">
+            <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"
+                aria-disabled="true">Edit</a>
+            <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1" role="button"
+                aria-disabled="true">Delete</a>
+        </div>
+        <br>
+        <div class="card-body">
+            <div class="col-12">
+
+                <div class="row g-0">
+                    <div class="col-12">
+
+                        <!-- Followings -->
+                        <div class="col">
+                            <div>
+                                <div class="row justify-content-between">
+                                    <div class="col-9">
+                                        <p><b>Following profiles:</b></p>
+                                        <p> {{ profile.get_followings_contact }}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="text-center"><b>Number of Followings:</b></p>
+                                        <p class="text-center"> {{ profile.following_count }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h5 class="card-title">{{ profile.firstname }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's
-                        content.</p>
-                    <a href="#" class="card-link">Accept</a>
-                    <a href="#" class="card-link">Decline</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<br>
+<br>
+
 
 {% endblock %}
