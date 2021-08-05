@@ -101,6 +101,11 @@ body {
   margin: 10%;
   padding-bottom: 10%;
 }
+.start-container {
+  background-color: #ffffff !important;
+  z-index: 1000 !important;
+}
+
 .gig-container {
   justify-items: center;
   margin-bottom: 15vh;
