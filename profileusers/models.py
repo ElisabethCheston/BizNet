@@ -42,7 +42,7 @@ class Profileuser(models.Model):
     company_name = models.CharField(
         max_length=254, blank=True, default='Company Name', null=True)
     company_number_vat = models.CharField(
-        max_length=254, blank=True, default=None)
+        max_length=254, blank=True, default=None, null=True)
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     description = models.TextField(max_length=250, null=True)
