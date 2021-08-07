@@ -35,19 +35,19 @@ class Profileuser(models.Model):
     updated = models.DateTimeField(auto_now=True, blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
     firstname = models.CharField(
-        max_length=254, blank=False, default='First Name')
+        max_length=254, blank=False, default='First Name', null=True)
     lastname = models.CharField(
-        max_length=254, blank=False, default='Last Name')
-    title = models.CharField(max_length=254, blank=True, default=None)
+        max_length=254, blank=False, default='Last Name', null=True)
+    title = models.CharField(max_length=254, blank=True, default=None, null=True)
     company_name = models.CharField(
-        max_length=254, blank=True, default='Company Name')
+        max_length=254, blank=True, default='Company Name', null=True)
     company_number_vat = models.CharField(
         max_length=254, blank=True, default=None)
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     description = models.TextField(max_length=250, null=True)
     profession = models.CharField(
-        max_length=254, blank=False, default='Profession')
+        max_length=254, blank=False, default='Profession', null=True)
     skill = models.CharField(max_length=254, blank=True, default=None)
     email = models.EmailField(
         max_length=100, null=False, blank=True, default='Email')
