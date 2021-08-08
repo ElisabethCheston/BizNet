@@ -1,6 +1,4 @@
-console.log('hello world')
-
-
+/*
 const toFollowModalBody = document.getElementById('to-follow-modal')
 const spinnerBox = document.getElementById('spinner-box')
 const toFollowBtn = document.getElementById('to-follow-btn')
@@ -56,4 +54,4 @@ toFollowBtn.addEventListener('click', () => {
         }
     });
   });
-
+*/

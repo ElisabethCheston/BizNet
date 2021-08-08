@@ -68,16 +68,15 @@
 <div class="container-profile justify-center">
 
 
-
-    <div class="row row-cols-10"></div>
-
     <div class="card" style="max-width: 840px;">
 
 
         <div class="card-body">
             <div class="col-12 justify-content-center">
 
+                <!-- Profileuser information -->
                 <div class="row g-0">
+                    <!-- Profileuser pic -->
                     <div class="col-md-5">
 
                         {% if profileusers.avatar %}
@@ -93,6 +92,8 @@
                         {% endif %}
 
                     </div>
+
+                    <!-- Profileuser fact colum-->
                     <div class="col-md-7">
                         <div class="card-body">
                             <h5 class="card-title">{{profile.firstname}} {{profile.lastname}}</h5>
@@ -112,27 +113,38 @@
 
                         </div>
                     </div>
+                    <!-- Profileuser bio -->
                     <div class="col-12">
                         <h6><strong>Presentation:</strong></h6>
                         <p>{{profile.description}}</p>
                     </div>
                     <br>
-                    <p class="card-text"><small class="text-muted">{{profile.updated}}</small>
-                    </p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <br>
+                        <br>
+                            <form action="{% url 'profile_edit' %}">
+                                <input type="submit" value="Edit Profile" class="btn btn-primary btn-sm" id="edit_profile_tab"
+                                data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+
+                            </form>
+                    </div>
                     <br>
                     <br>
 
-                    
                 </div>
             </div>
+
             <!-- Contact suggestions -->
             <div class="col">
                 <div>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
+                    <!--
+                        <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
                         data-bs-target="#myProfileModal">
                         Contact Suggestions
                     </button>
+-->
 
                     <!-- Modal -->
                     <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel"
@@ -160,6 +172,8 @@
             </div>
             <br>
             <br>
+
+
         </div>
     </div>
 </div>

@@ -45,6 +45,18 @@ def profile_edit(request):
     return render(request, 'profileusers/profile_edit.html', context)
 
 
+# MY GIGS
+
+def my_gigs(request):
+    # pylint: disable=maybe-no-member
+    # profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/my_gigs.html'
+    context = {
+        'profile': profile,
+    }
+    return render(request, template, context)
+
 
 def create_gig(request):
     # pylint: disable=maybe-no-member
@@ -57,27 +69,7 @@ def create_gig(request):
     return render(request, template, context)
 
 
-def my_gigs(request):
-    # pylint: disable=maybe-no-member
-    #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/my_gigs.html'
-    context = {
-        'profile': profile,
-    }
-    return render(request, template, context)
-
-
-def my_contacts(request):
-    # pylint: disable=maybe-no-member
-    #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/my_contacts.html'
-    context = {
-        'profile': profile,
-    }
-    return render(request, template, context)
-
+# PROFILES
 
 def all_profiles(request):
     # pylint: disable=maybe-no-member
@@ -88,6 +80,23 @@ def all_profiles(request):
     }
     return render(request, template, context)
 
+
+# CONTACTS
+
+def my_contacts(request):
+    # pylint: disable=maybe-no-member
+    # profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/my_contacts.html'
+    context = {
+        'profile': profile,
+        # 'get_following': get_following,
+        # 'get_followers': get_followers,
+}
+    return render(request, template, context)
+
+
+# SUGGEST BUTTON OF PPL TO FOLLOW
 """
 class for random contacts to add
 """

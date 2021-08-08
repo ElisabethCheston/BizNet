@@ -72,7 +72,7 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
     instance.profileuser.save()
 
 
-        # ALL MY AND MY CONTACTS GIGS
+# ALL MY AND MY CONTACTS GIGS
 
 # All my posted gigs
     def get_my_gigs(self):
@@ -86,7 +86,7 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
         return self.gig_set.all().count() 
 
 
-        # ALL MY CONTACTS GIGS
+# ALL MY CONTACTS GIGS
 
 # All created gigs from  contacts I follow 
     def get_contact_gigs(self):
@@ -110,7 +110,7 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
         return qs
 
 
-        # FOLLOWING
+# FOLLOWING
 
 # People that am following
     def get_following(self):
@@ -129,7 +129,7 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
         return self.get_following().count()
 
 
-        # FOLLOWERS
+# FOLLOWERS
 
 # People that are following me
     def get_followers(self):
@@ -149,7 +149,7 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
         return len(self.get_followers())
 
 
-        # SUGGESTED CONTACTS
+# SUGGESTED CONTACTS
 
 # Suggested contacts
     def get_proposal_contact(self):

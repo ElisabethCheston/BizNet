@@ -5,9 +5,11 @@
 <link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
 {% endblock %}
 
-{% block scripts %}
+<!--
+    {% block scripts %}
 <script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
 {% endblock scripts %}
+-->
 
 
 {% block page_header %}
@@ -67,135 +69,72 @@
 
 <div class="container-profile justify-center">
 
-    <h2>
-        My Contacts
-    </h2>
+    <!-- Contact suggestions -->
+    <div class="col d-md-flex justify-content-md-end my-2">
+        <div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-sm" id="to-follow-btn" data-bs-toggle="modal"
+                data-bs-target="#myProfileModal">
+                Contact Suggestions
+            </button>
 
+            <!-- Modal -->
+            <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 
-    <div class="card" style="max-width: 840px;">
-
-        <!-- Edit and Delete button -->
-        <div align="right">
-            <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"
-                aria-disabled="true">Edit</a>
-            <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1" role="button"
-                aria-disabled="true">Delete</a>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="to-follow-modal">
+                            <div class="text-center" id="spinner-box">
+                                <div class="spinner-border" role="status"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br>
+    </div>
+    <br>
+
+    <h2> My Contacts </h2>
+
+    <div class="card" id="POST" style="max-width: 360px;">
+            {% for profile in my_contacts %}
         <div class="card-body">
-            <div class="col-12">
+            <div class="row mb-2">
+                <div class="col-3 text-center">
+                    <img class="avatar" src="{{profile.avatar}}" alt="${profile.user}">
 
-                <div class="row g-0">
-                    <div class="col-12">
+                </div>
+                <div class="col-4 text-center">
 
-                        <!-- My gigs -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>My Gigs:</b></p>
-                                        <p>{{profile.get_my_gigs}}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Gigs:</b></p>
-                                        <p class="text-center"> {{profile.num_gigs}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <!-- Followings -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Following profiles:</b></p>
-                                        <p> {{ profile.get_followings_contact }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followings:</b></p>
-                                        <p class="text-center"> {{ profile.following_count }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <!-- Followers -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followers:</b></p>
-                                        <p class="text-center"> {{profile.followers_count}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-
-                        <!-- Followings posted gigs -->
-                        <div class="col">
-                            <div>
-                                <div class="col-10">
-                                    <p><b>Contact gigs :</b></p>
-                                    <p>{{profile.get_contact_gigs}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
+                    <div class="text-muted"><strong>{{profile.firstname}}</strong></div>
+                    <div class="text-muted"><strong>{{profile.lastname}}</strong></div>
+                </div>
+                <div class="col-5 text-center">
+                    <div class="text-muted">{{profile.profession}}</div>
+                    <div class="text-muted">{{profile.company_name}}</div>
                 </div>
             </div>
-
-            <!-- Contact suggestions -->
-            <div class="col">
-                <div>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
-                        data-bs-target="#myProfileModal">
-                        Contact Suggestions
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-                                    </button>
-                                </div>
-                                <div class="modal-body" id="to-follow-modal">
-                                    <div class="text-center" id="spinner-box">
-                                        <div class="spinner-border" role="status"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Buttons Edit & Delete-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button class="btn btn-primary btn-sm me-md-2" type="button">View</button>
+                <button class="btn btn-primary btn-sm" type="button">Delete</button>
             </div>
-            <br>
-            <br>
+
         </div>
+        {% endfor %}
+
     </div>
 </div>
 <br>
-
-
-
-
 
 {% endif %}
 
