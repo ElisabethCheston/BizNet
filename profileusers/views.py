@@ -12,26 +12,15 @@ from .forms import ProfileuserForm
 
 
 @login_required
-def profileuser(request):
-    profile = get_object_or_404(Profileuser, user=request.user)
-    profileuser = Profileuser.objects.get(user=request.user)
-    """
-    if request.method == 'POST':
-        form = ProfileuserForm(request.POST, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your Profile has been updated!')
-        else:
-            messages.error(request, 'Update failed. Kindly check\
-                that your inputs are valid.')
-    else:
-        form = ProfileuserForm()
-        context = {
-		'form':form,
-        'on_profile_page': True		
+def profile_details(request):
+    # pylint: disable=maybe-no-member
+    #profile = get_object_or_404(Profileuser, user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
+    template = 'profileusers/profile_details.html'
+    context = {
+        'profile': profile,
     }
-    """
-    return render(request, 'profileusers/profile_details.html', context)
+    return render(request, template, context)
 
 
 @login_required
@@ -55,28 +44,6 @@ def profile_edit(request):
     }
     return render(request, 'profileusers/profile_edit.html', context)
 
-
-"""
-    pylint: disable=maybe-no-member
-    profile = get_object_or_404(Profileuser, user=request.user)
-    profileuser = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/profile_edit.html'
-    context = {
-        'profileuser': profileuser,
-    }
-    return render(request, template, context)
-"""
-
-
-def profile_details(request):
-    # pylint: disable=maybe-no-member
-    #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/profile_details.html'
-    context = {
-        'profile': profile,
-    }
-    return render(request, template, context)
 
 
 def create_gig(request):
