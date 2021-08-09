@@ -37,3 +37,4 @@ class Gig(models.Model):
 
     def get_user_liked(self, user):
         pass
+

@@ -64,7 +64,7 @@ class Profileuser(models.Model):
 
 # ALL MY AND MY CONTACTS GIGS
 
-# All my posted gigs
+# All my gigs
     def my_gigs(self):
         return self.gig_set.all()
 
@@ -75,9 +75,7 @@ class Profileuser(models.Model):
         return self.gig_set.all().count() 
 
 
-# ALL MY CONTACTS GIGS
-
-# All created gigs from  contacts I follow 
+# All created gigs from contacts I follow 
     def get_contact_gigs(self):
         # pylint: disable=maybe-no-member
         # Loop through the users to get contacts am following...
@@ -165,6 +163,3 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
     if created:
         Profileuser.objects.create(user=instance)
     instance.profileuser.save()
-
-
-

@@ -51,13 +51,12 @@ def profile_edit(request):
 def my_gigs(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)
-    usergigs = Profileuser.objects.get(user=request.user)
+    profile = Profileuser.objects.get(user=request.user)
     template = 'profileusers/my_gigs.html'
     context = {
-        'usergigs': usergigs,
+        'profile': profile,
     }
     return render(request, template, context)
-
 
 def create_gig(request):
     # pylint: disable=maybe-no-member
@@ -68,7 +67,6 @@ def create_gig(request):
         'profile': profile,
     }
     return render(request, template, context)
-
 
 
 # PROFILES
@@ -114,8 +112,8 @@ class ProfileData(View):
         profile_to_follow_list = []
         for user in qs:
             # Select random profiles
-            # p = Profileuser.objects.get(user__username=user.username)
-            p = get_object_or_404(Profileuser, user__username=user.username)
+            p = Profileuser.objects.get(user__username=user.username)
+            # p = get_object_or_404(Profileuser, user__username=user.username)
             profile_item = {
                 # 'id': p.id,
                 'user': p.user.username,

@@ -65,25 +65,19 @@
 
                     <!-- My gigs -->
                     <div class="col">
+                        {% if profile %}
                         <div class="row justify-content-between">
                             <div class="col-9">
                                 <p><b>My Gigs:</b></p>
-                                <p>{{usergigs.my_gigs}}</p>
+                                <p>{% for gig in profile.my_gigs %}{{ gig }} {% endfor %}</p>
                             </div>
                             <div class="col-3">
                                 <p class="text-center"><b>No:</b></p>
-                                <p class="text-center"> {{usergigs.num_gigs}}</p>
-
-                            </div>
-                            <!-- Edit and Delete button -->
-                            <div align="right">
-                                <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1"
-                                    role="button" aria-disabled="true">Edit</a>
-                                <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1"
-                                    role="button" aria-disabled="true">Delete</a>
+                                <p class="text-center"> {{profile.num_gigs}}</p>
                             </div>
                             <br>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
