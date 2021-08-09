@@ -3,7 +3,6 @@
 
 
 {% block page_header %}
-
 <!-- Profile tab links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
@@ -33,8 +32,8 @@
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
-                <input type="submit" value="My Gigs" class="nav-link gig-tab active" id="my_gig_tab" data-bs-toggle="tab"
-                    data-bs-target="#my_gig" type="tab-button" role="tab" />
+                <input type="submit" value="My Gigs" class="nav-link gig-tab active" id="my_gig_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_gig" type="tab-button" role="tab" />
             </form>
         </li>
     </ul>
@@ -50,146 +49,62 @@
         <div class="tab-pane active" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
     </div>
 </div>
-
-
 {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
 
 <div class="container-profile justify-center">
-
-    <h2>
-        My Gigs
-    </h2>
-
-
+    <h3>My Gigs</h3>
     <div class="card" style="max-width: 840px;">
 
-        <!-- Edit and Delete button -->
-        <div align="right">
-            <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"
-                aria-disabled="true">Edit</a>
-            <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1" role="button"
-                aria-disabled="true">Delete</a>
-        </div>
-        <br>
-
-            <!-- Gigs layout -->    
+        <!-- Gigs layout -->
         <div class="card-body">
             <div class="col-12">
-
                 <div class="row g-0">
-                    <div class="col-12">
 
-                        <!-- My gigs -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>My Gigs:</b></p>
-                                        <p>{{profile.get_my_gigs}}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Gigs:</b></p>
-                                        <p class="text-center"> {{profile.num_gigs}}</p>
-                                    </div>
-                                </div>
+                    <!-- My gigs -->
+                    <div class="col">
+                        <div class="row justify-content-between">
+                            <div class="col-9">
+                                <p><b>My Gigs:</b></p>
+                                <p>{{usergigs.my_gigs}}</p>
                             </div>
-                        </div>
-                        <br>
+                            <div class="col-3">
+                                <p class="text-center"><b>No:</b></p>
+                                <p class="text-center"> {{usergigs.num_gigs}}</p>
 
-                        <!-- Followings -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Following profiles:</b></p>
-                                        <p> {{ profile.get_followings_contact }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followings:</b></p>
-                                        <p class="text-center"> {{ profile.following_count }}</p>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        <br>
-
-                        <!-- Followers -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followers:</b></p>
-                                        <p class="text-center"> {{profile.followers_count}}</p>
-                                    </div>
-                                </div>
+                            <!-- Edit and Delete button -->
+                            <div align="right">
+                                <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1"
+                                    role="button" aria-disabled="true">Edit</a>
+                                <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1"
+                                    role="button" aria-disabled="true">Delete</a>
                             </div>
-                        </div>
-
-                        <br>
-
-                        <!-- Followings posted gigs -->
-                        <div class="col">
-                            <div>
-                                <div class="col-10">
-                                    <p><b>Contact gigs :</b></p>
-                                    <p>{{profile.get_contact_gigs}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contact suggestions -->
-            <div class="col">
-                <div>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" id="to-follow-btn" data-bs-toggle="modal"
-                        data-bs-target="#myProfileModal">
-                        Contact Suggestions
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-                                    </button>
-                                </div>
-                                <div class="modal-body" id="to-follow-modal">
-                                    <div class="text-center" id="spinner-box">
-                                        <div class="spinner-border" role="status"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
         </div>
+
     </div>
 </div>
-</div>
 <br>
 <br>
-
 
 {% endif %}
 
 {% endblock %}
+
+<!-- Followings posted gigs -->
+<div class="col">
+    <div>
+        <div class="col-10">
+            <p><b>Contact gigs :</b></p>
+            <p>{{profile.get_contact_gigs}}</p>
+        </div>
+    </div>
+</div>
+<br>

@@ -58,25 +58,14 @@ class Profileuser(models.Model):
 
     def __str__(self):
         # pylint: disable=maybe-no-member
-        return self.user.username
-        # return f'{self.user} Profileuser'
-
-
-@receiver(post_save, sender=User)
-def create_or_update_profileuser(sender, instance, created, **kwargs):
-    """
-    Create or update the profileuser
-    """
-    if created:
-        Profileuser.objects.create(user=instance)
-    instance.profileuser.save()
+        # return self.user.username
+        return str(self.user)
 
 
 # ALL MY AND MY CONTACTS GIGS
 
 # All my posted gigs
-    def get_my_gigs(self):
-        # pylint: disable=maybe-no-member
+    def my_gigs(self):
         return self.gig_set.all()
 
 # Number of my posted gigs
@@ -166,3 +155,16 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
         return available[:3]
+
+
+@receiver(post_save, sender=User)
+def create_or_update_profileuser(sender, instance, created, **kwargs):
+    """
+    Create or update the profileuser
+    """
+    if created:
+        Profileuser.objects.create(user=instance)
+    instance.profileuser.save()
+
+
+

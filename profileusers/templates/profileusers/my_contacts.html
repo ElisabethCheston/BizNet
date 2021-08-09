@@ -5,15 +5,12 @@
 <link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
 {% endblock %}
 
-<!--
-    {% block scripts %}
+{% block scripts %}
 <script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
 {% endblock scripts %}
--->
 
 
 {% block page_header %}
-
 <!-- Profile tab links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
@@ -60,82 +57,128 @@
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
     </div>
 </div>
-
 {% endblock %}
 
 
 {% block content %}
-{% if user.is_authenticated %}
 
 <div class="container-profile justify-center">
 
-    <!-- Contact suggestions -->
-    <div class="col d-md-flex justify-content-md-end my-2">
-        <div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-sm" id="to-follow-btn" data-bs-toggle="modal"
-                data-bs-target="#myProfileModal">
-                Contact Suggestions
-            </button>
+    <div class="card">
+        <div class="row">
 
-            <!-- Modal -->
-            <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <!-- Contacts -->
+            <div class="card-body">
 
-                            </button>
-                        </div>
-                        <div class="modal-body" id="to-follow-modal">
-                            <div class="text-center" id="spinner-box">
-                                <div class="spinner-border" role="status"></div>
+                <!-- Contact suggestions -->
+                <div class="col">
+                    <div class="d-md-flex justify-content-md-end my-2">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-sm" id="to-follow-btn" data-bs-toggle="modal"
+                            data-bs-target="#myProfileModal">
+                            Contact Suggestions
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myProfileModal" tabindex="-1" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel"> Follow: </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="to-follow-modal">
+                                        <div class="text-center" id="spinner-box">
+                                            <div class="spinner-border" role="status"></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
+                <br>
+
+                <!-- Followings -->
+                <div class="col">
+                    <div class="row justify-content-between">
+                        <div class="col-9">
+                            <p><b>Following profiles:</b></p>
+                            <p> {{ profile.get_followings_contact }}</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center"><b>No:</b></p>
+                            <p class="text-center"> {{ profile.following_count }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Followers -->
+                <div class="col">
+                    <div class="row justify-content-between">
+                        <div class="col-9">
+                            <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-center"><b>No:</b></p>
+                            <p class="text-center"> {{profile.followers_count}}</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <br>
 
+
     <h2> My Contacts </h2>
 
-    <div class="card" id="POST" style="max-width: 360px;">
-            {% for profile in my_contacts %}
+    <div class="card" style="max-width: 260px;">
         <div class="card-body">
-            <div class="row mb-2">
-                <div class="col-3 text-center">
-                    <img class="avatar" src="{{profile.avatar}}" alt="${profile.user}">
-
-                </div>
-                <div class="col-4 text-center">
-
-                    <div class="text-muted"><strong>{{profile.firstname}}</strong></div>
-                    <div class="text-muted"><strong>{{profile.lastname}}</strong></div>
-                </div>
-                <div class="col-5 text-center">
-                    <div class="text-muted">{{profile.profession}}</div>
-                    <div class="text-muted">{{profile.company_name}}</div>
-                </div>
+            <div class="row text-center justify-content-center">
+                <img class="avatar" src="{{profile.avatar}}" alt="{{profile.user}}">
             </div>
-            <!-- Buttons Edit & Delete-->
-            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button class="btn btn-primary btn-sm me-md-2" type="button">View</button>
-                <button class="btn btn-primary btn-sm" type="button">Delete</button>
+            <br>
+            <br>
+
+            <div class="row text-center">
+                <div class="text-muted"><strong>{{profile.firstname}} {{profile.lastname}}</strong></div>
             </div>
 
+            <div class="row text-center">
+                <div class="text-muted">{{profile.profession}}</div>
+                <div class="text-muted">{{profile.company_name}}</div>
+            </div>
         </div>
-        {% endfor %}
+        <br>
+        <!-- Buttons Edit & Delete-->
+        <div class="d-grid gap-1 d-md-flex justify-content-md-center">
+            <button class="btn btn-primary btn-sm me-md-2" type="button">View</button>
+            <button class="btn btn-primary btn-sm" type="button">Delete</button>
+        </div>
 
     </div>
 </div>
 <br>
 
-{% endif %}
-
 {% endblock %}
+
+<!-- Followings posted gigs -->
+<div class="col">
+    <div>
+        <div class="col-10">
+            <p><b>Contact gigs :</b></p>
+            <p>{{profile.get_contact_gigs}}</p>
+        </div>
+    </div>
+</div>
+<br>

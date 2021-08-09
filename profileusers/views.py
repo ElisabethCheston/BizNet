@@ -45,15 +45,16 @@ def profile_edit(request):
     return render(request, 'profileusers/profile_edit.html', context)
 
 
+
 # MY GIGS
 
 def my_gigs(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
+    usergigs = Profileuser.objects.get(user=request.user)
     template = 'profileusers/my_gigs.html'
     context = {
-        'profile': profile,
+        'usergigs': usergigs,
     }
     return render(request, template, context)
 
@@ -67,6 +68,7 @@ def create_gig(request):
         'profile': profile,
     }
     return render(request, template, context)
+
 
 
 # PROFILES
