@@ -38,6 +38,16 @@ body {
   padding: 3%;
 }
 
+/*HEADER */
+
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 /*TABS */
 
 /* Layout */
@@ -141,7 +151,8 @@ body {
 }
 
 .gig-card,
-.contact-card {
+.contact-card,
+.card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 3%;
   text-align: left;
