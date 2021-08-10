@@ -74,7 +74,7 @@
                     <ul class="col-10">
                         {% for gig in profile.my_gigs %}
                         <p>
-                            <form action="{% url 'create_gig' %} {{ gig.title }}">
+                            <form action="{% url 'create_gig' %}">
                             <input type="submit" value="{{ gig.title }}" class="nav-link gig-tab" id="create_gig_tab"
                                 data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
                                 </form>
