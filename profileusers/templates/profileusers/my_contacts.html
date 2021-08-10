@@ -108,28 +108,33 @@
                 <br>
 
                 <!-- Followings -->
-                <div class="col">
-                    <div class="row justify-content-between">
-                        <div class="col-9">
-                            <p><b>Following profiles:</b></p>
-                            <p> {{ profile.get_followings_contact }}</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-center"><b>No:</b></p>
-                            <p class="text-center"> {{ profile.following_count }}</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="row justify-content-between">
+                            <div class="col-9">
+                                <p><b>Following profiles:</b></p>
+                                <p>{% for profileuser in profile.get_following %}{{ profileuser }} {% endfor %}</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-center"><b>No:</b></p>
+                                <p class="text-center"> {{ profile.following_count }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Followers -->
-                <div class="col">
-                    <div class="row justify-content-between">
-                        <div class="col-9">
-                            <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="text-center"><b>No:</b></p>
-                            <p class="text-center"> {{profile.followers_count}}</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="row justify-content-between">
+                            <div class="col-9">
+                                <p><b>Followers:</b><br>{% for profileuser in profile.get_followers %}{{ profileuser }}
+                                    {% endfor %}</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-center"><b>No:</b></p>
+                                <p class="text-center"> {{profile.followers_count}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,35 +145,7 @@
     <br>
 
 
-    <h2> My Contacts </h2>
-
-    <div class="card" style="max-width: 260px;">
-        <div class="card-body">
-            <div class="row text-center justify-content-center">
-                <img class="avatar" src="{{profile.avatar}}" alt="{{profile.user}}">
-            </div>
-            <br>
-            <br>
-
-            <div class="row text-center">
-                <div class="text-muted"><strong>{{profile.firstname}} {{profile.lastname}}</strong></div>
-            </div>
-
-            <div class="row text-center">
-                <div class="text-muted">{{profile.profession}}</div>
-                <div class="text-muted">{{profile.company_name}}</div>
-            </div>
-        </div>
-        <br>
-        <!-- Buttons Edit & Delete-->
-        <div class="d-grid gap-1 d-md-flex justify-content-md-center">
-            <button class="btn btn-primary btn-sm me-md-2" type="button">View</button>
-            <button class="btn btn-primary btn-sm" type="button">Delete</button>
-        </div>
-
-    </div>
-</div>
-<br>
+    
 
 {% endblock %}
 

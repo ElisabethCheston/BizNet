@@ -8,8 +8,8 @@
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'network' %}">
-                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab"
-                    data-bs-toggle="tab" data-bs-target="#neetwork" type="tab-button" role="tab" />
+                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab" data-bs-toggle="tab"
+                    data-bs-target="#neetwork" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
@@ -20,7 +20,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_followers' %}">
-        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+                <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
                 <input type="submit" value="My Followers" class="nav-link gig-tab active" id="my_followers_tab"
                     data-bs-toggle="tab" data-bs-target="#my_followers" type="tab-button" role="tab" />
             </form>
@@ -83,45 +83,59 @@
     <br>
     <br>
 
-    <!-- Following -->
-    <div class="card" style="max-width: 840px;">
+    <h2> My Contacts </h2>
 
-        <!-- Edit and Delete button -->
-        <div align="right">
-            <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"
-                aria-disabled="true">Edit</a>
-            <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1" role="button"
-                aria-disabled="true">Delete</a>
-        </div>
-        <br>
+    {% for profileuser in profile.get_followings_contact %}
+
+    <div class="contact-card" style="max-width: 260px;">
         <div class="card-body">
-            <div class="col-12">
+            <div class="text-center justify-content-center">
+                <img class="img-fluid avatar-img rounded-circle" style="max-width: 15em; max-height: 10em;"
+                    src="{{ profile.avatar.url }}" alt="{{profile.user}}">
+            </div>
+            <br>
 
-                <div class="row g-0">
-                    <div class="col-12">
+            <div class="row text-center">
+                <div class="text-muted"><strong>{{profile.firstname}} {{profile.lastname}}</strong></div>
+            </div>
 
-                        <!-- Followings -->
-                        <div class="col">
-                            <div>
-                                <div class="row justify-content-between">
-                                    <div class="col-9">
-                                        <p><b>Following profiles:</b></p>
-                                        <p> {{ profile.get_followings_contact }}</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="text-center"><b>Number of Followings:</b></p>
-                                        <p class="text-center"> {{ profile.following_count }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row text-center">
+                <div class="text-muted">{{profile.profession}}</div>
+                <div class="text-muted">{{profile.company_name}}</div>
             </div>
         </div>
+        <br>
+        <!-- Buttons Edit & Delete-->
+        <div class="d-grid gap-1 d-md-flex justify-content-md-center">
+            <button class="btn btn-primary btn-sm me-md-2" type="button">View</button>
+            <button class="btn btn-primary btn-sm" type="button">Delete</button>
+        </div>
     </div>
+    <br>
+
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-sm-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:3 %}
+    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:4 %}
+    <div class="col-12 d-none d-xl-block mb-5">
+        <hr>
+    </div>
+    {% endif %}
+
+    {% endfor %}
 </div>
-<br>
 <br>
 
 

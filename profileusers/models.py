@@ -145,7 +145,7 @@ class Profileuser(models.Model):
         - Create followers list for login user
         - Loop through list, find contacts we're not connected to.
         - Shuffle the list on every refresh
-        - Return 2 available contacts
+        - Return 3 available contacts
         """
         # pylint: disable=maybe-no-member
         profiles = Profileuser.objects.all().exclude(user=self.user)
