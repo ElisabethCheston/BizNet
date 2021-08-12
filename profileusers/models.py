@@ -30,7 +30,7 @@ class Profileuser(models.Model):
         upload_to='backgroundpics', default='backgroundpic.jpg')
     following = models.ManyToManyField(
         User, related_name='following', blank=True)
-    member_id = models.CharField(max_length=254, primary_key=True, default='member_id')
+    # member_id = models.CharField(max_length=254, primary_key=True, default='member_id')
     description = models.TextField(blank=True, default='Bio')
     updated = models.DateTimeField(auto_now=True, blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
@@ -154,12 +154,13 @@ class Profileuser(models.Model):
         random.shuffle(available)
         return available[:3]
 
-
+"""
 @receiver(post_save, sender=User)
 def create_or_update_profileuser(sender, instance, created, **kwargs):
-    """
+    
     Create or update the profileuser
-    """
+    
     if created:
         Profileuser.objects.create(user=instance)
     instance.profileuser.save()
+"""

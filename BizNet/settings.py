@@ -112,10 +112,12 @@ WSGI_APPLICATION = 'BizNet.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
+    print("DATABASE_URL FOUND, USING EXTERNAL POSTGRES DATABASE")
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
+    print("DATABASE_URL NOT FOUND, USING LOCAL SQLITE")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
