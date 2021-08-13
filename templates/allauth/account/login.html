@@ -129,6 +129,11 @@ height: 20px;
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
+
+        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        <br>
+        <br>
+
         <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
       </form>
 
@@ -146,5 +151,6 @@ height: 20px;
 
   </div>
   <br>
+</div>
 
   {% endblock %}

@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-
-
 {% load i18n %}
 {% load account socialaccount %}
-<!--
-
-{% block head_title %}
-{% trans "Sign In" %}
-{% endblock %}
--->
-
-
 {% get_providers as socialaccount_providers %}
 
 {% block content %}
@@ -71,7 +61,7 @@
   }
 
   .login_btn:focus {
-    box-shadow: none !important; 
+    box-shadow: none !important;
     outline: 0px !important;
   }
 
@@ -103,6 +93,9 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+
 <div class="container-start" id="justify-center">
 
   <div class="d-grid gap-2 col-6 mx-auto">
@@ -114,19 +107,18 @@
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <!--<a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>-->
+      <!-- <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
       <button class="btn btn-primary col-12" type="submit">{% trans "Sign In" %}</button>
     </form>
 
     <!-- Signup with social accounts -->
-
     <form action="#">
       <button class="btn btn-primary col-12" type="button">Connect with LinkedIn</button>
     </form>
-
     <form action="#">
       <button class="btn btn-primary col-12" type="button">Connect with Google</button>
     </form>
+
     <!-- Register Account -->
     <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
       {% csrf_token %}
@@ -137,9 +129,7 @@
       <button class="btn btn-primary col-12" type="submit">Create Account</button>
     </form>
 
-
   </div>
-
   <!--
     <div class="user_card" id="justify-center">
     <div class="d-flex justify-content-center form_container">
@@ -210,10 +200,7 @@
     </div>
   </div>
 -->
-
 </div>
-
-
 
 
 {% endblock %}

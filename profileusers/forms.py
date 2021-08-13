@@ -27,3 +27,25 @@ class ProfileuserForm(forms.ModelForm):
             'country',
         ]
         
+
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = Profileuser
+        fields = [
+            'avatar',
+            # 'image_url',
+            'background',
+            'firstname',
+            'lastname',
+            'title',
+            'company_name',
+            'company_number_vat',
+            'industry',
+            'profession',
+            'skill',
+            'description',
+            'phone',
+            'email',
+            'city',
+            'country',
+        ]
