@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from profileusers.models import Profileuser, Industry
+from profileusers.models import Profileuser, Industry, Profession
 
 from django_countries.fields import CountryField
 
@@ -11,6 +11,8 @@ class Gig(models.Model):
     picture = models.ImageField(upload_to='images', blank=True)
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    profession = models.ForeignKey(
+        Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     liked = models.ManyToManyField(User, default=None, blank=False)
     city = models.CharField(max_length=50, null=True,
                             blank=False, default='City')

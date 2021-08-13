@@ -8,7 +8,7 @@ from itertools import chain
 import random
 
 
-
+# DROPDOWN LISTS
 class Industry(models.Model):
     industry_name = models.CharField(max_length=100, null=True, blank=False)
     class Meta:
@@ -16,6 +16,15 @@ class Industry(models.Model):
 
     def __str__(self):
         return self.industry_name
+
+
+class Profession(models.Model):
+    profession_name = models.CharField(max_length=100, null=True, blank=False)
+    class Meta:
+        verbose_name_plural = 'Profession'
+
+    def __str__(self):
+        return self.profession_name
 
 
 # Create Profileuser model.
@@ -47,8 +56,8 @@ class Profileuser(models.Model):
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     description = models.TextField(max_length=250, null=True)
-    profession = models.CharField(
-        max_length=254, blank=False, null=True)
+    profession = models.ForeignKey(
+        Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     skill = models.CharField(max_length=254, blank=True, default=None)
     email = models.EmailField(
         max_length=100, null=False, blank=True)
