@@ -31,29 +31,29 @@ class Profileuser(models.Model):
     following = models.ManyToManyField(
         User, related_name='following', blank=True)
     # member_id = models.CharField(max_length=254, primary_key=True, default='member_id')
-    description = models.TextField(blank=True, default='Bio')
+    description = models.TextField(blank=True)
     updated = models.DateTimeField(auto_now=True, blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
     firstname = models.CharField(
-        max_length=254, blank=False, default='First Name', null=True)
+        max_length=254, blank=False, null=True)
     lastname = models.CharField(
-        max_length=254, blank=False, default='Last Name', null=True)
+        max_length=254, blank=False, null=True)
     title = models.CharField(max_length=254, blank=True, default=None, null=True)
     company_name = models.CharField(
-        max_length=254, blank=True, default='Company Name', null=True)
+        max_length=254, blank=True, null=True)
     company_number_vat = models.CharField(
         max_length=254, blank=True, default=None, null=True)
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     description = models.TextField(max_length=250, null=True)
     profession = models.CharField(
-        max_length=254, blank=False, default='Profession', null=True)
+        max_length=254, blank=False, null=True)
     skill = models.CharField(max_length=254, blank=True, default=None)
     email = models.EmailField(
-        max_length=100, null=False, blank=True, default='Email')
+        max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
     city = models.CharField(max_length=50, null=True,
-                            blank=False, default='City')
+                            blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
 
     def __str__(self):
