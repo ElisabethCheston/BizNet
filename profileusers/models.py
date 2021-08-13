@@ -26,6 +26,7 @@ class Profileuser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(
         upload_to='profileavatars', default='profileavatar.png')
+    picture = models.ImageField(upload_to='images', default='profileavatar.png')
     background = models.ImageField(
         upload_to='backgroundpics', default='backgroundpic.jpg')
     following = models.ManyToManyField(

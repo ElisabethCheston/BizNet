@@ -10,7 +10,7 @@ class ProfileuserForm(forms.ModelForm):
         model = Profileuser
         fields = [
             'avatar',
-            # 'image_url',
+            'picture',
             'background',
             'firstname',
             'lastname',
