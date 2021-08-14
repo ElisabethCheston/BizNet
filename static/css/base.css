@@ -377,6 +377,13 @@ p {
 height: 20px;
 }
 */
+
+/* FORMS */
+
+.form-group {
+  margin: 20px;
+
+}
 .user_card {
   width: 70%;
   margin-top: auto;

@@ -9,9 +9,9 @@ class ProfileuserForm(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            'avatar',
+            # 'avatar',
             'picture',
-            'background',
+            # 'background',
             'firstname',
             'lastname',
             'title',
