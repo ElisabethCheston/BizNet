@@ -60,7 +60,7 @@ def loginPage(request):
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, username)
+            login(request, user)
             return redirect('my_profile')
     template = 'profileusers/login.html'
     context = {}
