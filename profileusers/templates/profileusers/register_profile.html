@@ -1,14 +1,6 @@
 {% extends "base.html" %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
-{% endblock %}
-
-{% block scripts %}
-<script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
-{% endblock scripts %}
 
 {% block content %}
 {% if user.is_authenticated %}

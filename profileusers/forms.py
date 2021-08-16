@@ -41,7 +41,19 @@ class RegisterForm(forms.ModelForm):
             'country',
         ]
 
+"""
+class SigninForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            # 'firstname',
+            # 'lastname',
+            'username',
+            # 'email',
+            'password1',
+        ]
 
+"""
 class ProfileuserForm(forms.ModelForm):
     class Meta:
         model = Profileuser

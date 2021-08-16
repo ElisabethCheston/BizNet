@@ -1,6 +1,6 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-
+{% load account socialaccount %}
 
 {% block page_header %}
 <!-- Profile tab links -->
@@ -36,7 +36,7 @@
                     data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
             </form>
         </li>
-        
+
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
@@ -55,157 +55,214 @@
 
 
 {% block content %}
-{% if user.is_authenticated %}
+
 
 <style>
     #justify-center {
-    margin: auto;
-    width: 70%;
-    padding: 15px;
-    border: none !important;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .errorlist {
-  display: none !important;
-  }
-  label {
-    display: none;
-  }
-  p {
-  height: 25px;
-  }
-  
-  #id_login,
-  #id_password,
-  .primaryAction {
-    width: 70%;
-    height: 30px;
-    margin: 2%;
-    /* text-transform: uppercase; */
-    text-align: center;
-  }
-  #id_remember {
-    display: none;
-  }
-  .primaryAction {
-    width: 70%;
-    height: 30px;
-    margin: 2%;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  
-  .user_card {
-    width: 70%;
-    margin-top: auto;
-    margin-bottom: auto;
-    background: #ffffff;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  .form_container {
-    margin-top: 30px;
-    width: 100%;
-    align-items: center;
-  }
-  #form-title {
-    color: #fff;
-  }
-  .login_btn {
-    width: 100%;
-    background: rgba(141, 133, 133, 0.7) !important;
-    color: white !important;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: medium;
-    font-weight: bold;
-  }
-  .login_btn:focus {
-    box-shadow: none !important; 
-    outline: 0px !important;
-  }
-  .login_container {
-    padding: 0 2rem;
-  }
-  .input-group-text {
-    background: #f7ba5b !important;
-    color: white !important;
-    border: 0 !important;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-  }
-  .input_user,
-  .input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-  }
-  #messages {
-    background-color: grey;
-    color: #fff;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  </style>
-  <div class="container" id="justify-center">
-  
+        margin: auto;
+        width: 70%;
+        padding: 15px;
+        border: none !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /*
+    .errorlist {
+      display: none !important;
+    }
+    label {
+      display: none;
+    }
+  */
+    p {
+        height: 5px;
+        margin: 3%;
+        padding: 2%;
+    }
+
+    .form-check {
+        padding: 25px;
+    }
+
+    #id_email,
+    #id_email2,
+    #id_username,
+    #id_password1,
+    #id_password2,
+    .input-group-append {
+        width: 80%;
+        height: 40px;
+        margin: 2%;
+        text-align: center;
+        font-size: large;
+    }
+
+    a,
+    h4 {
+        text-align: center;
+        font-size: medium;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    /*
+    .primaryAction {
+      width: 70%;
+      height: 40px;
+      margin: -2%;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  /*
+    .user_card {
+      width: 70%;
+      margin-top: auto;
+      margin-bottom: auto;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 5px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  */
+
+    .form_container {
+        margin-top: 10px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .login_btn {
+        width: 100%;
+        background: rgba(113, 114, 114, 0.9) !important;
+        color: white !important;
+        border-radius: 2px !important;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        height: 40px;
+    }
+
+
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+
+    .btn {
+        border-width: 2px;
+        border-color: rgba(148, 149, 150, 0.2);
+        background-color: rgba(131, 133, 134, 0.6) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+    }
+
+    .btn:hover,
+    .btn:active,
+    .btn:focus {
+        background-color: rgba(94, 95, 95, 0.692) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+    }
+
+    .login_container {
+        padding: 0 1rem;
+    }
+
+    .input-group,
+    .form-control {
+        width: 80%;
+        height: 40px;
+        margin: 2%;
+        text-align: center;
+        font-size: large !important;
+    }
+
+    .input-group-text {
+
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+
+    #messages {
+        background-color: grey;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="login_container" id="justify-center">
+
     <!-- Logo -->
     <div id="justify-center">
-      <div class="col-6 col-lg-4" id="justify-center">
-        <a href="{% url 'home' %}" class="nav-link main-logo-link">
-          <img
-            src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-            alt="" width="210" height="50" class="logo img-fluid">
-        </a>
-      </div>
+        <div class="col-6 col-lg-4" id="justify-center">
+            <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
+                    alt="" width="210" height="50" class="logo img-fluid">
+            </a>
+        </div>
     </div>
     <br>
-  
-    <div class="user_card" id="justify-center">
-      <div class="d-flex form_container" id="justify-center">
 
-                <form method="POST" action="">
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" name="username" placeholder="Username..." class="form-control">
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                            <input type="password" name="password" placeholder="Password..." class="form-control" >
-                    </div>
+    <div class="d-flex" id="justify-center">
+        <h4 id="form-title">SIGN IN</h4>
+    </div>
+    <div class="d-flex justify-content-center form_container">
 
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                             <input class="btn login_btn" type="submit" value="Login">
-                           </div>
-                </form>
-
+        <form method="POST" action="#">
+            <div class="input-group mb-3" id="justify-center">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="username" placeholder="Username..." class="form-control">
             </div>
-            <br>
-        
-        
-        
-            <!-- Account Register and Signin links-->
-            <div class="mt-4 row justify-content-center">
-              <div class="d-flex links">
-                <p>Not registered? <a href="{% url 'account_signup' %}" class="ml-2">Create Account</a></p>
-              </div>
+            <div class="input-group mb-2" id="justify-center">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" name="password" placeholder="Password..." class="form-control">
             </div>
-        
-          </div>
-          <br>
+<br>
+<br>
+<br>
+            <div class="d-flex justify-content-center mt-3" id="justify-center">
+                <input class="btn login_btn" type="submit" value="LOG IN">
+            </div>
+        </form>
+
+    </div>
+    <br>
+
+
+    <!-- Account Register and Signin links-->
+
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            Not registered?
+            <a href="{% url 'register' %}" class="ml-2">
+                Create Account
+            </a>
         </div>
 
-{% endif %}
+    </div>
+
+    <br>
+    <br>
+</div>
+
 
 {% endblock %}
