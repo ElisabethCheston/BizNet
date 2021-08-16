@@ -98,17 +98,16 @@
 
 
 <div class="container-start" id="justify-center">
-
   <div class="d-grid gap-2 col-6 mx-auto">
 
     <!-- Sign In-->
-    <form class="login" method="POST" action="{% url 'account_login' %}">
+    <form class="login" method="POST" action="{% url 'login_page' %}">
       {% csrf_token %}
       {{ form.as_p }}
-      {% if redirect_field_value %}
+      <!--{% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <!-- <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
       <button class="btn btn-primary col-12" type="submit">{% trans "Sign In" %}</button>
     </form>
 
@@ -121,282 +120,132 @@
     </form>
 
     <!-- Register Account -->
-    <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+    <form class="signup" id="signup_form" method="POST" action="{% url 'register' %}">
       {% csrf_token %}
       {{ form.as_p }}
-      {% if redirect_field_value %}
-
-      <!-- Terms and Conditions -->
-      <!--<div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-        </label>
-        <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right"
-          data-bs-toggle="popover-term" title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
-          can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
-          around with respect to documentation is not very helpful in improving things. Please step in and 
-          file a pull request if you feel there is something unclear.
-          Project specific integration trouble: In cases where allauth is just one piece of the puzzle and 
-          for example a stack trace indicates another module crashing, please try to come up stripped version 
-          of the issue where it is clear that allauth is the one that is misbehaving.">
-          Terms & Conditions</button>
-      </div>
-    </div>
-    <br> -->
-
+      <!--{% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
+      {% endif %}-->
       <button class="btn btn-primary col-12" type="submit">Create Account</button>
     </form>
 
+    
   </div>
 
 </div>
 <br>
 <br>
-
-<div class="user_card" id="justify-center">
-  <div class="d-flex justify-content-center form_container">
-    <!-- Registration Form -->
-    <div class="modal fade" id="startModalToggle" aria-hidden="true" aria-labelledby="startModalToggleLabel"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="startModalToggleLabel">Register for an account</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-            <!-- Registration User -->
-            <div class="container-start">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="First Name" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Last Name" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default">
-              </div>
-              <br>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Email" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Password" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Company ID" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default">
-              </div>
-            </div>
-            <br>
-
-            <!-- Terms and Conditions -->
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-              </label>
-              <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right"
-                data-bs-toggle="popover-term" title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
-                can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
-                around with respect to documentation is not very helpful in improving things. Please step in and 
-                file a pull request if you feel there is something unclear.
-                Project specific integration trouble: In cases where allauth is just one piece of the puzzle and 
-                for example a stack trace indicates another module crashing, please try to come up stripped version 
-                of the issue where it is clear that allauth is the one that is misbehaving.">
-                Terms & Conditions</button>
-            </div>
-          </div>
-          <br>
-
-          <!-- Submit Registration Button -->
-          <div class="modal-footer" id="justify-center">
-            <button class="btn btn-primary" data-bs-target="#startModalToggle2" data-bs-toggle="modal"
-              data-bs-dismiss="modal" type="submit">{% trans "Sign Up" %}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 {% endblock %}
 
 
+  <!-- Questions -->
+  <div class="questions">
 
-
-<div class="home-profile row text-center">
-
-  <div class="col-4 start-info">
-    <p>
-      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
-        aria-controls="collapsestart1">
-        My Profile
-      </a>
-    </p>
-    <div class="col collapse card-frame" style="max-width: 450px;" id="collapsestart1">
-      <div class="card-start start-card-body">
-        <h6><strong>My Profile</strong></h6>
-        <p>
-          At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
-          important
-          asset to succeed with your business.
-        </p>
-      </div>
-      <br>
-    </div>
-  </div>
-
-  <div class="col-4 start-info">
-    <p>
-      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
-        aria-controls="collapsestart2">
-        My Network
-      </a>
-    </p>
-    <div class="col collapse card-frame" style="max-width: 450px;" id="collapsestart2">
-      <div class="card-start start-card-body">
-        <br>
-        <h6><strong>My Network</strong></h6>
-        <p>
-          At BizNet we believe in the power of strong and relevant professional
-          networks. Your network is the most important asset to succeed with your
-          business.
-        </p>
-      </div>
-      <br>
-    </div>
-  </div>
-
-  <div class="row col-4 start-info">
-    <p>
-      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
-        aria-controls="collapsestart3">
-        My Gigs
-      </a>
-    </p>
-    <div class="col collapse card-frame" style="max-width: 450px;" id="collapsestart3">
-      <div class="card-start start-card-body">
-        <br>
-        <h6><strong>My Gigs</strong></h6>
-        <p>
-          With a smart matching algorithm BizNet finds the right contact to invite
-          and start networking with. You can also discover and search manually to
-          connect and invite your existing network to BizNet. To interact with your
-          new contact BizNet suggest CTA's as next best action like message, video call,
-          phone call or a lunch meeting.
-        </p>
-      </div>
-    </div>
-  </div>
-
-</div>
-<div class="questions">
-
-  <div class="start-info">
-    <p>
-      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
-        aria-controls="collapsestart1">
-        What is BizNet?
-      </a>
-    </p>
-    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart1">
-      <div class="card-start start-card-body">
-        <p>
-          At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
-          important
-          asset to succeed with your business.
-        </p>
-        <p>
-          Be the go-to place where small business owners build active and strong networks to generate new business
-          opportunities and exchange experience.
-        </p>
-        <p>
-          BizNet helps small business owners to find new business opportunities through a strong and relevant
-          network,
-          share
-          experiences and stay social.
-        </p>
-      </div>
-      <br>
-    </div>
-  </div>
-
-  <div class="start-info">
-    <p>
-      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
-        aria-controls="collapsestart2">
-        Who is BizNet?
-      </a>
-    </p>
-    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart2">
-      <div class="card-start start-card-body">
-        <br>
-        <h6><strong>Match Contacts</strong></h6>
-        <p>
-          At BizNet we believe in the power of strong and relevant professional
-          networks. Your network is the most important asset to succeed with your
-          business.
-        </p>
-        <br>
-        <h6><strong>Our Vision</strong></h6>
-        <p>
-          Be the go-to place where small business owners build active and strong
-          networks to generate new business opportunities and exchange experience.
-        </p>
-        <br>
-        <h6><strong>Solution</strong></h6>
-        <p>
-          BizNet helps small business owners to find new business opportunities
-          through a strong and relevant network, share experiences and stay social.
-        </p>
+    <!-- What is BizNet -->
+    <div class="start-info">
+      <p>
+        <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
+          aria-controls="collapsestart1">
+          What is BizNet?
+        </a>
+      </p>
+      <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart1">
+        <div class="card-start start-card-body">
+          <p>
+            At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
+            important
+            asset to succeed with your business.
+          </p>
+          <p>
+            Be the go-to place where small business owners build active and strong networks to generate new business
+            opportunities and exchange experience.
+          </p>
+          <p>
+            BizNet helps small business owners to find new business opportunities through a strong and relevant
+            network,
+            share
+            experiences and stay social.
+          </p>
+        </div>
         <br>
       </div>
-      <br>
     </div>
-  </div>
 
-  <div class="start-info">
-    <p>
-      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
-        aria-controls="collapsestart3">
-        How does BizNet work?
-      </a>
-    </p>
-    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart3">
-      <div class="card-start start-card-body">
+    <!-- Who is BizNet -->
+    <div class="start-info">
+      <p>
+        <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
+          aria-controls="collapsestart2">
+          Who is BizNet?
+        </a>
+      </p>
+      <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart2">
+        <div class="card-start start-card-body">
+          <br>
+          <h6><strong>Match Contacts</strong></h6>
+          <p>
+            At BizNet we believe in the power of strong and relevant professional
+            networks. Your network is the most important asset to succeed with your
+            business.
+          </p>
+          <br>
+          <h6><strong>Our Vision</strong></h6>
+          <p>
+            Be the go-to place where small business owners build active and strong
+            networks to generate new business opportunities and exchange experience.
+          </p>
+          <br>
+          <h6><strong>Solution</strong></h6>
+          <p>
+            BizNet helps small business owners to find new business opportunities
+            through a strong and relevant network, share experiences and stay social.
+          </p>
+          <br>
+        </div>
         <br>
-        <h6><strong>Match Contacts</strong></h6>
-        <p>
-          With a smart matching algorithm BizNet finds the right contact to invite
-          and start networking with. You can also discover and search manually to
-          connect and invite your existing network to BizNet. To interact with your
-          new contact BizNet suggest CTA's as next best action like message, video call,
-          phone call or a lunch meeting.
-        </p>
-        </br>
-        <h6><strong>Find business</strong></h6>
-        <p>
-          All users automatically receive gigs which are matching their profile and
-          skillset. This is a social marketplace feature. You apply through the app
-          and get contacted by the gig owner. To build trust and reputation you can
-          get rated or recommended by the gig owner or a user who you have helped.
-          Users can post gigs within their network or publicly (pro version).
-        </p>
-        <br>
-        <h6><strong>Stay updated</strong></h6>
-        <p>
-          The feed is the core engagement feature to keep you updated about what is
-          happening in your network. BizNet notifies you to various events that you
-          should act on to create more value and rewards when interacting with your
-          network.
-        </p>
-        <br>
+      </div>
+    </div>
+
+    <!-- How does BizNet work -->
+    <div class="start-info">
+      <p>
+        <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
+          aria-controls="collapsestart3">
+          How does BizNet work?
+        </a>
+      </p>
+      <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart3">
+        <div class="card-start start-card-body">
+          <br>
+          <h6><strong>Match Contacts</strong></h6>
+          <p>
+            With a smart matching algorithm BizNet finds the right contact to invite
+            and start networking with. You can also discover and search manually to
+            connect and invite your existing network to BizNet. To interact with your
+            new contact BizNet suggest CTA's as next best action like message, video call,
+            phone call or a lunch meeting.
+          </p>
+          </br>
+          <h6><strong>Find business</strong></h6>
+          <p>
+            All users automatically receive gigs which are matching their profile and
+            skillset. This is a social marketplace feature. You apply through the app
+            and get contacted by the gig owner. To build trust and reputation you can
+            get rated or recommended by the gig owner or a user who you have helped.
+            Users can post gigs within their network or publicly (pro version).
+          </p>
+          <br>
+          <h6><strong>Stay updated</strong></h6>
+          <p>
+            The feed is the core engagement feature to keep you updated about what is
+            happening in your network. BizNet notifies you to various events that you
+            should act on to create more value and rewards when interacting with your
+            network.
+          </p>
+          <br>
+        </div>
       </div>
     </div>
   </div>

@@ -1,17 +1,31 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import Profileuser
 
 from django.core.files.images import get_image_dimensions
 
 
-class ProfileuserForm(forms.ModelForm):
+
+class RegisterUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            #'firstname',
+            #'lastname',
+            'username',
+            'email',
+            'password1',
+            'password2',
+        ]
+
+
+class RegisterForm(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            # 'avatar',
             'picture',
-            # 'background',
+            # 'image_url',
             'firstname',
             'lastname',
             'title',
@@ -26,15 +40,14 @@ class ProfileuserForm(forms.ModelForm):
             'city',
             'country',
         ]
-        
 
-class RegisterForm(forms.ModelForm):
+
+class ProfileuserForm(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            'avatar',
-            # 'image_url',
-            'background',
+            # 'avatar',
+            'picture',
             'firstname',
             'lastname',
             'title',

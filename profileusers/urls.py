@@ -15,6 +15,7 @@ urlpatterns = [
     path('profile_edit/', views.profile_edit, name='profile_edit'),
     path('create_gig/', views.create_gig, name='create_gig'),
 
+    path('register/', views.Register, name='register'),
     path('register_profile/', RegisterPage.as_view(), name='register_profile'), # .as_view() to "convert" a class-based view for url
     path('login_page/', views.loginPage, name='login_page'),
 

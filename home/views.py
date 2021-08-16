@@ -15,9 +15,6 @@ def logout(request):
     return render(request, 'home/logout.html')
 
 
-def register(request):
-    return render(request, 'home/register.html')
-
 
 def forgot_password(request):
     return render(request, 'home/forgot_password.html')

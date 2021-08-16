@@ -357,6 +357,7 @@ button, li, a {
 
 /* LOGIN */
 
+/*
 #justify-center {
   margin: auto;
   width: 70%;
@@ -366,7 +367,7 @@ button, li, a {
   align-items: center;
   text-align: center;
 }
-/*
+
 .errorlist {
 display: none !important;
 }
@@ -380,9 +381,9 @@ height: 20px;
 
 /* FORMS */
 
+/*
 .form-group {
   margin: 20px;
-
 }
 .user_card {
   width: 70%;
@@ -407,6 +408,7 @@ height: 20px;
 #form-title {
   color: #fff;
 }
+
 .login_btn {
   width: 100%;
   background: rgba(141, 133, 133, 0.7) !important;
@@ -422,6 +424,7 @@ height: 20px;
 .login_container {
   padding: 0 2rem;
 }
+'7'
 .input-group-text {
   background: #f7ba5b !important;
   color: white !important;
