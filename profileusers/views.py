@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
-from .models import Profileuser
+
 """
 from django.contrib.auth import (REDIRECT_FIELD_NAME, login as auth_login,
     logout as auth_logout, get_user_model, update_session_auth_hash)
@@ -12,12 +13,13 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-"""
+
 from django.http import HttpResponseRedirect, QueryDict
 from django.template.response import TemplateResponse
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm, UserCreationForm
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
+"""
 
 from django.http import JsonResponse
 from django.core import serializers
@@ -36,29 +38,32 @@ def Register(request):
         if form.is_valid():
             form.save()
             user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for' + user)
-
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('login')
     context = {
         'form': form
     }
     return render(request, template, context)
-
-
+"""
 class RegisterPage(View):
-
     template = 'profileusers/register_profile.html'
     def get_success_url(self):        
         url = self.get_redirect_url()
         if url:
             return reverse("profile_edit")
-
-
+"""
 def loginPage(request):
+    if request.method == 'POST':
+        # Connected to the name field in the login_page.
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-    template = 'profileusers/login_page.html'
-    context = {
-        # 'form': form,
-    }
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, username)
+            return redirect('my_profile')
+    template = 'profileusers/login.html'
+    context = {}
     return render(request, template, context)
 
 
@@ -127,6 +132,16 @@ def all_profiles(request):
     # pylint: disable=maybe-no-member
     profiles = Profileuser.objects.all()
     template = 'profileusers/all_profiles.html'
+    context = {
+        'profiles': profiles,
+    }
+    return render(request, template, context)
+
+
+def my_profile(request):
+    # pylint: disable=maybe-no-member
+    profiles = Profileuser.objects.all()
+    template = 'profileusers/my_profile.html'
     context = {
         'profiles': profiles,
     }

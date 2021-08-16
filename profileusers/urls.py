@@ -3,7 +3,7 @@ from . import views
 from .views import (
     MyProfile,
     ProfileData,
-    RegisterPage,
+    # RegisterPage,
 )
 
 
@@ -16,8 +16,8 @@ urlpatterns = [
     path('create_gig/', views.create_gig, name='create_gig'),
 
     path('register/', views.Register, name='register'),
-    path('register_profile/', RegisterPage.as_view(), name='register_profile'), # .as_view() to "convert" a class-based view for url
-    path('login_page/', views.loginPage, name='login_page'),
+    # path('register_profile/', RegisterPage.as_view(), name='register_profile'), # .as_view() to "convert" a class-based view for url
+    path('login/', views.loginPage, name='login'),
 
     path('my_gigs/', views.my_gigs, name='my_gigs'),
     path('my_contacts/', views.my_contacts, name='my_contacts'),

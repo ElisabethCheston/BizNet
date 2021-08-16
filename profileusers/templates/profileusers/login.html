@@ -56,16 +56,16 @@
 
 {% block content %}
 
-
 <style>
     #justify-center {
         margin: auto;
-        width: 70%;
-        padding: 15px;
+        width: 80%;
+        padding: 10px;
         border: none !important;
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-size: large;
     }
 
     /*
@@ -75,7 +75,6 @@
     label {
       display: none;
     }
-  */
     p {
         height: 5px;
         margin: 3%;
@@ -85,24 +84,26 @@
     .form-check {
         padding: 25px;
     }
-
+*/
     #id_email,
     #id_email2,
     #id_username,
     #id_password1,
-    #id_password2,
-    .input-group-append {
-        width: 80%;
-        height: 40px;
-        margin: 2%;
+    #id_password2 {
+        width: 100%;
+        height: 60px;
+        background-color: white !important;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 1%;
         text-align: center;
         font-size: large;
     }
 
     a,
-    h4 {
+    h2,
+    .link {
         text-align: center;
-        font-size: medium;
+        font-size: large;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
@@ -130,26 +131,30 @@
       border-radius: 5px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-  */
 
-    .form_container {
-        margin-top: 10px;
-        width: 100%;
-        align-items: center;
-    }
-
+.form_container {
+    margin-top: 10px;
+    width: 100%;
+    align-items: center;
+}
+*/
     .login_btn {
+        border-width: 2px;
+        color: white;
+        border-color: rgba(148, 149, 150, 0.2);
+        background-color: rgba(131, 133, 134, 0.8) !important;
         width: 100%;
-        background: rgba(113, 114, 114, 0.9) !important;
-        color: white !important;
-        border-radius: 2px !important;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: large;
+        height: 60px;
         font-weight: bold;
-        height: 40px;
+        margin: 2%;
+        text-align: center;
+        font-size: x-large !important;
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-
+    /*
     .login_btn:focus {
         box-shadow: none !important;
         outline: 0px !important;
@@ -162,32 +167,29 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
         -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
         -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-
     }
-
+*/
     .btn:hover,
     .btn:active,
     .btn:focus {
-        background-color: rgba(94, 95, 95, 0.692) !important;
+        background-color: rgba(94, 95, 95, 0.792) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-
     }
 
     .login_container {
         padding: 0 1rem;
     }
 
-    .input-group,
     .form-control {
-        width: 80%;
-        height: 40px;
-        margin: 2%;
+        width: 100%;
+        height: 60px;
+        margin: 1%;
         text-align: center;
         font-size: large !important;
     }
 
+    /*
     .input-group-text {
-
         border-radius: 0.25rem 0 0 0.25rem !important;
     }
 
@@ -196,7 +198,7 @@
         box-shadow: none !important;
         outline: 0px !important;
     }
-
+*/
     #messages {
         background-color: grey;
         color: #fff;
@@ -218,50 +220,47 @@
     </div>
     <br>
 
-    <div class="d-flex" id="justify-center">
-        <h4 id="form-title">SIGN IN</h4>
+    <div class="d-flex">
+        <h2 id="form-title">SIGN IN</h2>
     </div>
     <div class="d-flex justify-content-center form_container">
 
-        <form method="POST" action="#">
+        <form method="POST" action="#" id="justify-center">
+            {% csrf_token %}
             <div class="input-group mb-3" id="justify-center">
                 <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <span class="input-group-text"></span>
                 </div>
                 <input type="text" name="username" placeholder="Username..." class="form-control">
             </div>
             <div class="input-group mb-2" id="justify-center">
                 <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    <span class="input-group-text"></span>
                 </div>
                 <input type="password" name="password" placeholder="Password..." class="form-control">
             </div>
-<br>
-<br>
-<br>
+            <br>
             <div class="d-flex justify-content-center mt-3" id="justify-center">
-                <input class="btn login_btn" type="submit" value="LOG IN">
+                <input class="btn login_btn" type="submit" value="Login">
             </div>
         </form>
 
     </div>
     <br>
 
+    {% for message in messages %}
+    <p id="messages">{{ message }}</p>
+    {% endfor %}
 
     <!-- Account Register and Signin links-->
-
     <div class="mt-4">
-        <div class="d-flex justify-content-center links">
+        <div class="d-flex link justify-content-center">
             Not registered?
-            <a href="{% url 'register' %}" class="ml-2">
+            <a href="{% url 'register' %}" class="ml-2 link">
                 Create Account
             </a>
         </div>
-
     </div>
-
-    <br>
-    <br>
 </div>
 
 

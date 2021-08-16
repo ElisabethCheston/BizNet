@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "account/base.html" %}
 {% load static %}
 {% load i18n %}
 {% load account socialaccount %}
@@ -6,26 +6,67 @@
 
 {% block content %}
 <style>
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #ffffff !important;
-  }
-
   #justify-center {
     margin: auto;
-    width: 70%;
-    padding: 15px;
+    width: 80%;
+    padding: 10px;
     border: none !important;
     justify-content: center;
     align-items: center;
     text-align: center;
   }
+  /*
+.center {
+  margin: auto;
+  width: 80%;
+  padding: 15px;
+  border: none !important;
+}
+  /*
+  .errorlist {
+    display: none !important;
+  }
+  label {
+    display: none;
+  }
+  p {
+    height: 5px;
+    margin: 3%;
+    padding: 2%;
+  }
 
+  .form-check {
+    padding: 25px;
+  }
+  #id_email,
+  #id_email2,
+  #id_username,
+  #id_password1,
+  #id_password2,
+  .input-group-append {
+    width: 80%;
+    height: 40px;
+    margin: 2%;
+    text-align: center;
+    font-size: large;
+  }
+  a,
+  h4 {
+    text-align: center;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .primaryAction {
+    width: 70%;
+    height: 40px;
+    margin: -2%;
+    text-transform: uppercase;
+    text-align: center;
+  }
+/*
   .user_card {
-    width: 60%;
+    width: 70%;
     margin-top: auto;
     margin-bottom: auto;
     background: #ffffff;
@@ -40,39 +81,47 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
-  .form_container {
-    margin-top: 30px;
-    width: 60%;
-    height: 60%;
-    align-items: center;
-  }
-
-  #form-title {
-    color: #fff;
-  }
-
   .login_btn {
     width: 100%;
-    background: rgba(141, 133, 133, 0.7) !important;
+    background: rgba(113, 114, 114, 0.9) !important;
     color: white !important;
+    border-radius: 2px !important;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: medium;
+    font-size: large;
     font-weight: bold;
+    height: 40px;
   }
-
   .login_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
   }
-
-  .login_container {
-    padding: 0 2rem;
+*/
+  .index_container {
+    padding: 0 1rem;
   }
-
+  .btn-primary {
+    border-width: 2px;
+    color: white;
+    border-color: rgba(148, 149, 150, 0.2);
+    background-color: rgba(131, 133, 134, 0.8) !important;
+    width: 100%;
+    height: 70px;
+    margin: 2%;
+    text-align: center;
+    font-size: x-large !important;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn:hover,
+  .btn:active,
+  .btn:focus {
+    background-color: rgba(94, 95, 95, 0.75) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+/*
   .input-group-text {
-    background: #f7ba5b !important;
-    color: white !important;
-    border: 0 !important;
+
     border-radius: 0.25rem 0 0 0.25rem !important;
   }
 
@@ -88,51 +137,55 @@
     padding: 10px;
     margin-top: 10px;
   }
+  */
 </style>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
+<div class="index_container center" id="justify-center">
 
-<div class="container-start" id="justify-center">
-  <div class="d-grid gap-2 col-6 mx-auto">
+  <!-- Logo -->
+  <div id="justify-center">
+    <div class="col-6 col-lg-4" id="justify-center">
+      <a href="{% url 'home' %}" class="nav-link main-logo-link">
+        <img
+          src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
+          alt="" width="210" height="50" class="logo img-fluid">
+      </a>
+    </div>
+  </div>
+  <br>
 
-    <!-- Sign In-->
-    <form class="login" method="POST" action="{% url 'login_page' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <!--{% if redirect_field_value %}
+  <!-- Sign In-->
+  <form id="justify-center" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!--{% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> -->
-      <button class="btn btn-primary col-12" type="submit">Sign In</button>
-    </form>
+    <button class="btn btn-primary col-12" type="submit">Sign In</button>
+  </form>
 
-    <!-- Signup with social accounts -->
-    <form action="#">
-      <button class="btn btn-primary col-12" type="button">Connect with LinkedIn</button>
-    </form>
-    <form action="#">
-      <button class="btn btn-primary col-12" type="button">Connect with Google</button>
-    </form>
+  <!-- Signup with social accounts -->
+  <form action="#" id="justify-center">
+    <button class="btn btn-primary col-12" type="button">Connect with LinkedIn</button>
+  </form>
+  <form action="#" id="justify-center">
+    <button class="btn btn-primary col-12" type="button">Connect with Google</button>
+  </form>
 
-    <!-- Register Account -->
-    <form class="signup" id="signup_form" method="POST" action="{% url 'register' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <!--{% if redirect_field_value %}
+  <!-- Register Account -->
+  <form class="signup" id="justify-center" method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!--{% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}-->
-      <button class="btn btn-primary col-12" type="submit">Create Account</button>
-    </form>
+    <button class="btn btn-primary col-12" type="submit">Create Account</button>
+  </form>
 
-    
-  </div>
 
 </div>
+
 <br>
 <br>
 
@@ -140,115 +193,115 @@
 {% endblock %}
 
 
-  <!-- Questions -->
-  <div class="questions">
+<!-- Questions -->
+<div class="questions">
 
-    <!-- What is BizNet -->
-    <div class="start-info">
-      <p>
-        <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
-          aria-controls="collapsestart1">
-          What is BizNet?
-        </a>
-      </p>
-      <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart1">
-        <div class="card-start start-card-body">
-          <p>
-            At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
-            important
-            asset to succeed with your business.
-          </p>
-          <p>
-            Be the go-to place where small business owners build active and strong networks to generate new business
-            opportunities and exchange experience.
-          </p>
-          <p>
-            BizNet helps small business owners to find new business opportunities through a strong and relevant
-            network,
-            share
-            experiences and stay social.
-          </p>
-        </div>
+  <!-- What is BizNet -->
+  <div class="start-info">
+    <p>
+      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart1" aria-expanded="false"
+        aria-controls="collapsestart1">
+        What is BizNet?
+      </a>
+    </p>
+    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart1">
+      <div class="card-start start-card-body">
+        <p>
+          At BizNet we believe in the power of strong and relevant professional networks. Your network is the most
+          important
+          asset to succeed with your business.
+        </p>
+        <p>
+          Be the go-to place where small business owners build active and strong networks to generate new business
+          opportunities and exchange experience.
+        </p>
+        <p>
+          BizNet helps small business owners to find new business opportunities through a strong and relevant
+          network,
+          share
+          experiences and stay social.
+        </p>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <!-- Who is BizNet -->
+  <div class="start-info">
+    <p>
+      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
+        aria-controls="collapsestart2">
+        Who is BizNet?
+      </a>
+    </p>
+    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart2">
+      <div class="card-start start-card-body">
+        <br>
+        <h6><strong>Match Contacts</strong></h6>
+        <p>
+          At BizNet we believe in the power of strong and relevant professional
+          networks. Your network is the most important asset to succeed with your
+          business.
+        </p>
+        <br>
+        <h6><strong>Our Vision</strong></h6>
+        <p>
+          Be the go-to place where small business owners build active and strong
+          networks to generate new business opportunities and exchange experience.
+        </p>
+        <br>
+        <h6><strong>Solution</strong></h6>
+        <p>
+          BizNet helps small business owners to find new business opportunities
+          through a strong and relevant network, share experiences and stay social.
+        </p>
         <br>
       </div>
+      <br>
     </div>
+  </div>
 
-    <!-- Who is BizNet -->
-    <div class="start-info">
-      <p>
-        <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart2" aria-expanded="false"
-          aria-controls="collapsestart2">
-          Who is BizNet?
-        </a>
-      </p>
-      <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart2">
-        <div class="card-start start-card-body">
-          <br>
-          <h6><strong>Match Contacts</strong></h6>
-          <p>
-            At BizNet we believe in the power of strong and relevant professional
-            networks. Your network is the most important asset to succeed with your
-            business.
-          </p>
-          <br>
-          <h6><strong>Our Vision</strong></h6>
-          <p>
-            Be the go-to place where small business owners build active and strong
-            networks to generate new business opportunities and exchange experience.
-          </p>
-          <br>
-          <h6><strong>Solution</strong></h6>
-          <p>
-            BizNet helps small business owners to find new business opportunities
-            through a strong and relevant network, share experiences and stay social.
-          </p>
-          <br>
-        </div>
+  <!-- How does BizNet work -->
+  <div class="start-info">
+    <p>
+      <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
+        aria-controls="collapsestart3">
+        How does BizNet work?
+      </a>
+    </p>
+    <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart3">
+      <div class="card-start start-card-body">
         <br>
-      </div>
-    </div>
-
-    <!-- How does BizNet work -->
-    <div class="start-info">
-      <p>
-        <a class="btn btn-primary start-buttons" data-toggle="collapse" href="#collapsestart3" aria-expanded="false"
-          aria-controls="collapsestart3">
-          How does BizNet work?
-        </a>
-      </p>
-      <div class="collapse card-frame" style="max-width: 740px;" id="collapsestart3">
-        <div class="card-start start-card-body">
-          <br>
-          <h6><strong>Match Contacts</strong></h6>
-          <p>
-            With a smart matching algorithm BizNet finds the right contact to invite
-            and start networking with. You can also discover and search manually to
-            connect and invite your existing network to BizNet. To interact with your
-            new contact BizNet suggest CTA's as next best action like message, video call,
-            phone call or a lunch meeting.
-          </p>
-          </br>
-          <h6><strong>Find business</strong></h6>
-          <p>
-            All users automatically receive gigs which are matching their profile and
-            skillset. This is a social marketplace feature. You apply through the app
-            and get contacted by the gig owner. To build trust and reputation you can
-            get rated or recommended by the gig owner or a user who you have helped.
-            Users can post gigs within their network or publicly (pro version).
-          </p>
-          <br>
-          <h6><strong>Stay updated</strong></h6>
-          <p>
-            The feed is the core engagement feature to keep you updated about what is
-            happening in your network. BizNet notifies you to various events that you
-            should act on to create more value and rewards when interacting with your
-            network.
-          </p>
-          <br>
-        </div>
+        <h6><strong>Match Contacts</strong></h6>
+        <p>
+          With a smart matching algorithm BizNet finds the right contact to invite
+          and start networking with. You can also discover and search manually to
+          connect and invite your existing network to BizNet. To interact with your
+          new contact BizNet suggest CTA's as next best action like message, video call,
+          phone call or a lunch meeting.
+        </p>
+        </br>
+        <h6><strong>Find business</strong></h6>
+        <p>
+          All users automatically receive gigs which are matching their profile and
+          skillset. This is a social marketplace feature. You apply through the app
+          and get contacted by the gig owner. To build trust and reputation you can
+          get rated or recommended by the gig owner or a user who you have helped.
+          Users can post gigs within their network or publicly (pro version).
+        </p>
+        <br>
+        <h6><strong>Stay updated</strong></h6>
+        <p>
+          The feed is the core engagement feature to keep you updated about what is
+          happening in your network. BizNet notifies you to various events that you
+          should act on to create more value and rewards when interacting with your
+          network.
+        </p>
+        <br>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- Information cards -->
