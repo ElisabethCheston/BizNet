@@ -35,6 +35,9 @@ def Register(request):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for' + user)
+
     context = {
         'form': form
     }
