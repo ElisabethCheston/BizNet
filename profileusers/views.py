@@ -44,6 +44,7 @@ def Register(request):
         'form': form
     }
     return render(request, template, context)
+    
 """
 class RegisterPage(View):
     template = 'profileusers/register_profile.html'
@@ -52,6 +53,7 @@ class RegisterPage(View):
         if url:
             return reverse("profile_edit")
 """
+
 def loginPage(request):
     if request.method == 'POST':
         # Connected to the name field in the login_page.
@@ -61,7 +63,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('my_profile')
+            return redirect('register_profile')
 
         else:
             messages.info(request, 'Username or Password is incorrect!')
@@ -76,7 +78,7 @@ def profile_details(request):
     # pylint: disable=maybe-no-member
     #profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/profile_details.html'
+    template = 'profileusers/register_profile.html'
     context = {
         'profile': profile,
     }
@@ -108,6 +110,7 @@ def profile_edit(request):
 
 # MY GIGS
 
+@login_required
 def my_gigs(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)
@@ -118,6 +121,8 @@ def my_gigs(request):
     }
     return render(request, template, context)
 
+
+@login_required
 def create_gig(request):
     # pylint: disable=maybe-no-member
     #profile = get_object_or_404(Profileuser, user=request.user)
@@ -131,6 +136,7 @@ def create_gig(request):
 
 # PROFILES
 
+@login_required
 def all_profiles(request):
     # pylint: disable=maybe-no-member
     profiles = Profileuser.objects.all()
@@ -142,9 +148,9 @@ def all_profiles(request):
 
 
 @login_required
-def my_profile(request):
+def RegisterPage(request):
     if request.method == 'POST':
-        form = RegisterUserForm(request.POST, 
+        form = RegisterForm(request.POST, 
                                 request.FILES, 
                                 instance=request.user.profileuser)
         if form.is_valid():
@@ -155,16 +161,17 @@ def my_profile(request):
             messages.error(request, 'Update failed. Kindly check\
                 that your inputs are valid.')
     else:
-        form = RegisterUserForm(instance=request.user.profileuser)
+        form = RegisterForm(instance=request.user.profileuser)
     context = {
         'form':form,
         'on_profile_page': True
     }
-    return render(request, 'profileusers/my_profile.html', context)
+    return render(request, 'profileusers/register_page.html', context)
 
 
 # CONTACTS
 
+@login_required
 def my_contacts(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)

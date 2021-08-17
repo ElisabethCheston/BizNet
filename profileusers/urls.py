@@ -16,7 +16,7 @@ urlpatterns = [
     path('create_gig/', views.create_gig, name='create_gig'),
 
     path('register/', views.Register, name='register'),
-    # path('register_profile/', RegisterPage.as_view(), name='register_profile'), # .as_view() to "convert" a class-based view for url
+    path('register_profile/', views.RegisterPage, name='register_profile'),
     path('login/', views.loginPage, name='login'),
 
     path('my_gigs/', views.my_gigs, name='my_gigs'),
