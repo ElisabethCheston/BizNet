@@ -7,102 +7,90 @@
 {% block content %}
 
 <style>
+  /* LAYOUT */
+
   #justify-center {
-  margin: auto;
-  width: 70%;
-  padding: 15px;
-  border: none !important;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    border: none !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-.errorlist {
-display: none !important;
-}
-label {
-  display: none;
-}
-p {
-height: 20px;
-}
+  /* TEXT & FIELDS */
 
-#id_login,
-#id_password,
-.primaryAction {
-  width: 70%;
-  height: 30px;
-  margin: 2%;
-  /* text-transform: uppercase; */
-  text-align: center;
-}
-#id_remember {
-  display: none;
-}
-.primaryAction,
-.logout-btn  {
-  width: 70%;
-  height: 30px;
-  margin: 2%;
-  text-transform: uppercase;
-  text-align: center;
-}
+  #id_email,
+  #id_username,
+  #id_password1,
+  #id_password2 {
+    width: 84%;
+    text-align: center;
+    font-size: large;
+    height: 60px;
+    border-style: groove;
+  }
 
-.user_card {
-  width: 70%;
-  margin-top: auto;
-  margin-bottom: auto;
-  background: #ffffff;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.form_container {
-  margin-top: 30px;
-  width: 100%;
-  align-items: center;
-}
-#form-title {
-  color: #fff;
-}
-.logput_btn {
-  width: 100%;
-  background: rgba(141, 133, 133, 0.7) !important;
-  color: white !important;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: medium;
-  font-weight: bold;
-}
-.logput_btn:focus {
-  box-shadow: none !important; 
-  outline: 0px !important;
-}
-.login_container {
-  padding: 0 2rem;
-}
-.input-group-text {
-  background: #f7ba5b !important;
-  color: white !important;
-  border: 0 !important;
-  border-radius: 0.25rem 0 0 0.25rem !important;
-}
-.input_user,
-.input_pass:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
-}
-#messages {
-  background-color: grey;
-  color: #fff;
-  padding: 10px;
-  margin-top: 10px;
-}
+  a,
+  p,
+  h2 {
+    text-align: center;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  /* FORM */
+
+  .form_container {
+    margin-top: 10px;
+    width: 100%;
+    border-color: black;
+    align-items: center;
+  }
+
+  .form-control {
+    width: 90%;
+    height: 60px;
+    margin-top: 2%;
+    text-align: center;
+    font-size: large !important;
+  }
+
+  /* BUTTONS */
+
+  .logout_btn {
+    border-width: 2px;
+    color: white;
+    border-color: rgba(148, 149, 150, 0.2);
+    background-color: rgba(131, 133, 134, 0.8) !important;
+    width: 80%;
+    height: 50px;
+    margin-top: 2%;
+    font-weight: bold;
+    text-align: center;
+    font-size: large !important;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .btn:hover,
+  .btn:active,
+  .btn:focus {
+    background-color: rgba(94, 95, 95, 0.792) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+  }
+
+  /* INFO MESSAGES */
+
+  #messages {
+    background-color: rgba(128, 186, 240, 0.792);
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+  }
 </style>
 
 <div class="container" id="justify-center">
@@ -128,15 +116,15 @@ height: 20px;
         <p>{% trans 'Are you sure you want to sign out?' %}</p>
       </div>
 
-        <form id="justify-center" method="post" action="{% url 'account_logout' %}">
+      <form id="justify-center" method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
         <button class="text-center logout_btn" id="justify-center" type="submit">{% trans 'Sign Out' %}</button>
       </form>
-<br>
-<br>
+      <br>
+      <br>
 
     </div>
   </div>
