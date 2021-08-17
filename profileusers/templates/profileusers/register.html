@@ -35,6 +35,8 @@ ul, li {
     padding: 25px;
   }
 */
+  #id_first_name,
+  #id_last_name,
   #id_email,
   #id_username,
   #id_password1,
@@ -42,7 +44,8 @@ ul, li {
     width: 84%;
     text-align: center;
     font-size: large;
-    height: 60px;
+    height: 50px;
+    margin-top: 2%;
     border-style: groove;
   }
 
@@ -54,7 +57,6 @@ ul, li {
     font-size: medium;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-
 
   .form_container {
     margin-top: 10px;
@@ -94,7 +96,7 @@ ul, li {
   .register_container {
     padding: 0 1rem;
   }
-*/
+
   .form-control {
     width: 90%;
     height: 60px;
@@ -102,7 +104,7 @@ ul, li {
     text-align: center;
     font-size: large !important;
   }
-
+*/
   #link {
     color: deeppink;
   }
@@ -159,24 +161,24 @@ ul, li {
           <div class="input-group-append">
             <span class="input-group-text"></span>
           </div>
-          {{form.firstname}}
+          {{form.first_name}}
         </div>
-        
+
         <!-- Last Name -->
-        <!--<div class="input-group mb-2">
+        <div class="input-group mb-2">
           <div class="input-group-append">
             <span class="input-group-text"></span>
           </div>
-          {{form.lastname}}
-        </div>-->
-        
+          {{form.last_name}}
+        </div>
+
         <!-- Username -->
-        <!--<div class="input-group mb-2">
+        <div class="input-group mb-2">
           <div class="input-group-append">
             <span class="input-group-text"></span>
           </div>
           {{form.username}}
-        </div>-->
+        </div>
 
         <!-- Email -->
         <div class="input-group mb-2">
@@ -205,27 +207,8 @@ ul, li {
 
         <!--Terms & Conditions-->
 
-  
-      <!-- Terms and conditions modal -->
-      <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="Terms and conditions" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h3 class="modal-title">Terms and conditions</h3>
-                  </div>
-  
-                  <div class="modal-body" style="max-height: 200px;">
-                      <p>Lorem ipsum dolor sit amet, veniam numquam has te. No suas nonumes recusabo mea, est ut graeci definitiones. His ne melius vituperata scriptorem, cum paulo copiosae conclusionemque at. Facer inermis ius in, ad brute nominati referrentur vis. Dicat erant sit ex. Phaedrum imperdiet scribentur vix no, ad latine similique forensibus vel.</p>
-                      <p>Dolore populo vivendum vis eu, mei quaestio liberavisse ex. Electram necessitatibus ut vel, quo at probatus oportere, molestie conclusionemque pri cu. Brute augue tincidunt vim id, ne munere fierent rationibus mei. Ut pro volutpat praesent qualisque, an iisque scripta intellegebat eam.</p>
-                  </div>
-  
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" id="agreeButton" data-dismiss="modal">Agree</button>
-                      <button type="button" class="btn btn-default" id="disagreeButton" data-dismiss="modal">Disagree</button>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <!-- Terms and conditions modal -->
+
 
         <!-- Submit button -->
         <div class="d-flex justify-content-center mt-3" id="justify-center">
@@ -254,12 +237,12 @@ ul, li {
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>    
-<script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-<script src="/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+  <script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+  <script src="/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
   <script>
     /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
@@ -268,119 +251,18 @@ ul, li {
 
     // Query All input fields
     var form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder = 'Username..';
-    form_fields[2].placeholder = 'Email..';
-    form_fields[3].placeholder = 'Enter password...';
-    form_fields[4].placeholder = 'Re-enter Password...';
+    form_fields[1].placeholder = 'First name..';
+    form_fields[2].placeholder = 'Last name..';
+
+    form_fields[3].placeholder = 'Username..';
+    form_fields[4].placeholder = 'Email..';
+    form_fields[5].placeholder = 'Enter password...';
+    form_fields[6].placeholder = 'Re-enter Password...';
 
     for (var field in form_fields) {
       form_fields[field].className += 'form-control'
     }
 
-
-    document.addEventListener('DOMContentLoaded', function(e) {
-    const demoForm = document.getElementById('demoForm');
-    const fv = FormValidation.formValidation(demoForm, {
-        fields: {
-            firstName: {
-                validators: {
-                    notEmpty: {
-                        message: 'The first name is required'
-                    }
-                }
-            },
-            lastName: {
-                validators: {
-                    notEmpty: {
-                        message: 'The last name is required'
-                    }
-                }
-            },
-            username: {
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: 'The username can only consist of alphabetical, number and underscore'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'The email address is required'
-                    },
-                    emailAddress: {
-                        message: 'The input is not a valid email address'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'The password is required'
-                    },
-                    stringLength: {
-                        min: 8,
-                        message: 'The password must have at least 8 characters'
-                    },
-                    different: {
-                        message: 'The password cannot be the same as username',
-                        compare: () => {
-                            return form.querySelector('[name="username"]').value;
-                        }
-                    }
-                }
-            },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'The gender is required'
-                    }
-                }
-            },
-            agree: {
-                validators: {
-                    callback: {
-                        message: 'You must agree with the terms and conditions',
-                        callback: function(input) {
-                            return input.value === 'yes';
-                        }
-                    }
-                }
-            },
-        },
-        plugins: {
-            trigger: new FormValidation.plugins.Trigger(),
-            bootstrap: new FormValidation.plugins.Bootstrap(),
-            submitButton: new FormValidation.plugins.SubmitButton(),
-            icon: new FormValidation.plugins.Icon({
-                valid: 'fa fa-check',
-                invalid: 'fa fa-times',
-                validating: 'fa fa-refresh'
-            }),
-        },
-    });
-
-    // Update the value of "agree" input when clicking the Agree/Disagree button
-    const agreeInput = demoForm.querySelector('[name="agree"]');
-    document.getElementById('agreeButton').addEventListener('click', () => {
-        agreeInput.value = 'yes';
-        fv.revalidateField('agree');
-    });
-
-    document.getElementById('disagreeButton').addEventListener('click', () => {
-        agreeInput.value = 'no';
-        fv.revalidateField('agree');
-    });
-});
   </script>
 
   {% endblock %}

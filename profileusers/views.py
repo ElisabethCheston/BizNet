@@ -25,8 +25,8 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.views.generic import TemplateView, View
 from .models import Profileuser
-from .forms import ProfileuserForm, RegisterForm, RegisterUserForm
 
+from .forms import ProfileuserForm, EditForm, RegisterUserForm
 
 
 def Register(request):
@@ -108,6 +108,41 @@ def profile_edit(request):
 
 
 
+# PROFILES
+
+@login_required
+def all_profiles(request):
+    # pylint: disable=maybe-no-member
+    profiles = Profileuser.objects.all()
+    template = 'profileusers/all_profiles.html'
+    context = {
+        'profiles': profiles,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def RegisterPage(request):
+    if request.method == 'POST':
+        form = EditForm(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Profile has been updated!')
+            return redirect('profile_details')
+        else:
+            messages.error(request, 'Update failed. Kindly check\
+                that your inputs are valid.')
+    else:
+        form = EditForm(instance=request.user.profileuser)
+    context = {
+        'form':form,
+        'on_profile_page': True
+    }
+    return render(request, 'profileusers/register_page.html', context)
+
+
 # MY GIGS
 
 @login_required
@@ -132,41 +167,6 @@ def create_gig(request):
         'profile': profile,
     }
     return render(request, template, context)
-
-
-# PROFILES
-
-@login_required
-def all_profiles(request):
-    # pylint: disable=maybe-no-member
-    profiles = Profileuser.objects.all()
-    template = 'profileusers/all_profiles.html'
-    context = {
-        'profiles': profiles,
-    }
-    return render(request, template, context)
-
-
-@login_required
-def RegisterPage(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST, 
-                                request.FILES, 
-                                instance=request.user.profileuser)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your Profile has been updated!')
-            return redirect('profile_details')
-        else:
-            messages.error(request, 'Update failed. Kindly check\
-                that your inputs are valid.')
-    else:
-        form = RegisterForm(instance=request.user.profileuser)
-    context = {
-        'form':form,
-        'on_profile_page': True
-    }
-    return render(request, 'profileusers/register_page.html', context)
 
 
 # CONTACTS
