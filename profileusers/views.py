@@ -62,10 +62,13 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('my_profile')
+
+        else:
+            messages.info(request, 'Username or Password is incorrect!')
+            
     template = 'profileusers/login.html'
     context = {}
     return render(request, template, context)
-
 
 
 @login_required
@@ -138,14 +141,26 @@ def all_profiles(request):
     return render(request, template, context)
 
 
+@login_required
 def my_profile(request):
-    # pylint: disable=maybe-no-member
-    profiles = Profileuser.objects.all()
-    template = 'profileusers/my_profile.html'
+    if request.method == 'POST':
+        form = RegisterUserForm(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Profile has been updated!')
+            return redirect('profile_details')
+        else:
+            messages.error(request, 'Update failed. Kindly check\
+                that your inputs are valid.')
+    else:
+        form = RegisterUserForm(instance=request.user.profileuser)
     context = {
-        'profiles': profiles,
+        'form':form,
+        'on_profile_page': True
     }
-    return render(request, template, context)
+    return render(request, 'profileusers/my_profile.html', context)
 
 
 # CONTACTS

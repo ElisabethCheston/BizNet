@@ -6,7 +6,6 @@
 
 {% block content %}
 
-
 <style>
   #justify-center {
     margin: auto;
@@ -17,7 +16,8 @@
     align-items: center;
     text-align: center;
   }
-  
+
+  /*
   .errorlist {
     list-style: none !important;
     align-items: center;
@@ -31,26 +31,20 @@ ul, li {
   font-size: large;
   text-align: center;
 }
-  p {
-    height: 20px;
-    margin: 3%;
-    padding: 2%;
-  }
 
   .form-check {
     padding: 25px;
   }
-
+*/
   #id_email,
-    #id_email2,
-    #id_username,
-    #id_password1,
-    #id_password2 {
-    width: 90%;
-    margin: 1%;
+  #id_username,
+  #id_password1,
+  #id_password2 {
+    width: 84%;
     text-align: center;
     font-size: large;
     height: 60px;
+    border-style: groove;
   }
 
   a,
@@ -62,48 +56,28 @@ ul, li {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
-  /*
-  .primaryAction {
-    width: 70%;
-    height: 40px;
-    margin: -2%;
-    text-transform: uppercase;
-    text-align: center;
-  }
-/*
-  .user_card {
-    width: 70%;
-    margin-top: auto;
-    margin-bottom: auto;
-    background: #ffffff;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-*/
+
   .form_container {
     margin-top: 10px;
     width: 100%;
+    border-color: black;
     align-items: center;
   }
 
-  .btn {
+  /* BUTTONS */
+
+  .btn,
+  .register-button {
     border-width: 2px;
     color: white;
     border-color: rgba(148, 149, 150, 0.2);
     background-color: rgba(131, 133, 134, 0.8) !important;
-    width: 100%;
-    height: 60px;
-    margin: 2%;
+    width: 80%;
+    height: 50px;
+    margin-top: 2%;
     font-weight: bold;
     text-align: center;
-    font-size: x-large !important;
+    font-size: large !important;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -116,9 +90,25 @@ ul, li {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 
   }
+
+  /*
   .register_container {
     padding: 0 1rem;
   }
+*/
+.form-control {
+        width: 90%;
+        height: 60px;
+        margin-top: 2%;
+        text-align: center;
+        font-size: large !important;
+    }
+
+  #link {
+    color: deeppink;
+  }
+
+  /*
   .input-group-text {
     background: #8a9194a9 !important;
     color: white !important;
@@ -132,8 +122,9 @@ ul, li {
     box-shadow: none !important;
     outline: 0px !important;
   }
+  */
   #messages {
-    background-color:rgba(128, 186, 240, 0.792);
+    background-color: rgba(128, 186, 240, 0.792);
     color: #fff;
     padding: 10px;
     margin-top: 10px;
@@ -148,13 +139,13 @@ ul, li {
       <a href="{% url 'home' %}" class="nav-link main-logo-link">
         <img
           src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-          alt="" width="210" height="50" class="logo img-fluid">
+          alt="" width="230" height="55" class="logo img-fluid">
       </a>
     </div>
   </div>
+  <br>
 
   <div class="d-flex">
-    <br>
     <div class="d-flex" id="justify-center">
       <h2 id="form-title">REGISTER ACCOUNT</h2>
     </div>
@@ -200,8 +191,8 @@ ul, li {
         <div class="d-flex justify-center mt-3">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
-            <a type="link" class="" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
-            data-bs-content="Documentation related complaints: while the 
+            <a type="link" id="link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+              data-bs-content="Documentation related complaints: while the 
           documentation can most certainly be improved, I am adhering to the debatable principle 
           that keeping open issues around with respect to documentation is not very helpful in 
           improving things. Please step in and file a pull request if you feel there is something 
@@ -210,14 +201,14 @@ ul, li {
           puzzle and for example a stack trace indicates another module crashing, please try to 
           come up stripped version of the issue where it is clear that allauth is the one that 
           is misbehaving.">
-            Terms & Conditions
-          </a>
+              Terms & Conditions
+            </a>
           </label>
         </div>
 
         <!-- Submit button -->
-        <div class="d-flex justify-center mt-3" id="justify-center">
-          <input class="btn register_btn" type="submit" value="REGISTER ACCOUNT">
+        <div class="d-flex justify-content-center mt-3" id="justify-center">
+          <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">
         </div>
 
       </form>
@@ -233,7 +224,7 @@ ul, li {
 
     <div class="mt-4">
       <div class="d-flex link justify-content-center links">
-        Already got an account? 
+        Already got an account?
         <a href="{% url 'login' %}" class="ml-2">
           Sign In
         </a>

@@ -2,56 +2,6 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block page_header %}
-<!-- Profile tab links -->
-<div class="tab-container">
-    <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'profile_details' %}">
-                <input type="submit" value="MY PROFILE" class="nav-link gig-tab active" id="my_profile_tab"
-                    data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'profile_edit' %}">
-                <input type="submit" value="EDIT PROFILE" class="nav-link gig-tab" id="edit_profile_tab"
-                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'my_contacts' %}">
-                <input type="submit" value="MY CONTACTS" class="nav-link gig-tab" id="my_contacts_tab"
-                    data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'my_gigs' %}">
-                <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
-                    data-bs-target="#my_gig" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'create_gig' %}">
-                <input type="submit" value="CREATE GIG" class="nav-link gig-tab" id="create_gig_tab"
-                    data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
-            </form>
-        </li>
-
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
-
-        <div class="tab-pane" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile_tab"></div>
-
-        <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
-
-        <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
-
-        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
-
-    </div>
-</div>
-{% endblock %}
 
 
 {% block content %}
@@ -59,7 +9,7 @@
 <style>
     #justify-center {
         margin: auto;
-        width: 80%;
+        width: 90%;
         padding: 10px;
         border: none !important;
         justify-content: center;
@@ -75,100 +25,63 @@
     label {
       display: none;
     }
-    p {
-        height: 5px;
-        margin: 3%;
-        padding: 2%;
-    }
 
     .form-check {
         padding: 25px;
     }
 */
     #id_email,
-    #id_email2,
     #id_username,
     #id_password1,
     #id_password2 {
         width: 100%;
-        height: 60px;
+        height: 50px;
         background-color: white !important;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        margin: 1%;
         text-align: center;
+        font-size: large;
+    }
+
+    input {
+        width: 70%;
+        height: 40px;
+        background-color: white !important;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: large;
     }
 
     a,
-    h2,
-    .link {
+    p,
+    .link,
+    h2 {
         text-align: center;
-        font-size: large;
+        font-size: medium;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-
-    /*
-    .primaryAction {
-      width: 70%;
-      height: 40px;
-      margin: -2%;
-      text-transform: uppercase;
-      text-align: center;
+/*
+    .form_container {
+        margin-top: 10px;
+        width: 70%;
+        align-items: center;
     }
-  /*
-    .user_card {
-      width: 70%;
-      margin-top: auto;
-      margin-bottom: auto;
-      background: #ffffff;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      border-radius: 5px;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
-
-.form_container {
-    margin-top: 10px;
-    width: 100%;
-    align-items: center;
-}
 */
-    .login_btn {
-        border-width: 2px;
+    /* BUTTONS */
+
+    .btn {
         color: white;
         border-color: rgba(148, 149, 150, 0.2);
         background-color: rgba(131, 133, 134, 0.8) !important;
-        width: 100%;
-        height: 60px;
+        width: 80%;
+        height: 50px;
+        margin-top: 2%;
         font-weight: bold;
-        margin: 2%;
         text-align: center;
-        font-size: x-large !important;
+        font-size: large !important;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-    /*
-    .login_btn:focus {
-        box-shadow: none !important;
-        outline: 0px !important;
-    }
-
-    .btn {
-        border-width: 2px;
-        border-color: rgba(148, 149, 150, 0.2);
-        background-color: rgba(131, 133, 134, 0.6) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    }
-*/
     .btn:hover,
     .btn:active,
     .btn:focus {
@@ -176,16 +89,25 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
+    /*
     .login_container {
         padding: 0 1rem;
     }
-
+*/
     .form-control {
-        width: 100%;
+        width: 90%;
         height: 60px;
-        margin: 1%;
+        margin-top: 2%;
         text-align: center;
         font-size: large !important;
+    }
+
+    #link {
+        color: deeppink;
+    }
+
+    .password_reset {
+        border: none;
     }
 
     /*
@@ -200,10 +122,12 @@
     }
 */
     #messages {
-        background-color: grey;
-        color: #fff;
+        background-color: rgba(236, 10, 10, 0.753);
+        color: rgb(247, 243, 243);
+        font-weight: bolder;
         padding: 10px;
         margin-top: 10px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 </style>
 
@@ -214,7 +138,7 @@
         <div class="col-6 col-lg-4" id="justify-center">
             <a href="{% url 'home' %}" class="nav-link main-logo-link">
                 <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-                    alt="" width="210" height="50" class="logo img-fluid">
+                    alt="" width="230" height="55" class="logo img-fluid">
             </a>
         </div>
     </div>
@@ -223,34 +147,41 @@
     <div class="d-flex">
         <h2 id="form-title">SIGN IN</h2>
     </div>
-    <div class="d-flex justify-content-center form_container">
+    <div class="d-flex justify-content-center form_container" id="justify-center">
 
         <form method="POST" action="#" id="justify-center">
             {% csrf_token %}
-            <div class="input-group mb-3" id="justify-center">
-                <div class="input-group-append">
+            <div class="input-group mb-3">
+                <div class="input-group-append justify-content-center">
                     <span class="input-group-text"></span>
                 </div>
                 <input type="text" name="username" placeholder="Username..." class="form-control">
             </div>
-            <div class="input-group mb-2" id="justify-center">
-                <div class="input-group-append">
+            <div class="input-group mb-2">
+                <div class="input-group-append justify-content-center">
                     <span class="input-group-text"></span>
                 </div>
                 <input type="password" name="password" placeholder="Password..." class="form-control">
             </div>
+            <p><b>Forgotten your password?</b></p>
+            <p>Please, click on the <a href="{% url 'account_reset_password' %}" class="link-danger">LINK</a>, and we'll send you an e-mail allowing
+                you to reset it.</p>
+
+
             <br>
             <div class="d-flex justify-content-center mt-3" id="justify-center">
-                <input class="btn login_btn" type="submit" value="Login">
+                <input class="btn" type="submit" value="SIGN IN">
             </div>
         </form>
 
     </div>
     <br>
 
-    {% for message in messages %}
+    <!--
+        {% for message in messages %}
     <p id="messages">{{ message }}</p>
     {% endfor %}
+    -->
 
     <!-- Account Register and Signin links-->
     <div class="mt-4">
