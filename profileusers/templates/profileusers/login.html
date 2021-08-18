@@ -93,20 +93,21 @@
         border: none;
     }
 
-    
+
     .input-group-text {
-    background: #8a9194a9 !important;
-    color: white !important;
-    border: 1px !important;
-    font-size: large;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-  }
+        background: #8a9194a9 !important;
+        color: white !important;
+        border: 1px !important;
+        font-size: large;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
 
-  .input_user,
-  .input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+/*
     #messages {
         background-color: rgba(236, 10, 10, 0.753);
         color: rgb(247, 243, 243);
@@ -114,7 +115,8 @@
         padding: 10px;
         margin-top: 10px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
+        }
+        */
 </style>
 
 <div class="login_container" id="justify-center">
@@ -149,7 +151,7 @@
                 </div>
                 <input type="password" name="password" placeholder="Password..." class="form-control">
             </div>
-            
+
             <p><b>Forgotten your password?</b></p>
             <p>Please, click on the <a href="{% url 'account_reset_password' %}" class="link-danger">LINK</a>, and we'll
                 send you an e-mail allowing

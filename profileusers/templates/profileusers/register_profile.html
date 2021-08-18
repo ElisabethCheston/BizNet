@@ -1,46 +1,234 @@
-{% extends "base.html" %}
+{% extends "account/base.html" %}
 {% load i18n %}
 
 
+{% block head_title %}{% trans "Registration" %}{% endblock %}
+
 {% block content %}
+<style>
+    #justify-center {
+        margin: auto;
+        width: 80%;
+        padding: 10px;
+        border: none !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-<div class="container-profile justify-center">
+    #id_first_name,
+    #id_last_name,
+    #id_email,
+    #id_username,
+    #id_password1,
+    #id_password2 {
+        width: 84%;
+        text-align: center;
+        font-size: large;
+        height: 50px;
+        margin-top: 2%;
+        border-style: groove;
+    }
 
+    a,
+    p,
+    .link,
+    h2 {
+        text-align: center;
+        font-size: medium;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
 
-    <br>
+    .form_container {
+        margin-top: 10px;
+        width: 100%;
+        border-color: black;
+        align-items: center;
+    }
+
+    /* BUTTONS */
+
+    .btn,
+    .register-button {
+        border-width: 2px;
+        color: white;
+        border-color: rgba(148, 149, 150, 0.2);
+        background-color: rgba(131, 133, 134, 0.8) !important;
+        width: 80%;
+        height: 50px;
+        margin-top: 2%;
+        font-weight: bold;
+        text-align: center;
+        font-size: large !important;
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn:hover,
+    .btn:active,
+    .btn:focus {
+        background-color: rgba(94, 95, 95, 0.792) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+    }
+
+    /*
+  .register_container {
+    padding: 0 1rem;
+  }
+*/
+    .form-control {
+        width: 90%;
+        height: 50px;
+        margin-top: 2%;
+        text-align: center;
+    }
+
+    #link {
+        color: deeppink;
+    }
+
+    .input-group-text {
+        background: #8a9194a9 !important;
+        color: white !important;
+        border: 1px !important;
+        font-size: large;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+
+    .input_user,
+    .input_pass:focus {
+        /* box-shadow: none !important; */
+        outline: 0px !important;
+    }
+
+    #messages {
+        background-color: rgba(128, 186, 240, 0.792);
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="register_container" id="justify-center">
+
     <!-- Logo -->
     <div id="justify-center">
-      <div class="col-6 col-lg-4" id="justify-center">
-        <a href="{% url 'home' %}" class="nav-link main-logo-link">
-          <img
-            src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-            alt="" width="230" height="55" class="logo img-fluid">
-        </a>
-      </div>
-    </div>
-    <br>
-    
-    <!-- Edit Profile -->
-    <div class="card" style="max-width: 840px;">
-        <!--<div class="row">
-            <div class="col">
-                <img class="rounded-circle account-img avatar" src="{{profileuser.avatar}}" alt="{{profileuser.user}}">
-            </div>
-        </div>-->
-
-        <div class="card-body">
-            <div class="col-12">
-
-                <h5>
-                    Register Profile
-                </h5>
-
-            </div>
+        <div class="col-6 col-lg-4" id="justify-center">
+            <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
+                    alt="" width="230" height="55" class="logo img-fluid">
+            </a>
         </div>
     </div>
     <br>
-    <br>
 
-</div>
+    <div class="d-flex">
 
-{% endblock %}
+        <div class="d-flex" id="justify-center">
+            <h2 id="form-title">REGISTER PROFILE</h2>
+        </div>
+
+        <div class="d-flex justify-content-center form_container">
+            <form method="POST" action="#">
+                {% csrf_token %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{profile.firstname}} {{profile.lastname}}</h5>
+                    <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
+                    <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
+                    <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
+                    <br>
+
+                    <p class="card-text">Profession: &nbsp; {{profile.profession}}</p>
+                    <p class="card-text">Skills: &nbsp {{profile.skill}}</p>
+                    <br>
+                    <p class="card-text">Email: &nbsp; {{profile.email}}</p>
+                    <p class="card-text">City: &nbsp; {{profile.city}}</p>
+                    <p class="card-text">{{profile.country}}</p>
+                    <br>
+                </div>
+
+                <!-- Update button -->
+                <div class="row justify-content-center">
+                    <div class="col-3 text-center">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    {% endblock %}
+
+
+    <div>
+        <!-- First Name -->
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"></span>
+            </div>
+            {{form.first_name}}
+        </div>
+
+        <!-- Last Name -->
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"></span>
+            </div>
+            {{form.last_name}}
+        </div>
+
+        <!-- Username -->
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"></span>
+            </div>
+            {{form.title}}
+        </div>
+        <br>
+        <!-- Email -->
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"></span>
+            </div>
+            {{form.email}}
+        </div>
+
+        <!-- Password 1 -->
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"></span>
+            </div>
+            {{form.password1}}
+        </div>
+
+        <!-- Password 2 -->
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"></span>
+            </div>
+            {{form.password2}}
+        </div>
+        <br>
+    </div>
+
+
+    <!-- Terms and Conditions -->
+    <!--<div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+            </label>
+            <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right"
+              data-bs-toggle="popover-term" title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
+          can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
+          around with respect to documentation is not very helpful in improving things. Please step in and 
+          file a pull request if you feel there is something unclear.
+          Project specific integration trouble: In cases where allauth is just one piece of the puzzle and 
+          for example a stack trace indicates another module crashing, please try to come up stripped version 
+          of the issue where it is clear that allauth is the one that is misbehaving.">
+              Terms & Conditions</button>
+          </div>-->

@@ -86,6 +86,12 @@
                     <fieldset class="form-group">
                         <legend class="border-bottom mb-4">Profile Information</legend>
                         {{ form|crispy }}
+
+                        <h2> {{user.profileuser.bio}} </h2>
+                        <h2> {{user.profileuser.phone}} </h2>
+                        <h2> {{user.profileuser.city}} </h2>
+                        <h2> {{user.profileuser.country}} </h2>
+
                     </fieldset>
                     <br>
                     <div class="row justify-content-center">

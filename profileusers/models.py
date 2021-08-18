@@ -173,4 +173,13 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
     if created:
         Profileuser.objects.create(user=instance)
     instance.profileuser.save()
+
+
+
+def create_profile(sender, **kwargs):
+    user = kwargs["instance"]
+    if kwargs["created"]:
+        user_profile = Profileuser(user=user)
+        user_profile.save()
+post_save.connect(create_profile, sender=User)
 """

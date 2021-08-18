@@ -1,26 +1,19 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
-
+from django.contrib.auth.decorators import login_required
 """
 from django.contrib.auth import (REDIRECT_FIELD_NAME, login as auth_login,
     logout as auth_logout, get_user_model, update_session_auth_hash)
-from django.contrib.auth.decorators import login_required
-
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-
-from django.http import HttpResponseRedirect, QueryDict
 from django.template.response import TemplateResponse
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm, UserCreationForm
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.shortcuts import get_current_site
 """
-
 from django.http import JsonResponse
 from django.core import serializers
 from django.views.generic import TemplateView, View
@@ -33,22 +26,39 @@ from .forms import ProfileuserForm, EditForm, RegisterUserForm
 
 def Register(request):
     # pylint: disable=maybe-no-member
-    # form = RegisterUserForm()
+    form = RegisterUserForm()
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
-            # user = form.cleaned_data.get('username')
+            user = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for ' + user)
             return redirect('login')
     else:
         form = RegisterUserForm()
-        context = {
-            'form': form
-        }
-        template = 'profileusers/register.html'
-        return render(request, template, context)
-    
+
+    return render(request, 'profileusers/register.html', {'form': form })
+
+
+@login_required
+def RegisterPage(request):
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=request.user.profileuser)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Profile has been updated!')
+            return redirect('profile_details')
+        else:
+            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    else:
+        form = EditForm(instance=request.user.profileuser)
+    context = {
+        'form':form,
+        # 'on_profile_page': True
+    }
+    return render(request, 'profileusers/my_profile.html', context)
+
 """
 class RegisterPage(View):
     template = 'profileusers/register_profile.html'
@@ -82,7 +92,7 @@ def profile_details(request):
     # pylint: disable=maybe-no-member
     #profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(user=request.user)
-    template = 'profileusers/register_profile.html'
+    template = 'profileusers/profile_details.html'
     context = {
         'profile': profile,
     }
@@ -121,26 +131,6 @@ def all_profiles(request):
         'profiles': profiles,
     }
     return render(request, template, context)
-
-
-@login_required
-def RegisterPage(request):
-    if request.method == 'POST':
-        form = EditForm(request.POST, instance=request.user.profileuser)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your Profile has been updated!')
-            return redirect('profile_details')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
-    else:
-        form = EditForm(instance=request.user.profileuser)
-    context = {
-        'form':form,
-        # 'on_profile_page': True
-    }
-    return render(request, 'profileusers/my_profile.html', context)
 
 
 # MY GIGS

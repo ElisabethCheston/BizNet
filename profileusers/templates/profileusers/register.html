@@ -99,7 +99,7 @@
 
   .input_user,
   .input_pass:focus {
-    /*  */ox-shadow: none !important;
+    box-shadow: none !important;
     outline: 0px !important;
   }
 
@@ -193,9 +193,6 @@
           </label>
         </div>
 
-        <!-- Terms and conditions modal -->
-
-
         <!-- Submit button -->
         <div class="d-flex justify-content-center mt-3" id="justify-center">
           <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">
@@ -203,15 +200,16 @@
 
       </form>
     </div>
+
     <div class="col" id="justify-center">
       <!--{{ form.errors }}
       {{ errorlist.username }}
       {{ errorlist.email }}
       {{ errorlist.password1 }}
       {{ errorlist.password2 }}-->
-
     </div>
 
+    <!-- Already got an account? -->
     <div class="mt-4">
       <div class="d-flex link justify-content-center links">
         Already got an account?
@@ -220,15 +218,9 @@
         </a>
       </div>
     </div>
+
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
-  <script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-  <script src="/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
   <script>
     /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
