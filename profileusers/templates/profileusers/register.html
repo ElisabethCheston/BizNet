@@ -16,25 +16,6 @@
     text-align: center;
   }
 
-  /*
-  .errorlist {
-    list-style: none !important;
-    align-items: center;
-    font-size: large ;
-    text-align: center;
-    color: rgba(94, 95, 95, 0.892);
-  }
-  
-ul, li {
-  align-items: center;
-  font-size: large;
-  text-align: center;
-}
-
-  .form-check {
-    padding: 25px;
-  }
-*/
   #id_first_name,
   #id_last_name,
   #id_email,
@@ -96,34 +77,32 @@ ul, li {
   .register_container {
     padding: 0 1rem;
   }
-
+*/
   .form-control {
     width: 90%;
-    height: 60px;
+    height: 50px;
     margin-top: 2%;
     text-align: center;
-    font-size: large !important;
   }
-*/
+
   #link {
     color: deeppink;
   }
 
-  /*
   .input-group-text {
     background: #8a9194a9 !important;
     color: white !important;
     border: 1px !important;
-    font-size: x-large;
+    font-size: large;
     border-radius: 0.25rem 0 0 0.25rem !important;
   }
 
   .input_user,
   .input_pass:focus {
-    box-shadow: none !important;
+    /*  */ox-shadow: none !important;
     outline: 0px !important;
   }
-  */
+
   #messages {
     background-color: rgba(128, 186, 240, 0.792);
     color: #fff;
@@ -179,7 +158,7 @@ ul, li {
           </div>
           {{form.username}}
         </div>
-
+<br>
         <!-- Email -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -206,6 +185,13 @@ ul, li {
         <br>
 
         <!--Terms & Conditions-->
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault"> &nbsp; 
+            <a href="{% url 'account_reset_password' %}" class="link-danger">Terms & Conditions</a>
+          </label>
+        </div>
 
         <!-- Terms and conditions modal -->
 

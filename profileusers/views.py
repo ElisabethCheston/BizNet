@@ -29,21 +29,25 @@ from .models import Profileuser
 from .forms import ProfileuserForm, EditForm, RegisterUserForm
 
 
+# REGISTRATION & LOGIN
+
 def Register(request):
     # pylint: disable=maybe-no-member
-    form = RegisterUserForm()
-    template = 'profileusers/register.html'
+    # form = RegisterUserForm()
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
-            user = form.cleaned_data.get('username')
+            # user = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for ' + user)
             return redirect('login')
-    context = {
-        'form': form
-    }
-    return render(request, template, context)
+    else:
+        form = RegisterUserForm()
+        context = {
+            'form': form
+        }
+        template = 'profileusers/register.html'
+        return render(request, template, context)
     
 """
 class RegisterPage(View):
@@ -63,7 +67,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('register_profile')
+            return redirect('my_profile')
 
         else:
             messages.info(request, 'Username or Password is incorrect!')
@@ -96,8 +100,7 @@ def profile_edit(request):
             messages.success(request, 'Your Profile has been updated!')
             return redirect('profile_details')
         else:
-            messages.error(request, 'Update failed. Kindly check\
-                that your inputs are valid.')
+            messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         form = ProfileuserForm(instance=request.user.profileuser)
     context = {
@@ -105,7 +108,6 @@ def profile_edit(request):
         'on_profile_page': True
     }
     return render(request, 'profileusers/profile_edit.html', context)
-
 
 
 # PROFILES
@@ -124,23 +126,21 @@ def all_profiles(request):
 @login_required
 def RegisterPage(request):
     if request.method == 'POST':
-        form = EditForm(request.POST, 
-                                request.FILES, 
-                                instance=request.user.profileuser)
+        form = EditForm(request.POST, instance=request.user.profileuser)
+
         if form.is_valid():
             form.save()
             messages.success(request, 'Your Profile has been updated!')
             return redirect('profile_details')
         else:
-            messages.error(request, 'Update failed. Kindly check\
-                that your inputs are valid.')
+            messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         form = EditForm(instance=request.user.profileuser)
     context = {
         'form':form,
-        'on_profile_page': True
+        # 'on_profile_page': True
     }
-    return render(request, 'profileusers/register_page.html', context)
+    return render(request, 'profileusers/my_profile.html', context)
 
 
 # MY GIGS
@@ -181,7 +181,7 @@ def my_contacts(request):
         'profile': profile,
         # 'get_following': get_following,
         # 'get_followers': get_followers,
-}
+    }
     return render(request, template, context)
 
 
