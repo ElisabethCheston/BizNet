@@ -48,6 +48,8 @@ class EditForm(UserChangeForm):
             'email',
             'city',
             'country',
+            'password',
+        </div>            
         ]
 
 """
