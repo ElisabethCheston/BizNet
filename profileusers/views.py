@@ -48,7 +48,7 @@ def RegisterPage(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Your Profile has been updated!')
-            return redirect('profile_details')
+            return redirect('login')
         else:
             messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
