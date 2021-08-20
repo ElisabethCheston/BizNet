@@ -18,6 +18,8 @@ urlpatterns = [
     path('register/', views.Register, name='register'),
     path('register_profile/', views.RegisterPage, name='register_profile'), # <int:pk>/
     path('login/', views.loginPage, name='login'),
+    path('terms/', views.terms, name='terms'),
+
 
     path('my_gigs/', views.my_gigs, name='my_gigs'),
     path('my_contacts/', views.my_contacts, name='my_contacts'),

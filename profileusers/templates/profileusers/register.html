@@ -122,16 +122,18 @@
   }
 
   #terms-box {
-   width: 5mm;
-   height: 5mm;
+    width: 5mm;
+    height: 5mm;
   }
-  #terms-box > input:checked {
+
+  #terms-box>input:checked {
     border: 1px solid #3db2f5;
     background-color: #e2e3e4;
-}
-.link-terms {
-  color: #3db2f5;
-}
+  }
+
+  .link-terms {
+    color: #0896e7;
+  }
 
   /*
   #messages {
@@ -155,7 +157,7 @@
       </a>
     </div>
   </div>
-<br>
+  <br>
   <div class="d-flex">
     <div class="d-flex" id="justify-center">
       <h2 id="form-title">REGISTER ACCOUNT</h2>
@@ -214,7 +216,7 @@
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="terms-box">
           <label class="form-check-label" for="flexCheckDefault"> &nbsp;
-            <a href="{% url 'account_reset_password' %}" class="link-terms">Terms & Conditions</a>
+            <a href="{% url 'terms' %}" class="link-terms">Terms & Conditions</a>
           </label>
         </div>
         <br>
@@ -269,20 +271,3 @@
   </script>
 
   {% endblock %}
-
-
-  <!-- Terms and Conditions -->
-  <!--<div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-            </label>
-            <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right"
-              data-bs-toggle="popover-term" title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
-          can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
-          around with respect to documentation is not very helpful in improving things. Please step in and 
-          file a pull request if you feel there is something unclear.
-          Project specific integration trouble: In cases where allauth is just one piece of the puzzle and 
-          for example a stack trace indicates another module crashing, please try to come up stripped version 
-          of the issue where it is clear that allauth is the one that is misbehaving.">
-              Terms & Conditions</button>
-          </div>-->

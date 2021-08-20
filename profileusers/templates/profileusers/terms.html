@@ -1,0 +1,136 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+
+
+{% block content %}
+
+<style>
+    #justify-center {
+        margin: auto;
+        width: 80%;
+        padding: 10px;
+        border: none !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: large !important;
+    }
+
+    a,
+    p,
+    .link,
+    h2 {
+        text-align: center;
+        font-size: medium;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    /* FORM */
+
+    .form-control {
+        height: 45px;
+        margin-top: 1%;
+        text-align: center;
+    }
+
+    .form_container {
+        margin-top: 10px;
+        width: 70%;
+        border-color: black;
+        align-items: center;
+    }
+
+    /* BUTTONS */
+
+    .btn,
+    .login-btn {
+        color: white;
+        border-color: rgba(148, 149, 150, 0.2);
+        background-color: rgba(131, 133, 134, 0.8) !important;
+        width: 95%;
+        height: 45px;
+        margin-top: 2%;
+        font-weight: bold;
+        text-align: center;
+        font-size: medium !important;
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn:hover,
+    .btn:active,
+    .btn:focus {
+        background-color: rgba(94, 95, 95, 0.792) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* RESET PASSWORD */
+
+    #link {
+        color: deeppink;
+    }
+
+    .password_reset {
+        border: none;
+    }
+
+    input {
+        width: 84%;
+        text-align: center;
+        font-size: large !important;
+        height: 45px;
+        margin-top: 2%;
+        background-color: rgba(238, 236, 236, 0.292) !important;
+    }
+
+    */ input:hover,
+    input:active,
+    input:focus {
+        background-color: rgba(94, 95, 95, 0.192) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .link-terms {
+        color: #0896e7;
+    }
+</style>
+
+<div class="login_container" id="justify-center">
+
+    <!-- Logo -->
+    <div id="justify-center">
+        <div class="col-6 col-lg-4" id="justify-center">
+            <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
+                    alt="" width="230" height="55" class="logo img-fluid">
+            </a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="d-flex">
+        <h2 id="form-title">TERMS & CONDITIONS</h2>
+    </div>
+
+    <form method="POST" action="#">
+        <p>
+            Documentation related complaints: while the documentation
+            can most certainly be improved, I am adhering to the debatable principle that keeping open issues
+            around with respect to documentation is not very helpful in improving things. Please step in and
+            file a pull request if you feel there is something unclear.
+            Project specific integration trouble: In cases where allauth is just one piece of the puzzle and
+            for example a stack trace indicates another module crashing, please try to come up stripped version
+            of the issue where it is clear that allauth is the one that is misbehaving.
+        </p>
+        <br>
+        <p>Back to &nbsp;<a href="{% url 'register' %}" class="link-danger link-terms">Registration</a></p>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

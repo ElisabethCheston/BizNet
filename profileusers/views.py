@@ -120,6 +120,13 @@ def profile_edit(request):
     return render(request, 'profileusers/profile_edit.html', context)
 
 
+def terms(request):
+    # pylint: disable=maybe-no-member
+    template = 'profileusers/terms.html'
+
+    return render(request, template)
+
+
 # PROFILES
 
 @login_required
