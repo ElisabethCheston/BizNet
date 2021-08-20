@@ -16,6 +16,7 @@
     text-align: center;
   }
 
+  /*
   #id_first_name,
   #id_last_name,
   #id_email,
@@ -25,11 +26,11 @@
     width: 84%;
     text-align: center;
     font-size: large;
-    height: 50px;
+    height: 45px;
     margin-top: 2%;
     border-style: groove;
   }
-
+*/
   a,
   p,
   .link,
@@ -39,10 +40,16 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
+  .form-control {
+    height: 45px;
+    margin-top: 1%;
+    text-align: center;
+  }
+
   .form_container {
-    margin-top: 10px;
+    margin-top: 8px;
     width: 100%;
-    border-color: black;
+    /* border-color: black; */
     align-items: center;
   }
 
@@ -50,12 +57,12 @@
 
   .btn,
   .register-button {
-    border-width: 2px;
+    /* border-width: 2px; */
     color: white;
     border-color: rgba(148, 149, 150, 0.2);
     background-color: rgba(131, 133, 134, 0.8) !important;
-    width: 80%;
-    height: 50px;
+    width: 60%;
+    height: 45px;
     margin-top: 2%;
     font-weight: bold;
     text-align: center;
@@ -70,7 +77,6 @@
   .btn:focus {
     background-color: rgba(94, 95, 95, 0.792) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-
   }
 
   /*
@@ -78,17 +84,13 @@
     padding: 0 1rem;
   }
 */
-  .form-control {
-    width: 90%;
-    height: 50px;
-    margin-top: 2%;
-    text-align: center;
-  }
+
 
   #link {
     color: deeppink;
   }
 
+  /*
   .input-group-text {
     background: #8a9194a9 !important;
     color: white !important;
@@ -102,13 +104,43 @@
     box-shadow: none !important;
     outline: 0px !important;
   }
+  */
+  input {
+    width: 84%;
+    text-align: center;
+    font-size: large !important;
+    height: 45px;
+    margin-top: 2%;
+    background-color: rgba(238, 236, 236, 0.292) !important;
+  }
 
+  input:hover,
+  input:active,
+  input:focus {
+    background-color: rgba(94, 95, 95, 0.192) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  #terms-box {
+   width: 5mm;
+   height: 5mm;
+  }
+  #terms-box > input:checked {
+    border: 1px solid #3db2f5;
+    background-color: #e2e3e4;
+}
+.link-terms {
+  color: #3db2f5;
+}
+
+  /*
   #messages {
     background-color: rgba(128, 186, 240, 0.792);
     color: #fff;
     padding: 10px;
     margin-top: 10px;
   }
+  */
 </style>
 
 <div class="register_container" id="justify-center">
@@ -123,18 +155,16 @@
       </a>
     </div>
   </div>
-  <br>
-
+<br>
   <div class="d-flex">
     <div class="d-flex" id="justify-center">
       <h2 id="form-title">REGISTER ACCOUNT</h2>
     </div>
 
-    <div class="d-flex justify-content-center form_container">
+    <div class="d-flex justify-content-center form_container" id="justify-center">
 
       <form method="POST" action="#">
         {% csrf_token %}
-
         <!-- First Name -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -142,7 +172,6 @@
           </div>
           {{form.first_name}}
         </div>
-
         <!-- Last Name -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -150,15 +179,14 @@
           </div>
           {{form.last_name}}
         </div>
-
-        <!-- Username -->
+        <br>
+        <!-- Username: Placeholder name Email -->
         <div class="input-group mb-2">
           <div class="input-group-append">
             <span class="input-group-text"></span>
           </div>
           {{form.username}}
         </div>
-<br>
         <!-- Email -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -166,7 +194,7 @@
           </div>
           {{form.email}}
         </div>
-
+        <br>
         <!-- Password 1 -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -174,7 +202,6 @@
           </div>
           {{form.password1}}
         </div>
-
         <!-- Password 2 -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -183,16 +210,14 @@
           {{form.password2}}
         </div>
         <br>
-
         <!--Terms & Conditions-->
-
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault"> &nbsp; 
-            <a href="{% url 'account_reset_password' %}" class="link-danger">Terms & Conditions</a>
+          <input class="form-check-input" type="checkbox" value="" id="terms-box">
+          <label class="form-check-label" for="flexCheckDefault"> &nbsp;
+            <a href="{% url 'account_reset_password' %}" class="link-terms">Terms & Conditions</a>
           </label>
         </div>
-
+        <br>
         <!-- Submit button -->
         <div class="d-flex justify-content-center mt-3" id="justify-center">
           <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">
@@ -201,13 +226,13 @@
       </form>
     </div>
 
-    <div class="col" id="justify-center">
-      <!--{{ form.errors }}
+    <!--<div class="col" id="justify-center">
+      {{ form.errors }}
       {{ errorlist.username }}
       {{ errorlist.email }}
       {{ errorlist.password1 }}
-      {{ errorlist.password2 }}-->
-    </div>
+      {{ errorlist.password2 }}
+    </div>-->
 
     <!-- Already got an account? -->
     <div class="mt-4">
