@@ -6,19 +6,35 @@
 
 {% block content %}
 <style>
-  #justify-center {
-    margin: auto;
-    width: 80%;
-    padding: 10px;
-    border: none !important;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+    #justify-center {
+        margin: auto;
+        width: 80%;
+        padding: 10px;
+        border: none !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: large !important;
+    }
 
   /*
-  #id_first_name,
-  #id_last_name,
+  .errorlist {
+    list-style: none !important;
+    align-items: center;
+    font-size: large ;
+    text-align: center;
+    color: rgba(94, 95, 95, 0.892);
+  }
+  
+ul, li {
+  align-items: center;
+  font-size: large;
+  text-align: center;
+}
+  .form-check {
+    padding: 25px;
+  }
+*/
   #id_email,
   #id_username,
   #id_password1,
@@ -27,10 +43,9 @@
     text-align: center;
     font-size: large;
     height: 45px;
-    margin-top: 2%;
     border-style: groove;
   }
-*/
+
   a,
   p,
   .link,
@@ -41,15 +56,17 @@
   }
 
   .form-control {
+    width: 84%;
     height: 45px;
-    margin-top: 1%;
+    margin-top: 2%;
     text-align: center;
+    border-color: black;
+    font-size: large !important;
   }
 
   .form_container {
-    margin-top: 8px;
+    margin-top: 10px;
     width: 100%;
-    /* border-color: black; */
     align-items: center;
   }
 
@@ -57,16 +74,16 @@
 
   .btn,
   .register-button {
-    /* border-width: 2px; */
+    border-width: 2px;
     color: white;
-    border-color: rgba(148, 149, 150, 0.2);
+    border-color: rgba(148, 149, 150, 0.5);
     background-color: rgba(131, 133, 134, 0.8) !important;
-    width: 90%;
-    height: 45px;
+    width: 80%;
+    height: 50px;
     margin-top: 2%;
     font-weight: bold;
     text-align: center;
-    font-size: medium !important;
+    font-size: large !important;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -77,13 +94,8 @@
   .btn:focus {
     background-color: rgba(94, 95, 95, 0.792) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  }
 
-  /*
-  .register_container {
-    padding: 0 1rem;
   }
-*/
 
 
   #link {
@@ -95,54 +107,21 @@
     background: #8a9194a9 !important;
     color: white !important;
     border: 1px !important;
-    font-size: large;
+    font-size: x-large;
     border-radius: 0.25rem 0 0 0.25rem !important;
   }
-
   .input_user,
   .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
   }
   */
-  input {
-    width: 84%;
-    text-align: center;
-    font-size: large !important;
-    height: 45px;
-    margin-top: 2%;
-    background-color: rgba(238, 236, 236, 0.292) !important;
-  }
-
-  input:hover,
-  input:active,
-  input:focus {
-    background-color: rgba(94, 95, 95, 0.192) !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  }
-
-  #terms-box {
-    width: 5mm;
-    height: 5mm;
-  }
-
-  #terms-box>input:checked {
-    border: 1px solid #3db2f5;
-    background-color: #e2e3e4;
-  }
-
-  .link-terms {
-    color: #0896e7;
-  }
-
-  /*
   #messages {
     background-color: rgba(128, 186, 240, 0.792);
     color: #fff;
     padding: 10px;
     margin-top: 10px;
   }
-  */
 </style>
 
 <div class="register_container" id="justify-center">
@@ -166,7 +145,9 @@
     <div class="d-flex justify-content-center form_container" id="justify-center">
 
       <form method="POST" action="#">
+
         {% csrf_token %}
+
         <!-- First Name -->
         <div class="input-group mb-2">
           <div class="input-group-append">
@@ -212,11 +193,12 @@
           {{form.password2}}
         </div>
         <br>
+
         <!--Terms & Conditions-->
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="terms-box">
           <label class="form-check-label" for="flexCheckDefault"> &nbsp;
-            <a href="{% url 'terms' %}" class="link-terms">Terms & Conditions</a>
+            <a href="{% url 'account_reset_password' %}" class="link-terms">Terms & Conditions</a>
           </label>
         </div>
         <br>

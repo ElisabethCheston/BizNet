@@ -82,6 +82,7 @@
 
                 <!-- Profileuser information -->
                 <div class="row g-0">
+
                     <!-- Profileuser pic -->
                     <div class="col-md-5">
 
@@ -102,19 +103,18 @@
                     <!-- Profileuser fact colum-->
                     <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title">{{profile.firstname}} {{profile.lastname}}</h5>
-                            <h6 class="card-title">dflkweg</h6>
-                            <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
-                            <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
-                            <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
+                            <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
+                            <h6 class="card-title">Title: &nbsp; {{user.profile.title}}</h6>
+                            <h6 class="card-title">Company: &nbsp; {{user.profile.company_name}}</h6>
+                            <h6 class="card-title">Industry: &nbsp; {{user.profile.industry}}</h6>
                             <br>
 
-                            <p class="card-text">Profession: &nbsp; {{profile.profession}}</p>
-                            <p class="card-text">Skills: &nbsp {{profile.skill}}</p>
+                            <p class="card-text">Profession: &nbsp; {{user.profile.profession}}</p>
+                            <p class="card-text">Skills: &nbsp {{user.profile.skill}}</p>
                             <br>
                             <p class="card-text">Email: &nbsp; {{profile.email}}</p>
-                            <p class="card-text">City: &nbsp; {{profile.city}}</p>
-                            <p class="card-text">{{profile.country}}</p>
+                            <p class="card-text">City: &nbsp; {{user.profile.city}}</p>
+                            <p class="card-text">{{user.profile.country}}</p>
                             <br>
 
                         </div>

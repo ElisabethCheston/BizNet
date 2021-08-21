@@ -16,7 +16,7 @@ urlpatterns = [
     path('create_gig/', views.create_gig, name='create_gig'),
 
     path('register/', views.Register, name='register'),
-    path('register_profile/', views.RegisterPage, name='register_profile'), # <int:pk>/
+    path('register_profile/', views.RegisterPage, name='register_profile'),
     path('login/', views.loginPage, name='login'),
     path('terms/', views.terms, name='terms'),
 

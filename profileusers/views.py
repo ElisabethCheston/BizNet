@@ -29,44 +29,40 @@ def Register(request):
     form = RegisterUserForm()
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
+
         if form.is_valid():
             form.save()
-            user = form.cleaned_data.get('username')
+            user = form.cleaned_data.get('email')
             messages.success(request, 'Account was created for ' + user)
-            return redirect('login')
+            return redirect('register_profile')
     else:
         form = RegisterUserForm()
 
-    return render(request, 'profileusers/register.html', {'form': form })
+    context = {
+        'form' : form
+    }
+    return render(request, 'profileusers/register.html', context)
 
 
 @login_required
 def RegisterPage(request):
     if request.method == 'POST':
-        form = EditForm(request.POST, instance=request.user.profileuser)
+        profile_form = EditForm(request.POST)
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your Profile has been updated!')
+            # messages.success(request, 'Your Profile has been updated!')
             return redirect('login')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
-        form = EditForm(instance=request.user.profileuser)
-    context = {
-        'form':form,
-        # 'on_profile_page': True
-    }
-    return render(request, 'profileusers/my_profile.html', context)
+        profile_form = EditForm()
 
-"""
-class RegisterPage(View):
-    template = 'profileusers/register_profile.html'
-    def get_success_url(self):        
-        url = self.get_redirect_url()
-        if url:
-            return reverse("profile_edit")
-"""
+    context = {
+        'profile_form' : profile_form
+    }
+    return render(request, 'profileusers/register_profile.html', context)
+
 
 def loginPage(request):
     if request.method == 'POST':
