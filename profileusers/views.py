@@ -46,11 +46,14 @@ def Register(request):
 
 @login_required
 def RegisterPage(request):
+    profile_form = EditForm()
     if request.method == 'POST':
-        profile_form = EditForm(request.POST)
+        profile_form = EditForm(request.POST) # , instance=profileuser
 
-        if form.is_valid():
-            form.save()
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile_form.save()
             # messages.success(request, 'Your Profile has been updated!')
             return redirect('login')
         # else:
@@ -111,7 +114,7 @@ def profile_edit(request):
         form = ProfileuserForm(instance=request.user.profileuser)
     context = {
         'form':form,
-        'on_profile_page': True
+        # 'on_profile_page': True
     }
     return render(request, 'profileusers/profile_edit.html', context)
 
