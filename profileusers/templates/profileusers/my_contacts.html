@@ -115,7 +115,7 @@
                         <div class="row justify-content-between">
                             <div class="col-9">
                                 <p><b>Following profiles:</b></p>
-                                <p>{% for profileuser in profile.get_following %}{{ profileuser }} {% endfor %}</p>
+                                <p>{% for profileuser in profile.get_following %} {{ profileuser }} <br> {% endfor %}</p>
                             </div>
                             <div class="col-3">
                                 <p class="text-center"><b>No:</b></p>
@@ -130,7 +130,7 @@
                     <div class="col">
                         <div class="row justify-content-between">
                             <div class="col-9">
-                                <p><b>Followers:</b><br>{% for profileuser in profile.get_followers %}{{ profileuser }}
+                                <p><b>Followers:</b><br>{% for profileuser in profile.get_followers %}{{ profileuser }} <br>
                                     {% endfor %}</p>
                             </div>
                             <div class="col-3">
