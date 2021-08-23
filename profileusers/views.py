@@ -52,7 +52,8 @@ def RegisterPage(request):
 
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
-            profile.user = request.user
+            profile.user = request.user # Profileuser.objects.create(user=instance)
+            
             profile_form.save()
             # messages.success(request, 'Your Profile has been updated!')
             return redirect('login')
@@ -173,6 +174,7 @@ def my_contacts(request):
     # profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(user=request.user)
     template = 'profileusers/my_contacts.html'
+   
     context = {
         'profile': profile,
         # 'get_following': get_following,
