@@ -1,6 +1,6 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-
+{% load widget_tweaks %}
 
 
 {% block content %}
@@ -15,7 +15,9 @@
     text-align: center;
   }
 
-  
+option {
+  margin-top: 20px;
+}
   #id_last_name,
   #id_industry,
   #id_description,
@@ -34,6 +36,7 @@
     border-style: double;
   }
 
+  option,
   a,
   p,
   .link,
@@ -170,84 +173,78 @@
 
       <form method="POST" action="#">
         {% csrf_token %}
-                <!--<div class="row">
+        <!--<div class="row">
             <div class="col">
                 <img class="rounded-circle account-img avatar" src="{{profileuser.avatar}}" alt="{{profileuser.user}}">
             </div>
-        </div>-->  
+        </div>-->
         <!-- Title -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.title}}
           </div>
-          {{profile_form.title}}
         </div>
         <!-- Company -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.company_name}}
           </div>
-          {{profile_form.company_name}}
         </div>
         <!-- Company no -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.company_number_vat}}
           </div>
-          {{profile_form.company_number_vat}}
         </div>
         <!-- Industry -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            <option value="">Industry:</option>
+            {{profile_form.industry}}
           </div>
-          {{profile_form.industry}}
         </div>
         <!--  Profession -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            <option value="">Profession:</option>
+            {{ profile_form.profession }}
           </div>
-          {{profile_form.profession}}
         </div>
+        <br>
+
         <!-- Skill -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.skill}}
           </div>
-          {{profile_form.skill}}
-        </div>        
+        </div>
         <!--  Description -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {% render_field profile_form.description placeholder="Short description.." %}
           </div>
-          {{profile_form.description}}
         </div>
         <!-- Phone -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.phone}}
           </div>
-          {{profile_form.phone}}
         </div>
         <!--  City -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.city}}
           </div>
-          {{profile_form.city}}
         </div>
         <!-- Country -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            <span class="input-group-text"></span>
+            {{profile_form.country}}
           </div>
-          {{profile_form.country}}
         </div>
         <br>
 
-        
+
         <!-- Submit button -->
         <div class="d-flex justify-content-center mt-3" id="justify-center">
           <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">

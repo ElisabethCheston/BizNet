@@ -48,7 +48,7 @@ def Register(request):
 def RegisterPage(request):
     profile_form = EditForm()
     if request.method == 'POST':
-        profile_form = EditForm(request.POST) # , instance=profileuser
+        profile_form = EditForm(request.POST)
 
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)

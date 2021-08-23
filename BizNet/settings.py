@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'feed.apps.FeedConfig',
     'crispy_forms',
     'storages',
+    'widget_tweaks',
 
 
     # ALLAUTH
