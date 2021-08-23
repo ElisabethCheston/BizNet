@@ -76,7 +76,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('my_profile')
+            return redirect('profile_details')
 
         else:
             messages.info(request, 'Username or Password is incorrect!')

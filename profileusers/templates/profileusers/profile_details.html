@@ -63,6 +63,8 @@
 
 
 {% block content %}
+{% if user.is_authenticated %}
+
 <style>
     .hello-msg {
         font-size: medium;
@@ -70,7 +72,6 @@
         color: rebeccapurple;
     }
 </style>
-{% if user.is_authenticated %}
 
 <div class="container-profile justify-center">
 
@@ -82,16 +83,16 @@
 
                 <!-- Profileuser information -->
                 <div class="row g-0">
-
+                    {% csrf_token %}
                     <!-- Profileuser pic -->
                     <div class="col-md-5">
 
                         {% if profileusers.picture %}
 
-                        <!--<img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
+                        <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
                             alt="{{ profile.username}}">
 
-                        {% else %}-->
+                        {% else %}
 
                         <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
                             alt="{{ user.profile.image.url }}">
@@ -103,18 +104,18 @@
                     <!-- Profileuser fact colum-->
                     <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
-                            <h6 class="card-title">Title: &nbsp; {{user.profile.title}}</h6>
-                            <h6 class="card-title">Company: &nbsp; {{user.profile.company_name}}</h6>
-                            <h6 class="card-title">Industry: &nbsp; {{user.profile.industry}}</h6>
+                            <h5 class="card-title">{{profile.firstname}} {{profile.lastname}}</h5>
+                            <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
+                            <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
+                            <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
                             <br>
 
-                            <p class="card-text">Profession: &nbsp; {{user.profile.profession}}</p>
-                            <p class="card-text">Skills: &nbsp {{user.profile.skill}}</p>
+                            <p class="card-text">Profession: &nbsp; {{profile.profession}}</p>
+                            <p class="card-text">Skills: &nbsp {{profile.skill}}</p>
                             <br>
                             <p class="card-text">Email: &nbsp; {{profile.email}}</p>
-                            <p class="card-text">City: &nbsp; {{user.profile.city}}</p>
-                            <p class="card-text">{{user.profile.country}}</p>
+                            <p class="card-text">City: &nbsp; {{profile.city}}</p>
+                            <p class="card-text">{{profile.country}}</p>
                             <br>
 
                         </div>
@@ -129,11 +130,11 @@
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                         <br>
                         <br>
+
                         <form action="{% url 'profile_edit' %}">
                             <input type="submit" value="Edit Profile" class="btn btn-primary btn-sm"
                                 id="edit_profile_tab" data-bs-toggle="tab" data-bs-target="#edit_profile"
                                 type="tab-button" role="tab" />
-
                         </form>
                     </div>
                     <br>
@@ -186,5 +187,4 @@
 </div>
 
 {% endif %}
-
 {% endblock %}
