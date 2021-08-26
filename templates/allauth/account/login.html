@@ -28,20 +28,23 @@
     display: none;
   }
 
-  p {
-    height: 25px;
+  a,
+  p,
+  h2 {
+    text-align: center;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-
+/*
   #id_login,
   #id_password,
   .primaryAction {
     width: 70%;
     height: 30px;
     margin: 2%;
-    /* text-transform: uppercase; */
     text-align: center;
   }
-
+*/
   #id_remember {
     display: none;
   }
@@ -132,20 +135,20 @@
   }
 
   input {
-        width: 84%;
-        text-align: center;
-        font-size: large !important;
-        height: 45px;
-        margin-top: 2%;
-        background-color: rgba(238, 236, 236, 0.292) !important;
-    }
+    width: 84%;
+    text-align: center;
+    font-size: large !important;
+    height: 45px;
+    margin-top: 2%;
+    background-color: rgba(238, 236, 236, 0.292) !important;
+  }
 
-    input:hover,
-    input:active,
-    input:focus {
-        background-color: rgba(94, 95, 95, 0.192) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
+  input:hover,
+  input:active,
+  input:focus {
+    background-color: rgba(94, 95, 95, 0.192) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
 
   #messages {
     background-color: grey;
@@ -173,6 +176,7 @@
 
   <div class="d-flex justify-content-center form_container" id="justify-center">
 
+    <h2 id="form-title">WE NEED TO VERTIFY YOUR ACCOUNT</h2>
 
     <!-- Login Form -->
     <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -182,9 +186,11 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
 
-      <!--<a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>-->
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 
-      <button class="btn login-btn" type="submit">{% trans "Sign In" %}</button>
+      <div class="d-flex justify-content-center mt-3" id="justify-center">
+        <input class="btn login-btn" type="submit" value="VERTIFY ACCOUNT">
+      </div>
     </form>
 
 
