@@ -2,13 +2,17 @@
 {% load i18n %}
 {% load account socialaccount %}
 
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock scripts %}
+
 
 {% block content %}
 
 <style>
     #justify-center {
         margin: auto;
-        width: 80%;
+        width: 78%;
         padding: 10px;
         border: none !important;
         justify-content: center;
@@ -17,6 +21,7 @@
         font-size: large !important;
     }
 
+    /*
     a,
     p,
     .link,
@@ -41,15 +46,31 @@
         align-items: center;
     }
 
+    */
     /* BUTTONS */
 
-    .btn,
-    .login-btn {
+    .term-button {
+        background-color: #01AAAD;
+        width: 150px;
+        margin: 0 20px;
+        display: inline-block;
+        line-height: 60px;
+    }
+
+    .row {
+        text-align: center;
+        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+
+    .btn {
         color: white;
         border-color: rgba(148, 149, 150, 0.2);
         background-color: rgba(131, 133, 134, 0.8) !important;
-        width: 95%;
-        height: 45px;
+        width: 40%;
+        height: 50px;
         margin-top: 2%;
         font-weight: bold;
         text-align: center;
@@ -76,6 +97,7 @@
         border: none;
     }
 
+    /*
     input {
         width: 84%;
         text-align: center;
@@ -85,7 +107,8 @@
         background-color: rgba(238, 236, 236, 0.292) !important;
     }
 
-    */ input:hover,
+    
+    input:hover,
     input:active,
     input:focus {
         background-color: rgba(94, 95, 95, 0.192) !important;
@@ -95,6 +118,7 @@
     .link-terms {
         color: #0896e7;
     }
+    */
 </style>
 
 <div class="login_container" id="justify-center">
@@ -128,9 +152,30 @@
         <br>
         <p>Back to &nbsp;<a href="{% url 'register' %}" class="link-danger link-terms">Registration</a></p>
 
+        <!-- Terms & Conditions Buttons -->
+
+        <div class="row">
+  
+
+            <input type="button" class="btn accept-button" id="terms-box" value="Accept">
+           <label><a href="{% url 'register' %}" class="link-danger link-terms"></a></label>
+
+            <input class="btn decline-button button-check" id="declineButton" type="submit" value="Decline">
+        </div>
+
     </form>
 
 </div>
 
+<script>
+
+
+    var clicked = false;
+    $(".acceptButton").on("click", function () {
+        $(".acceptButton").prop("checked", !clicked);
+        clicked = !clicked;
+        this.innerHTML = clicked ? 'Deselect' : 'Select';
+    });
+</script>
 
 {% endblock %}
