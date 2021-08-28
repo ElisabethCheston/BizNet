@@ -191,8 +191,7 @@ ul, li {
 
     <div class="d-flex justify-content-center form_container" id="justify-center">
 
-      <form method="POST" action="#">
-
+      <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
 
         <!-- First Name -->
@@ -241,20 +240,14 @@ ul, li {
         </div>
         <br>
 
-        <!--Terms & Conditions-->
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="terms-box">
-          <label class="form-check-label" for="flexCheckDefault"> &nbsp;
-            <a href="{% url 'terms' %}" class="link-terms">Terms & Conditions</a>
-          </label>
-        </div>
-        <br>
+
 
         <!-- Submit button -->
         <div class="d-flex justify-content-center mt-3" id="justify-center">
-          <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">
+          <input class="btn register-button" id="acceptButton" type="submit" value="REGISTER ACCOUNT">
         </div>
 
+        <!-- Back/Next buttons -->
         <div class="container">
           <div class="btn-group d-flex justify-content-center mt-3" id="justify-center">
             <a href="{% url 'home' %}" class="btn back-button active">BACK</a>
@@ -262,10 +255,18 @@ ul, li {
           </div>
         </div>
         <br>
+
       </form>
       <br>
-
-
+      <!--Terms & Conditions-->
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="terms-box" name="terms-box" checked>
+        <label class="form-check-label" for="terms-box"> &nbsp;
+          <a href="{% url 'terms' %}" class="link-terms">Terms & Conditions</a>
+        </label>
+      </div>
+      <br>
+      <br>
     </div>
 
     <!--<div class="col" id="justify-center">
@@ -307,7 +308,15 @@ ul, li {
       form_fields[field].className += 'form-control'
     }
 
+    // - Select Terms & Contition checkbox - //
 
+    $(document).ready(function() { 
+        var chkid = localStorage.getItem("chkId");
+        if (chkid  === 'terms-box-check') {
+          $('#terms-box').attr('checked', true);
+        }		
+      });
+      
   </script>
 
   {% endblock %}

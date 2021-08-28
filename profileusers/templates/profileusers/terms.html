@@ -2,9 +2,9 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block scripts %}
+<!--{% block scripts %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-{% endblock scripts %}
+{% endblock scripts %}-->
 
 
 {% block content %}
@@ -21,10 +21,8 @@
         font-size: large !important;
     }
 
-    /*
-    a,
-    p,
-    .link,
+
+
     h2 {
         text-align: center;
         font-size: medium;
@@ -135,11 +133,12 @@
     <br>
     <br>
     <br>
+
     <div class="d-flex">
         <h2 id="form-title">TERMS & CONDITIONS</h2>
     </div>
 
-    <form method="POST" action="#">
+    <form method="POST" action="{% url 'terms' %}">
         <p>
             Documentation related complaints: while the documentation
             can most certainly be improved, I am adhering to the debatable principle that keeping open issues
@@ -150,32 +149,28 @@
             of the issue where it is clear that allauth is the one that is misbehaving.
         </p>
         <br>
-        <p>Back to &nbsp;<a href="{% url 'register' %}" class="link-danger link-terms">Registration</a></p>
-
-        <!-- Terms & Conditions Buttons -->
-
-        <div class="row">
-  
-
-            <input type="button" class="btn accept-button" id="terms-box" value="Accept">
-           <label><a href="{% url 'register' %}" class="link-danger link-terms"></a></label>
-
-            <input class="btn decline-button button-check" id="declineButton" type="submit" value="Decline">
-        </div>
-
     </form>
+
+    <!-- Terms & Conditions Buttons -->
+    <div class="row">
+        <a href="{% url 'register' %}" target="_blank">
+            <input type="button" name="acceptButton" class="btn accept-button" value="Accept" 
+            id="terms-box-check" onclick="registerCheck(this.id)">
+            <label class="form-check-label" for="terms-box-check"></label></a>
+        <a href="{% url 'register' %}">
+            <input type="button" name="declineButton" id="declineButton" 
+            class="btn decline-button" value="Decline"></a>
+    </div>
+
+
 
 </div>
 
 <script>
-
-
-    var clicked = false;
-    $(".acceptButton").on("click", function () {
-        $(".acceptButton").prop("checked", !clicked);
-        clicked = !clicked;
-        this.innerHTML = clicked ? 'Deselect' : 'Select';
-    });
+    function registerCheck(clicked_id) {
+        localStorage.setItem("chkId", clicked_id);
+        window.location.href = "/profileusers/register/";
+      }
 </script>
 
 {% endblock %}
