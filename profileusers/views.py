@@ -19,7 +19,7 @@ from django.core import serializers
 from django.views.generic import TemplateView, View
 from .models import Profileuser
 
-from .forms import ProfileuserForm, EditForm, RegisterUserForm
+from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
 
 # REGISTRATION & LOGIN
@@ -34,7 +34,7 @@ def Register(request):
             form.save()
             user = form.cleaned_data.get('email')
             messages.success(request, 'Account was created for ' + user)
-            return redirect('register_profile')
+            return redirect('login')
     else:
         form = RegisterUserForm()
 
@@ -44,6 +44,83 @@ def Register(request):
     return render(request, 'profileusers/register.html', context)
 
 
+#  @login_required
+def ProfileForm1(request):
+    profile_form1 = ProfileForm1()
+    if request.method == 'POST':
+        profile_form1 = ProfileForm(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+
+        if profile_form1.is_valid():
+            profile = profile_form1.save(commit=False)
+            profile.user = request.user # Profileuser.objects.create(user=instance)
+            
+            profile_form1.save()
+            # messages.success(request, 'Your Profile has been updated!')
+            return redirect('register_2')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    else:
+        profile_form1 = ProfileForm1()
+
+    context = {
+        'profile_form1' : profile_form1
+    }
+    return render(request, 'profileusers/register_1.html', context)
+
+
+def ProfileForm2(request):
+    profile_form2 = ProfileForm2()
+    if request.method == 'POST':
+        profile_form2 = ProfileForm(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+
+        if profile_form2.is_valid():
+            profile = profile_form2.save(commit=False)
+            profile.user = request.user # Profileuser.objects.create(user=instance)
+            
+            profile_form2.save()
+            # messages.success(request, 'Your Profile has been updated!')
+            return redirect('register_3')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    else:
+        profile_form2 = ProfileForm2()
+
+    context = {
+        'profile_form2' : profile_form2
+    }
+    return render(request, 'profileusers/register_2.html', context)
+
+
+def ProfileForm3(request):
+    profile_form3 = ProfileForm3()
+    if request.method == 'POST':
+        profile_form3 = ProfileForm(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+
+        if profile_form3.is_valid():
+            profile = profile_form3.save(commit=False)
+            profile.user = request.user # Profileuser.objects.create(user=instance)
+            
+            profile_form3.save()
+            # messages.success(request, 'Your Profile has been updated!')
+            return redirect('login')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    else:
+        profile_form3 = ProfileForm3()
+
+    context = {
+        'profile_form3' : profile_form3
+    }
+    return render(request, 'profileusers/register_3.html', context)
+
+
+"""
 @login_required
 def RegisterPage(request):
     profile_form = EditForm()
@@ -66,7 +143,7 @@ def RegisterPage(request):
         'profile_form' : profile_form
     }
     return render(request, 'profileusers/register_profile.html', context)
-
+"""
 
 def loginPage(request):
     if request.method == 'POST':
@@ -77,7 +154,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('profile_details')
+            return redirect('register_1')
 
         else:
             messages.info(request, 'Username or Password is incorrect!')
@@ -102,7 +179,7 @@ def profile_details(request):
 @login_required
 def profile_edit(request):
     if request.method == 'POST':
-        form = ProfileuserForm(request.POST, 
+        form = ProfileForm(request.POST, 
                                 request.FILES, 
                                 instance=request.user.profileuser)
         if form.is_valid():
@@ -112,7 +189,7 @@ def profile_edit(request):
         else:
             messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
-        form = ProfileuserForm(instance=request.user.profileuser)
+        form = ProfileForm(instance=request.user.profileuser)
     context = {
         'form':form,
         # 'on_profile_page': True

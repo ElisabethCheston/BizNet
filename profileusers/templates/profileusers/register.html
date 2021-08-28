@@ -72,6 +72,22 @@ ul, li {
 
   /* BUTTONS */
 
+  .back-button,
+  .next-button {
+        background-color: #01AAAD;
+        width: 150px;
+        margin: 0 20px;
+        display: inline-block;
+        line-height: 60px;
+    }
+
+    .row {
+        text-align: center;
+        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
   .btn,
   .register-button {
     border-width: 2px;
@@ -240,34 +256,33 @@ ul, li {
         </div>
         <br>
 
-
-
-        <!-- Submit button -->
-        <div class="d-flex justify-content-center mt-3" id="justify-center">
-          <input class="btn register-button" id="acceptButton" type="submit" value="REGISTER ACCOUNT">
-        </div>
-
-        <!-- Back/Next buttons -->
-        <div class="container">
-          <div class="btn-group d-flex justify-content-center mt-3" id="justify-center">
-            <a href="{% url 'home' %}" class="btn back-button active">BACK</a>
-            <a href="{% url 'login' %}" class="btn next-button">NEXT</a>
-          </div>
+        <!--Terms & Conditions-->
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="terms-box" name="terms-box" checked>
+          <label class="form-check-label" for="terms-box"> &nbsp;
+            <a href="{% url 'terms' %}" class="link-terms">Terms & Conditions</a>
+          </label>
         </div>
         <br>
-
-      </form>
-      <br>
-      <!--Terms & Conditions-->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="terms-box" name="terms-box" checked>
-        <label class="form-check-label" for="terms-box"> &nbsp;
-          <a href="{% url 'terms' %}" class="link-terms">Terms & Conditions</a>
-        </label>
-      </div>
-      <br>
-      <br>
+        <br>
     </div>
+
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center mt-3" id="justify-center">
+      <input class="btn register-button" id="acceptButton" type="submit" value="REGISTER ACCOUNT">
+    </div>
+
+    <!-- Back/Next buttons -->
+    <div class="row">
+      <a href="{% url 'home' %}"><input type="button" name="acceptButton" class="back-button" value="BACK"></a>
+      <a href="{% url 'login' %}"><input type="button" name="declineButton" id="declineButton" class="next-button"
+          value="NEXT"></a>
+    </div>
+    <br>
+
+    </form>
+    <br>
+
 
     <!--<div class="col" id="justify-center">
       {{ form.errors }}
@@ -310,13 +325,13 @@ ul, li {
 
     // - Select Terms & Contition checkbox - //
 
-    $(document).ready(function() { 
-        var chkid = localStorage.getItem("chkId");
-        if (chkid  === 'terms-box-check') {
-          $('#terms-box').attr('checked', true);
-        }		
-      });
-      
+    $(document).ready(function () {
+      var chkid = localStorage.getItem("chkId");
+      if (chkid === 'terms-box-check') {
+        $('#terms-box').attr('checked', true);
+      }
+    });
+
   </script>
 
   {% endblock %}

@@ -30,14 +30,14 @@ class RegisterUserForm(UserCreationForm):
 
         return user
 
-class EditForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profileuser
-        fields = (
-            # 'user',
-            #'picture',
-            # 'firstname',
-            # 'lastname',
+        fields = [
+            'avatar',
+            'picture',
+            'firstname',
+            'lastname',
             'title',
             'company_name',
             'company_number_vat',
@@ -46,11 +46,10 @@ class EditForm(forms.ModelForm):
             'skill',
             'description',
             'phone',
-            # 'email',
+            'email',
             'city',
             'country',
-            #'password',
-        )
+        ]
 
 """
 class SigninForm(UserCreationForm):
@@ -69,7 +68,7 @@ class ProfileuserForm(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            # 'avatar',
+            'avatar',
             'picture',
             'firstname',
             'lastname',
@@ -82,6 +81,44 @@ class ProfileuserForm(forms.ModelForm):
             'description',
             'phone',
             'email',
+            'city',
+            'country',
+        ]
+
+class ProfileForm1(forms.ModelForm):
+    class Meta:
+        model = Profileuser
+        fields = [
+            'avatar',
+            'picture',
+            'firstname',
+            'lastname',
+            'phone',
+            'email',
+            'city',
+            'country',
+        ]
+
+class ProfileForm2(forms.ModelForm):
+    class Meta:
+        model = Profileuser
+        fields = [
+            'title',
+            'company_name',
+            'company_number_vat',
+            'industry',
+            'profession',
+            'skill',
+            'description',
+        ]
+
+class ProfileForm3(forms.ModelForm):
+    class Meta:
+        model = Profileuser
+        fields = [
+            'industry',
+            'profession',
+            'skill',
             'city',
             'country',
         ]
