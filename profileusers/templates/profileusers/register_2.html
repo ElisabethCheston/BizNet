@@ -1,6 +1,7 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
 
 
 {% block content %}
@@ -60,7 +61,29 @@
         align-items: center;
     }
 
+    .profile-name {
+        font-size: large;
+        font-weight: bold;
+    }
+
     /* BUTTONS */
+
+    .back-button,
+    .next-button {
+        background-color: #01AAAD;
+        width: 150px;
+        margin: 0 20px;
+        display: inline-block;
+        line-height: 60px;
+    }
+
+    .button-row {
+        text-align: center;
+        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
 
     .btn,
     .register-button {
@@ -167,11 +190,9 @@
     <div class="d-flex">
         <div class="d-flex" id="justify-center">
             <h2 id="form-title">PROFILE INFORMATION</h2>
-        </div>
 
-        <div class="d-flex justify-content-center form_container" id="justify-center">
 
-            <form method="POST" action="#">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'register_2' %}">
                 {% csrf_token %}
 
                 <!--<div class="row">
@@ -215,13 +236,14 @@
                 <!-- Skill -->
                 <div class="input-group mb-2">
                     <div class="input-group-append">
-                        {{profile_form2.skill}}
+                        <span class="input-group-text"></span>
                     </div>
+                    {{profile_form2.skill}}
                 </div>
                 <!--  Description -->
                 <div class="input-group mb-2">
                     <div class="input-group-append">
-                        {% render_field profile_form2.description placeholder="Short description.." %}
+                        {{ profile_form2.description}}
                     </div>
                 </div>
                 <br>
@@ -231,13 +253,14 @@
                     <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">
                 </div>
 
-                                    <!-- Back/Next buttons -->
-    <div class="row">
-        <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="back-button" value="BACK"></a>
-        <a href="{% url 'register_3' %}"><input type="button" name="declineButton" id="declineButton" class="next-button"
-            value="NEXT"></a>
-      </div>
-      <br>
+                <!-- Back/Next buttons -->
+                <div class="row">
+                    <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="back-button"
+                            value="BACK"></a>
+                    <a href="{% url 'register_3' %}"><input type="button" name="declineButton" id="declineButton"
+                            class="next-button" value="NEXT"></a>
+                </div>
+                <br>
 
             </form>
         </div>
@@ -272,12 +295,15 @@
         var form_fields = document.getElementsByTagName('input')
         form_fields[1].placeholder = 'Title..';
         form_fields[2].placeholder = 'Company Name..';
+        /*
         form_fields[3].placeholder = 'Company VAT..';
-
-        select[4].placeholder = 'Industry..';
-        form_fields[5].placeholder = 'Profession..';
-        form_fields[6].placeholder = 'Skill...';
-        form_fields[7].placeholder = 'Description..';
+        
+                select[4].placeholder = 'Industry..';
+                form_fields[5].placeholder = 'Profession..';
+                */
+        form_fields[3].placeholder = 'Skill...';
+        
+        form_fields[4].placeholder = 'Description..';
 
         for (var field in form_fields) {
             form_fields[field].className += 'form-control'
@@ -286,3 +312,4 @@
     </script>
 
     {% endblock %}
+

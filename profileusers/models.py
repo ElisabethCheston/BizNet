@@ -36,8 +36,8 @@ class Profileuser(models.Model):
     avatar = models.ImageField(
         upload_to='profileavatars', default='profileavatar.png')
     picture = models.ImageField(upload_to='images', default='profileavatar.png')
-    background = models.ImageField(
-        upload_to='backgroundpics', default='backgroundpic.jpg')
+    # background = models.ImageField(
+        # upload_to='backgroundpics', default='backgroundpic.jpg')
     following = models.ManyToManyField(
         User, related_name='following', blank=True)
     # member_id = models.CharField(max_length=254, primary_key=True, default='member_id')
@@ -58,7 +58,7 @@ class Profileuser(models.Model):
     description = models.TextField(max_length=250, null=True)
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    skill = models.CharField(max_length=254, blank=True, default=None)
+    skill = models.CharField(max_length=254, blank=True, null=True, default=None)
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)

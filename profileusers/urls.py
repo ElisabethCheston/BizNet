@@ -17,14 +17,13 @@ urlpatterns = [
 
     path('register/', views.Register, name='register'),
     # path('register_profile/', views.RegisterPage, name='register_profile'),
-    path('register_1/', views.ProfileForm1, name='register_1'),
-    path('register_2/', views.ProfileForm2, name='register_2'),
-    path('register_3/', views.ProfileForm3, name='register_3'),
+    path('register_1/', views.ProfileOne, name='register_1'),
+    path('register_2/', views.ProfileTwo, name='register_2'),
+    path('register_3/', views.ProfileThree, name='register_3'),
 
-    path('login/', views.loginPage, name='login'),
+    path('login_page/', views.loginPage, name='login_page'),
+    path('login_register_page/', views.loginRegisterPage, name='login_register_page'),
     path('terms/', views.terms, name='terms'),
-
-
     path('my_gigs/', views.my_gigs, name='my_gigs'),
     path('my_contacts/', views.my_contacts, name='my_contacts'),
 

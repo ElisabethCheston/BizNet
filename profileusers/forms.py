@@ -84,6 +84,16 @@ class ProfileuserForm(forms.ModelForm):
             'city',
             'country',
         ]
+    def save(self, commit=True):
+        user = super(ProfileuserForm, self).save(commit=False)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.email = self.cleaned_data['email']
+
+        if commit:
+            user.save()
+
+        return user       
 
 class ProfileForm1(forms.ModelForm):
     class Meta:
@@ -105,7 +115,7 @@ class ProfileForm2(forms.ModelForm):
         fields = [
             'title',
             'company_name',
-            'company_number_vat',
+            # 'company_number_vat',
             'industry',
             'profession',
             'skill',

@@ -159,7 +159,7 @@
 
 
   <!-- Sign In-->
-  <form id="justify-center" method="POST" action="{% url 'login' %}">
+  <form id="justify-center" method="POST" action="{% url 'login_page' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <!--{% if redirect_field_value %}
