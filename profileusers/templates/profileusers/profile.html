@@ -201,56 +201,36 @@
                     </div>
                 </div>
 
-                <!-- First & Last Name -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <span class="input-group-text"></span>
-                    </div>
-                    <div class="profile-name">
-                        {{user.first_name}} {{user.last_name}}
-                    </div>
-                </div>
-                <!-- Username: Placeholder name Email -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <span class="input-group-text"></span>
-                    </div>
-                    {{user.email}}
-                </div>
-                <br>
-                <!-- Phone -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.phone}}
-                    </div>
-                </div>
-                <!--  City -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.city}}
-                    </div>
-                </div>
-                <!-- Country -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.country}}
-                    </div>
-                </div>
-                <br>
+    <!-- User Name -->
+    <div class="input-group mb-2">
+        <div class="input-group-append">
+            <span class="input-group-text"></span>
+        </div>
+        {{user.first_name}} {{user.last_name}}
+    </div>
 
-                <!-- Submit button -->
-                <div class="d-flex justify-content-center mt-3" id="justify-center">
-                    <p>Let's create your profile.</p>
-                    <input class="btn register-button" type="submit" value="SAVE">
-                </div>
+    <br>
+    <!-- Username: Placeholder name Email -->
+    <div class="input-group mb-2">
+        <div class="input-group-append">
+            <span class="input-group-text"></span>
+        </div>
+        {{user.email}}
+    </div>
+    <br>
 
-                <!-- Back/Next buttons -->
-                <div class="row button-row">
-                    <a href="#"><input type="button" name="acceptButton" class="back-button"
-                            value="BACK"></a>
-                    <a href="{% url 'register_2' %}"><input type="button" name="declineButton" id="declineButton"
-                            class="next-button" value="NEXT"></a>
-                    </div>
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center mt-3" id="justify-center">
+        <input class="btn register-button" type="submit" value="CREATE PROFILE">
+    </div>
+
+    <!-- Back/Next buttons -->
+    <!--<div class="row">
+        <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="back-button" value="BACK"></a>
+        <a href="{% url 'register_2' %}"><input type="button" name="declineButton" id="declineButton"
+                class="next-button" value="NEXT"></a>
+    </div>-->
+    <br>
                 <br>
 
             </form>
@@ -309,37 +289,19 @@
         </div>
         {{user.email}}
     </div>
-    <!-- Phone -->
-    <div class="input-group mb-2">
-        <div class="input-group-append">
-            {{profile_form1.phone}}
-        </div>
-    </div>
-    <!--  City -->
-    <div class="input-group mb-2">
-        <div class="input-group-append">
-            {{profile_form1.city}}
-        </div>
-    </div>
-    <!-- Country -->
-    <div class="input-group mb-2">
-        <div class="input-group-append">
-            {{profile_form1.country}}
-        </div>
-    </div>
     <br>
 
     <!-- Submit button -->
     <div class="d-flex justify-content-center mt-3" id="justify-center">
-        <input class="btn register-button" type="submit" value="REGISTER ACCOUNT">
+        <input class="btn register-button" type="submit" value="CREATE PROFILE">
     </div>
 
     <!-- Back/Next buttons -->
-    <div class="row">
+    <!--<div class="row">
         <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="back-button" value="BACK"></a>
         <a href="{% url 'register_2' %}"><input type="button" name="declineButton" id="declineButton"
                 class="next-button" value="NEXT"></a>
-    </div>
+    </div>-->
     <br>
 
     </form>

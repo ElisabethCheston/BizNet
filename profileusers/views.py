@@ -50,6 +50,28 @@ def terms(request):
 
 
 @login_required
+def Profile(request):
+    profile_form1 = ProfileForm1()
+    if request.method == 'POST':
+        profile = Profile(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+        if profile.is_valid():
+            profile.save()
+            # messages.success(request, 'Step 1 of 3 done of creating your profile!')
+            return redirect('register_1')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    else:
+        profile = Profileuser.objects.create(user=request.user)
+        # profile_form1 = ProfileForm1(instance=request.user.profileuser)
+        # return redirect('register_1')
+    context = {
+        'profile':profile,
+    }
+    return render(request, 'profileusers/profile.html', context)
+    
+
 def ProfileOne(request):
     profile_form1 = ProfileForm1()
     if request.method == 'POST':
@@ -58,21 +80,19 @@ def ProfileOne(request):
                                 instance=request.user.profileuser)
         if profile_form1.is_valid():
             profile_form1.save()
-            messages.success(request, 'Step 1 of 3 done of creating your profile!')
-            return redirect('register_3')
+            # messages.success(request, 'Step 1 of 3 done of creating your profile!')
+            # return redirect('register_2')
         # else:
             #messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
-        profile = Profileuser.objects.create(user=request.user)
-        # profile_form1 = ProfileForm1(instance=request.user.profileuser)
+        # profile_form1 = Profileuser.objects.create(user=request.user)
+        profile_form1 = ProfileForm1(instance=request.user.profileuser)
     context = {
         'profile_form1':profile_form1,
-        # 'on_profile_page': True
     }
     return render(request, 'profileusers/register_1.html', context)
 
-
-@login_required
+# @login_required
 def ProfileTwo(request):
     if request.method == 'POST':
         profile_form2 = ProfileForm2(request.POST, 
@@ -80,15 +100,14 @@ def ProfileTwo(request):
                                 instance=request.user.profileuser)
         if profile_form2.is_valid():
             profile_form2.save()
-            messages.success(request, 'Step 2 of 3 done of creating your profile!')
-            return redirect('register_3')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+            # messages.success(request, 'Step 2 of 3 done of creating your profile!')
+            # return redirect('register_3')
+        #else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         profile_form2 = ProfileForm2(instance=request.user.profileuser)
     context = {
         'profile_form2':profile_form2,
-        # 'on_profile_page': True
     }
     return render(request, 'profileusers/register_2.html', context)
 
@@ -100,10 +119,10 @@ def ProfileThree(request):
                                 instance=request.user.profileuser)
         if profile_form3.is_valid():
             profile_form3.save()
-            messages.success(request, 'Step 3 of 3 done of creating your profile!')
-            return redirect('profile_details')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+            # messages.success(request, 'Step 3 of 3 done of creating your profile!')
+            # return redirect('profile_details')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         profile_form3 = ProfileForm3(instance=request.user.profileuser)
     context = {
@@ -166,7 +185,7 @@ def loginRegisterPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('register_1')
+            return redirect('profile')
 
         else:
             messages.info(request, 'Username or Password is incorrect!')

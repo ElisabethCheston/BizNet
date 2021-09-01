@@ -17,6 +17,7 @@ urlpatterns = [
 
     path('register/', views.Register, name='register'),
     # path('register_profile/', views.RegisterPage, name='register_profile'),
+    path('profile/', views.Profile, name='profile'),
     path('register_1/', views.ProfileOne, name='register_1'),
     path('register_2/', views.ProfileTwo, name='register_2'),
     path('register_3/', views.ProfileThree, name='register_3'),

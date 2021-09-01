@@ -199,35 +199,35 @@
         {% csrf_token %}
 
         <!-- Industry -->
-        <div class="input-group mb-2">
+        <!--<div class="input-group mb-2">
           <div class="input-group-append">
             <option value="">Industry:</option>
             {{profile_form3.industry}}
           </div>
-        </div>
+        </div>-->
         <!--  Profession -->
-        <div class="input-group mb-2">
+        <!--<div class="input-group mb-2">
           <div class="input-group-append">
             <option value="">Profession:</option>
             {{ profile_form3.profession }}
           </div>
-        </div>
+        </div>-->
         <!-- Skill -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            {{profile_form3.skill}}
+            {{profile_form3.skills}}
           </div>
         </div>
         <!--  City -->
-        <div class="input-group mb-2">
+        <!--<div class="input-group mb-2">
           <div class="input-group-append">
             {{profile_form3.city}}
           </div>
-        </div>
+        </div>-->
         <!-- Country -->
         <div class="input-group mb-2">
           <div class="input-group-append">
-            {{profile_form3.country}}
+            {{profile_form3.match_country}}
           </div>
         </div>
         <br>
@@ -242,8 +242,8 @@
         <div class="row">
           <a href="{% url 'register_2' %}"><input type="button" name="acceptButton" class="back-button"
               value="BACK"></a>
-          <a href="{% url 'register_3' %}"><input type="button" name="declineButton" id="declineButton"
-              class="next-button" value="NEXT"></a>
+          <a href="{% url 'profile_details' %}"><input type="button" name="declineButton" id="declineButton"
+              class="next-button" value="VIEW PROFILE"></a>
         </div>
         <br>
 

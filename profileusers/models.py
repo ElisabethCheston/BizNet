@@ -61,7 +61,7 @@ class Profileuser(models.Model):
         max_length=254, blank=True, default=None, null=True)
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    description = models.TextField(max_length=250, null=True)
+    description = models.TextField(max_length=250, null=True, verbose_name="Description")
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     skill = models.CharField(max_length=254, blank=True, null=True, default=None)
@@ -79,7 +79,7 @@ class Profileuser(models.Model):
         # return self.user.username
         return str(self.user)
 
-
+            
 # ALL MY AND MY CONTACTS GIGS
 
 # All my gigs
@@ -193,3 +193,18 @@ def create_profile(sender, **kwargs):
         user_profile.save()
 post_save.connect(create_profile, sender=User)
 """
+
+"""
+# MATCHING
+# Profession
+    def match_profession(self):
+        return MultiSelectField()
+
+# Industry
+    def match_industry(self):
+        return MultiSelectField()
+
+# Country
+    def match_country(self):
+        return MultiSelectField()  
+"""  
