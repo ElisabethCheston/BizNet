@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'network',
     'profileusers',
     'settings',
+    # 'multiselectfield',
 ]
 
 MIDDLEWARE = [

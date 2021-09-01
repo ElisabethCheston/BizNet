@@ -128,7 +128,7 @@ class ProfileForm3(forms.ModelForm):
         fields = [
             'industry',
             'profession',
-            'skill',
+            'skills',
             'city',
             'country',
         ]

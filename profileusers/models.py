@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from django_countries.fields import CountryField
+# from multiselectfield import MultiSelectField
 from itertools import chain
 import random
 
@@ -27,6 +28,15 @@ class Profession(models.Model):
         return self.profession_name
 
 
+class Skills(models.Model):
+    skills_name = models.CharField(max_length=200, null=True, blank=False)
+    class Meta:
+        verbose_name_plural = 'Skills'
+
+    def __str__(self):
+        return self.skills_name
+
+
 # Create Profileuser model.
 class Profileuser(models.Model):
     """
@@ -36,12 +46,8 @@ class Profileuser(models.Model):
     avatar = models.ImageField(
         upload_to='profileavatars', default='profileavatar.png')
     picture = models.ImageField(upload_to='images', default='profileavatar.png')
-    # background = models.ImageField(
-        # upload_to='backgroundpics', default='backgroundpic.jpg')
     following = models.ManyToManyField(
         User, related_name='following', blank=True)
-    # member_id = models.CharField(max_length=254, primary_key=True, default='member_id')
-    description = models.TextField(blank=True)
     updated = models.DateTimeField(auto_now=True, blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
     firstname = models.CharField(
@@ -59,6 +65,8 @@ class Profileuser(models.Model):
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     skill = models.CharField(max_length=254, blank=True, null=True, default=None)
+    skills = models.ForeignKey(
+        Skills, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
@@ -146,6 +154,9 @@ class Profileuser(models.Model):
         return len(self.get_followers())
 
 
+# MATCHING PREFERENCES
+
+
 # SUGGESTED CONTACTS
 
 # Suggested contacts
@@ -173,7 +184,6 @@ def create_or_update_profileuser(sender, instance, created, **kwargs):
     if created:
         Profileuser.objects.create(user=instance)
     instance.profileuser.save()
-
 
 
 def create_profile(sender, **kwargs):

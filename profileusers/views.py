@@ -60,10 +60,11 @@ def ProfileOne(request):
             profile_form1.save()
             messages.success(request, 'Step 1 of 3 done of creating your profile!')
             return redirect('register_3')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+        # else:
+            #messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         profile = Profileuser.objects.create(user=request.user)
+        # profile_form1 = ProfileForm1(instance=request.user.profileuser)
     context = {
         'profile_form1':profile_form1,
         # 'on_profile_page': True
