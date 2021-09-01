@@ -35,9 +35,9 @@ class ProfileForm(forms.ModelForm):
         model = Profileuser
         fields = [
             'avatar',
-            'picture',
-            'firstname',
-            'lastname',
+            # 'picture',
+            # 'firstname',
+            # 'lastname',
             'title',
             'company_name',
             'company_number_vat',
@@ -45,8 +45,8 @@ class ProfileForm(forms.ModelForm):
             'profession',
             'skill',
             'description',
-            'phone',
-            'email',
+            # 'phone',
+            # 'email',
             'city',
             'country',
         ]
