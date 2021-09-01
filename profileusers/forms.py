@@ -99,6 +99,8 @@ class ProfileForm1(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
+            'title',
+            'company_name',
             # 'avatar',
             # 'picture',
             # 'firstname',
@@ -113,12 +115,12 @@ class ProfileForm2(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            'title',
-            'company_name',
+            # 'title',
+            # 'company_name',
             # 'company_number_vat',
             'industry',
             'profession',
-            'skill',
+            # 'skill',
             'description',
         ]
 

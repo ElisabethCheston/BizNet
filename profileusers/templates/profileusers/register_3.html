@@ -19,27 +19,19 @@
     margin-top: 20px;
   }
 
-  #id_last_name,
-  #id_industry,
-  #id_description,
-  #id_profession,
-  #id_industry,
-  #id_skill,
-  #id_phone,
-  #id_city,
-  #id_country {
+
+  #id_skills {
     width: 85%;
     text-align: center;
     font-size: large;
-    height: 45px;
+    height: 70px;
     margin-top: 2%;
     border-color: black;
-    border-style: double;
+    border-width: 2px;
   }
 
-  option,
-  a,
   p,
+  option,
   .link,
   h2 {
     text-align: center;
@@ -60,10 +52,6 @@
     align-items: center;
   }
 
-  .profile-name {
-    font-size: large;
-    font-weight: bold;
-  }
 
   /* BUTTONS */
 
@@ -76,22 +64,19 @@
     line-height: 60px;
   }
 
-  .button-row {
+  .row {
     text-align: center;
     /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
     margin-left: -20px;
     margin-right: -20px;
   }
 
-
-  .btn,
-  .register-button {
-    /* border-width: 2px; */
+  .btn {
     color: white;
     border-color: rgba(148, 149, 150, 0.2);
     background-color: rgba(131, 133, 134, 0.8) !important;
-    width: 90%;
-    height: 45px;
+    width: 40%;
+    height: 50px;
     margin-top: 2%;
     font-weight: bold;
     text-align: center;
@@ -103,17 +88,13 @@
 
   .btn:hover,
   .btn:active,
-  .btn:focus {
+  .btn:focus,
+  .register-button:hover,
+  .register-button:active,
+  .register-button:focus {
     background-color: rgba(94, 95, 95, 0.792) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   }
-
-  /*
-.register_container {
-  padding: 0 1rem;
-}
-*/
-
 
   #link {
     color: deeppink;
@@ -133,7 +114,7 @@
   box-shadow: none !important;
   outline: 0px !important;
 }
-*/
+
   input {
     width: 84%;
     text-align: center;
@@ -164,7 +145,7 @@
     color: #0896e7;
   }
 
-  /*
+  
 #messages {
   background-color: rgba(128, 186, 240, 0.792);
   color: #fff;
@@ -215,6 +196,7 @@
         <!-- Skill -->
         <div class="input-group mb-2">
           <div class="input-group-append">
+            <option value="">Skills:</option>
             {{profile_form3.skills}}
           </div>
         </div>
@@ -225,48 +207,31 @@
           </div>
         </div>-->
         <!-- Country -->
-        <div class="input-group mb-2">
+        <!--<div class="input-group mb-2">
           <div class="input-group-append">
             {{profile_form3.match_country}}
           </div>
-        </div>
+        </div>-->
         <br>
 
         <!-- Submit button -->
-        <div class="d-flex justify-content-center mt-3" id="justify-center">
+        <div class="d-flex justify-content-center" id="justify-center">
           <input class="btn register-button" type="submit" value="SAVE">
         </div>
 
-
         <!-- Back/Next buttons -->
         <div class="row">
-          <a href="{% url 'register_2' %}"><input type="button" name="acceptButton" class="back-button"
+          <a href="{% url 'register_2' %}"><input type="button" name="backButton" class="btn back-button"
               value="BACK"></a>
-          <a href="{% url 'profile_details' %}"><input type="button" name="declineButton" id="declineButton"
-              class="next-button" value="VIEW PROFILE"></a>
+          <a href="{% url 'profile_details' %}"><input type="button" name="nextButton" id="nextButton"
+              class="btn next-button" value="VIEW PROFILE"></a>
         </div>
         <br>
 
       </form>
     </div>
 
-    <!--<div class="col" id="justify-center">
-      {{ form.errors }}
-      {{ errorlist.username }}
-      {{ errorlist.email }}
-      {{ errorlist.password1 }}
-      {{ errorlist.password2 }}
-    </div>-->
 
-    <!-- Already got an account? -->
-    <div class="mt-4">
-      <div class="d-flex link justify-content-center links">
-        Already got an account?
-        <a href="{% url 'login' %}" class="ml-2">
-          Sign In
-        </a>
-      </div>
-    </div>
   </div>
 
   <script>

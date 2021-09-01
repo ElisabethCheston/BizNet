@@ -18,32 +18,34 @@
         margin-top: 20px;
     }
 
-    #id_last_name,
-    #id_industry,
-    #id_description,
-    #id_profession,
-    #id_industry,
-    #id_skill,
-    #id_phone,
     #id_city,
+    #id_title,
+    #id_company_name,
     #id_country {
         width: 85%;
-        text-align: center;
-        font-size: large;
+        text-align: left;
+        margin-left: 1%;
+        font-size: medium;
         height: 45px;
         margin-top: 2%;
         border-color: black;
-        border-style: double;
+        border-width: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
-    option,
-    a,
     p,
     .link,
     h2 {
         text-align: center;
         font-size: medium;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    select#id_country {
+        width: 86.5%;
+        height: 49px;
+        color: rgba(107, 113, 116, 0.9);
+        padding-left: 2px;
     }
 
     .form-control {
@@ -59,12 +61,25 @@
         align-items: center;
     }
 
+
+    /* FONT */
+
     .profile-name {
-        font-size: large;
+        font-size: x-large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-weight: bold;
     }
+    .profile-email {
+        font-size: large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }    
 
     /* BUTTONS */
+
+    .save-button {
+        background-color: #01AAAD;
+        width: 300px;
+    }
 
     .back-button,
     .next-button {
@@ -75,22 +90,19 @@
         line-height: 60px;
     }
 
-    .button-row {
+    .row {
         text-align: center;
         /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
         margin-left: -20px;
         margin-right: -20px;
     }
 
-
-    .btn,
-    .register-button {
-        /* border-width: 2px; */
+    .btn {
         color: white;
         border-color: rgba(148, 149, 150, 0.2);
         background-color: rgba(131, 133, 134, 0.8) !important;
-        width: 90%;
-        height: 45px;
+        width: 40%;
+        height: 50px;
         margin-top: 2%;
         font-weight: bold;
         text-align: center;
@@ -107,32 +119,24 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /*
-  .register_container {
-    padding: 0 1rem;
-  }
-*/
-
-
     #link {
         color: deeppink;
     }
 
-    /*
-  .input-group-text {
-    background: #8a9194a9 !important;
-    color: white !important;
-    border: 1px !important;
-    font-size: large;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-  }
+    .input-group-text {
+        background: #8a9194a9 !important;
+        color: white !important;
+        border: 1px !important;
+        font-size: large;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+/*
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
 
-  .input_user,
-  .input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-  }
-  */
     input {
         width: 84%;
         text-align: center;
@@ -149,6 +153,9 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
+  .register_container {
+    padding: 0 1rem;
+  }
     #terms-box {
         width: 5mm;
         height: 5mm;
@@ -158,19 +165,16 @@
         border: 1px solid #3db2f5;
         background-color: #e2e3e4;
     }
-
-    .link-terms {
-        color: #0896e7;
-    }
-
-    /*
   #messages {
     background-color: rgba(128, 186, 240, 0.792);
     color: #fff;
     padding: 10px;
     margin-top: 10px;
   }
-  */
+*/
+    .link-terms {
+        color: #0896e7;
+    }
 </style>
 
 <div class="register_container" id="justify-center">
@@ -215,15 +219,29 @@
                     <div class="input-group-append">
                         <span class="input-group-text"></span>
                     </div>
-                    {{user.email}}
+                    <div class="profile-email">
+                        {{user.email}}
+                    </div>
                 </div>
                 <br>
-                <!-- Phone -->
+                <!-- Title -->
                 <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        {{profile_form1.title}}
+                    </div>
+                </div>
+                <!-- Company -->
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        {{profile_form1.company_name}}
+                    </div>
+                </div>
+                <!-- Phone -->
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form1.phone}}
                     </div>
-                </div>
+                </div>-->
                 <!--  City -->
                 <div class="input-group mb-2">
                     <div class="input-group-append">
@@ -240,17 +258,15 @@
 
                 <!-- Submit button -->
                 <div class="d-flex justify-content-center mt-3" id="justify-center">
-                    <p>Let's create your profile.</p>
-                    <input class="btn register-button" type="submit" value="SAVE">
+                    <input class="btn save-button" type="submit" value="SAVE">
                 </div>
 
                 <!-- Back/Next buttons -->
                 <div class="row button-row">
-                    <a href="#"><input type="button" name="acceptButton" class="back-button"
-                            value="BACK"></a>
-                    <a href="{% url 'register_2' %}"><input type="button" name="declineButton" id="declineButton"
-                            class="next-button" value="NEXT"></a>
-                    </div>
+                    <a href="#"><input type="button" name="backButton" class="btn back-button" value="BACK"></a>
+                    <a href="{% url 'register_2' %}"><input type="button" name="nextButton" id="nextButton"
+                            class="btn next-button" value="NEXT"></a>
+                </div>
                 <br>
 
             </form>
@@ -272,8 +288,9 @@
         form_fields[2].placeholder = 'Last Name..';
         form_fields[3].placeholder = 'Email..';
 */
-        form_fields[1].placeholder = 'Phone..';
-        form_fields[2].placeholder = 'City...';
+        form_fields[1].placeholder = ' Title..';
+        form_fields[2].placeholder = ' Company..';
+        form_fields[3].placeholder = ' City...';
         // form_fields[3].placeholder = 'Country...';
 
         for (var field in form_fields) {

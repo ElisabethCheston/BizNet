@@ -20,22 +20,32 @@
         margin-top: 20px;
     }
 
-    #id_last_name,
-    #id_industry,
-    #id_description,
     #id_profession,
     #id_industry,
-    #id_skill,
-    #id_phone,
-    #id_city,
-    #id_country {
+    #id_description {
         width: 85%;
         text-align: center;
         font-size: large;
         height: 45px;
         margin-top: 2%;
         border-color: black;
-        border-style: double;
+        border-width: 2px;
+    }
+
+    #id_description {
+        width: 85%;
+        text-align: center;
+        font-size: large;
+        height: 89px;
+        margin-top: 2%;
+        border-color: black;
+        border-width: 2px;
+    }
+
+    select#id_industry,
+    select#id_profession {
+        width: 86.5%;
+        height: 49px;
     }
 
     option,
@@ -77,22 +87,19 @@
         line-height: 60px;
     }
 
-    .button-row {
+    .row {
         text-align: center;
         /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
         margin-left: -20px;
         margin-right: -20px;
     }
 
-
-    .btn,
-    .register-button {
-        /* border-width: 2px; */
+    .btn {
         color: white;
         border-color: rgba(148, 149, 150, 0.2);
         background-color: rgba(131, 133, 134, 0.8) !important;
-        width: 90%;
-        height: 45px;
+        width: 40%;
+        height: 50px;
         margin-top: 2%;
         font-weight: bold;
         text-align: center;
@@ -109,18 +116,15 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /*
-  .register_container {
-    padding: 0 1rem;
-  }
-*/
-
-
     #link {
         color: deeppink;
     }
 
     /*
+  .register_container {
+    padding: 0 1rem;
+  }
+
   .input-group-text {
     background: #8a9194a9 !important;
     color: white !important;
@@ -134,7 +138,7 @@
     box-shadow: none !important;
     outline: 0px !important;
   }
-  */
+
     input {
         width: 84%;
         text-align: center;
@@ -165,7 +169,6 @@
         color: #0896e7;
     }
 
-    /*
   #messages {
     background-color: rgba(128, 186, 240, 0.792);
     color: #fff;
@@ -189,8 +192,7 @@
     <br>
     <div class="d-flex">
         <div class="d-flex" id="justify-center">
-            <h2 id="form-title">PROFILE INFORMATION</h2>
-
+            <h2 id="form-title">WORK INFORMATION</h2>
 
             <form method="POST" enctype="multipart/form-data" action="{% url 'register_2' %}">
                 {% csrf_token %}
@@ -202,35 +204,35 @@
                     </div>
                 </div>-->
                 <!-- Title -->
-                <div class="input-group mb-2">
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form2.title}}
                     </div>
-                </div>
+                </div>-->
                 <!--  City -->
-                <div class="input-group mb-2">
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form1.city}}
                     </div>
-                </div>
+                </div>-->
                 <!-- Country -->
-                <div class="input-group mb-2">
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form1.country}}
                     </div>
-                </div>                
+                </div>-->
                 <!-- Company -->
-                <div class="input-group mb-2">
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form2.company_name}}
                     </div>
-                </div>
+                </div>-->
                 <!-- Company no -->
-                <div class="input-group mb-2">
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form2.company_number_vat}}
                     </div>
-                </div>
+                </div>-->
                 <!-- Industry -->
                 <div class="input-group mb-2">
                     <div class="input-group-append">
@@ -246,15 +248,16 @@
                     </div>
                 </div>
                 <!-- Skill -->
-                <div class="input-group mb-2">
+                <!--<div class="input-group mb-2">
                     <div class="input-group-append">
                         <span class="input-group-text"></span>
                     </div>
                     {{profile_form2.skill}}
-                </div>
+                </div>-->
                 <!--  Description -->
                 <div class="input-group mb-2">
-                    <div class="input-group-append" name="Description">
+                    <div class="input-group-append">
+                        <option value="">Description:</option>
                         {{ profile_form2.description}}
                     </div>
                 </div>
@@ -267,10 +270,10 @@
 
                 <!-- Back/Next buttons -->
                 <div class="row">
-                    <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="back-button"
+                    <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="btn back-button"
                             value="BACK"></a>
                     <a href="{% url 'register_3' %}"><input type="button" name="declineButton" id="declineButton"
-                            class="next-button" value="NEXT"></a>
+                            class="btn next-button" value="NEXT"></a>
                 </div>
                 <br>
 
@@ -285,16 +288,6 @@
       {{ errorlist.password2 }}
     </div>-->
 
-        <!-- Already got an account? -->
-        <div class="mt-4">
-            <div class="d-flex link justify-content-center links">
-                Already got an account?
-                <a href="{% url 'login' %}" class="ml-2">
-                    Sign In
-                </a>
-            </div>
-        </div>
-
     </div>
 
 
@@ -305,18 +298,19 @@
 
         // Query All input fields
         var form_fields = document.getElementsByTagName('input')
+        /*
         form_fields[1].placeholder = 'Title..';
         form_fields[2].placeholder = 'Company Name..';
-        /*
+        
         form_fields[3].placeholder = 'Company VAT..';
         
-                select[4].placeholder = 'Industry..';
-                form_fields[5].placeholder = 'Profession..';
-                */
+            select[4].placeholder = 'Industry..';
+            form_fields[5].placeholder = 'Profession..';
+                
         form_fields[3].placeholder = 'Skill...';
         
-        form_fields[4].placeholder = 'Description..';
-
+        form_fields[5].placeholder = 'Description..';
+*/
         for (var field in form_fields) {
             form_fields[field].className += 'form-control'
         }
@@ -324,4 +318,3 @@
     </script>
 
     {% endblock %}
-
