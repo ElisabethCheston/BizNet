@@ -20,6 +20,24 @@ from .models import Profileuser
 
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+
+
+def success(request, uid):
+    template = render_to_string('account/email.html', {'name':request.user.first_name})
+    email = EmailMessage(
+        'Thank you for creating an account with BizNet!',
+        'template',
+        settings.EMAIL_HOST_USER,
+        [request.user.email],
+        )
+    email.fail_silently=False
+    email.sent()
+    
+    return render(request, 'account/success.html', context)
+
 
 # REGISTRATION & LOGIN
 
