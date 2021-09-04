@@ -71,6 +71,35 @@
         font-weight: bold;
         color: rebeccapurple;
     }
+
+    p {
+        font-size: 15px;
+        margin-bottom: none;
+    }
+
+    .btn {
+        color: white;
+        border-color: rgba(96, 185, 236, 0.2);
+        background-color: rgba(9, 143, 221, 0.9) !important;
+        font-size: medium !important;
+        font-weight: bold;
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn:hover,
+    .btn:active,
+    .btn:focus {
+        color: white;
+        border-color: rgba(96, 185, 236, 0.2);
+        background-color: rgba(4, 102, 168, 0.9) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+.card-info {
+    margin-left: 7%;
+    margin-top:3%;
+}
 </style>
 
 <div class="container-profile justify-center">
@@ -82,10 +111,10 @@
             <div class="col-12 justify-content-center">
 
                 <!-- Profileuser information -->
-                <div class="row g-0">
+                <div class="row g-0 justify-content-center">
                     {% csrf_token %}
                     <!-- Profileuser pic -->
-                    <div class="col-md-5">
+                    <div class="col-5 justify-content-center">
 
                         {% if profileusers.picture %}
 
@@ -103,19 +132,19 @@
 
                     <!-- Profileuser fact colum-->
                     <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                        <div class="card-info">
+                            <h5 class="card-title g-0">{{user.first_name}} {{user.last_name}}</h5>
                             <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
                             <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
                             <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
                             <br>
 
-                            <p class="card-text">Profession: &nbsp; {{profile.profession}}</p>
-                            <p class="card-text">Skills: &nbsp {{profile.skill}}</p>
-                            <br>
-                            <p class="card-text">Email: &nbsp; {{user.email}}</p>
-                            <p class="card-text">City: &nbsp; {{profile.city}}</p>
-                            <p class="card-text">Country: &nbsp; {{profile.country}}</p>
+                            <p class="card-text"><strong>Profession:</strong> &nbsp; {{profile.profession}}</p>
+                            <p class="card-text"><strong>Skills:</strong> &nbsp {{profile.skill}}</p>
+
+                            <p class="card-text"><strong>Email:</strong> &nbsp; {{user.email}}</p>
+                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
+                            <p class="card-text"><strong>Country:</strong> &nbsp; {{profile.country}}</p>
                             <br>
                         </div>
                     </div>
@@ -125,27 +154,23 @@
                         <p>{{profile.description}}</p>
                     </div>
                     <br>
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <br>
+                    <br>
+                    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-center">
                         <br>
 
                         <form action="{% url 'profile_edit' %}">
-                            <input type="submit" value="Edit Profile" class="btn btn-primary btn-sm"
-                                id="edit_profile_tab" data-bs-toggle="tab" data-bs-target="#edit_profile"
-                                type="tab-button" role="tab" />
+                            <input type="submit" value="EDIT PROFILE" class="btn btn-edit" id="edit_profile_tab"
+                                data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
                         </form>
                     </div>
-                    <br>
-                    <br>
                 </div>
             </div>
             <br>
-            <br>
-
-
         </div>
     </div>
+    <br>
+    <br>
 </div>
 
 {% endif %}

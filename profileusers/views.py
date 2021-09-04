@@ -228,8 +228,41 @@ def profile_edit(request):
         # 'on_profile_page': True
     }
     return render(request, 'profileusers/profile_edit.html', context)
+"""
 
 
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        profile_form1 = ProfileForm1(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+        profile_form2 = ProfileForm2(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+        profile_form3 = ProfileForm3(request.POST, 
+                                request.FILES, 
+                                instance=request.user.profileuser)
+
+        if profile_form1.is_valid() and profile_form2.is_valid() and profile_form3.is_valid():
+            profile_form1.save()
+            profile_form2.save()
+            profile_form3.save()
+            messages.success(request, 'Your Profile has been updated!')
+            return redirect('profile_details')
+        else:
+            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    else:
+        profile_form1 = ProfileForm1(instance=request.user.profileuser)
+        profile_form2 = ProfileForm2(instance=request.user.profileuser)
+        profile_form3 = ProfileForm3(instance=request.user.profileuser)
+    context = {
+        'profile_form1':profile_form1,
+        'profile_form2':profile_form2,
+        'profile_form3':profile_form3,
+    }
+    return render(request, 'profileusers/profile_edit.html', context)
+"""
 
 @login_required
 def all_profiles(request):
