@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from . import views
 from .views import (
     MyProfile,
@@ -28,6 +29,11 @@ urlpatterns = [
     path('my_gigs/', views.my_gigs, name='my_gigs'),
     path('my_contacts/', views.my_contacts, name='my_contacts'),
 
+    # path('verified_email_required/', auth_views.VerifiedEmailRequiredView.as_view(template_name='verified_email_required.html'), name='verified_email_required'),
+    # path('verification_sent/', auth_views.VerdificationSentView.as_view(template_name='verification_sent.html'), name='verification_sent'),
 
-
+    path('reset_password/', auth_views.PasswordResetView.as_view(), name='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]

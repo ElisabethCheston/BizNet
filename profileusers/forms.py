@@ -35,7 +35,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            #'avatar',
+            # 'avatar',
             'picture',
             # 'firstname',
             # 'lastname',

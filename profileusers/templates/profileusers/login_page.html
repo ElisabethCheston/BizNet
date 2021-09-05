@@ -180,6 +180,12 @@
             <br>
             <br>
             <p><b>Forgotten your password?</b></p>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <!--<a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?"
+                %}</a>-->
+
             <p>Please, click on the <a href="{% url 'account_reset_password' %}" class="link-danger">LINK</a>, and we'll
                 send you an e-mail allowing
                 you to reset it.</p>

@@ -24,7 +24,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 
-
+"""
 def success(request, uid):
     template = render_to_string('account/email.html', {'name':request.user.first_name})
     email = EmailMessage(
@@ -35,9 +35,8 @@ def success(request, uid):
         )
     email.fail_silently=False
     email.sent()
-    
     return render(request, 'account/success.html', context)
-
+"""
 
 # REGISTRATION & LOGIN
 
@@ -69,7 +68,7 @@ def terms(request):
 
 @login_required
 def Profile(request):
-    profile_form1 = ProfileForm1()
+    # profile_form1 = ProfileForm1()
     if request.method == 'POST':
         profile = Profile(request.POST, 
                                 request.FILES, 
@@ -148,7 +147,6 @@ def ProfileThree(request):
     }
     return render(request, 'profileusers/register_3.html', context)
 
-
 """
 @login_required
 def RegisterPage(request):
@@ -185,10 +183,9 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('profile_details')
-
         else:
             messages.info(request, 'Username or Password is incorrect!')
-            
+  
     template = 'profileusers/login_page.html'
     context = {}
     return render(request, template, context)
@@ -204,7 +201,6 @@ def loginRegisterPage(request):
         if user is not None:
             login(request, user)
             return redirect('profile')
-
         else:
             messages.info(request, 'Username or Password is incorrect!')
             
@@ -230,25 +226,25 @@ def profile_details(request):
 @login_required
 def profile_edit(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, 
+        profileform = ProfileForm(request.POST, 
                                 request.FILES, 
                                 instance=request.user.profileuser)
-        if form.is_valid():
-            form.save()
+        if profileform.is_valid():
+            profileform.save()
             messages.success(request, 'Your Profile has been updated!')
             return redirect('profile_details')
         else:
             messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
-        form = ProfileForm(instance=request.user.profileuser)
+        profileform = ProfileForm(instance=request.user.profileuser)
     context = {
-        'form':form,
+        'profileform':profileform,
         # 'on_profile_page': True
     }
     return render(request, 'profileusers/profile_edit.html', context)
+
+
 """
-
-
 @login_required
 def profile_edit(request):
     if request.method == 'POST':
