@@ -77,7 +77,7 @@ class Profileuser(models.Model):
     def __str__(self):
         # pylint: disable=maybe-no-member
         # return self.user.username
-        return str(self.user)
+        return str(self.username)
 
             
 # ALL MY AND MY CONTACTS GIGS
