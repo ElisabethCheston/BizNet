@@ -42,7 +42,7 @@ class Profileuser(models.Model):
     """
     Profile user information 
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(
         upload_to='profileavatars', default='profileavatar.png')
     picture = models.ImageField(upload_to='images', default='profileavatar.png')
@@ -50,9 +50,9 @@ class Profileuser(models.Model):
         User, related_name='following', blank=True)
     updated = models.DateTimeField(auto_now=True, blank=False)
     created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
-    firstname = models.CharField(
+    first_name = models.CharField(
         max_length=254, blank=False, null=True)
-    lastname = models.CharField(
+    last_name = models.CharField(
         max_length=254, blank=False, null=True)
     title = models.CharField(max_length=254, blank=True, default=None, null=True)
     company_name = models.CharField(

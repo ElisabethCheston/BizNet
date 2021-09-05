@@ -40,6 +40,26 @@ def success(request, uid):
 
 # REGISTRATION & LOGIN
 
+"""
+class RegistrationView(View):
+    def get (det, request):
+        return render(request, 'signup.html')
+
+    def post(self, request):
+
+        messages.success(request, 'Success whatsapp success')
+        return render(request, 'signup.html')
+
+    def post (self, request):
+        # Get user data
+        # Validate
+        # create a user account
+
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+
+"""
 def Register(request):
     # pylint: disable=maybe-no-member
     form = RegisterUserForm()
@@ -80,7 +100,7 @@ def Profile(request):
         # else:
             # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
-        profile = Profileuser.objects.create(user=request.user)
+        profile = Profileuser.objects.create(username=request.user)
         # profile_form1 = ProfileForm1(instance=request.user.profileuser)
         # return redirect('register_1')
     context = {
@@ -190,6 +210,31 @@ def loginPage(request):
     context = {}
     return render(request, template, context)
 
+"""
+        context = {
+        # 'fieldValues': request.POST,
+        }
+        if not Profileuser.objects.filter(email=email).exists():
+            if not User.objects.filter(email=email).exists():
+                if len(password) <  6:
+                    messages.error(request, 'Password too short')
+                    return render(request, 'authentication/register.html', context)
+
+        # user = authenticate(request, username=username, password=password)
+        # if user is not None:
+                user.is_active = True
+                login(request, user)
+                email_subject = 'Activate your account'
+                email_body = ''
+                email = EmailMessage(
+                    email_subject,
+                    email_body,
+                    'biznetwork1234@gmail.com',
+                    [email],
+                )
+                email.send(fail_silently=False)
+"""
+
 
 def loginRegisterPage(request):
     if request.method == 'POST':
@@ -215,7 +260,7 @@ def loginRegisterPage(request):
 def profile_details(request):
     # pylint: disable=maybe-no-member
     #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
+    profile = Profileuser.objects.get(username=request.user)
     template = 'profileusers/profile_details.html'
     context = {
         'profile': profile,
