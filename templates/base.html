@@ -118,12 +118,14 @@
                             {% endif %}
 
                             <a href="{% url 'profile_details' %}" class="dropdown-item">My Profile</a>
-                            <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
-                            <a href="{% url 'network' %}" class="dropdown-item">Membership</a>
                             <a href="{% url 'profile_edit' %}" class="dropdown-item">Edit Profile</a>
+                            <a href="{% url 'gig' %}" class="dropdown-item">My Gigs</a>
+                            <a href="{% url 'gig' %}" class="dropdown-item">Edit Gigs</a>
+                            <a href="{% url 'network' %}" class="dropdown-item">Membership</a>
+                            
                             <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
 
-                            <a href="{% url 'my_profile' %}" class="dropdown-item">Network</a>
+                            <a href="{% url 'network' %}" class="dropdown-item">Network</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
 
                             {% else %}
