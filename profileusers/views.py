@@ -31,13 +31,13 @@ from django.template.loader import render_to_string
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
-    template_name = 'profileusers/password_change.html'
-    # success_url = reverse_lazy('password_success.html')
-    success_url = reverse_lazy('profile_details')
+    #template_name = 'profileusers/password_change.html'
+    success_url = reverse_lazy('password_success')
+    #success_url = reverse_lazy('profile_details')
 
 
 def PasswordSuccess(request):
-    return(request, 'profileusers/password_success.html', {})
+    return render(request, 'profileusers/password_success.html', {})
 
 class PasswordResetDone(PasswordResetDoneView):
     template_name = 'account/password_reset_done.html'
