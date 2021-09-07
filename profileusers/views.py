@@ -13,30 +13,51 @@ from django.views.decorators.csrf import csrf_protect
 from django.template.response import TemplateResponse
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm, UserCreationForm
 """
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetDoneView, PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm # , UserChangeForm, CreationForm
 from django.http import JsonResponse
 from django.core import serializers
 from django.views.generic import TemplateView, View
 from .models import Profileuser
-
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 
+
+# PASSWORD USAGE
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    template_name = 'profileusers/password_change.html'
+    # success_url = reverse_lazy('password_success.html')
+    success_url = reverse_lazy('profile_details')
+
 """
-def success(request, uid):
-    template = render_to_string('account/email.html', {'name':request.user.first_name})
-    email = EmailMessage(
-        'Thank you for creating an account with BizNet!',
-        'template',
-        settings.EMAIL_HOST_USER,
-        [request.user.email],
-        )
-    email.fail_silently=False
-    email.sent()
-    return render(request, 'account/success.html', context)
+def PasswordSuccess(request):
+    return(request, 'profileusers/password_success.html', {})
+
+class PasswordResetDone(PasswordResetDoneView):
+    template_name = 'account/password_reset_done.html'
 """
+
+"""
+class UserRegisterView(generic.CreateView):
+    form_class = SignUpForm
+    template_name = 'profileusers/register.html'
+    success_url = reverse_lazy('login')
+
+class UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'profileusers/edit_profile.html'
+    success_url = reverse_lazy('login')
+
+    def get_object(self):
+        return self.request.user
+"""
+
 
 # REGISTRATION & LOGIN
 
@@ -129,7 +150,7 @@ def ProfileOne(request):
     }
     return render(request, 'profileusers/register_1.html', context)
 
-# @login_required
+
 def ProfileTwo(request):
     if request.method == 'POST':
         profile_form2 = ProfileForm2(request.POST, 
@@ -204,7 +225,8 @@ def loginPage(request):
             login(request, user)
             return redirect('profile_details')
         else:
-            messages.info(request, 'Username or Password is incorrect!')
+            # messages.info(request, 'Username or Password is incorrect!')
+            return redirect('login_page')
   
     template = 'profileusers/login_page.html'
     context = {}
@@ -234,7 +256,6 @@ def loginPage(request):
                 )
                 email.send(fail_silently=False)
 """
-
 
 def loginRegisterPage(request):
     if request.method == 'POST':
