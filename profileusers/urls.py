@@ -17,7 +17,7 @@ urlpatterns = [
     # path('signup/', views.RegistrationView, name='signup'),
     # path('register_profile/', views.RegisterPage, name='register_profile'),
 
-    # PROFILE SETUP
+    # PROFILE REGISTER SETUP
     path('profile/', views.Profile, name='profile'),
     path('register_1/', views.ProfileOne, name='register_1'),
     path('register_2/', views.ProfileTwo, name='register_2'),
@@ -32,10 +32,10 @@ urlpatterns = [
     # path('verified_email_required/', auth_views.VerifiedEmailRequiredView.as_view(template_name='verified_email_required.html'), name='verified_email_required'),
     # path('verification_sent/', auth_views.VerdificationSentView.as_view(template_name='verification_sent.html'), name='verification_sent'),
     
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html'), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='account/password_reset_done.html'), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='account/password_reset_confirm.html'), name='password_reset_confirm'),
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='account/password_reset_complete.html'), name='password_reset_complete'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='profileusers/password_reset.html'), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='profileusers/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='profileusers/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='profileusers/password_reset_complete.html'), name='password_reset_complete'),
 
     # LOGIN & LOGOUT
     path('login_page/', views.loginPage, name='login_page'),
