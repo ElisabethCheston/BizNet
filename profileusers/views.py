@@ -60,7 +60,8 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'AWS_verified_email_address', [user.email], fail_silently=False)
+                        # send_mail(subject, contact_message, from_email, to_email, fail_silently = True)
+						send_mail(subject, email, [user.email], fail_silently=True) #  'AWS_verified_email_address',
 					except BadHeaderError:
 
 						return HttpResponse('Invalid header found.')

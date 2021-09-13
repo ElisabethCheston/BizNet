@@ -201,7 +201,7 @@ if 'USE_AWS' in os.environ:
 # Email and accounts
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    # DEFAULT_FROM_EMAIL = 'biznetwork1234@gmail.com'
+    DEFAULT_FROM_EMAIL = 'biznetwork1234@gmail.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.gmail.com'
