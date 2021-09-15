@@ -288,6 +288,13 @@ def loginRegisterPage(request):
     context = {}
     return render(request, template, context)
 
+# AJAX
+def load_cities(request):
+    countries_id = request.GET.get('countries_id')
+    cities = Cities.objects.filter(countries_id=countries_id).all()
+    return render(request, 'profileusers/cities_dropdown_list_options.html', {'cities': cities})
+    # return JsonResponse(list(cities.values('id', 'name')), safe=False)
+
 
 # PROFILES
 

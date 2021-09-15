@@ -155,6 +155,16 @@
                     </div>
                     <br>
                     <br>
+                    <h6><strong>Matching Preferences:</strong></h6>
+                    <div class="col-md-7">
+                        <div class="card-info">
+                            <h6 class="card-title">Industry: &nbsp; {{profile.business}}</h6>
+                            <p class="card-text"><strong>Skills:</strong> &nbsp {{profile.skills}}</p>
+                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.cities}}</p>
+                            <p class="card-text"><strong>Country:</strong> &nbsp; {{profile.countries}}</p>
+                            <br>
+                        </div>
+                    </div>
                     <br>
                     <div class="d-grid gap-2 d-md-flex justify-content-center">
                         <br>
@@ -174,6 +184,34 @@
 </div>
 
 {% endif %}
+
+<script>
+    $("#id_countries").change(function () {
+        const url = $("#profile_details").attr("data-cities-url");  // get the url of the `load_cities` view
+        const countriesId = $(this).val();  // get the selected countries ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'countries_id': countriesId       // add the countries id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_cities").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+                */
+            }
+        });
+
+    });
+</script>
 {% endblock %}
 
 <!-- Contact suggestions -->
