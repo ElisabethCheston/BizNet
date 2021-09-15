@@ -37,6 +37,15 @@ class Skills(models.Model):
         return self.skills_name
 
 
+class Business(models.Model):
+    business_name = models.CharField(max_length=200, null=True, blank=False)
+    class Meta:
+        verbose_name_plural = 'Businesses'
+
+    def __str__(self):
+        return self.business_name
+
+
 # Create Profileuser model.
 class Profileuser(models.Model):
     """
@@ -59,20 +68,26 @@ class Profileuser(models.Model):
         max_length=254, blank=True, null=True)
     company_number_vat = models.CharField(
         max_length=254, blank=True, default=None, null=True)
+
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    description = models.TextField(max_length=250, null=True, verbose_name="Description")
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     skill = models.CharField(max_length=254, blank=True, null=True, default=None)
-    skills = models.ForeignKey(
-        Skills, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    description = models.TextField(max_length=250, null=True, verbose_name="Description")
+
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
     city = models.CharField(max_length=50, null=True,
                             blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
+    
+    business = models.ForeignKey(
+        Business, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    skills = models.ForeignKey(
+        Skills, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    locations = CountryField(blank_label='Locations', null=True, blank=False)
 
     def __str__(self):
         # pylint: disable=maybe-no-member
@@ -193,18 +208,3 @@ def create_profile(sender, **kwargs):
         user_profile.save()
 post_save.connect(create_profile, sender=User)
 """
-
-"""
-# MATCHING
-# Profession
-    def match_profession(self):
-        return MultiSelectField()
-
-# Industry
-    def match_industry(self):
-        return MultiSelectField()
-
-# Country
-    def match_country(self):
-        return MultiSelectField()  
-"""  

@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 
 
-
 {% block content %}
 <style>
     #justify-center {
@@ -21,35 +20,29 @@
     }
 
     #id_profession,
-    #id_industry,
-    #id_description {
+    #id_industry {
         width: 85%;
         text-align: center;
-        font-size: large;
+        margin-left: 1%;
+        font-size: medium;
         height: 45px;
         margin-top: 2%;
         border-color: black;
         border-width: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
     #id_description {
         width: 85%;
         text-align: center;
-        font-size: large;
-        height: 89px;
+        margin-left: 1%;
+        font-size: medium;
+        height: 75px;
         margin-top: 2%;
         border-color: black;
         border-width: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-
-    select#id_industry,
-    select#id_profession {
-        width: 86.5%;
-        height: 49px;
-    }
-
-    option,
-    a,
     p,
     .link,
     h2 {
@@ -67,20 +60,35 @@
     .form_container {
         margin-top: 8px;
         width: 100%;
-        /* border-color: black; */
         align-items: center;
-    }
-
-    .profile-name {
-        font-size: large;
-        font-weight: bold;
     }
 
     /* BUTTONS */
 
+    .save-button {
+        color: white;
+        border-color: rgba(161, 207, 253, 0.2);
+        background-color: rgba(11, 142, 218, 0.8) !important;
+        width: 40%;
+        height: 40px;
+        margin-top: 2%;
+        font-weight: bold;
+        text-align: center;
+        font-size: medium !important;
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .save-button:hover,
+    .save-button:active,
+    .save-button:focus {
+        background-color: rgba(33, 164, 240, 0.8) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
     .back-button,
     .next-button {
-        background-color: #01AAAD;
         width: 150px;
         margin: 0 20px;
         display: inline-block;
@@ -119,63 +127,6 @@
     #link {
         color: deeppink;
     }
-
-    /*
-  .register_container {
-    padding: 0 1rem;
-  }
-
-  .input-group-text {
-    background: #8a9194a9 !important;
-    color: white !important;
-    border: 1px !important;
-    font-size: large;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-  }
-
-  .input_user,
-  .input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-  }
-
-    input {
-        width: 84%;
-        text-align: center;
-        font-size: large !important;
-        height: 45px;
-        margin-top: 2%;
-        background-color: rgba(238, 236, 236, 0.292) !important;
-    }
-
-    input:hover,
-    input:active,
-    input:focus {
-        background-color: rgba(94, 95, 95, 0.192) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    #terms-box {
-        width: 5mm;
-        height: 5mm;
-    }
-
-    #terms-box>input:checked {
-        border: 1px solid #3db2f5;
-        background-color: #e2e3e4;
-    }
-
-    .link-terms {
-        color: #0896e7;
-    }
-
-  #messages {
-    background-color: rgba(128, 186, 240, 0.792);
-    color: #fff;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  */
 </style>
 
 <div class="register_container" id="justify-center">
@@ -193,128 +144,48 @@
     <div class="d-flex">
         <div class="d-flex" id="justify-center">
             <h2 id="form-title">WORK INFORMATION</h2>
-
-            <form method="POST" enctype="multipart/form-data" action="{% url 'register_2' %}">
-                {% csrf_token %}
-
-                <!--<div class="row">
-                    <div class="col">
-                        <img class="rounded-circle account-img avatar" src="{{profileuser.avatar}}"
-                            alt="{{profileuser.user}}">
-                    </div>
-                </div>-->
-                <!-- Title -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form2.title}}
-                    </div>
-                </div>-->
-                <!--  City -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.city}}
-                    </div>
-                </div>-->
-                <!-- Country -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.country}}
-                    </div>
-                </div>-->
-                <!-- Company -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form2.company_name}}
-                    </div>
-                </div>-->
-                <!-- Company no -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form2.company_number_vat}}
-                    </div>
-                </div>-->
-                <!-- Industry -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <option value="">Industry:</option>
-                        {{profile_form2.industry}}
-                    </div>
-                </div>
-                <!--  Profession -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <option value="">Profession:</option>
-                        {{ profile_form2.profession }}
-                    </div>
-                </div>
-                <!-- Skill -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <span class="input-group-text"></span>
-                    </div>
-                    {{profile_form2.skill}}
-                </div>-->
-                <!--  Description -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        <option value="">Description:</option>
-                        {{ profile_form2.description}}
-                    </div>
-                </div>
-                <br>
-                <p>Don´t forget to save.</p>
-                <!-- Submit button -->
-                <div class="d-flex justify-content-center mt-3" id="justify-center">
-                    <input class="btn register-button" type="submit" value="SAVE">
-                </div>
-
-                <!-- Back/Next buttons -->
-                <div class="row">
-                    <a href="{% url 'register_1' %}"><input type="button" name="acceptButton" class="btn back-button"
-                            value="BACK"></a>
-                    <a href="{% url 'register_3' %}"><input type="button" name="declineButton" id="declineButton"
-                            class="btn next-button" value="NEXT"></a>
-                </div>
-                <br>
-
-            </form>
         </div>
 
-        <!--<div class="col" id="justify-center">
-      {{ form.errors }}
-      {{ errorlist.username }}
-      {{ errorlist.email }}
-      {{ errorlist.password1 }}
-      {{ errorlist.password2 }}
-    </div>-->
+        <!-- Form -->
+        <form method="POST" enctype="multipart/form-data" action="{% url 'register_2' %}">
+            {% csrf_token %}
+
+            <!-- Industry -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form2.industry}}
+                </div>
+            </div>
+            <!--  Profession -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form2.profession}}
+                </div>
+            </div>
+            <!--  Description -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form2.description}}
+                </div>
+            </div>
+            <br>
+
+            <!-- Submit button -->
+            <div class="d-flex justify-content-center mt-3" id="justify-center">
+                <input class="save-button" type="submit" value="SAVE">
+            </div>
+
+            <!-- Back/Next buttons -->
+            <div class="row button-row">
+                <a href="{% url 'register_1' %}"><input type="button" name="backButton" class="btn back-button"
+                        value="BACK"></a>
+                <a href="{% url 'register_3' %}"><input type="button" name="nextButton" id="nextButton"
+                        class="btn next-button" value="NEXT"></a>
+            </div>
+            <br>
+
+        </form>
 
     </div>
-
-
-    <script>
-        /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-      //We start indexing at one because CSRF_token is considered and input field 
-      */
-
-        // Query All input fields
-        var form_fields = document.getElementsByTagName('input')
-        /*
-        form_fields[1].placeholder = 'Title..';
-        form_fields[2].placeholder = 'Company Name..';
-        
-        form_fields[3].placeholder = 'Company VAT..';
-        
-            select[4].placeholder = 'Industry..';
-            form_fields[5].placeholder = 'Profession..';
-                
-        form_fields[3].placeholder = 'Skill...';
-        
-        form_fields[5].placeholder = 'Description..';
-*/
-        for (var field in form_fields) {
-            form_fields[field].className += 'form-control'
-        }
-
-    </script>
 
     {% endblock %}
