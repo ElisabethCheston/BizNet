@@ -50,5 +50,4 @@ urlpatterns = [
     path('create_gig/', views.create_gig, name='create_gig'),
     path('my_gigs/', views.my_gigs, name='my_gigs'),
     path('my_contacts/', views.my_contacts, name='my_contacts'),
-    path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'), # AJAX
 ]

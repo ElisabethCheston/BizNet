@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import Profileuser, Countries, Cities, Industry, Profession, Skills, Business
+from .models import Profileuser, Industry, Profession, Employment, Status, Skills, Business
 
 from django.core.files.images import get_image_dimensions
 
@@ -50,22 +50,13 @@ class ProfileForm(forms.ModelForm):
             #'email',
             'city',
             'country',
-            'countries',
-            'cities',
+            # 'countries',
+            # 'cities',
+            'locations',
             'skills',
+            'employment',
+            'status',
         ]
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['cities'].queryset = Cities.objects.none()
-
-        if 'countries' in self.data:
-            try:
-                countries_id = int(self.data.get('countries'))
-                self.fields['cities'].queryset = Cities.objects.filter(countries_id=countries_id).order_by('name')
-            except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty Cities queryset
-        elif self.instance.pk:
-            self.fields['cities'].queryset = self.instance.countries.cities_set.order_by('name')
 
 
 class ProfileForm1(forms.ModelForm):
@@ -100,8 +91,10 @@ class ProfileForm2(forms.ModelForm):
 class ProfileForm3(forms.ModelForm):
     business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Industry:')
     skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
-    countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
-    cities = forms.ModelChoiceField(queryset=Cities.objects.all(), empty_label='Cities:')
+    employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Status')
+    # countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
+    # cities = forms.ModelChoiceField(queryset=Cities.objects.all(), empty_label='Cities:')
    # locations = forms.ModelChoiceField(queryset=Locations.objects.all(), empty_label='Skills')
     
     class Meta:
@@ -109,22 +102,10 @@ class ProfileForm3(forms.ModelForm):
         fields = [
             'business',
             'skills',
-            'countries',
-            'cities',
+            'locations',
+            'employment',
+            'status',
         ]
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['cities'].queryset = Cities.objects.all()
-
-        if 'countries' in self.data:
-            try:
-                countries_id = int(self.data.get('countries'))
-                self.fields['cities'].queryset = Cities.objects.filter(countries_id=countries_id).order_by('name')
-            except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty Cities queryset
-        elif self.instance.pk:
-            self.fields['cities'].queryset = self.instance.countries.cities_set.order_by('name')
-
 
 """
 class ProfileForm3(forms.ModelForm):
