@@ -20,6 +20,8 @@
     }
 
     #id_profession,
+    #id_employment,
+    #id_status,    
     #id_industry {
         width: 85%;
         text-align: center;
@@ -33,16 +35,17 @@
     }
 
     #id_description {
-        width: 85%;
+        width: 83.5%;
         text-align: center;
         margin-left: 1%;
         font-size: medium;
-        height: 75px;
+        height: 95px;
         margin-top: 2%;
         border-color: black;
         border-width: 2px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
+
     p,
     .link,
     h2 {
@@ -166,6 +169,18 @@
             <div class="input-group mb-2">
                 <div class="input-group-append">
                     {{profile_form2.description}}
+                </div>
+            </div>
+            <!-- Employment -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form2.employment}}
+                </div>
+            </div>
+            <!-- Status -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form2.status}}
                 </div>
             </div>
             <br>

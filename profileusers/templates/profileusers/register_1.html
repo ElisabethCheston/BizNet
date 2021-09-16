@@ -21,7 +21,17 @@
 
     #id_city,
     #id_title,
-    #id_company_name,
+    #id_company_name {
+        width: 82%;
+        text-align: center;
+        margin-left: 1%;
+        font-size: medium;
+        height: 43px;
+        margin-top: 2%;
+        border-color: black;
+        border-width: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
     #id_country {
         width: 84%;
         text-align: center;
@@ -183,23 +193,18 @@
                 </div>
                 <br>
                 <!-- Title -->
-                <!--<div class="input-group mb-2">
+                <div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form1.title}}
                     </div>
-                </div>-->
+                </div>
                 <!-- Company -->
                 <div class="input-group mb-2">
                     <div class="input-group-append">
                         {{profile_form1.company_name}}
                     </div>
                 </div>
-                <!-- Phone -->
-                <!--<div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.phone}}
-                    </div>
-                </div>-->
+                
                 <!--  City -->
                 <div class="input-group mb-2">
                     <div class="input-group-append">
@@ -314,14 +319,6 @@
     </form>
 </div>
 
-<!--<div class="col" id="justify-center">
-      {{ form.errors }}
-      {{ errorlist.username }}
-      {{ errorlist.email }}
-      {{ errorlist.password1 }}
-      {{ errorlist.password2 }}
-    </div>-->
-
 <!-- Already got an account? -->
 <div class="mt-4">
     <div class="d-flex link justify-content-center links">
@@ -340,6 +337,7 @@
   */
 
     // Query All input fields
+    /*
     var form_fields = document.getElementsByTagName('input')
     form_fields[1].placeholder = 'First Name..';
     form_fields[2].placeholder = 'Last Name..';
@@ -352,5 +350,5 @@
     for (var field in form_fields) {
         form_fields[field].className += 'form-control'
     }
-
+*/
 </script>

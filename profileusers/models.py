@@ -63,6 +63,23 @@ class Status(models.Model):
         return self.status_name
 
 
+class yourEmployment(models.Model):
+    youremployment_name = models.CharField(max_length=200, null=True, blank=False)
+    class Meta:
+        verbose_name_plural = 'yourEmployment'
+
+    def __str__(self):
+        return self.youremployment_name
+
+class yourStatus(models.Model):
+    yourstatus_name = models.CharField(max_length=200, null=True, blank=False)
+    class Meta:
+        verbose_name_plural = 'yourStatus'
+
+    def __str__(self):
+        return self.yourstatus_name
+
+
 """
 class Countries(models.Model):
     name = models.CharField(max_length=40)
@@ -122,10 +139,11 @@ class Profileuser(models.Model):
         Business, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     skills = models.ForeignKey(
         Skills, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    employment = models.ForeignKey(
-        Employment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    status = models.ForeignKey(
-        Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    employment = models.ForeignKey( Employment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    status = models.ForeignKey( Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    youremployment = models.ForeignKey( yourEmployment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+    yourstatus = models.ForeignKey( yourStatus, null=True, on_delete=models.SET_NULL, blank=True, default=None)
+
     locations = CountryField(blank_label='Locations', null=True, blank=False)
 
     def __str__(self):

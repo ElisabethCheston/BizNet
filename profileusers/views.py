@@ -246,30 +246,6 @@ def loginPage(request):
     context = {}
     return render(request, template, context)
 
-"""
-        context = {
-        # 'fieldValues': request.POST,
-        }
-        if not Profileuser.objects.filter(email=email).exists():
-            if not User.objects.filter(email=email).exists():
-                if len(password) <  6:
-                    messages.error(request, 'Password too short')
-                    return render(request, 'authentication/register.html', context)
-
-        # user = authenticate(request, username=username, password=password)
-        # if user is not None:
-                user.is_active = True
-                login(request, user)
-                email_subject = 'Activate your account'
-                email_body = ''
-                email = EmailMessage(
-                    email_subject,
-                    email_body,
-                    'biznetwork1234@gmail.com',
-                    [email],
-                )
-                email.send(fail_silently=False)
-"""
 
 def loginRegisterPage(request):
     if request.method == 'POST':
