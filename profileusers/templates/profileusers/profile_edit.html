@@ -83,6 +83,10 @@
         background-color: rgba(4, 102, 168, 0.9) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
+
+    label {
+        display: none;
+    }
 </style>
 
 <div class="container-profile justify-center">
@@ -105,29 +109,30 @@
                         <legend class="border-bottom mb-4">Profile Information</legend>
 
                         <!--<h5 class="card-title">Name: &nbsp;{{regform.first_name}} {{regform.last_name}}</h5>
-                        <h6 class="card-title">Password: &nbsp; {{regform.password1}}</h6>-->
-                        {{ profileform|crispy }}
+                        <h6 class="card-title">Password: &nbsp; {{regform.password1}}</h6>
+                        {{ profileform|crispy }}-->
 
-                        <!--<div class="card-body">
+                        <div class="card-body">
                             <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
-                            <h6 class="card-title">Title: &nbsp; {{form.title}}</h6>
-                        <h6 class="card-title">Company: &nbsp; {{form.company_name}}</h6>
-                        <h6 class="card-title">Industry: &nbsp; {{form.industry}}</h6>
-                        <br>
-
-                        <p class="card-text">Profession: &nbsp; {{form.profession}}</p>
-                        <p class="card-text">Skills: &nbsp {{form.skill}}</p>
-                        <br>
-                        <p class="card-text">Email: &nbsp; {{regform.email}}</p>
-                        <p class="card-text">City: &nbsp; {{form.city}}</p>
-                        <p class="card-text">Country: &nbsp; {{form.country}}</p>
-                        <br>
-                        <p class="card-text">Description: &nbsp; {{form.description}}</p>
-
+                            <h6 class="card-title">Title: &nbsp; {{profileform.title}}</h6>
+                            <h6 class="card-title">Company: &nbsp; {{profileform.company_name}}</h6>
+                            <h6 class="card-text">City: &nbsp; {{profileform.city}}</h6>
+                            <h6 class="card-text">Country: &nbsp; {{profileform.country}}</h6>
+                            <br>
+                            <h6 class="card-title">Industry: &nbsp; {{profileform.industry}}</h6>
+                            <h6 class="card-text">Profession: &nbsp; {{profileform.profession}}</h6>
+                            <p class="card-text">Description: &nbsp; {{profileform.description}}</p>
+                            <h6 class="card-title">Employment Status: &nbsp; {{profileform.employment}}</h6>
+                            <h6 class="card-title">I'm available for.. &nbsp; {{profileform.status}}</h6>
+                            <br>
+                            <h5 class="card-title">Matching Preferences:</h5>
+                            <h6 class="card-text">Business: &nbsp; {{profileform.business}}</h6>
+                            <h6 class="card-text">Looking for.. &nbsp; {{profileform.yourstatus}}</h6>
+                            <h6 class="card-text">Location: &nbsp; {{profileform.locations}}</h6>
 
                             <br>
                         </div>
-                        {{ form|crispy }}-->
+                        <!--{{ form|crispy }}-->
                     </fieldset>
                     <br>
                     <div class="row justify-content-center">

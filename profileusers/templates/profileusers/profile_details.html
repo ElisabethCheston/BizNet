@@ -96,10 +96,11 @@
         background-color: rgba(4, 102, 168, 0.9) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
-.card-info {
-    margin-left: 7%;
-    margin-top:3%;
-}
+
+    .card-info {
+        margin-left: 7%;
+        margin-top: 3%;
+    }
 </style>
 
 <div class="container-profile justify-center">
@@ -114,7 +115,7 @@
                 <div class="row g-0 justify-content-center">
                     {% csrf_token %}
                     <!-- Profileuser pic -->
-                    <div class="col-5 justify-content-center">
+                    <div class="col-6 justify-content-center">
 
                         {% if profileusers.picture %}
 
@@ -131,59 +132,62 @@
                     </div>
 
                     <!-- Profileuser fact colum-->
-                    <div class="col-md-7">
+                    <div class="col-6 justify-content-center">
                         <div class="card-info">
                             <h5 class="card-title g-0">{{user.first_name}} {{user.last_name}}</h5>
-                            <h6 class="card-title">Title: &nbsp; {{profile.title}}</h6>
-                            <h6 class="card-title">Company: &nbsp; {{profile.company_name}}</h6>
-                            <h6 class="card-title">Industry: &nbsp; {{profile.industry}}</h6>
+                            <h6 class="card-title"><strong>Title:</strong> &nbsp; {{profile.title}}</h6>
+                            <h6 class="card-title"><strong>Company:</strong> &nbsp; {{profile.company_name}}</h6>
+                            <h6 class="card-text"><strong>Email:</strong> &nbsp; {{user.email}}</h6>
+                            <h6 class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</h6>
+                            <h6 class="card-text"><strong>Country:</strong> &nbsp; {{profile.country}}</h6>
                             <br>
-
-                            <p class="card-text"><strong>Profession:</strong> &nbsp; {{profile.profession}}</p>
-                            <p class="card-text"><strong>Skills:</strong> &nbsp {{profile.skill}}</p>
-
-                            <p class="card-text"><strong>Email:</strong> &nbsp; {{user.email}}</p>
-                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
-                            <p class="card-text"><strong>Country:</strong> &nbsp; {{profile.country}}</p>
+                            <h6 class="card-title"><strong>Business:</strong> &nbsp; {{profile.industry}}</h6>
+                            <h6 class="card-text"><strong>Profession:</strong> &nbsp; {{profile.profession}}</h6>
+                            <h6 class="card-text"><strong>Employment Status:</strong> &nbsp {{profile.employment}}</h6>
+                            <h6 class="card-text"><strong>I'm available for..</strong> &nbsp {{profile.status}}</h6>
                             <br>
                         </div>
                     </div>
+                </div>
+                <br>
+                <div class="row g-0 justify-content-center">
                     <!-- Profileuser bio -->
-                    <div class="col-12">
-                        <h6><strong>Presentation:</strong></h6>
-                        <p>{{profile.description}}</p>
-                    </div>
-                    <br>
-                    <br>
-                    <h6><strong>Matching Preferences:</strong></h6>
-                    <div class="col-md-7">
+
+                    <div class="col-6 justify-content-center">
                         <div class="card-info">
-                            <h6 class="card-title">Industry: &nbsp; {{profile.business}}</h6>
-                            <p class="card-text"><strong>Skills:</strong> &nbsp {{profile.skills}}</p>
-                            <p class="card-text"><strong>Employment:</strong> &nbsp {{profile.employment}}</p>
-                            <p class="card-text"><strong>Status:</strong> &nbsp {{profile.status}}</p>
-                            <!--<p class="card-text"><strong>City:</strong> &nbsp; {{profile.cities}}</p>
-                            <p class="card-text"><strong>Country:</strong> &nbsp; {{profile.countries}}</p>-->
-                            <p class="card-text"><strong>Location:</strong> &nbsp; {{profile.countries}}</p>
-                            <br>
+                        <h6 class="card-title"><strong>Presentation:</strong> &nbsp; {{profile.description}}</h6>
                         </div>
                     </div>
                     <br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-center">
-                        <br>
+                    <!-- Matching Preferences -->
 
-                        <form action="{% url 'profile_edit' %}">
-                            <input type="submit" value="EDIT PROFILE" class="btn btn-edit" id="edit_profile_tab"
-                                data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-                        </form>
+                    <div class="col-6 justify-content-center">
+                        <div class="card-info">
+                            <h5><strong>Matching Preferences:</strong></h5>
+                            <h6 class="card-title"><strong>Industry:</strong> &nbsp; {{profile.business}}</h6>
+                            <h6 class="card-text"><strong>Looking for..</strong> &nbsp {{profile.yourstatus}}</h6>
+                            <h6 class="card-text"><strong>Location:</strong> &nbsp; {{profile.locations}}</h6>
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
             <br>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                <br>
+                <form action="{% url 'profile_edit' %}">
+                    <input type="submit" value="EDIT PROFILE" class="btn btn-edit" id="edit_profile_tab"
+                        data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+                </form>
+            </div>
         </div>
     </div>
     <br>
-    <br>
+</div>
+</div>
+<br>
+<br>
 </div>
 
 {% endif %}

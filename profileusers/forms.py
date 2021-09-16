@@ -32,6 +32,21 @@ class RegisterUserForm(UserCreationForm):
 
 
 class ProfileForm(forms.ModelForm):
+    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
+    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
+    description = forms.CharField(label='description',widget=forms.TextInput(attrs={'placeholder':'Description: Who are of You'}))
+    employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
+    # city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label='City:')
+
+    # cities = forms.ModelChoiceField(queryset=Cities.objects.all(), empty_label='Cities:')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='I am available for..')
+    business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
+    # skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
+    # countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
+    # youremployment = forms.ModelChoiceField(queryset=yourEmployment.objects.all(), empty_label='Employment')
+    yourstatus = forms.ModelChoiceField(queryset=yourStatus.objects.all(), empty_label='Am looking for..')
+    # locations = forms.ModelChoiceField(queryset=Locations.objects.all(), empty_label='Locations:')
+
     class Meta:
         model = Profileuser
         fields = [
@@ -44,19 +59,18 @@ class ProfileForm(forms.ModelForm):
             #'company_number_vat',
             'industry',
             'profession',
-            'skill',
+            # 'skill',
             'description',
-            'phone',
+            # 'phone',
             #'email',
             'city',
             'country',
-            # 'countries',
-            # 'cities',
             'locations',
-            'skills',
+            # 'skills',
             'employment',
+            'business',
             'status',
-            'youremployment',
+            # 'youremployment',
             'yourstatus',
         ]
 
@@ -80,11 +94,11 @@ class ProfileForm1(forms.ModelForm):
 
 
 class ProfileForm2(forms.ModelForm):
-    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry')
-    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession')
+    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
+    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
     description = forms.CharField(label='description',widget=forms.TextInput(attrs={'placeholder':'Description: Who are of You'}))
-    employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment')
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Status')
+    employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='I am available for..')
     
     class Meta:
         model = Profileuser
@@ -99,23 +113,21 @@ class ProfileForm2(forms.ModelForm):
 
 
 class ProfileForm3(forms.ModelForm):
-    business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Industry:')
-    skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Status')
-    youremployment = forms.ModelChoiceField(queryset=yourEmployment.objects.all(), empty_label='yourEmployment')
-    yourstatus = forms.ModelChoiceField(queryset=yourStatus.objects.all(), empty_label='yourStatus')
-
+    business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
+    # skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
     # countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
-    # cities = forms.ModelChoiceField(queryset=Cities.objects.all(), empty_label='Cities:')
-    # locations = forms.ModelChoiceField(queryset=Locations.objects.all(), empty_label='Locations')
+    # youremployment = forms.ModelChoiceField(queryset=yourEmployment.objects.all(), empty_label='Employment')
+    yourstatus = forms.ModelChoiceField(queryset=yourStatus.objects.all(), empty_label='Am looking for..')
+    # locations = forms.ModelChoiceField(queryset=Locations.objects.all(), empty_label='Locations:')
+
     
     class Meta:
         model = Profileuser
         fields = [
             'business',
-            'skills',
+            # 'skills',
             'locations',
-            'youremployment',
+            # 'youremployment',
             'yourstatus',
         ]
 
