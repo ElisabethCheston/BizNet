@@ -54,6 +54,7 @@ class Employment(models.Model):
     def __str__(self):
         return self.employment_name
 
+
 class Status(models.Model):
     status_name = models.CharField(max_length=200, null=True, blank=False)
     class Meta:
@@ -63,38 +64,19 @@ class Status(models.Model):
         return self.status_name
 
 
-class yourEmployment(models.Model):
-    youremployment_name = models.CharField(max_length=200, null=True, blank=False)
-    class Meta:
-        verbose_name_plural = 'yourEmployment'
-
-    def __str__(self):
-        return self.youremployment_name
-
-class yourStatus(models.Model):
-    yourstatus_name = models.CharField(max_length=200, null=True, blank=False)
-    class Meta:
-        verbose_name_plural = 'yourStatus'
-
-    def __str__(self):
-        return self.yourstatus_name
-
-
-"""
-class Countries(models.Model):
+class Country(models.Model):
     name = models.CharField(max_length=40)
 
     def __str__(self):
         return self.name
 
 
-class Cities(models.Model):
-    countries = models.ForeignKey(Countries, on_delete=models.CASCADE)
+class City(models.Model):
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
 
     def __str__(self):
         return self.name
-"""
 
 
 # Create Profileuser model.
@@ -130,10 +112,10 @@ class Profileuser(models.Model):
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
-    city = models.CharField(max_length=50, null=True, blank=False)
-    country = CountryField(blank_label='Country', null=True, blank=False)
-    # countries = models.ForeignKey(Countries, on_delete=models.SET_NULL, blank=True, null=True)
-    # cities = models.ForeignKey(Cities, on_delete=models.SET_NULL, blank=True, null=True)
+    # city = models.CharField(max_length=50, null=True, blank=False)
+    # country = CountryField(blank_label='Country', null=True, blank=False)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
     
     business = models.ForeignKey(
         Business, null=True, on_delete=models.SET_NULL, blank=True, default=None)
@@ -141,9 +123,6 @@ class Profileuser(models.Model):
         Skills, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     employment = models.ForeignKey( Employment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     status = models.ForeignKey( Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    youremployment = models.ForeignKey( yourEmployment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    yourstatus = models.ForeignKey( yourStatus, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-
     locations = CountryField(blank_label='Locations', null=True, blank=False)
 
     def __str__(self):

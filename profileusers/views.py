@@ -1,4 +1,4 @@
-from .models import Profileuser
+from .models import Profileuser, City
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
 from django.core import serializers
@@ -201,6 +201,15 @@ def ProfileThree(request):
         'profile_form3' : profile_form3
     }
     return render(request, 'profileusers/register_3.html', context)
+
+
+# AJAX
+def getCity(request):
+    country_id = request.GET.get('country_id')
+    cities = City.objects.filter(country_id=country_id).all()
+    return render(request, 'profileusers/city_dropdown_list_options.html', {'cities': cities})
+    # return JsonResponse(list(cities.values('id', 'name')), safe=False)
+
 
 """
 @login_required

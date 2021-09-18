@@ -23,6 +23,8 @@ urlpatterns = [
     path('register_2/', views.ProfileTwo, name='register_2'),
     path('register_3/', views.ProfileThree, name='register_3'),
 
+    path('profileusers/json/',views.getCity, name='get-cities'),
+
     # PASSWORD
     path('password_change/', PasswordsChangeView.as_view(template_name='profileusers/password_change.html'), name='password_change'),
     path('password_success/', views.PasswordSuccess, name='password_success'),
