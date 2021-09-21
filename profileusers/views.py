@@ -1,4 +1,4 @@
-from .models import Profileuser, City
+from .models import Profileuser, City, Country
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
 from django.core import serializers
@@ -20,6 +20,29 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View
+# from quiz.models import Question, Topic, Subject
+
+import json
+import urllib.parse
+
+
+"""
+# Opening JSON file
+# f = open('profileusers/static/profileusers/json/countries.json',)
+with open('profileusers/static/profileusers/json/countries.json') as f:
+ 
+# returns JSON object as
+# a dictionary
+    country_data = json.load(f)
+ 
+# Iterating through the json
+# list
+for i in country_data['Sweden']:
+    print(i)
+ 
+# Closing file
+f.close()
+"""
 
 
 # PASSWORD USAGE
@@ -162,8 +185,18 @@ def ProfileOne(request):
     context = {
         'profile_form1':profile_form1,
     }
+
     return render(request, 'profileusers/register_1.html', context)
 
+
+def load_cities(request):
+    country_id = request.GET.get('country')
+    cities = City.objects.filter(country_id=country_id).order_by('name')
+    ontext = {
+        'cities': cities,
+    }
+    return render(request, 'city_dropdown_list_options.html', context)
+  
 
 def ProfileTwo(request):
     if request.method == 'POST':
@@ -201,14 +234,6 @@ def ProfileThree(request):
         'profile_form3' : profile_form3
     }
     return render(request, 'profileusers/register_3.html', context)
-
-
-# AJAX
-def getCity(request):
-    country_id = request.GET.get('country_id')
-    cities = City.objects.filter(country_id=country_id).all()
-    return render(request, 'profileusers/city_dropdown_list_options.html', {'cities': cities})
-    # return JsonResponse(list(cities.values('id', 'name')), safe=False)
 
 
 """

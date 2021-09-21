@@ -4,7 +4,9 @@ from django import forms
 from .models import Profileuser, Industry, Profession, Employment, Status, Country, City, Skills, Business
 
 from django.core.files.images import get_image_dimensions
+from django.http import JsonResponse
 import json
+import urllib.parse
 
 
 
@@ -67,14 +69,15 @@ class ProfileForm(forms.ModelForm):
             'business',
             'status',
         ]
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].queryset = City.objects.none()
-
+ 
         if 'country' in self.data:
             try:
                 country_id = int(self.data.get('country'))
-                self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('name')
+                self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('city')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk and self.instance.country:
@@ -91,29 +94,25 @@ class ProfileForm1(forms.ModelForm):
         fields = [
             # 'avatar',
             'picture',
-            # 'firstname',
-            # 'lastname',
             'title',
             'company_name',
-            # 'company_number_vat',
-            # 'phone',
-            # 'email',
             'country',
             'city',
         ]
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].queryset = City.objects.none()
-
+ 
         if 'country' in self.data:
             try:
                 country_id = int(self.data.get('country'))
-                self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('name')
+                self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('city')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk and self.instance.country:
             self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
+
+
 
 
 class ProfileForm2(forms.ModelForm):

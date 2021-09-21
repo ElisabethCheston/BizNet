@@ -37,6 +37,7 @@
     }
 
     #id_city,
+    #city_ascii,
     #id_country {
         width: 84%;
         text-align: center;
@@ -209,22 +210,40 @@
                 </div>
             </div>
             <!-- Country -->
-
-            <form method="post" id="ProfileForm1" data-cities-url="{% url 'get-cities' %}">
-
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.country}}
-                    </div>
+            <!--<div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form1.country}}
                 </div>
-                <!--  City -->
-                <div class="input-group mb-2">
-                    <div class="input-group-append">
-                        {{profile_form1.city}}
-                    </div>
+            </div>-->
+            <!--  City -->
+            <!--<div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profile_form1.city}}
                 </div>
-                <br>
-            </form>
+            </div>
+            <br>-->
+
+            <!-- Country and City dropdwn-->
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="form-group">
+                    <!--<label for="inputStatus">Country</label>-->
+                    <select id="id_country" class="form-control-sm custom-select">
+                        <option selected disabled>Choose a Country</option>
+                        {% for country in countries %}
+                        <option value="{{country.country_id}}">{{country.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <!--<label for="inputStatus">City</label>-->
+                    <select id="city_ascii" class="form-control-sm custom-select" name="city">
+                        <option selected disabled>Choose a City</option>
+                    </select>
+                </div>
+            </div>
 
 
             <p>Don´t forget to save.</p>
@@ -242,53 +261,35 @@
                         class="btn next-button" value="NEXT"></a>
             </div>
             <br>
-
-        </form>
-        <form method="post" id="ProfileForm1" data-cities-url="{% url 'get-cities' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
         </form>
 
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-      //We start indexing at one because CSRF_token is considered and input field 
-      */
 
         // Query All input fields
         var form_fields = document.getElementsByTagName('input')
 
         form_fields[1].placeholder = ' Title..';
         form_fields[2].placeholder = ' Company..';
-        // form_fields[3].placeholder = ' City...';
 
         for (var field in form_fields) {
             form_fields[field].className += 'form-control'
         }
 
-
+        // Get JSON data for Countries and cities dropdown
         $("#id_country").change(function () {
-            const url = $("#ProfileForm1").attr("profileusers/static/profileusers/json/countries.json");  // get the url of the `load_cities` view
-            const countryId = $(this).val();  // get the selected country ID from the HTML input
+            var url = $("#ProfileForm1").attr("data-cities-url");
+            var countryId = $(this).val();
 
-            $.ajax({                       // initialize an AJAX request
-                url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            $.ajax({
+                url: url,
                 data: {
-                    'country_id': countryId       // add the country id to the GET parameters
+                    'country': countryId
                 },
-                success: function (data) {   // `data` is the return of the `load_cities` view function
-                    // $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-
-
-                    let html_data = '<option value="">---------</option>';
-                    data.forEach(function (city) {
-                        html_data += `<option value="${city.id}">${city.name}</option>`
-                    });
-                    console.log(html_data);
-                    $("#id_city").html(html_data);
-
+                success: function (data) {
+                    $("#city_ascii").html(data);
                 }
             });
 
