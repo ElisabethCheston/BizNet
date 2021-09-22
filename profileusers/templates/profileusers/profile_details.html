@@ -67,13 +67,13 @@
 
 <style>
     .hello-msg {
-        font-size: medium;
+        font-size: larger;
         font-weight: bold;
-        color: rebeccapurple;
+        color: rgb(68, 8, 129);
     }
 
     p {
-        font-size: 15px;
+        font-size: 14px;
         margin-bottom: none;
     }
 
@@ -92,88 +92,110 @@
     .btn:active,
     .btn:focus {
         color: white;
-        border-color: rgba(96, 185, 236, 0.2);
+        border-color: rgba(250, 251, 252, 0.1);
         background-color: rgba(4, 102, 168, 0.9) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
     .card-info {
-        margin-left: 7%;
-        margin-top: 3%;
+        margin: 3%;
+        font-size: small;
+        align-items: center;
+    }
+    
+    .match-card {
+        background-color: rgba(252, 253, 253, 0.2);
     }
 </style>
 
 <div class="container-profile justify-center">
 
-    <span class="hello-msg">Welcome {{request.user}}. You are now logged in!</span><br><br>
+    <span class="hello-msg">Welcome {{request.user.first_name}} {{request.user.last_name}}.</span><br><br>
 
-    <div class="card" style="max-width: 840px;">
+    <div class="card" style="max-width: 740px;">
         <div class="card-body">
+
+            <!-- Row One -->
             <div class="col-12 justify-content-center">
 
                 <!-- Profileuser information -->
-                <div class="row g-0 justify-content-center">
+                <div class="row justify-content-center">
                     {% csrf_token %}
                     <!-- Profileuser pic -->
-                    <div class="col-6 justify-content-center">
+                    <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
 
-                        {% if profileusers.picture %}
+                            <div class="card-info text-center">
 
-                        <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
-                            alt="{{ profile.username}}">
+                                {% if profileusers.picture %}
 
-                        {% else %}
+                                <img src="{{ profile.picture.url }}" class="img-fluid justify-content-center profile-img rounded-start"
+                                    alt="{{ profile.username}}">
 
-                        <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
-                            alt="{{ user.profile.image.url }}">
+                                {% else %}
 
-                        {% endif %}
+                                <img src="{{ profile.picture.url }}" class="img-fluid justify-content-center profile-img rounded-start"
+                                    alt="{{ user.profile.image.url }}">
 
+                                {% endif %}
+                            </div>
+
+                        
                     </div>
 
                     <!-- Profileuser fact colum-->
-                    <div class="col-6 justify-content-center">
-                        <div class="card-info">
-                            <h5 class="card-title g-0">{{user.first_name}} {{user.last_name}}</h5>
-                            <h6 class="card-title"><strong>Title:</strong> &nbsp; {{profile.title}}</h6>
-                            <h6 class="card-title"><strong>Company:</strong> &nbsp; {{profile.company_name}}</h6>
-                            <h6 class="card-text"><strong>Email:</strong> &nbsp; {{user.email}}</h6>
-                            <h6 class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</h6>
-                            <h6 class="card-text"><strong>Country:</strong> &nbsp; {{profile.country}}</h6>
+                    <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
+                        <div class="justify-content-center card-body match-card">
+
+                        <div class="card-info justify-content-center">
+                            <h6 class="card-title g-0"><strong>{{user.first_name}} {{user.last_name}}</strong></h6>
+                            <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}</p>
+                            <p class="card-text"><strong>Company:</strong> &nbsp; {{profile.company_name}}</p>
+                            <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
+                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
+                            <p class="card-text"><strong>Country:</strong> &nbsp; {{profile.country}}</p>
+                            <p class="card-text"><strong>Business:</strong> &nbsp; {{profile.industry}}</p>
+                            <p class="card-text"><strong>Profession:</strong> &nbsp; {{profile.profession}}</p>
+                            <p class="card-text"><strong>Employment Status:</strong> &nbsp {{profile.employment}}</p>
+                            <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}</p>
                             <br>
-                            <h6 class="card-title"><strong>Business:</strong> &nbsp; {{profile.industry}}</h6>
-                            <h6 class="card-text"><strong>Profession:</strong> &nbsp; {{profile.profession}}</h6>
-                            <h6 class="card-text"><strong>Employment Status:</strong> &nbsp {{profile.employment}}</h6>
-                            <h6 class="card-text"><strong>I'm available for..</strong> &nbsp {{profile.status}}</h6>
-                            <br>
+                        </div>
+
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="row g-0 justify-content-center">
-                    <!-- Profileuser bio -->
 
-                    <div class="col-6 justify-content-center">
-                        <div class="card-info">
-                        <h6 class="card-title"><strong>Presentation:</strong> &nbsp; {{profile.description}}</h6>
-                        </div>
-                    </div>
-                    <br>
+
+                <!-- Row Two -->
+                <div class="row justify-content-center">
                     <!-- Matching Preferences -->
-
-                    <div class="col-6 justify-content-center">
-                        <div class="card-info">
-                            <h5><strong>Matching Preferences:</strong></h5>
-                            <h6 class="card-title"><strong>Industry:</strong> &nbsp; {{profile.business}}</h6>
-                            <h6 class="card-text"><strong>Looking for..</strong> &nbsp {{profile.yourstatus}}</h6>
-                            <h6 class="card-text"><strong>Location:</strong> &nbsp; {{profile.locations}}</h6>
-                            <br>
+                    <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
+                        <div class="justify-content-center card-body match-card">
+                            <div class="card-info">
+                                <h6><strong>Matching Preferences:</strong></h6>
+                                <p class="card-title match-card"><strong>Industry:</strong> &nbsp; {{profile.business}}</p>
+                                <p class="card-text match-card"><strong>Location:</strong> &nbsp; {{profile.locations}}</p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Profileuser bio -->
+                    <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
+                        <div class="justify-content-center card-body match-card">
+
+                        <div class="card-info">
+                        <h6 class="card-title"><strong>Presentation:</strong></h6>
+                        <p class="card-title">{{profile.description}}</p>
+                        </div>
+
+                        </div>
+                    </div>                  
                 </div>
+
             </div>
             <br>
+            <br>
 
+            <!-- Submit button -->
             <div class="d-grid gap-2 d-md-flex justify-content-center">
                 <br>
                 <form action="{% url 'profile_edit' %}">
@@ -193,6 +215,7 @@
 {% endif %}
 
 <script>
+    /*
     $("#id_countries").change(function () {
         const url = $("#profile_details").attr("data-cities-url");  // get the url of the `load_cities` view
         const countriesId = $(this).val();  // get the selected countries ID from the HTML input
@@ -204,7 +227,7 @@
             },
             success: function (data) {   // `data` is the return of the `load_cities` view function
                 $("#id_cities").html(data);  // replace the contents of the city input with the data that came from the server
-                /*
+                
 
                 let html_data = '<option value="">---------</option>';
                 data.forEach(function (city) {
@@ -213,11 +236,12 @@
                 console.log(html_data);
                 $("#id_city").html(html_data);
 
-                */
+                
             }
         });
 
     });
+    */
 </script>
 {% endblock %}
 

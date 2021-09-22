@@ -39,7 +39,7 @@ class ProfileForm(forms.ModelForm):
     profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
     description = forms.CharField(label='description',widget=forms.TextInput(attrs={'placeholder':'Description: Who are of You'}))
     employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='I am available for..')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Purpose:')
     business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
     # skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
     # countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
@@ -92,7 +92,7 @@ class ProfileForm1(forms.ModelForm):
     class Meta:
         model = Profileuser
         fields = [
-            # 'avatar',
+            'avatar',
             'picture',
             'title',
             'company_name',
@@ -107,7 +107,7 @@ class ProfileForm2(forms.ModelForm):
     profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
     description = forms.CharField(label='description',widget=forms.TextInput(attrs={'placeholder':'Description: Who are of You'}))
     employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='I am available for..')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Purpose:')
     
     class Meta:
         model = Profileuser
