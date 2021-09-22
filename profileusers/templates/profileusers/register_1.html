@@ -210,24 +210,24 @@
                 </div>
             </div>
             <!-- Country -->
-            <!--<div class="input-group mb-2">
+            <div class="input-group mb-2">
                 <div class="input-group-append">
                     {{profile_form1.country}}
                 </div>
-            </div>-->
+            </div>
             <!--  City -->
-            <!--<div class="input-group mb-2">
+            <div class="input-group mb-2">
                 <div class="input-group-append">
                     {{profile_form1.city}}
                 </div>
             </div>
-            <br>-->
+            <br>
 
             <!-- Country and City dropdwn-->
-            {% csrf_token %}
+            <!--{% csrf_token %}
             <div class="col-md-6">
                 <div class="form-group">
-                    <!--<label for="inputStatus">Country</label>-->
+                    <label for="inputStatus">Country</label>
                     <select id="id_country" class="form-control-sm custom-select">
                         <option selected disabled>Choose a Country</option>
                         {% for country in countries %}
@@ -238,12 +238,12 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <!--<label for="inputStatus">City</label>-->
+                    <label for="inputStatus">City</label>
                     <select id="city_ascii" class="form-control-sm custom-select" name="city">
                         <option selected disabled>Choose a City</option>
                     </select>
                 </div>
-            </div>
+            </div>-->
 
 
             <p>Don´t forget to save.</p>
@@ -272,12 +272,13 @@
         var form_fields = document.getElementsByTagName('input')
 
         form_fields[1].placeholder = ' Title..';
-        form_fields[2].placeholder = ' Company..';
+            form_fields[2].placeholder = ' Company..';
+            form_fields[3].placeholder = ' City...';
 
         for (var field in form_fields) {
             form_fields[field].className += 'form-control'
         }
-
+/*
         // Get JSON data for Countries and cities dropdown
         $("#id_country").change(function () {
             var url = $("#ProfileForm1").attr("data-cities-url");
@@ -292,8 +293,8 @@
                     $("#city_ascii").html(data);
                 }
             });
-
         });
+*/
     </script>
 
     {% endblock %}

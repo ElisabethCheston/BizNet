@@ -63,7 +63,7 @@ class Status(models.Model):
     def __str__(self):
         return self.status_name
 
-
+"""
 class Country(models.Model):
     name = models.CharField(max_length=40)
 
@@ -77,7 +77,7 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
-
+"""
 
 # Create Profileuser model.
 class Profileuser(models.Model):
@@ -112,10 +112,10 @@ class Profileuser(models.Model):
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
-    # city = models.CharField(max_length=50, null=True, blank=False)
-    # country = CountryField(blank_label='Country', null=True, blank=False)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
-    city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
+    city = models.CharField(max_length=50, null=True, blank=False)
+    country = CountryField(blank_label='Country', null=True, blank=False)
+    # country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
+    # city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
     
     business = models.ForeignKey(
         Business, null=True, on_delete=models.SET_NULL, blank=True, default=None)

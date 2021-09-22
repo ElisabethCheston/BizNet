@@ -23,7 +23,7 @@ urlpatterns = [
     path('register_2/', views.ProfileTwo, name='register_2'),
     path('register_3/', views.ProfileThree, name='register_3'),
 
-    path('profileusers/static/profileusers/json/', views.load_cities, name="ajax_load_cities"),
+    # path('profileusers/static/profileusers/json/', views.load_cities, name="ajax_load_cities"),
 
     # PASSWORD
     path('password_change/', PasswordsChangeView.as_view(template_name='profileusers/password_change.html'), name='password_change'),

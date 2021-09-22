@@ -1,4 +1,4 @@
-from .models import Profileuser, City, Country
+from .models import Profileuser
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
 from django.core import serializers
@@ -188,7 +188,7 @@ def ProfileOne(request):
 
     return render(request, 'profileusers/register_1.html', context)
 
-
+"""
 def load_cities(request):
     country_id = request.GET.get('country')
     cities = City.objects.filter(country_id=country_id).order_by('name')
@@ -196,7 +196,7 @@ def load_cities(request):
         'cities': cities,
     }
     return render(request, 'city_dropdown_list_options.html', context)
-  
+  """
 
 def ProfileTwo(request):
     if request.method == 'POST':
