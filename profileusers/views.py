@@ -20,29 +20,6 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, View
-# from quiz.models import Question, Topic, Subject
-
-import json
-import urllib.parse
-
-
-"""
-# Opening JSON file
-# f = open('profileusers/static/profileusers/json/countries.json',)
-with open('profileusers/static/profileusers/json/countries.json') as f:
- 
-# returns JSON object as
-# a dictionary
-    country_data = json.load(f)
- 
-# Iterating through the json
-# list
-for i in country_data['Sweden']:
-    print(i)
- 
-# Closing file
-f.close()
-"""
 
 
 # PASSWORD USAGE
@@ -96,7 +73,7 @@ def password_reset_request(request):
 	return render(request=request, template_name="profileusers/password_reset.html", context={"password_reset_form":password_reset_form})
 
 
-# REGISTRATION & LOGIN
+# REGISTER AN ACCOUNT
 
 """
 class RegistrationView(View):
@@ -144,6 +121,8 @@ def terms(request):
     return render(request, template)
 
 
+# REGISTRATION PROFILEUSER FORMS
+
 @login_required
 def Profile(request):
     # profile_form1 = ProfileForm1()
@@ -188,15 +167,6 @@ def ProfileOne(request):
 
     return render(request, 'profileusers/register_1.html', context)
 
-"""
-def load_cities(request):
-    country_id = request.GET.get('country')
-    cities = City.objects.filter(country_id=country_id).order_by('name')
-    ontext = {
-        'cities': cities,
-    }
-    return render(request, 'city_dropdown_list_options.html', context)
-  """
 
 def ProfileTwo(request):
     if request.method == 'POST':
@@ -281,9 +251,11 @@ def loginPage(request):
     return render(request, template, context)
 
 
+# VERTIFY USER ACCOUNT
+
 def loginRegisterPage(request):
     if request.method == 'POST':
-        # Connected to the name field in the login_page.
+        # Connected to the name field in the login_register_page.
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -304,7 +276,6 @@ def loginRegisterPage(request):
 # @login_required
 def profile_details(request):
     # pylint: disable=maybe-no-member
-    #profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(username=request.user)
     template = 'profileusers/profile_details.html'
     context = {
@@ -329,44 +300,9 @@ def profile_edit(request):
         profileform = ProfileForm(instance=request.user.profileuser)
     context = {
         'profileform':profileform,
-        # 'on_profile_page': True
     }
     return render(request, 'profileusers/profile_edit.html', context)
 
-
-"""
-@login_required
-def profile_edit(request):
-    if request.method == 'POST':
-        profile_form1 = ProfileForm1(request.POST, 
-                                request.FILES, 
-                                instance=request.user.profileuser)
-        profile_form2 = ProfileForm2(request.POST, 
-                                request.FILES, 
-                                instance=request.user.profileuser)
-        profile_form3 = ProfileForm3(request.POST, 
-                                request.FILES, 
-                                instance=request.user.profileuser)
-
-        if profile_form1.is_valid() and profile_form2.is_valid() and profile_form3.is_valid():
-            profile_form1.save()
-            profile_form2.save()
-            profile_form3.save()
-            messages.success(request, 'Your Profile has been updated!')
-            return redirect('profile_details')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
-    else:
-        profile_form1 = ProfileForm1(instance=request.user.profileuser)
-        profile_form2 = ProfileForm2(instance=request.user.profileuser)
-        profile_form3 = ProfileForm3(instance=request.user.profileuser)
-    context = {
-        'profile_form1':profile_form1,
-        'profile_form2':profile_form2,
-        'profile_form3':profile_form3,
-    }
-    return render(request, 'profileusers/profile_edit.html', context)
-"""
 
 @login_required
 def all_profiles(request):
