@@ -5,7 +5,8 @@
 {% block page_header %}
 
 <!-- Profile tab links -->
-<div class="tab-container">
+
+    <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'profile_details' %}">
@@ -53,6 +54,7 @@
     </div>
 </div>
 
+
 {% endblock %}
 
 {% block content %}
@@ -62,16 +64,14 @@
 
 <div class="container-fluid">
 
-    <h2>
-        Create Gig
-    </h2>
+    <h3>My Gigs</h3>
     <div class="row">
         <div class="gig-container col-10 offset-1">
+            <div class="row">
 
-            <!-- gig cards -->
-            <form method="POST" actions="#">
-                {% csrf_token %}
-                {{form_gig}}
+                {% for obj in qs %}
+
+                <!-- gig cards -->
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
                     <div class="gig-card h-100 border-1">
                         <div class="card-body">
@@ -80,10 +80,10 @@
                                 <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ obj.industry }} </p>
                                 <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ obj.city }} </p>
                                 <p class="card-subtitle mb-2 small""> Deadline: &nbsp; {{ obj.deadline }} </p>
-                                </div>
-                                <br>
-    
-                                <div class=" text-center">
+                            </div>
+                            <br>
+
+                            <!--<div class=" text-center">
                                 <p>{{ obj.gigdescription }}</p>
                                 <p>
                                     <a class=" btn btn-primary btn-sm text-center" data-toggle="collapse"
@@ -91,7 +91,7 @@
                                         More Information
                                     </a>
                                 </p>
-                            </div>
+                            </div>-->
 
                             <div class="collapse" id="collapseExample1">
                                 <div class="card card-body">
@@ -100,8 +100,7 @@
                             </div>
 
                             <div class="my-3 py-3">
-                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }}
-                                </h6>
+                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }} </h6>
                                 <h6 class="card-subtitle mb-2 text-muted small">{{ obj.created }} </h6>
                                 <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ obj.updated }} </h6>
                             </div>
@@ -110,15 +109,46 @@
                                 <div class="col justify-content-evenly text-center">
                                     <!-- <a href="#" class="card-link">View</a> -->
                                     <a href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
-                                    <a href="#" id="addAppliedGig" value="Add to AppliedGig class=" card-link">Apply</a>
+                                    <a href="#" id="addAppliedGig" value="Add to AppliedGig class="card-link">Apply</a>
                                     <a href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
                                 </div>
                             </div>
+
+<!--
+                            <input type="button" class="btn btn-info" id="addSavedGig" value="Add to SavedGig">
+                            <input type="button" class="btn btn-info" id="addAppliedGig" value="Add to AppliedGig">
+                            <input type="button" class="btn btn-info" id="addHideGig" value="Add to HideGig">
+
+-->
+
                         </div>
                     </div>
                 </div>
-            </form>
+                
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-sm-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr>
+                </div>
+                {% endif %}
 
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 

@@ -5,7 +5,8 @@
 {% block page_header %}
 
 <!-- Profile tab links -->
-<div class="tab-container">
+<!--
+    <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'profile_details' %}">
@@ -52,6 +53,7 @@
 
     </div>
 </div>
+-->
 
 {% endblock %}
 
@@ -66,11 +68,11 @@
         <div class="gig-container col-10 offset-1">
             <div class="row">
 
-                {% for obj in qs %}
+                {{gig_form}}
 
                 <!-- gig cards -->
 
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
+                <!--<div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
                     <div class="card h-100 border-1">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ obj.title }}</h5><br>
@@ -101,7 +103,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }} </h6>
                                 <h6 class="card-subtitle mb-2 text-muted small">{{ obj.created }} </h6>
                                 <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ obj.updated }} </h6>
-                            </div>
+                            </div>-->
 
                             <div class="row align-items-end">
                                 <div class="col justify-content-evenly text-center">
@@ -156,5 +158,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>
+<!--<script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>-->
 {% endblock %}

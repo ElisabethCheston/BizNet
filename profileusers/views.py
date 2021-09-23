@@ -1,4 +1,6 @@
 from .models import Profileuser
+from gigs.models import Gig
+
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 
 from django.core import serializers
@@ -271,7 +273,7 @@ def loginRegisterPage(request):
     return render(request, template, context)
 
 
-# PROFILES
+# PROFILEUSERS
 
 # @login_required
 def profile_details(request):
@@ -315,7 +317,7 @@ def all_profiles(request):
     return render(request, template, context)
 
 
-# MY GIGS
+# PROFILEUSER GIGS
 
 @login_required
 def my_gigs(request):

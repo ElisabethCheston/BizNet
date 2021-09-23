@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import Profileuser, Industry, Profession, Employment, Status, Skills, Business
+from gigs.models import Gig
 
 from django.core.files.images import get_image_dimensions
 from django.http import JsonResponse
@@ -139,14 +140,27 @@ class ProfileForm3(forms.ModelForm):
             # 'yourstatus',
         ]
 
+
 """
-class ProfileForm3(forms.ModelForm):
+class GigForm(model.Model):
+    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
+    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
+
+
     class Meta:
-        model = Profileuser
-        fields = [
-            'business',
-            'skills',
-            #'city',
-            'locations',
+        model = Gig
+        field = [
+            'title',
+            'industry',
+            'profession',
+            'city',
+            'country',
+            'gigdescription',
+            'extrainfo',
+            'author',
+            'deadline',
+            'updated',
+            'created',
         ]
 """
+
