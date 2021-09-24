@@ -195,7 +195,7 @@
             <br>
             <br>
 
-            <!-- Submit button -->
+            <!-- Edit button -->
             <div class="d-grid gap-2 d-md-flex justify-content-center">
                 <br>
                 <form action="{% url 'profile_edit' %}">
@@ -203,6 +203,15 @@
                         data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
                 </form>
             </div>
+            <!-- Delete button -->
+            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                <br>
+                <form action="{% url 'profile_edit' %}">
+                    <input type="submit" value="DELETE PROFILE" class="btn btn-edit" id="edit_profile_tab"
+                        data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+                </form>
+            </div>
+            
         </div>
     </div>
     <br>

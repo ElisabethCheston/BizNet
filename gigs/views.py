@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Gig, Industry
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.contrib import messages
 from django.db.models.functions import Lower
@@ -8,10 +8,7 @@ from django.core import serializers
 
 from django.views.generic import TemplateView, View
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponse
 
-
-# Create views for Gigs
 
 
 def gig(request):
@@ -25,11 +22,14 @@ def gig(request):
     return render(request, template, context)
 
 
-def gigs_json(request):
+def gig_json(request):
     # pylint: disable=maybe-no-member
     qs = Gig.objects.all()
     data = serializers.serialize('json', qs)
-    return JsonResponse({'data': data})
+    context = {
+        'data': data,
+    }
+    return JsonResponse(context)
 
 
 

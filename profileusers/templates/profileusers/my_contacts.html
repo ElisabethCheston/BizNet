@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
+<!--<script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>-->
 {% endblock scripts %}
 
 
@@ -44,7 +44,7 @@
                     data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
             </form>
         </li>
-        
+
     </ul>
     <div class="tab-content">
         <div class="tab-pane show" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
@@ -65,7 +65,6 @@
 {% block content %}
 
 <div class="container-profile justify-center">
-
     <div class="card">
         <div class="row">
 
@@ -114,8 +113,11 @@
                         <div class="row justify-content-between">
                             <div class="col-9">
                                 <p><b>Following profiles:</b></p>
-                                <p>{% for profileuser in profile.get_following %} {{ profileuser.first_name}} {{ profileuser.last_name}}<br>
-                                    {% endfor %}</p>
+
+                                {% for profileuser in profile.get_following %}
+                                <p>{{ profileuser.first_name}} {{ profileuser.last_name}} {{ profileuser.company_name}}</p>
+                                <br>
+                                {% endfor %}
                             </div>
                             <div class="col-3">
                                 <p class="text-center"><b>No:</b></p>
@@ -125,22 +127,7 @@
                     </div>
                 </div>
 
-                <!-- Followers -->
-                <div class="row">
-                    <div class="col">
-                        <div class="row justify-content-between">
-                            <div class="col-9">
-                                <p><b>Followers:</b></p>
-                                <p>{% for profileuser in profile.get_followers %} {{ profileuser.user.first_name}} {{ profileuser.user.last_name}}<br>
-                                    {% endfor %}</p>
-                            </div>
-                            <div class="col-3">
-                                <p class="text-center"><b>No:</b></p>
-                                <p class="text-center"> {{profile.followers_count}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
             </div>
         </div>
@@ -148,17 +135,34 @@
     <br>
 
 
-    
+    {% endblock %}
 
-{% endblock %}
-
-<!-- Followings posted gigs -->
-<div class="col">
-    <div>
-        <div class="col-10">
-            <p><b>Contact gigs :</b></p>
-            <p>{{profile.get_contact_gigs}}</p>
+<!-- Followers -->
+<div class="row">
+    <div class="col">
+        <div class="row justify-content-between">
+            <div class="col-9">
+                <p><b>Followers:</b></p>
+                {% for profileuser in profile.get_followers %}
+                <p> {{ profileuser.user.first_name}} {{ profileuser.user.last_name}}</p>
+                {% endfor %}
+                <br>
+            </div>
+            <div class="col-3">
+                <p class="text-center"><b>No:</b></p>
+                <p class="text-center"> {{profile.followers_count}}</p>
+            </div>
         </div>
     </div>
 </div>
-<br>
+
+    <!-- Followings posted gigs -->
+    <div class="col">
+        <div>
+            <div class="col-10">
+                <p><b>Contact gigs :</b></p>
+                <p>{{profile.get_contact_gigs}}</p>
+            </div>
+        </div>
+    </div>
+    <br>

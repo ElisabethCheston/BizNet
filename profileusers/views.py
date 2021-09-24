@@ -323,7 +323,7 @@ def all_profiles(request):
 def my_gigs(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
+    profile = Profileuser.objects.get(username=request.user)
     template = 'profileusers/my_gigs.html'
     context = {
         'profile': profile,
@@ -335,7 +335,7 @@ def my_gigs(request):
 def create_gig(request):
     # pylint: disable=maybe-no-member
     #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
+    profile = Profileuser.objects.get(username=request.username)
     template = 'profileusers/create_gig.html'
     context = {
         'profile': profile,
@@ -349,7 +349,7 @@ def create_gig(request):
 def my_contacts(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(user=request.user)
+    profile = Profileuser.objects.get(username=request.user)
     template = 'profileusers/my_contacts.html'
    
     context = {

@@ -18,7 +18,7 @@ tabs.forEach(tab => {
 })
 */
 
-
+/*
 var triggerTabList = [].slice.call(document.querySelectorAll('#gigTab a'))
 triggerTabList.forEach(function (triggerEl) {
   var tabTrigger = new bootstrap.Tab(triggerEl)
@@ -40,6 +40,7 @@ bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
 
 var triggerEl = document.querySelector('#gigTab a[href="#hide"]')
 bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+*/
 
 
 // Javascript to enable link to tab
