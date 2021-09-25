@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block page_header %}
 
@@ -68,23 +68,24 @@
         <div class="gig-container col-10 offset-1">
             <div class="row">
 
-                {{gig_form}}
+                <!--{% csrf_token %}
+                {{gigform|crispy}}-->
 
                 <!-- gig cards -->
 
-                <!--<div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
                     <div class="card h-100 border-1">
                         <div class="card-body">
-                            <h5 class="card-title text-center">{{ obj.title }}</h5><br>
+                            <h5 class="card-title text-center">{{ gig.title }}</h5><br>
                             <div>
-                                <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ obj.industry }} </p>
-                                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ obj.city }} </p>
-                                <p class="card-subtitle mb-2 small""> Deadline: &nbsp; {{ obj.deadline }} </p>
+                                <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
+                                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
+                                <p class="card-subtitle mb-2 small""> Deadline: &nbsp; {{ gig.deadline }} </p>
                             </div>
                             <br>
 
                             <div class=" text-center">
-                                <p>{{ obj.gigdescription }}</p>
+                                <p>{{ gig.gigdescription }}</p>
                                 <p>
                                     <a class=" btn btn-primary btn-sm text-center" data-toggle="collapse"
                                         href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
@@ -95,66 +96,59 @@
 
                             <div class="collapse" id="collapseExample1">
                                 <div class="card card-body">
-                                    {{ obj.extrainfo }}
+                                    {{ gig.extrainfo }}
                                 </div>
                             </div>
 
                             <div class="my-3 py-3">
-                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ obj.author }} </h6>
-                                <h6 class="card-subtitle mb-2 text-muted small">{{ obj.created }} </h6>
-                                <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ obj.updated }} </h6>
+                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ gig.author }}
+                                </h6>
+                                <h6 class="card-subtitle mb-2 text-muted small">{{ gig.created }} </h6>
+                                <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ gig.updated }} </h6>
                             </div>-->
 
-                            <div class="row align-items-end">
-                                <div class="col justify-content-evenly text-center">
-                                    <!-- <a href="#" class="card-link">View</a> -->
-                                    <a href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
-                                    <a href="#" id="addAppliedGig" value="Add to AppliedGig class="card-link">Apply</a>
-                                    <a href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
-                                </div>
-                            </div>
-
-<!--
-                            <input type="button" class="btn btn-info" id="addSavedGig" value="Add to SavedGig">
-                            <input type="button" class="btn btn-info" id="addAppliedGig" value="Add to AppliedGig">
-                            <input type="button" class="btn btn-info" id="addHideGig" value="Add to HideGig">
-
--->
+                            <!-- Edit button -->
+                            <!--<div class="d-grid gap-2 d-md-flex justify-content-center">
+                                <br>
+                                <form action="{% url 'create_gig' %}">
+                                    <input type="submit" value="EDIT GIG" class="btn btn-edit"
+                                         />
+                                </form>
+                            </div>-->
 
                         </div>
                     </div>
                 </div>
+                <!--
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-sm-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:3 %}
+    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:4 %}
+    <div class="col-12 d-none d-xl-block mb-5">
+        <hr>
+    </div>
+    {% endif %}
+ -->
 
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-sm-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:3 %}
-                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-xl-block mb-5">
-                    <hr>
-                </div>
-                {% endif %}
-
-
-                {% endfor %}
 
             </div>
         </div>
     </div>
 
 </div>
-    {% endblock %}
+{% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}

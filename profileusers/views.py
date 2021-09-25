@@ -1,8 +1,9 @@
 from .models import Profileuser
 from gigs.models import Gig
+# from gigs.forms import GigForm
+from django import forms
 
-from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
-
+from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3, GigForm
 from django.core import serializers
 from django.core.mail import EmailMessage, send_mail, BadHeaderError
 from django.conf import settings
@@ -330,7 +331,7 @@ def my_gigs(request):
     }
     return render(request, template, context)
 
-
+"""
 @login_required
 def create_gig(request):
     # pylint: disable=maybe-no-member
@@ -341,6 +342,36 @@ def create_gig(request):
         'profile': profile,
     }
     return render(request, template, context)
+"""
+@login_required
+def create_gig(request):
+    # pylint: disable=maybe-no-member
+    # create_usergig = get_object_or_404(Gig, username=request.username)
+    profile = Profileuser.objects.get(username=request.user)
+    template = 'profileusers/create_gig.html'
+    context = {
+        'profile': profile,
+    }
+    return render(request, template, context)
+    """
+    #if request.method == 'POST':
+    gigform = GigForm(request.POST or None, request.FILES or None)
+    g = Gig.objects.get(pk=1)
+    response = serializers.serialize('python', [g], ensure_ascii=False)
+    context = {
+        'gigform': gigform,
+    }
+    return render(request, 'profileusers/create_gig.html', context)
+
+    if gigform.is_valid():
+        gigform.save()
+        messages.success(request, 'Your Gig has been updated!')
+        return redirect('my_gigs')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    # else:
+        # gigform = gigform()
+        """
 
 
 # CONTACTS

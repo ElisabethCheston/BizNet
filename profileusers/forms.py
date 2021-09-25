@@ -141,11 +141,36 @@ class ProfileForm3(forms.ModelForm):
         ]
 
 
-"""
-class GigForm(model.Model):
+class GigForm(forms.ModelForm):
     industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
     profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
 
+    class Meta:
+        model = Gig
+        fields = '__all__'
+
+
+"""
+    def __init__(self, *args, **kwargs):
+            # get 'user' param from kwargs
+            user = kwargs.pop('username', None)
+            super().__init__(*args, **kwargs)
+            # set class attrs  
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
+            # set 'name_job' queryset
+            # self.fields['name_job'].queryset = TypJob.objects.filter(author=user.username)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['city'].queryset = City.objects.none()
+ 
+"""
+
+"""
+class GigForm(forms.ModelForm):
+    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
+    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
 
     class Meta:
         model = Gig
@@ -163,4 +188,3 @@ class GigForm(model.Model):
             'created',
         ]
 """
-

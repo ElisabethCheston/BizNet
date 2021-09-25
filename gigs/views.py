@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Gig, Industry
+from .models import Gig
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.contrib import messages

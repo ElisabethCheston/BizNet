@@ -165,6 +165,11 @@ class Profileuser(models.Model):
             qs = sorted(chain(*gigs), reverse=True, key=lambda obj: obj.created)
         return qs
 
+    
+    class Meta:
+        ordering = ('-created',)
+
+
 
 # FOLLOWING
 

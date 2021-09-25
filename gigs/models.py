@@ -14,8 +14,7 @@ class Gig(models.Model):
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     liked = models.ManyToManyField(User, default=None, blank=False)
-    city = models.CharField(max_length=50, null=True,
-                            blank=False, default='City')
+    city = models.CharField(max_length=50, null=True, blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
     gigdescription = models.TextField(max_length=250, null=True)
     extrainfo = models.TextField(max_length=250, null=True)
@@ -27,6 +26,9 @@ class Gig(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    class Meta:
+        ordering = ('-created',)
 
     def get_liked(self):
         # pylint: disable=maybe-no-member

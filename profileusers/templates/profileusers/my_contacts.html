@@ -115,7 +115,8 @@
                                 <p><b>Following profiles:</b></p>
 
                                 {% for profileuser in profile.get_following %}
-                                <p>{{ profileuser.first_name}} {{ profileuser.last_name}} {{ profileuser.company_name}}</p>
+                                <p>{{ profileuser.first_name}} {{ profileuser.last_name}} {{ profileuser.company_name}}
+                                </p>
                                 <br>
                                 {% endfor %}
                             </div>
@@ -127,7 +128,7 @@
                     </div>
                 </div>
 
-                
+
 
             </div>
         </div>
@@ -137,24 +138,24 @@
 
     {% endblock %}
 
-<!-- Followers -->
-<div class="row">
-    <div class="col">
-        <div class="row justify-content-between">
-            <div class="col-9">
-                <p><b>Followers:</b></p>
-                {% for profileuser in profile.get_followers %}
-                <p> {{ profileuser.user.first_name}} {{ profileuser.user.last_name}}</p>
-                {% endfor %}
-                <br>
-            </div>
-            <div class="col-3">
-                <p class="text-center"><b>No:</b></p>
-                <p class="text-center"> {{profile.followers_count}}</p>
-            </div>
-        </div>
-    </div>
-</div>
+                <!-- Followers -->
+                <!--<div class="row">
+                    <div class="col">
+                        <div class="row justify-content-between">
+                            <div class="col-9">
+                                <p><b>Followers:</b></p>
+                                {% for profileuser in profile.get_followers %}
+                                <p> {{ profileuser.first_name}} {{ profileuser.last_name}}</p>
+                                {% endfor %}
+                                <br>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-center"><b>No:</b></p>
+                                <p class="text-center"> {{profile.followers_count}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
 
     <!-- Followings posted gigs -->
     <div class="col">
