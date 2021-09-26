@@ -1,25 +1,37 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Gig
+from profileusers.models import Profileuser
+
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.contrib import messages
 from django.db.models.functions import Lower
 from django.core import serializers
 
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, DetailView, CreateView, ListView
+# from .forms import GigForm
 from django.views.decorators.http import require_http_methods
 
 
 
 def gig(request):
     # pylint: disable=maybe-no-member
-    qs = Gig.objects.all()
     template = 'gigs/gig.html'
     context = {
-        'greeting': 'Welcome!',
-        'qs': qs,
+        # 'greeting': 'Welcome!',
+        'qs': Gig.objects.all()
     }
     return render(request, template, context)
+
+
+class GigListView(ListView):
+    model = Gig
+    template_name = 'gigs/gig.html'
+    context_object_name = 'gigs'
+    ordering = ['-created']
+
+class GigDetailView(DetailView):
+    model = Gig
 
 
 def gig_json(request):
@@ -30,6 +42,25 @@ def gig_json(request):
         'data': data,
     }
     return JsonResponse(context)
+
+# PROFILEUSER GIGS
+
+# @login_required
+def my_gigs(request):
+    # pylint: disable=maybe-no-member
+    profile = Profileuser.objects.get(username=request.user)
+    template = 'gigs/my_gigs.html'
+    context = {
+        'profile': profile,
+    }
+    return render(request, template, context)
+
+
+# @login_required
+class GigCreateView(CreateView):
+    model = Gig
+    template_name = 'gigs/create_gig.html'
+    fields = ('title', 'industry', 'profession', 'city', 'country', 'gigdescription', 'extrainfo', 'deadline',)
 
 
 

@@ -58,10 +58,14 @@ h4 {
 .nav-tab {
     margin-top: 10px;
     padding-top: 70px;
+    color: rgba(9, 143, 221, 0.9);
 }
 
 /* Tabs */
 
+li.nav-item {
+  color: rgba(9, 143, 221, 0.9);
+}
 .gig-tab {
     border: none;
     color: rgba(47, 156, 245, 0.79);

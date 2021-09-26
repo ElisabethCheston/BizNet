@@ -140,7 +140,7 @@ class ProfileForm3(forms.ModelForm):
             # 'yourstatus',
         ]
 
-
+"""
 class GigForm(forms.ModelForm):
     industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
     profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
@@ -150,7 +150,6 @@ class GigForm(forms.ModelForm):
         fields = '__all__'
 
 
-"""
     def __init__(self, *args, **kwargs):
             # get 'user' param from kwargs
             user = kwargs.pop('username', None)
@@ -167,14 +166,14 @@ class GigForm(forms.ModelForm):
  
 """
 
-"""
+""""
 class GigForm(forms.ModelForm):
-    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
-    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
+    # industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
+   # profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
 
     class Meta:
         model = Gig
-        field = [
+        fields = [
             'title',
             'industry',
             'profession',
@@ -182,9 +181,21 @@ class GigForm(forms.ModelForm):
             'country',
             'gigdescription',
             'extrainfo',
-            'author',
+            # 'author',
             'deadline',
-            'updated',
-            'created',
+            # 'updated',
+            # 'created',
         ]
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'industry': forms.Select(attrs={'class': 'form-control'}),
+            'profession': forms.Select(attrs={'class': 'form-control'}),
+
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.Select(attrs={'class': 'form-control'}),
+
+            'gigdescription': forms.TextInput(attrs={'class': 'form-control'}),
+            'extrainfo': forms.Textarea(attrs={'class': 'form-control'}),
+            'deadline': forms.Select(attrs={'class': 'form-control'}),
+        }
 """

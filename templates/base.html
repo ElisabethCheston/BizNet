@@ -88,7 +88,7 @@
 <body>
 
     <header class="container-fluid fixed-top">
-        <div id="topnav" class="row navbar-light bg-light justify-content-between">
+        <div id="topnav" class="row navbar-light justify-content-between">
 
             <!-- BizNet Logo -->
             <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
@@ -126,6 +126,7 @@
                             <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
 
                             <a href="{% url 'my_contacts' %}" class="dropdown-item">My Network</a>
+                            <!--<a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>-->
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
 
                             {% else %}

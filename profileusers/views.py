@@ -1,9 +1,9 @@
 from .models import Profileuser
 from gigs.models import Gig
-# from gigs.forms import GigForm
+# from gigs.forms import Gig
 from django import forms
 
-from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3, GigForm
+from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
 from django.core import serializers
 from django.core.mail import EmailMessage, send_mail, BadHeaderError
 from django.conf import settings
@@ -317,13 +317,12 @@ def all_profiles(request):
     }
     return render(request, template, context)
 
-
+""""
 # PROFILEUSER GIGS
 
 @login_required
 def my_gigs(request):
     # pylint: disable=maybe-no-member
-    # profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(username=request.user)
     template = 'profileusers/my_gigs.html'
     context = {
@@ -331,29 +330,23 @@ def my_gigs(request):
     }
     return render(request, template, context)
 
-"""
+
 @login_required
 def create_gig(request):
     # pylint: disable=maybe-no-member
-    #profile = get_object_or_404(Profileuser, user=request.user)
-    profile = Profileuser.objects.get(username=request.username)
-    template = 'profileusers/create_gig.html'
-    context = {
-        'profile': profile,
-    }
-    return render(request, template, context)
+    model = gigs.model.gig
+    # if request.method == 'POST':
+        # create_usergig = get_object_or_404(Gig, username=request.username)
+    gigform = GigForm # (request.POST, instance=request.username.gig)
+    template = 'profileusers/create_gigs.html'
+
+    # else:
+        # gigform = GigForm(instance=request.user.gig)
+    # context = {'gigform': gigform,}
+    return render(request, template)
 """
-@login_required
-def create_gig(request):
-    # pylint: disable=maybe-no-member
-    # create_usergig = get_object_or_404(Gig, username=request.username)
-    profile = Profileuser.objects.get(username=request.user)
-    template = 'profileusers/create_gig.html'
-    context = {
-        'profile': profile,
-    }
-    return render(request, template, context)
-    """
+
+"""
     #if request.method == 'POST':
     gigform = GigForm(request.POST or None, request.FILES or None)
     g = Gig.objects.get(pk=1)

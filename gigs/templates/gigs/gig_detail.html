@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+<!-- Nav tabs -->
+
+<div class="tab-container">
+    <ul class="nav nav-tab justify-content-evenly" id="gigTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link gig-tab active" id="new_gig_tab" data-bs-toggle="tab" data-bs-target="#new_gig"
+                type="tab-button" role="tab"">New</button>
+        </li>
+        <li class=" nav-item" role="presentation">
+                <button class="nav-link gig-tab" id="saved_gig_tab" data-bs-toggle="tab" data-bs-target="#saved_gig"
+                    type="tab-button" role="tab">Saved</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link gig-tab" id="apply_gig_tab" data-bs-toggle="tab" data-bs-target="#apply_gig"
+                type="tab-button" role="tab">Applied</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link gig-tab" id="hide_gig_tab" data-bs-toggle="tab" data-bs-target="#hide_gig"
+                type="tab-button" role="tab">Hidden</button>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane show active" id="new_gig" role="tabpanel" aria-labelledby="new_gig_tab">..NEW...</div>
+        <div class="tab-pane" id="saved_gig" role="tabpanel" aria-labelledby="saved_gig_tab">..SAVED..</div>
+        <div class="tab-pane" id="apply_gig" role="tabpanel" aria-labelledby="apply_gig_tab">.APPLIED...</div>
+        <div class="tab-pane" id="hide_gig" role="tabpanel" aria-labelledby="hide_gig_tab">..HIDDEN..</div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+<style>
+    .btn {
+        color: white;
+        border-color: rgba(96, 185, 236, 0.2);
+        background-color: rgba(9, 143, 221, 0.9) !important;
+        font-size: small !important;
+        font-weight: bold;
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    /*
+    .btn-delete,
+    .btn-edit {
+        height: 35px;
+    }
+
+    .btn-delete {
+        background-color: rgba(192, 37, 37, 0.9) !important;
+    }
+
+    .btn-edit {
+        background-color: rgba(9, 143, 221, 0.9) !important;
+    }
+*/
+    .btn:hover,
+    .btn:active,
+    .btn:focus {
+        color: white;
+        border-color: rgba(96, 185, 236, 0.2);
+        background-color: rgba(4, 102, 168, 0.9) !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        background-color: white;
+    }
+
+    .card-title {
+        font-size: large;
+        font-weight: bold;
+        padding: auto;
+        color: rgba(9, 143, 221, 0.9);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    label {
+        display: none;
+    }
+</style>
+<div class="container-fluid">
+
+    <!--<div id="message">
+        {{greeting}}
+    </div>-->
+    <br>
+    <div class="row">
+        <div class="gig-container col-10 offset-1">
+            <div class="row">
+
+                <!-- gig cards -->
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
+                    <div class="gig-card h-100 border-1">
+
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
+                                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
+                                </div>
+                                <div class=" col">
+                                    <p class=" card-subtitle mb-2 text-end small""> Deadline: &nbsp; {{ gig.deadline }}</p><br>
+                            </div>
+                            <a class=" card-title text-center" href="{% url 'gig' %}">
+                                        <strong>{{ gig.title }}</strong>
+                                        </a>
+                                        <br>
+                                        <br>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-2">
+                                    <p class="text-center">{{ gig.gigdescription }}</p>
+                                </div>
+                                <br>
+                                <div class="small">
+                                    
+                                </div>
+
+                                <div class="row justify-content-evenly align-items-center">
+                                    <div class="small col-sm-12 col-md-5 col-lg-5 my-3 align-self-start">
+                                        <h6 class="card-subtitle mb-2 text-muted small">{{ gig.created }} </h6>
+                                        <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ gig.updated }}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ gig.author }}</h6>
+                                    </div>
+                                    <div class="small col-sm-12 col-md-4 col-lg-4 my-3 align-self-end">
+                                        <p class="card-subtitle mb-2 text-muted small">Contact Information:</p>
+                                        <p class="card-subtitle mb-2 text-muted small">{{ gig.extrainfo }}</p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-end">
+                                    <div class="col justify-content-evenly text-center">
+                                        <a class="btn" href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
+                                        <a class="btn" href="#" id="addAppliedGig" value="Add to AppliedGig" class="card-link">Apply</a>
+                                        <a class="btn" href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}
+
+    {% block postloadjs %}
+    {{ block.super }}
+    <script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>
+    {% endblock %}
