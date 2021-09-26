@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Gig
 from profileusers.models import Profileuser
+from .forms import GigForm
 
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
@@ -59,28 +60,14 @@ def my_gigs(request):
 # @login_required
 class GigCreateView(CreateView):
     model = Gig
+    form_class = GigForm
     template_name = 'gigs/create_gig.html'
-    fields = ('title', 'industry', 'profession', 'city', 'country', 'gigdescription', 'extrainfo', 'deadline',)
 
-
-
-"""
-def AppliedGig(request):
-    # pylint: disable=maybe-no-member
-    apply_gig = Gig.objects.all()
-    # template = 'gigs/apply_gig.html'
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profileuser
+        return super().form_valid(form)
     
-    return render(request, 'gigs/apply_gig.html')
 
-
-def HideGig(request):
-    # pylint: disable=maybe-no-member
-    hide_gig = Gig.objects.all()
-    # template = 'gigs/hide_gig.html'
-    
-    return render(request, 'gigs/hide_gig.html')
-
-"""
 def NewGig(request):
     # pylint: disable=maybe-no-member
     new_gig = get_object_or_404(Gig)

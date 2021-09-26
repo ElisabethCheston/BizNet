@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from profileusers.models import Profileuser, Industry, Profession
-
+from django.urls import reverse
 from django_countries.fields import CountryField
 
 
@@ -42,3 +42,5 @@ class Gig(models.Model):
     def get_user_liked(self, user):
         pass
 
+    def get_absolute_url(self):
+        return reverse('gig_detail', kwargs={'pk': self.pk})
