@@ -37,34 +37,38 @@
 
 {% block content %}
 <style>
-    .btn {
+    .btn-link {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(9, 143, 221, 0.9) !important;
         font-size: small !important;
+        height: 45px;
         font-weight: bold;
+        padding-right: 5px;
+        padding-left: 5px;
+        text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     /*
-    .btn-delete,
-    .btn-edit {
+    .btn-link-delete,
+    .btn-link-edit {
         height: 35px;
     }
 
-    .btn-delete {
+    .btn-link-delete {
         background-color: rgba(192, 37, 37, 0.9) !important;
     }
 
-    .btn-edit {
+    .btn-link-edit {
         background-color: rgba(9, 143, 221, 0.9) !important;
     }
 */
-    .btn:hover,
-    .btn:active,
-    .btn:focus {
+    .btn-link:hover,
+    .btn-link:active,
+    .btn-link:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(4, 102, 168, 0.9) !important;
@@ -108,26 +112,22 @@
                             <div class="row">
                                 <div class="col">
                                     <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
-                                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
+                                    <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
                                 </div>
                                 <div class=" col">
                                     <p class=" card-subtitle mb-2 text-end small""> Deadline: &nbsp; {{ gig.deadline }}</p><br>
-                            </div>
-                            <a class=" card-title text-center" href="{% url 'gig' %}">
-                                        <strong>{{ gig.title }}</strong>
-                                        </a>
-                                        <br>
-                                        <br>
                                 </div>
+                                <a class=" card-title text-center" href="{% url 'gig' %}">
+                                            <strong>{{ gig.title }}</strong>
+                                            </a>
+                                            <br>
+                                            <br>
                             </div>
                             <div class="card-body">
                                 <div class="mb-2">
                                     <p class="text-center">{{ gig.gigdescription }}</p>
                                 </div>
                                 <br>
-                                <div class="small">
-                                    
-                                </div>
 
                                 <div class="row justify-content-evenly align-items-center">
                                     <div class="small col-sm-12 col-md-5 col-lg-5 my-3 align-self-start">
@@ -141,15 +141,19 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-end">
-                                    <div class="col justify-content-evenly text-center">
-                                        <a class="btn" href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
-                                        <a class="btn" href="#" id="addAppliedGig" value="Add to AppliedGig" class="card-link">Apply</a>
-                                        <a class="btn" href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
+                                    <div class="col g-2 justify-content-evenly text-center">
+                                        <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
+                                            class="card-link">Save</a>
+                                        <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
+                                            class="card-link">Apply</a>
+                                        <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
+                                            class="card-link">Hide</a>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+
                     </div>
 
                 </div>

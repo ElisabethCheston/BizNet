@@ -42,9 +42,10 @@
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(9, 143, 221, 0.9) !important;
         font-size: small !important;
-        height: 35px;
+        height: 45px;
         font-weight: bold;
-        padding: 3px;
+        padding-right: 5px;
+        padding-left: 5px;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -75,13 +76,13 @@
     }
 
     .card-header {
-        height: 80px;
+        /* height: 80px; */
         background-color: white;
     }
 
     .card-title {
-        font-size: medium;
-        font-weight: bold;
+        font-size: large;
+        font-weight: bolder;
         padding: auto;
         color: rgba(9, 143, 221, 0.9);
     }
@@ -107,21 +108,26 @@
                 {% for gig in gigs %}
 
                 <!-- gig cards -->
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                    <div class="gig-card">
-                        <div class="card-header text-center">
-                            <a class="card-title text-center" href="{% url 'gig_detail' gig.id %}">
-                                <strong>{{ gig.title }}</strong>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                <p class="card-subtitle mb-2 text-muted small"> Industry: &nbsp; {{ gig.industry }} </p>
-                                <p class="card-subtitle mb-2 text-muted small"> City: &nbsp; {{ gig.city }} </p>
-                                <p class="card-subtitle mb-2 small"> Deadline: &nbsp; {{ gig.deadline }} </p>
+                <div class="col-sm-12">
+                    <div class="gig-card  h-100 border-1">
+
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
+                                    <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
+                                </div>
+                                <div class=" col">
+                                    <p class=" card-subtitle mb-2 text-end small""> Deadline: &nbsp; {{ gig.deadline }}</p><br>
+                                </div>
+                        
+                                <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
+                                    <strong>{{ gig.title }}</strong>
+                                </a>
                             </div>
-                            <div class="row align-items-end">
-                                <div class="col g-1 justify-content-evenly text-center">
+<br>
+                            <div class="row justify-content-evenly align-items-end">
+                                <div class="col justify-content-evenly text-center">
                                     <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
                                         class="card-link">Save</a>
                                     <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
@@ -129,20 +135,30 @@
                                     <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
                                         class="card-link">Hide</a>
                                 </div>
+                                <br>
                             </div>
+                            <br>
+                            </div>
+                            <!--<div class="card-body">
+                                <div>
+                                        <p class="card-subtitle mb-2 text-muted small"> Industry: &nbsp; {{ gig.industry
+                                            }} </p>
+                                        <p class="card-subtitle mb-2 text-muted small"> City: &nbsp; {{ gig.city }} </p>
+                                        <p class="card-subtitle mb-2 small"> Deadline: &nbsp; {{ gig.deadline }} </p>
+                                    </div>
+                            </div>-->
+
                         </div>
-                        
                     </div>
+
+                    <br>
                 </div>
-
                 <br>
-            </div>
-            <br>
-            {% endfor %}
+                {% endfor %}
 
+            </div>
         </div>
     </div>
-</div>
 </div>
 {% endblock %}
 
