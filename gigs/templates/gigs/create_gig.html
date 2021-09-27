@@ -57,34 +57,19 @@
 
 {% block content %}
 <style>
-/*
-    input#gigdescription,
-    input# {
-        height: 300px;
-    }
-*/
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(9, 143, 221, 0.9) !important;
         font-size: small !important;
+        height: 40px;
         font-weight: bold;
+        padding-right: 10px;
+        padding-left: 10px;
+        text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-/*
-    .btn-delete,
-    .btn-edit {
-        height: 35px;
-    }
-*/
-    .btn-delete {
-        background-color: rgba(192, 37, 37, 0.9) !important;
-    }
-
-    .btn-edit {
-        background-color: rgba(9, 143, 221, 0.9) !important;
     }
 
     .btn:hover,
@@ -92,14 +77,41 @@
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
+        background-color: rgba(88, 107, 119, 0.9) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
-/*
+    .btn-delete {
+        background-color: rgba(192, 37, 37, 0.9) !important;
+        color: white;
+    }
+
+    .btn-edit {
+        background-color: rgba(9, 143, 221, 0.9) !important;
+        color: white;
+    }
+
+    .card-header {
+        /* height: 80px; */
+        background-color: white;
+    }
+
+    .card-title,
+    .card-teext {
+        font-size: large;
+        font-weight: bolder;
+        padding: auto;
+        color: rgba(9, 143, 221, 0.9);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+
     label {
         display: none;
     }
-    */
+
 </style>
 
 <div class="container-profile justify-center">
@@ -118,18 +130,16 @@
 
                         {{ form|crispy }}
                         <!--<div class="card-body">
-                            <h6 class="card-title" placeholder="Title:">Title: &nbsp; {{form.title}}</h6>
-                            <h6 class="card-title" placeholder="Industry:">Industry: &nbsp; {{form.industry}}</h6>
-                            <h6 class="card-title" placeholder="Profession: ">Profession: &nbsp; {{form.profession}}</h6>
-                            <h6 class="card-title" placeholder="City:">City: &nbsp; {{form.city}}</h6>
-                            {% if user.is_authenticated %}
-                            <h6 class="card-title" placeholder="Author: ">Author: &nbsp; {{form.author}}</h6>
-                            {% endif %}
-                            <h6 class="card-title" placeholder="Deadline:">Deadline: &nbsp; {{form.deadline}}</h6>
+                            <h6 class="card-title">Title: &nbsp; {{form.title}}</h6>
+                            <h6 class="card-title">Industry: &nbsp; {{form.industry}}</h6>
+                            <h6 class="card-title">Profession: &nbsp; {{form.profession}}</h6>
+                            <h6 class="card-title">City: &nbsp; {{form.city}}</h6>
+                            <h6 class="card-title">Author: &nbsp; {{form.author}}</h6>
+                            <h6 class="card-title">Deadline: &nbsp; {{form.deadline}}</h6>
                             <br>
-                            <h6 class="card-text" placeholder="Description:">Description: &nbsp; {{form.gigdescription}}</h6>
+                            <h6 class="card-text">Description: &nbsp; {{form.gigdescription}}</h6>
                             <br>
-                            <h6 class="card-text" placeholder="Contact Information:">Contact Information: &nbsp; {{form.extrainfo}}</h6>
+                            <h6 class="card-text">Contact Information: &nbsp; {{form.extrainfo}}</h6>
                         </div>-->
                     </fieldset>
                     <br>

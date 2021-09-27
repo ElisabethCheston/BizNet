@@ -1,20 +1,27 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Gig
 from profileusers.models import Profileuser
 from .forms import GigForm
 
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.contrib import messages
 from django.db.models.functions import Lower
 from django.core import serializers
-
-from django.views.generic import TemplateView, View, DetailView, CreateView, ListView
-# from .forms import GigForm
 from django.views.decorators.http import require_http_methods
 
+from django.views.generic import (
+    TemplateView, 
+    View, 
+    DetailView, 
+    CreateView, 
+    ListView,
+    UpdateView
+)
 
 
+"""
 def gig(request):
     # pylint: disable=maybe-no-member
     template = 'gigs/gig.html'
@@ -23,7 +30,9 @@ def gig(request):
         'qs': Gig.objects.all()
     }
     return render(request, template, context)
+"""
 
+# ALL GIGS
 
 class GigListView(ListView):
     model = Gig
@@ -35,18 +44,8 @@ class GigDetailView(DetailView):
     model = Gig
 
 
-def gig_json(request):
-    # pylint: disable=maybe-no-member
-    qs = Gig.objects.all()
-    data = serializers.serialize('json', qs)
-    context = {
-        'data': data,
-    }
-    return JsonResponse(context)
-
 # PROFILEUSER GIGS
 
-# @login_required
 def my_gigs(request):
     # pylint: disable=maybe-no-member
     profile = Profileuser.objects.get(username=request.user)
@@ -56,9 +55,28 @@ def my_gigs(request):
     }
     return render(request, template, context)
 
+"""
+def NewGig(request):
+    # pylint: disable=maybe-no-member
+    new_gig = get_object_or_404(Gig)
+    #new_gig = Gig.objects.all()
+    context = {
+        'new_gig': new_gig,
+    }
+    return render(request, 'gigs/new_gig.html', context)
+"""
 
-# @login_required
-class GigCreateView(CreateView):
+class GigCreateView(CreateView, LoginRequiredMixin):
+    model = Gig
+    form_class = GigForm
+    template_name = 'gigs/create_gig.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profileuser
+        return super().form_valid(form)
+
+
+class GigUpdateView(UpdateView, LoginRequiredMixin):
     model = Gig
     form_class = GigForm
     template_name = 'gigs/create_gig.html'
@@ -68,16 +86,7 @@ class GigCreateView(CreateView):
         return super().form_valid(form)
     
 
-def NewGig(request):
-    # pylint: disable=maybe-no-member
-    new_gig = get_object_or_404(Gig)
-    #new_gig = Gig.objects.all()
-    context = {
-        'new_gig': new_gig,
-    }
-    return render(request, 'gigs/new_gig.html', context)
-
-
+# CHOICE FOR GIGS
 
 def SavedGig(request):
     # pylint: disable=maybe-no-member
@@ -86,7 +95,6 @@ def SavedGig(request):
         'save_gig': save_gig,
     }
     return render(request, 'gigs/saved_gig.html', context)
-
 
 
 def AppliedGig(request):
@@ -154,3 +162,13 @@ class GigsData(View):
             }
             gd_list.append(gig_item)
         return JsonResponse({'pf_data': gd_list})
+
+
+def gig_json(request):
+    # pylint: disable=maybe-no-member
+    qs = Gig.objects.all()
+    data = serializers.serialize('json', qs)
+    context = {
+        'data': data,
+    }
+    return JsonResponse(context)

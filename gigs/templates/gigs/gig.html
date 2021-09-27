@@ -52,20 +52,6 @@
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-    /*
-    .btn-link-delete,
-    .btn-link-edit {
-        height: 35px;
-    }
-
-    .btn-link-delete {
-        background-color: rgba(192, 37, 37, 0.9) !important;
-    }
-
-    .btn-link-edit {
-        background-color: rgba(9, 143, 221, 0.9) !important;
-    }
-*/
     .btn-link:hover,
     .btn-link:active,
     .btn-link:focus {
@@ -122,22 +108,22 @@
                                 </div>
                         
                                 <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
-                                    <strong>{{ gig.title }}</strong>
-                                </a>
-                            </div>
-<br>
-                            <div class="row justify-content-evenly align-items-end">
-                                <div class="col justify-content-evenly text-center">
-                                    <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
-                                        class="card-link">Save</a>
-                                    <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
-                                        class="card-link">Apply</a>
-                                    <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
-                                        class="card-link">Hide</a>
+                                        <strong>{{ gig.title }}</strong>
+                                        </a>
                                 </div>
                                 <br>
-                            </div>
-                            <br>
+                                <div class="row justify-content-evenly align-items-end">
+                                    <div class="col justify-content-evenly text-center">
+                                        <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
+                                            class="card-link">Save</a>
+                                        <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
+                                            class="card-link">Apply</a>
+                                        <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
+                                            class="card-link">Hide</a>
+                                    </div>
+                                    <br>
+                                </div>
+                                <br>
                             </div>
                             <!--<div class="card-body">
                                 <div>

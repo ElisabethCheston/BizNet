@@ -24,20 +24,20 @@ class GigForm(forms.ModelForm):
             # 'created',
         ]
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'industry': forms.Select(attrs={'class': 'form-control'}),
-            'profession': forms.Select(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'industry': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Industry'}),
+            'profession': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Profession'}),
 
-            'city': forms.TextInput(attrs={'class': 'form-control'}),
-            'country': forms.Select(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
+            'country': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Country'}),
+            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Author'}),
 
-            'gigdescription': forms.Textarea(attrs={'class': 'form-control'}),
-            'extrainfo': forms.Textarea(attrs={'class': 'form-control'}),
+            'gigdescription': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
+            'extrainfo': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contact Information'}),
             'deadline': forms.DateInput(
                 format=('%Y-%m-%d'), attrs={
                     'class': 'form-control', 
-                    'placeholder': 'Select a date',
+                    'placeholder': 'Deadline Date',
                     'type': 'date'
                 }),
         }
