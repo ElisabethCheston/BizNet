@@ -32,7 +32,6 @@
     </div>
 </div>
 
-
 {% endblock %}
 
 {% block content %}
@@ -44,14 +43,28 @@
         font-size: small !important;
         height: 45px;
         font-weight: bold;
-        padding-right: 7px;
-        padding-left: 7px;
+        padding-right: 5px;
+        padding-left: 5px;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
+    /*
+    .btn-link-delete,
+    .btn-link-edit {
+        height: 35px;
+    }
+
+    .btn-link-delete {
+        background-color: rgba(192, 37, 37, 0.9) !important;
+    }
+
+    .btn-link-edit {
+        background-color: rgba(9, 143, 221, 0.9) !important;
+    }
+*/
     .btn-link:hover,
     .btn-link:active,
     .btn-link:focus {
@@ -61,95 +74,99 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /*
-    .card-border {
-        margin-bottom: 1%;
-    }
-*/
     .card-header {
-        /* height: 80px; */
         background-color: white;
     }
 
     .card-title {
-        font-size: medium;
-        font-weight: bolder;
+        font-size: large;
+        font-weight: bold;
         padding: auto;
-        text-decoration: none;
         color: rgba(9, 143, 221, 0.9);
     }
 
-    .card-body {
-        padding: 20px;
+    .container-content {
+        background-color: yellow;
     }
 
+    .gig-text {
+        font-size: medium;
+        color: rgb(5, 5, 5);
+    }
+
+    /*
+.card-body {
+        padding: 20px;
+    }
+*/
     label {
         display: none;
     }
 </style>
 
-<div class="container-profile">
-
+<div class="container-fluid">
+    <br>
     <div class="row">
-        <!--<div class="gig-container col-10 offset-1">
-            <div class="row">-->
-        {% for gig in gigs %}
+
 
         <!-- gig cards -->
-        <div class="col-sm-12 card-frame">
-            <div class="card h-100 border-1">
+        <div class="col-sm-10 col-sx-12 mx-auto">
+            {% for gig in gigs.all %}
+            <div class="card">
+                <div class=" card-body">
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-7">
-                            <p class="card-subtitle mb-2 text-muted small"> Industry: &nbsp; {{ gig.industry }}
-                            </p>
-                            <p class=" card-subtitle mb-2 text-muted small"> City: &nbsp; {{ gig.city }} </p>
-                        </div>
-                        <!--<div class="col-6 text-center">
-                            <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}"> {{ gig.title }}
-                            </a>
-                        </div>-->
+                    <div class="row justify-content-between">
 
-                        <div class="col-5">
-                            <p class=" card-subtitle mb-2 text-end text-muted small"> Deadline: <br> &nbsp; {{ gig.deadline }}</p><br>
-                        </div>
-                    </div>
+                        <div class="col-sm-9 col-sx-12">
 
-                    <div class="col text-center">
+                            <!-- Title -->
+                            <div class="row col-12">
                                 <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
-                                        <strong>{{ gig.title }}</strong>
+                                    <strong>{{ gig.title }}</strong>
                                 </a>
                             </div>
-                    <br>
-                    <p>{{ gig.description }}</p>
-                    <div class="row justify-content-evenly align-items-end">
-                        <div class="col mx-auto justify-content-evenly text-center">
-                            <a class="btn-link mx-1" href="{% url 'saved_gig' %}" id="addSavedGig"
-                                value="Add to SavedGig" class="card-link">Save</a>
-                            <a class="btn-link mx-1" href="{% url 'gig_detail' gig.id %}" value="Add to AppliedGig"
-                                class="card-link">View</a>
-                            <a class="btn-link mx-1" href="{% url 'hide_gig' %}" id="addHideGig" value="Add to HideGig"
-                                class="card-link">Hide</a>
+
+                            <!-- Action Buttons -->
+                            <div class="row my-2">
+                                <div class="col g-2 justify-content-evenly text-center">
+                                    <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
+                                        class="card-link">Save</a>
+                                    <a class="btn-link" value="Add to AppliedGig" class="card-link">View</a>
+                                    <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
+                                        class="card-link">Hide</a>
+                                </div>
+                            </div>
+                            <br>
+                            <p class=" card-subtitle mb-2 text-center text-muted small">
+                                Deadline: {{ gig.deadline|date:"F d, Y" }}
+                            </p>
                         </div>
+
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="col text-center">
+                                <img class="rounded-circle avatar" src="{{gig.author.picture.url }}">
+                            </div>
+                            <br>
+                            <div class="col col-auto text-center">
+                                <p class="card-subtitle mb-2 text-muted small">
+                                    {{ gig.profession }} needed in {{ gig.city }}
+                                </p>
+
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
+            <br>
+            {% endfor %}
         </div>
-<br>
-        {% endfor %}
-        <!--</div>
-        </div>-->
     </div>
     <br>
     <br>
+    <br>
 </div>
-{% endblock %}
+<br>
 
-{% block postloadjs %}
-{{ block.super }}
-<script type=" text/javascript" src="{% static 'js/gig_script.js' %}">
-                                </script>
 {% endblock %}
