@@ -107,11 +107,11 @@
         padding: 20px;
     }
 
-
+/*
     label {
         display: none;
     }
-
+*/
 </style>
 
 <div class="container-profile justify-center">
@@ -145,11 +145,11 @@
                     <br>
                     <div class="row justify-content-center form-group">
                         <!-- Edit button -->
-                        <div class="col-3 text-center">
+                        <div class="col-3 mx-auto text-center">
                             <button class="btn btn-edit" type="submit">UPDATE</button>
                         </div>
                         <!-- Delete button -->
-                        <div class="col-3 text-center">
+                        <div class="col-3 mx-auto text-center">
                             <button class="btn btn-delete" type="submit">DELETE</button>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<!--<script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>-->
+<script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>
 {% endblock %}
 
 <script>

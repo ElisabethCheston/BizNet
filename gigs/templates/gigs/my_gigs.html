@@ -140,7 +140,7 @@
                             <br>
 
                             <div class=" text-center">
-                                <p>{{ gig.gigdescription }}</p>
+                                <p>{{ gig.description }}</p>
                                 <p>
                                     <a class=" btn btn-primary btn-sm text-center" data-toggle="collapse"
                                         href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
@@ -151,7 +151,7 @@
 
                             <div class="collapse" id="collapseExample1">
                                 <div class="card card-body">
-                                    {{ gig.extrainfo }}
+                                    {{ gig.contact }}
                                 </div>
                             </div>
 
@@ -177,65 +177,12 @@
                         </div>
                     </div>
                 </div>
-
                 {% endfor %}
-
-                {% endblock %}
-
-
-                {% block postloadjs %}
-                {{ block.super }}
-                <script type=" text/javascript" src="{% static 'js/gig_script.js' %}"></script>
-                {% endblock %}
-
-
-                <!-- gig cards -->
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
-                    <div class="gig-card h-100 border-1">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ gig.title }}</h5><br>
-                            <div>
-                                <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
-                <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
-                                <p class="card-subtitle mb-2 small""> Deadline: &nbsp; {{ gig.deadline }} </p>
             </div>
-            <br>
+        </div>
+    </div>
+</div>
 
-            <div class=" text-center">
-                                <p>{{ gig.gigdescription }}</p>
-                                <p>
-                                    <a class=" btn btn-primary btn-sm text-center" data-toggle="collapse"
-                                        href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                                        Contact Information
-                                    </a>
-                                </p>
-                            </div>
+{% endif %}
 
-                            <div class="collapse" id="collapseExample1">
-                                <div class="card card-body">
-                                    {{ gig.extrainfo }}
-                                </div>
-                            </div>
-
-                            <div class="my-3 py-3">
-                                <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ gig.author }}
-                                </h6>
-                                <h6 class="card-subtitle mb-2 text-muted small">{{ gig.created }} </h6>
-                                <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ gig.updated }} </h6>
-                            </div>
-
-                            <div class="row align-items-end">
-                                <div class="col justify-content-evenly text-center">
-
-                                    <!-- Edit button -->
-                                    <div class="d-grid gap-2 d-md-flex justify-content-center">
-                                        <form action="{% url 'gig_update' %}">
-                                            <input type="submit" value="EDIT GIG" class="btn btn-edit" />
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+{% endblock %}
