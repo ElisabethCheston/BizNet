@@ -16,9 +16,11 @@ class GigForm(forms.ModelForm):
             'profession',
             'city',
             'country',
-            'description',
+            'overview',
+            'position',
+            'requirements',
             'contact',
-            'author',
+            # 'author',
             'deadline',
             # 'updated',
             # 'created',
@@ -30,9 +32,11 @@ class GigForm(forms.ModelForm):
 
             'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
             'country': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Country'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Author'}),
+            # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Author'}),
 
-            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
+            'overview': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Company Overview (250 characters)'}),
+            'position': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Job Position (250 characters)'}),
+            'requirements': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Job Requirements (250 characters)'}),
             'contact': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contact Information'}),
             'deadline': forms.DateInput(
                 format=('%Y-%m-%d'), attrs={

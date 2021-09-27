@@ -8,24 +8,28 @@
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="gigTabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link gig-tab" id="new_gig_tab" data-bs-toggle="tab" data-bs-target="#new_gig" type="tab-button" role="tab"">New</button>
+            <button class="nav-link gig-tab" id="new_gig_tab" data-bs-toggle="tab" data-bs-target="#new_gig"
+                type="tab-button" role="tab"">New</button>
+        </li>
+        <li class=" nav-item" role="presentation">
+                <button class="nav-link gig-tab" id="saved_gig_tab" data-bs-toggle="tab" data-bs-target="#saved_gig"
+                    type="tab-button" role="tab">Saved</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link gig-tab" id="saved_gig_tab" data-bs-toggle="tab" data-bs-target="#saved_gig" type="tab-button" role="tab">Saved</button>
+            <button class="nav-link gig-tab" id="apply_gig_tab" data-bs-toggle="tab" data-bs-target="#apply_gig"
+                type="tab-button" role="tab">Applied</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link gig-tab" id="apply_gig_tab" data-bs-toggle="tab" data-bs-target="#apply_gig" type="tab-button" role="tab">Applied</button>
-          </li>    
-        <li class="nav-item" role="presentation">
-          <button class="nav-link gig-tab active" id="hide_gig_tab" data-bs-toggle="tab" data-bs-target="#hide_gig" type="tab-button" role="tab">Hidden</button>
+            <button class="nav-link gig-tab active" id="hide_gig_tab" data-bs-toggle="tab" data-bs-target="#hide_gig"
+                type="tab-button" role="tab">Hidden</button>
         </li>
-      </ul>
-      <div class="tab-content">
+    </ul>
+    <div class="tab-content">
         <div class="tab-pane show active" id="new_gig" role="tabpanel" aria-labelledby="new_gig_tab">..NEW...</div>
         <div class="tab-pane" id="saved_gig" role="tabpanel" aria-labelledby="saved_gig_tab">..SAVED..</div>
         <div class="tab-pane" id="apply_gig" role="tabpanel" aria-labelledby="apply_gig_tab">.APPLIED...</div>
         <div class="tab-pane" id="hide_gig" role="tabpanel" aria-labelledby="hide_gig_tab">..HIDDEN..</div>
-      </div>
+    </div>
 </div>
 
 {% endblock %}
@@ -52,10 +56,6 @@
             <div class="row">
                 <div class="gig-container col-10 offset-1">
                     <div class="row">
-
-                        {% for obj in qs %}
-
-                        <!-- gig cards -->
 
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-5">
                             <div class="card h-100 border-1">
@@ -95,10 +95,10 @@
 
                                     <div class="row align-items-end text-center">
                                         <div class="col">
-                                    <!-- <a href="#" class="card-link">View</a> -->
-                                    <a href="#" class="card-link">Save</a>
-                                    <a href="#" class="card-link">Apply</a>
-                                    <a href="#" class="card-link">Hide</a>
+                                            <!-- <a href="#" class="card-link">View</a> -->
+                                            <a href="#" class="card-link">Save</a>
+                                            <a href="#" class="card-link">Apply</a>
+                                            <a href="#" class="card-link">Hide</a>
                                         </div>
                                     </div>
 

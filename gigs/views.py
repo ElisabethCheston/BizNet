@@ -3,7 +3,7 @@ from profileusers.models import Profileuser
 from .forms import GigForm
 
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.contrib import messages
@@ -17,7 +17,8 @@ from django.views.generic import (
     DetailView, 
     CreateView, 
     ListView,
-    UpdateView
+    UpdateView,
+    DeleteView,
 )
 
 
@@ -76,7 +77,7 @@ class GigCreateView(CreateView, LoginRequiredMixin):
         return super().form_valid(form)
 
 
-class GigUpdateView(UpdateView, LoginRequiredMixin):
+class GigUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Gig
     form_class = GigForm
     template_name = 'gigs/create_gig.html'
@@ -84,7 +85,23 @@ class GigUpdateView(UpdateView, LoginRequiredMixin):
     def form_valid(self, form):
         form.instance.author = self.request.user.profileuser
         return super().form_valid(form)
+
+    def test_func(self):
+        gig = self.get_object()
+        if self.request.user == gig.author:
+            return True
+        return False
     
+
+class GigDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Gig
+
+    def test_func(self):
+            gig = self.get_object()
+            if self.request.user == gig.author:
+                return True
+            return False
+
 
 # CHOICE FOR GIGS
 

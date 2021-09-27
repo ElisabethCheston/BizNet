@@ -16,7 +16,9 @@ class Gig(models.Model):
     liked = models.ManyToManyField(User, default=None, blank=False)
     city = models.CharField(max_length=50, null=True, blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
-    description = models.TextField(max_length=250, null=True)
+    position = models.TextField(max_length=250, null=True)
+    overview = models.TextField(max_length=250, null=True)
+    requirements = models.TextField(max_length=250, null=True)
     contact = models.TextField(max_length=250, null=True)
     author = models.ForeignKey(
         Profileuser, on_delete=models.CASCADE, null=True)

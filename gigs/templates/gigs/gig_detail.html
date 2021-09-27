@@ -101,64 +101,77 @@
     </div>-->
     <br>
     <div class="row">
-        <div class="gig-container col-10 offset-1">
-            <div class="row">
+        <!--<div class="gig-container col-10 offset-1">
+            <div class="row">-->
 
-                <!-- gig cards -->
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5">
-                    <div class="gig-card h-100 border-1">
+        <!-- gig cards -->
+        <div class="col-sm-12 card-frame">
+            <div class="card h-100 border-1">
 
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col">
-                                    <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
-                                    <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
-                                </div>
-                                <div class=" col">
-                                    <p class=" card-subtitle mb-2 text-end small""> Deadline: &nbsp; {{ gig.deadline }}</p><br>
-                                </div>
-                                <a class=" card-title text-center" href="{% url 'gig' %}">
-                                            <strong>{{ gig.title }}</strong>
-                                            </a>
-                                            <br>
-                                            <br>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-2">
-                                    <p class="text-center">{{ gig.description }}</p>
-                                </div>
-                                <br>
+                <div class="card-body">
 
-                                <div class="row justify-content-evenly align-items-center">
-                                    <div class="small col-sm-12 col-md-5 col-lg-5 my-3 align-self-start">
-                                        <h6 class="card-subtitle mb-2 text-muted small">{{ gig.created }} </h6>
-                                        <h6 class="card-subtitle mb-2 text-muted small"> Updated: &nbsp; {{ gig.updated }}</h6>
-                                        <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ gig.author }}</h6>
-                                    </div>
-                                    <div class="small col-sm-12 col-md-4 col-lg-4 my-3 align-self-end">
-                                        <p class="card-subtitle mb-2 text-muted small">Contact Information:</p>
-                                        <p class="card-subtitle mb-2 text-muted small">{{ gig.extrainfo }}</p>
-                                    </div>
-                                </div>
-                                <div class="row align-items-end">
-                                    <div class="col g-2 justify-content-evenly text-center">
-                                        <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
-                                            class="card-link">Save</a>
-                                        <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
-                                            class="card-link">Apply</a>
-                                        <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
-                                            class="card-link">Hide</a>
-                                    </div>
-                                </div>
-
-                            </div>
+                    <!-- Gig Header -->
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-subtitle mb-2 text-muted small"> Industry: &nbsp; {{ gig.industry }} </p>
+                            <p class="card-subtitle mb-2 text-muted small"> City: &nbsp; {{ gig.city }} </p>
+                        </div>
+                        <div class="col">
+                            <p class=" card-subtitle mb-2 text-end text-muted small">
+                                Deadline: &nbsp; {{ gig.deadline}}
+                            </p><br>
                         </div>
 
+                    <!-- Title -->
+                        <div class="row col-12">
+                            <a class=" card-title text-center" href="{% url 'gig' %}">
+                                <strong>{{ gig.title }}</strong>
+                            </a>
+                        </div>
+                        <br>
+                        <br>
                     </div>
 
+                    <!-- Position -->
+                    <div>
+                        <div>
+                            <p>{{ gig.position }}</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-evenly align-items-center">
+                        <div class="small col-6 my-3 align-self-start">
+                            <h6 class="card-subtitle mb-2 text-muted small">Created: &nbsp; {{ gig.created }} </h6>
+                            <h6 class="card-subtitle mb-2 text-muted small">Updated: &nbsp; {{ gig.updated }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small">Created by: &nbsp; {{ gig.author }}</h6>
+                        </div>
+                        <div class="small col-6 my-3 align-self-top">
+                            <p class="card-subtitle mb-2 text-end text-muted small">
+                                Contact Information: <br> {{ gig.contact }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="row align-items-end">
+                        <div class="col g-2 justify-content-evenly text-center">
+                            <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
+                                class="card-link">Save</a>
+                            <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
+                                class="card-link">Apply</a>
+                            <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
+                                class="card-link">Hide</a>
+                        </div>
+                    </div>
+
+                    <!--</div>-->
+
                 </div>
+
             </div>
+
         </div>
+        <!--</div>
+        </div>-->
 
     </div>
     {% endblock %}

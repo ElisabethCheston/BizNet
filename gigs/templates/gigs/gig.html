@@ -44,8 +44,8 @@
         font-size: small !important;
         height: 45px;
         font-weight: bold;
-        padding-right: 5px;
-        padding-left: 5px;
+        padding-right: 7px;
+        padding-left: 7px;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -61,15 +61,21 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
+    /*
+    .card-border {
+        margin-bottom: 1%;
+    }
+*/
     .card-header {
         /* height: 80px; */
         background-color: white;
     }
 
     .card-title {
-        font-size: large;
+        font-size: medium;
         font-weight: bolder;
         padding: auto;
+        text-decoration: none;
         color: rgba(9, 143, 221, 0.9);
     }
 
@@ -82,69 +88,63 @@
     }
 </style>
 
-<div class="container-fluid">
+<div class="container-profile">
 
-    <!--<div id="message">
-        {{greeting}}
-    </div>-->
-    <br>
     <div class="row">
-        <div class="gig-container col-10 offset-1">
-            <div class="row">
-                {% for gig in gigs %}
+        <!--<div class="gig-container col-10 offset-1">
+            <div class="row">-->
+        {% for gig in gigs %}
 
-                <!-- gig cards -->
-                <div class="col-sm-12">
-                    <div class="gig-card  h-100 border-1">
+        <!-- gig cards -->
+        <div class="col-sm-12 card-frame">
+            <div class="card h-100 border-1">
 
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col">
-                                    <p class="card-subtitle mb-2 text-muted small""> Industry: &nbsp; {{ gig.industry }} </p>
-                                    <p class=" card-subtitle mb-2 text-muted small""> City: &nbsp; {{ gig.city }} </p>
-                                </div>
-                                <div class=" col">
-                                    <p class=" card-subtitle mb-2 text-end small""> Deadline: &nbsp; {{ gig.deadline }}</p><br>
-                                </div>
-                        
-                                <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
-                                        <strong>{{ gig.title }}</strong>
-                                        </a>
-                                </div>
-                                <br>
-                                <div class="row justify-content-evenly align-items-end">
-                                    <div class="col justify-content-evenly text-center">
-                                        <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
-                                            class="card-link">Save</a>
-                                        <a class="btn-link" href="#" id="addAppliedGig" value="Add to AppliedGig"
-                                            class="card-link">Apply</a>
-                                        <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
-                                            class="card-link">Hide</a>
-                                    </div>
-                                    <br>
-                                </div>
-                                <br>
-                            </div>
-                            <!--<div class="card-body">
-                                <div>
-                                        <p class="card-subtitle mb-2 text-muted small"> Industry: &nbsp; {{ gig.industry
-                                            }} </p>
-                                        <p class="card-subtitle mb-2 text-muted small"> City: &nbsp; {{ gig.city }} </p>
-                                        <p class="card-subtitle mb-2 small"> Deadline: &nbsp; {{ gig.deadline }} </p>
-                                    </div>
-                            </div>-->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-7">
+                            <p class="card-subtitle mb-2 text-muted small"> Industry: &nbsp; {{ gig.industry }}
+                            </p>
+                            <p class=" card-subtitle mb-2 text-muted small"> City: &nbsp; {{ gig.city }} </p>
+                        </div>
+                        <!--<div class="col-6 text-center">
+                            <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}"> {{ gig.title }}
+                            </a>
+                        </div>-->
 
+                        <div class="col-5">
+                            <p class=" card-subtitle mb-2 text-end text-muted small"> Deadline: <br> &nbsp; {{ gig.deadline }}</p><br>
                         </div>
                     </div>
 
+                    <div class="col text-center">
+                                <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
+                                        <strong>{{ gig.title }}</strong>
+                                </a>
+                            </div>
                     <br>
+                    <p>{{ gig.description }}</p>
+                    <div class="row justify-content-evenly align-items-end">
+                        <div class="col mx-auto justify-content-evenly text-center">
+                            <a class="btn-link mx-1" href="{% url 'saved_gig' %}" id="addSavedGig"
+                                value="Add to SavedGig" class="card-link">Save</a>
+                            <a class="btn-link mx-1" href="{% url 'gig_detail' gig.id %}" value="Add to AppliedGig"
+                                class="card-link">View</a>
+                            <a class="btn-link mx-1" href="{% url 'hide_gig' %}" id="addHideGig" value="Add to HideGig"
+                                class="card-link">Hide</a>
+                        </div>
+                    </div>
+
                 </div>
-                <br>
-                {% endfor %}
 
             </div>
         </div>
+<br>
+        {% endfor %}
+        <!--</div>
+        </div>-->
     </div>
+    <br>
+    <br>
 </div>
 {% endblock %}
 
