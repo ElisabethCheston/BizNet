@@ -108,7 +108,8 @@
 
         <!-- gig cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
-            {% for gig in gigs.all %}
+            <!--{% for gig in gigs.all %}-->
+            {% csrf_token %}
             <div class="card">
                 <div class=" card-body">
 
@@ -123,31 +124,11 @@
                                 </a>
                             </div>
 
-                            {% if user.is_authenticated %}
-                            <br>
-                            <!-- Edit Buttons -->
-                            <!--<div class="text-center form-group">
-                                <a class="btn-delete" href="{% url 'gig_confirm_delete' gig.id %}" class="card-link">Delete</a>
-                                <a class="btn-cancel" href="{% url 'gig' %}" class="card-link">Cancel</a>
-                            </div>
-                            <br>-->
-                            {% else %}
-
-                            <!-- Action Buttons -->
-                            <div class="row my-2">
-                                <div class="col g-2 justify-content-evenly text-center">
-                                    <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
-                                        class="card-link">Save</a>
-                                    <a class="btn-link" value="Add to AppliedGig" class="card-link">View</a>
-                                    <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
-                                        class="card-link">Hide</a>
-                                </div>
-                            </div>
-                            <br>
-                            {% endif %}
-                            <br>
-                            <p class=" card-subtitle mb-2 text-center text-muted small">
+                            <p class="card-subtitle mb-2 py-1 text-center text-muted small">
                                 Deadline: {{ gig.deadline|date:"F d, Y" }}
+                            </p>
+                            <p class=" card-subtitle mb-2 text-center text-muted small">
+                                {{ gig.city }}, {{ gig.country.name }}
                             </p>
                         </div>
 
@@ -155,10 +136,9 @@
                             <div class="col text-center">
                                 <img class="rounded-circle avatar" src="{{gig.author.picture.url }}">
                             </div>
-                            <br>
-                            <div class="col col-auto text-center">
+                            <div class="col col-auto py-1 text-center">
                                 <p class="card-subtitle mb-2 text-muted small">
-                                    {{ gig.profession }} needed in {{ gig.city }}
+                                    {{ gig.author.profession }}, {{ gig.author.company_name }}
                                 </p>
 
                             </div>
@@ -169,7 +149,7 @@
                 </div>
             </div>
             <br>
-            {% endfor %}
+            <!--{% endfor %}-->
         </div>
     </div>
     <br>
