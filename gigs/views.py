@@ -1,12 +1,14 @@
 from .models import Gig
 from profileusers.models import Profileuser
 from .forms import GigForm
-
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.db.models.functions import Lower
 from django.core import serializers
 from django.views.decorators.http import require_http_methods
@@ -41,12 +43,13 @@ class GigListView(ListView):
     context_object_name = 'gigs'
     ordering = ['-created']
 
+
 class GigDetailView(DetailView):
     model = Gig
 
-
 # PROFILEUSER GIGS
 
+@login_required
 def my_gigs(request):
     # pylint: disable=maybe-no-member
     profile = Profileuser.objects.get(username=request.user)
@@ -67,7 +70,7 @@ def NewGig(request):
     return render(request, 'gigs/new_gig.html', context)
 """
 
-class GigCreateView(CreateView, LoginRequiredMixin):
+class GigCreateView(LoginRequiredMixin, CreateView):
     model = Gig
     form_class = GigForm
     template_name = 'gigs/create_gig.html'
@@ -91,16 +94,11 @@ class GigUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user == gig.author:
             return True
         return False
-    
 
-class GigDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
+class GigDeleteView(LoginRequiredMixin, DeleteView): # UserPassesTestMixin
     model = Gig
-
-    def test_func(self):
-            gig = self.get_object()
-            if self.request.user == gig.author:
-                return True
-            return False
+    success_url = reverse_lazy('my_gigs')
 
 
 # CHOICE FOR GIGS

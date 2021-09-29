@@ -58,8 +58,8 @@
 <style>
     .btn {
         color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
+        /*border-color: rgba(96, 185, 236, 0.2);
+        background-color: rgba(9, 143, 221, 0.9) !important;*/
         font-size: small !important;
         height: 40px;
         font-weight: bold;
@@ -70,13 +70,21 @@
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+    /*
+.btn-delete {
+    background-color: rgba(9, 143, 221, 0.9) !important;
+}
 
+.btn-cancel {
+    padding-top: 10px;
+}
+*/
     .btn:hover,
     .btn:active,
     .btn:focus {
         color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(88, 107, 119, 0.9) !important;
+        border-color: rgba(117, 119, 121, 0.2);
+        background-color: rgba(163, 165, 165, 0.9) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
     .btn-delete {
@@ -84,9 +92,10 @@
         color: white;
     }
 
-    .btn-edit {
-        background-color: rgba(9, 143, 221, 0.9) !important;
+    .btn-cancel {
+        background-color: rgba(120, 128, 133, 0.9) !important;
         color: white;
+        padding-top: 10px;
     }
 
     .card-header {
@@ -125,28 +134,25 @@
                     {% csrf_token %}
                     
                     <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Delete Gig</legend>
-                        <h3>Are you sure you want to delete the gig {{ gig.title }}.</h3>
-
+                        <legend class="border-bottom mb-4">DELETE GIG</legend>
+                        <h6 class="text-center">Are you sure you want to delete:</h6><br>
+                        <h4 class="text-center"><strong>"{{ gig.title }}"</strong></h4>
                     </fieldset>
                     <br>
-                    <div class="row justify-content-center form-group">
 
-                        <!-- Delete button -->
-                        <div class="col-3 mx-auto text-center">
-                            <button class="btn btn-delete" type="submit">DELETE</button>
-                        </div>
-
-                        <!-- Cancel button -->
-                        <div class="col-3 mx-auto text-center">
-                            <button class="btn btn-delete" href="{% url 'gig_detail' gig.id %}" type="submit">CANCEL</button>
-                        </div>
+                    <div class="text-center form-group">
+                        <button class="btn btn-danger" type="submit">DELETE</button>
+                        <a class="btn btn-secondary btn-cancel text-center" href="{% url 'gig_detail' gig.id %}" type="submit">CANCEL</a>
                     </div>
+
                 </form>
 
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
 </div>
 
 

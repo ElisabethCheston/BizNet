@@ -28,6 +28,12 @@ class Gig(models.Model):
 
     def __str__(self):
         return str(self.title)
+    
+    def get_absolute_url(self):
+        return reverse('gig_detail', kwargs={'pk': self.pk})
+        
+    def my_gigs(self):
+        return self.gig_set.all()
 
     class Meta:
         ordering = ('-created',)
@@ -44,5 +50,3 @@ class Gig(models.Model):
     def get_user_liked(self, user):
         pass
 
-    def get_absolute_url(self):
-        return reverse('gig_detail', kwargs={'pk': self.pk})

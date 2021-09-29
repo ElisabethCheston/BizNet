@@ -85,9 +85,6 @@
         color: rgba(9, 143, 221, 0.9);
     }
 
-    .container-content {
-        background-color: yellow;
-    }
 
     .gig-text {
         font-size: medium;
@@ -126,6 +123,16 @@
                                 </a>
                             </div>
 
+                            {% if user.is_authenticated %}
+                            <br>
+                            <!-- Edit Buttons -->
+                            <!--<div class="text-center form-group">
+                                <a class="btn-delete" href="{% url 'gig_confirm_delete' gig.id %}" class="card-link">Delete</a>
+                                <a class="btn-cancel" href="{% url 'gig' %}" class="card-link">Cancel</a>
+                            </div>
+                            <br>-->
+                            {% else %}
+
                             <!-- Action Buttons -->
                             <div class="row my-2">
                                 <div class="col g-2 justify-content-evenly text-center">
@@ -136,6 +143,8 @@
                                         class="card-link">Hide</a>
                                 </div>
                             </div>
+                            <br>
+                            {% endif %}
                             <br>
                             <p class=" card-subtitle mb-2 text-center text-muted small">
                                 Deadline: {{ gig.deadline|date:"F d, Y" }}

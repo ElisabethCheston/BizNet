@@ -18,7 +18,6 @@ urlpatterns = [
     path('gig/<int:pk>/update/', GigUpdateView.as_view(), name='gig_update'),
     path('gig/<int:pk>/delete/', GigDeleteView.as_view(), name='gig_confirm_delete'),
 
-
     path('new/', GigCreateView.as_view(), name='create_gig'),
     path('my_gigs/', views.my_gigs, name='my_gigs'),
 

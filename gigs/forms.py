@@ -34,9 +34,9 @@ class GigForm(forms.ModelForm):
             'country': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Country'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Author'}),
             'position': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Job Position (250 characters)'}),
-            'overview': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Company Overview (250 characters)'}),
+            'overview': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Company Summary (250 characters)'}),
             'requirements': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Job Requirements (250 characters)'}),
-            'contact': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Send you CV and cover letter to..'}),
+            'contact': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '"Send you CV and cover letter to.."'}),
             'deadline': forms.DateInput(
                 format=('%Y-%m-%d'), attrs={
                     'class': 'form-control', 

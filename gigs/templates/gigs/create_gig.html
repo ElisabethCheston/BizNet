@@ -5,6 +5,7 @@
 {% block page_header %}
 
 <!-- Profile tab links -->
+
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -60,12 +61,13 @@
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
+        /* background-color: rgba(9, 143, 221, 0.9) !important; */
         font-size: small !important;
-        height: 40px;
+        height: 30px;
         font-weight: bold;
         padding-right: 10px;
         padding-left: 10px;
+        font-weight: bolder;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -143,14 +145,14 @@
                         </div>-->
                     </fieldset>
                     <br>
-                    <div class="row justify-content-center form-group">
+                    <div class="row justify-content-evenly">
                         <!-- Edit button -->
-                        <div class="col-3 mx-auto text-center">
-                            <button class="btn btn-edit" type="submit">UPDATE</button>
-                        </div>
-                        <!-- Delete button -->
-                        <div class="col-3 mx-auto text-center">
-                            <button class="btn btn-delete" type="submit">DELETE</button>
+                        <div class="text-center form-group">
+                            <button class="btn btn-success" type="submit">CREATE</button>
+                            <!--<a class="btn btn-success" type="submit">CREATE</a>-->
+                            <!--<a class="" type="button" href="{% url 'profile_details' %}">Cancel</a>-->
+
+                            <button class="btn btn-danger" href="{% url 'gig' %}" type="button">CANCEL</a>
                         </div>
                     </div>
 

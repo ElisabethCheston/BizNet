@@ -42,10 +42,11 @@
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(9, 143, 221, 0.9) !important;
         font-size: small !important;
-        height: 45px;
+        height: 35px;
         font-weight: bold;
-        padding-right: 5px;
-        padding-left: 5px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 8px;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -86,10 +87,6 @@
         color: rgba(9, 143, 221, 0.9);
     }
 
-    .container-content {
-        background-color: yellow;
-    }
-
     .gig-text {
         font-size: medium;
         color: rgb(5, 5, 5);
@@ -115,7 +112,7 @@
             <div class="card">
 
                 <div class=" card-body">
-                
+
                     <!-- Gig Header -->
                     <div class="row">
                         <div class="col">
@@ -125,13 +122,14 @@
                             <p class=" card-subtitle mb-2 text-end text-muted small">
                                 Deadline: <br> {{ gig.deadline|date:"F d, Y" }}
                             </p>
-                            <p class="card-subtitle mb-2 text-end text-muted small"> Industry: <br> {{ gig.industry }} </p>
+                            <p class="card-subtitle mb-2 text-end text-muted small"> Industry: <br> {{ gig.industry }}
+                            </p>
                         </div>
                     </div>
                     <br>
                     <!-- Title -->
                     <div class="row col-12">
-                        <a class=" card-title text-center">
+                        <a class="card-title text-center" href="{% url 'gig' %}">
                             <strong>{{ gig.title }}</strong>
                         </a>
                     </div>
@@ -140,7 +138,7 @@
                     <!-- Gig Information -->
                     <div class="row">
                         <div class="col-12 text-left">
-                            <p class="gig-text my-1"><strong>City:</strong> <br>{{ gig.city }}</p>
+                            <p class="gig-text my-1"><strong>City:</strong> <br>{{ gig.city }}, &nbsp; {{ gig.country }}</p>
                         </div>
                         <div class="col-12 text-left">
                             <p class="gig-text my-1"><strong>Position:</strong> <br>{{ gig.position }}</p>
@@ -160,18 +158,30 @@
                     </div>
                     <br>
 
+                    {% if request.user.is_authenticated and request.user.profileuser == gig.author %}
+
+                    <br>
+                    <!-- Edit Buttons -->
+                    <div class="text-center form-group">
+                        <a class=" btn btn-danger" type="button" href="{% url 'gig_confirm_delete' gig.id %}">Delete</a>
+                        <a class="btn btn-secondary" type="button" href="{% url 'gig' %}">Cancel</a>
+                    </div>
+                    <br>
+
+                    {% else %}
+
                     <!-- Action Buttons -->
                     <div class="row my-2">
                         <div class="col g-2 justify-content-evenly text-center">
-                            <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
-                                class="card-link">Save</a>
-                            <a class="btn-link" href="{% url 'gig' %}" value="Add to AppliedGig"
-                                class="card-link">Back</a>
-                            <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
-                                class="card-link">Hide</a>
+                            <a class="btn-link card-link btn-sm" type="submit" href="#">Save</a>
+                            <a class="btn-link card-link btn-sm" type="submit" href="#">Applied</a>
+                            <a class="btn-link card-link btn-sm" type="submit" href="#">Hide</a>
                         </div>
                     </div>
                     <br>
+
+                    {% endif %}
+
 
                     <!-- Gig Footer -->
                     <div class="row">
@@ -193,4 +203,74 @@
     <br>
     <br>
 </div>
-    {% endblock %}
+{% endblock %}
+
+{% if user.is_authenticated and user == gigs.author %}
+<!-- Edit Buttons -->
+<div class="text-center form-group">
+    <a class="btn btn-dange" href="{% url 'gig_confirm_delete' gig.id %}" class="card-link">Delete</a>
+    <a class="btn btn-secondary" href="{% url 'gig' %}" class="card-link">Cancel</a>
+</div>
+<br>
+{% else %}
+
+<!-- Action Buttons -->
+<div class="row my-2">
+    <div class="col g-2 justify-content-evenly text-center">
+        <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig" class="card-link">Save</a>
+        <a class="btn-link" href="{% url 'gig' %}" value="Add to AppliedGig" class="card-link">Back</a>
+        <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig" class="card-link">Hide</a>
+    </div>
+</div>
+<br>
+{% endif %}
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Post cards -->
+        <div class="col-sm-10 col-sx-12 mx-auto">
+            <div class="card">
+                <div class=" card-body">
+
+                    <!-- Title -->
+                    <div class="row col-12">
+                        <a class=" card-title text-center">
+                            <strong>{{ post.title }}</strong>
+                        </a>
+                    </div>
+                    <br>
+                    <!-- Post Information -->
+                    <div class="col-12 text-left">
+                        <p class="post-text my-1"><strong>Information:</strong> <br>{{ post.information }}</p>
+                    </div>
+                    
+                    {% if post.author.pk == request.user.pk %}
+
+                    <!-- Edit Buttons -->
+                    <div class="text-center form-group">
+                        <a class="button-delete" type="button" href="{% url 'post_confirm_delete' post.id %}">Delete</a>
+                        <a class="button-cancel" type="button" href="{% url 'post' %}">Cancel</a>
+                    </div>
+                    <br>
+
+                    {% else %}
+
+                    <!-- Action Buttons -->
+                    <div class="row my-2">
+                        <div class="col g-2 justify-content-evenly text-center">
+                            <a class="card-link" type="submit" href="#">Save</a>
+                            <a class="card-link" type="submit" href="#">Applied</a>
+                            <a class="card-link" type="submit" href="#">Hide</a>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
