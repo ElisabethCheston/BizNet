@@ -30,7 +30,6 @@ urlpatterns = [
     path('password_success/', views.PasswordSuccess, name='password_success'),
     path('password_change_done/', views.PasswordSuccess, name='password_change_done'),
 
-
     # path('verified_email_required/', auth_views.VerifiedEmailRequiredView.as_view(template_name='verified_email_required.html'), name='verified_email_required'),
     # path('verification_sent/', auth_views.VerdificationSentView.as_view(template_name='verification_sent.html'), name='verification_sent'),
     
@@ -44,7 +43,7 @@ urlpatterns = [
     path('login_register_page/', views.loginRegisterPage, name='login_register_page'),
 
     # PROFILEUSER
-    path('', views.all_profiles, name='profiles'),
+    # path('', views.all_profiles, name='profiles'),
     path('my_profile/', MyProfile.as_view(), name='my_profile'), # .as_view() to "convert" a class-based view for url
     # path('my_profile/', view.MyProfile, name='my_profile'), # .as_view() to "convert" a class-based view for url
     path('profile_data/', ProfileData.as_view(), name='profile_data'), # .as_view() to "convert" a class-based view for url

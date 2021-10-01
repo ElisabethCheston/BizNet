@@ -306,7 +306,7 @@ def profile_edit(request):
     }
     return render(request, 'profileusers/profile_edit.html', context)
 
-
+"""
 @login_required
 def all_profiles(request):
     # pylint: disable=maybe-no-member
@@ -316,6 +316,7 @@ def all_profiles(request):
         'profiles': profiles,
     }
     return render(request, template, context)
+"""
 
 """"
 # PROFILEUSER GIGS

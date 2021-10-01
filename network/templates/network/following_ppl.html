@@ -4,23 +4,25 @@
 
 {% block page_header %}
 
+<!-- Nav tabs -->
+
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <form action="{% url 'network' %}">
-                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab" data-bs-toggle="tab"
-                    data-bs-target="#neetwork" type="tab-button" role="tab" />
+            <form action="{% url 'all_profiles' %}">
+                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab"
+                    data-bs-toggle="tab" data-bs-target="#network" type="tab-button" role="tab" />
             </form>
         </li>
-        <li class="nav-item" role="presentation">
+        <!--<li class="nav-item" role="presentation">
             <form action="{% url 'contacts' %}">
                 <input type="submit" value="Saved Contacts" class="nav-link gig-tab" id="contacts_tab"
                     data-bs-toggle="tab" data-bs-target="#contacts" type="tab-button" role="tab" />
             </form>
-        </li>
+        </li>-->
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_followers' %}">
-                <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
                 <input type="submit" value="My Followers" class="nav-link gig-tab active" id="my_followers_tab"
                     data-bs-toggle="tab" data-bs-target="#my_followers" type="tab-button" role="tab" />
             </form>
@@ -34,7 +36,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" id="netwoork" role="tabpanel" aria-labelledby="network_tab"></div>
-        <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>
+       <!--<div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>-->
         <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
         <div class="tab-pane" id="following_ppl" role="tabpanel" aria-labelledby="following_ppl_tab"></div>
     </div>
@@ -46,7 +48,7 @@
 <div class="container-content">
 
     <h2>
-        Following
+        People I Follow
     </h2>
 
     <!-- Contact suggestions -->
@@ -85,56 +87,45 @@
 
     <h2> My Contacts </h2>
 
-    {% for profileuser in profile.get_followings_contact %}
-
-    <div class="contact-card" style="max-width: 260px;">
-        <div class="card-body">
-            <div class="text-center justify-content-center">
-                <img class="img-fluid avatar-img rounded-circle" style="max-width: 15em; max-height: 10em;"
-                    src="{{ profile.avatar.url }}" alt="{{profile.user}}">
-            </div>
-            <br>
-
-            <div class="row text-center">
-                <div class="text-muted"><strong>{{profile.firstname}} {{profile.lastname}}</strong></div>
-            </div>
-
-            <div class="row text-center">
-                <div class="text-muted">{{profile.profession}}</div>
-                <div class="text-muted">{{profile.company_name}}</div>
-            </div>
+    <!-- Following -->
+    <div class="card" style="max-width: 840px;">
+        {% csrf_token %}
+        <!-- Edit and Delete button -->
+        <div align="right">
+            <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"
+                aria-disabled="true">Edit</a>
+            <a href="#" class="btn btn-secondary btn-sm text-align-right" tabindex="-1" role="button"
+                aria-disabled="true">Delete</a>
         </div>
         <br>
-        <!-- Buttons Edit & Delete-->
-        <div class="d-grid gap-1 d-md-flex justify-content-md-center">
-            <button class="btn btn-primary btn-sm me-md-2" type="button">View</button>
-            <button class="btn btn-primary btn-sm" type="button">Delete</button>
+        <div class="card-body">
+            <div class="col-12">
+
+                <div class="row g-0">
+                    <div class="col-12">
+
+                        <!-- Followers -->
+                        <div class="col">
+                            <div>
+                                <div class="row justify-content-between">
+                                    <div class="col-9">
+                                        <p><b>Followers:</b><br> {{ profile.get_followers }}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="text-center"><b>Number of Followers:</b></p>
+                                        <p class="text-center"> {{profile.followers_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <br>
-
-    {% if forloop.counter|divisibleby:2 %}
-    <div class="col-12 d-sm-none mb-5">
-        <hr>
-    </div>
-    {% endif %}
-    {% if forloop.counter|divisibleby:2 %}
-    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-        <hr>
-    </div>
-    {% endif %}
-    {% if forloop.counter|divisibleby:3 %}
-    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-        <hr>
-    </div>
-    {% endif %}
-    {% if forloop.counter|divisibleby:4 %}
-    <div class="col-12 d-none d-xl-block mb-5">
-        <hr>
-    </div>
-    {% endif %}
-
-    {% endfor %}
+    <br>
 </div>
 <br>
 

@@ -4,20 +4,22 @@
 
 {% block page_header %}
 
+<!-- Nav tabs -->
+
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <form action="{% url 'network' %}">
+            <form action="{% url 'all_profiles' %}">
                 <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab"
-                    data-bs-toggle="tab" data-bs-target="#neetwork" type="tab-button" role="tab" />
+                    data-bs-toggle="tab" data-bs-target="#network" type="tab-button" role="tab" />
             </form>
         </li>
-        <li class="nav-item" role="presentation">
+        <!--<li class="nav-item" role="presentation">
             <form action="{% url 'contacts' %}">
                 <input type="submit" value="Saved Contacts" class="nav-link gig-tab" id="contacts_tab"
                     data-bs-toggle="tab" data-bs-target="#contacts" type="tab-button" role="tab" />
             </form>
-        </li>
+        </li>-->
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_followers' %}">
         <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
@@ -34,7 +36,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" id="netwoork" role="tabpanel" aria-labelledby="network_tab"></div>
-        <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>
+       <!--<div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>-->
         <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
         <div class="tab-pane" id="following_ppl" role="tabpanel" aria-labelledby="following_ppl_tab"></div>
     </div>
@@ -83,9 +85,31 @@
     <br>
     <br>
 
-    <!-- Following -->
-    <div class="card" style="max-width: 840px;">
+    <!-- Followings -->
+    <div class="row">
+        <div class="col">
+            <div class="row justify-content-between">
+                <div class="col-9">
+                    <p><b>Following profiles:</b></p>
+                    {{ profileuser.first_name}} {{ profileuser.last_name}}
+                    {% for profileuser in profile.get_following %}
+                    <p>{{ profileuser.first_name}} {{ profileuser.last_name}} {{ profileuser.company_name}}
+                    </p>
+                    <br>
+                    {% endfor %}
+                </div>
+                <div class="col-3">
+                    <p class="text-center"><b>No:</b></p>
+                    <p class="text-center"> {{ profile.following_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+    <!-- Followers -->
+    <div class="card" style="max-width: 840px;">
+        {% csrf_token %}
         <!-- Edit and Delete button -->
         <div align="right">
             <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm" tabindex="-1" role="button"

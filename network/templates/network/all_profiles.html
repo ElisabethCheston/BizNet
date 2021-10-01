@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
+{% endblock %}
+
 
 {% block page_header %}
 
@@ -9,9 +13,9 @@
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <form action="{% url 'network' %}">
-                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab"
-                    data-bs-toggle="tab" data-bs-target="#network" type="tab-button" role="tab" />
+            <form action="{% url 'all_profiles' %}">
+                <input type="submit" value="New Contact" class="nav-link gig-tab" id="network_tab" data-bs-toggle="tab"
+                    data-bs-target="#network" type="tab-button" role="tab" />
             </form>
         </li>
         <!--<li class="nav-item" role="presentation">
@@ -22,7 +26,7 @@
         </li>-->
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_followers' %}">
-        <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
+                <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
                 <input type="submit" value="My Followers" class="nav-link gig-tab active" id="my_followers_tab"
                     data-bs-toggle="tab" data-bs-target="#my_followers" type="tab-button" role="tab" />
             </form>
@@ -36,7 +40,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" id="netwoork" role="tabpanel" aria-labelledby="network_tab"></div>
-       <!--<div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>-->
+        <!--<div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts_tab"></div>-->
         <div class="tab-pane active" id="my_followers" role="tabpanel" aria-labelledby="my_followers_tab"></div>
         <div class="tab-pane" id="following_ppl" role="tabpanel" aria-labelledby="following_ppl_tab"></div>
     </div>
@@ -45,8 +49,9 @@
 {% endblock %}
 
 {% block content %}
+
 <style>
-    .btn-link {
+    .card-link {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(9, 143, 221, 0.9) !important;
@@ -61,22 +66,23 @@
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .btn-link:hover,
-    .btn-link:active,
-    .btn-link:focus {
+    .card-link:hover,
+    .card-link:active,
+    .card-link:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
         background-color: rgba(4, 102, 168, 0.9) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
+    /*
     .card-header {
         background-color: white;
     }
 
     .card-title {
         font-size: large;
-        font-weight: bold;
+        font-weight: bolder;
         padding: auto;
         color: rgba(9, 143, 221, 0.9);
     }
@@ -87,7 +93,7 @@
         color: rgb(5, 5, 5);
     }
 
-    /*
+    
 .card-body {
         padding: 20px;
     }
@@ -99,56 +105,48 @@
 
 <div class="container-fluid">
     <br>
+
+    <!-- Userprofile cards -->
     <div class="row">
+        <div class="d-flex align-content-stretch flex-wrap">
 
+            {% for profileuser in profileusers %}
+            <div class="card col-xs-6 col-sm-3 col-md-3 border-secondary my-1" max-width="180px">
+                <img class="card-img-top img-fluid text-center profile-pic" max-width="180px" src="{{profileuser.picture.url }}"
+                    alt="Card image cap">
 
-        <!-- gig cards -->
-        <div class="col-sm-10 col-sx-12 mx-auto">
-            <!--{% for gig in gigs.all %}-->
-            {% csrf_token %}
-            <div class="card">
-                <div class=" card-body">
-
-                    <div class="row justify-content-between">
-
-                        <div class="col-sm-9 col-sx-12">
-
-                            <!-- Title -->
-                            <!--<div class="row col-12">
-                                <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
-                                    <strong>{{ network.title }}</strong>
-                                </a>
-                            </div>-->
-
-                            <p class=" card-subtitle mb-2 text-center text-muted small">
-                                {{ network.city }}, {{ network.country.name }}
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!-- User Name -->
+                    <div class="row col-12">
+                        <a class=" card-title text-center" href="#">
+                            <p><strong>{{ profileuser.first_name}} {{ profileuser.last_name}}</strong>
                             </p>
-                        </div>
-
-                        <div class="col-sm-3 col-xs-12">
-                            <div class="col text-center">
-                                <img class="rounded-circle avatar" src="{{profile.picture.url }}">
-                            </div>
-                            <div class="col col-auto py-1 text-center">
-                                <p class="card-subtitle mb-2 text-muted small">
-                                    {{ profile.profession }}, {{ profile.company_name }}
-                                </p>
-
-                            </div>
-                        </div>
-
+                        </a>
                     </div>
-
+                    <p class=" card-subtitle mb-2 text-center text-muted small">
+                        {{ profileuser.city }}, {{ profileuser.country.name }}
+                    </p>
+                    <p class="card-subtitle mb-2 text-center text-muted small">
+                        {{ profileuser.profession }} at {{ profileuser.company_name}}
+                    </p>
                 </div>
+
+                <!-- Card Footer Button-->
+                <div class="text-center card-footer">
+                    <a href="#" class="card-link">Add</a>
+                    <a href="#" class="card-link">Hide</a>
+                </div>
+
             </div>
-            <br>
-            <!--{% endfor %}-->
+            <!--{% if forloop.counter|divisibleby:"4"  %}
+            </div><div class="card-deck">
+            {% endif %}-->
+            {% endfor %}
         </div>
+
     </div>
     <br>
     <br>
-    <br>
 </div>
-<br>
-
 {% endblock %}
