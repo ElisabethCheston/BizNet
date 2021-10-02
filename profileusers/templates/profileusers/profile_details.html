@@ -139,7 +139,6 @@
                                 {% endif %}
                             </div>
 
-                        
                     </div>
 
                     <!-- Profileuser fact colum-->
@@ -164,53 +163,74 @@
                     </div>
                 </div>
 
-
                 <!-- Row Two -->
-                <div class="row justify-content-center">
-                    <!-- Matching Preferences -->
-                    <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
-                        <div class="justify-content-center card-body match-card">
-                            <div class="card-info">
-                                <h6><strong>Matching Preferences:</strong></h6>
-                                <p class="card-title match-card"><strong>Industry:</strong> &nbsp; {{profile.business}}</p>
-                                <p class="card-text match-card"><strong>Location:</strong> &nbsp; {{profile.locations}}</p>
-                            </div>
+            <div class="row justify-content-center">
+
+                <!-- Matching Preferences -->
+                <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
+                    <div class="justify-content-center card-body match-card">
+                        <div class="card-info">
+                            <h6><strong>Matching Preferences:</strong></h6>
+                            <p class="card-title match-card"><strong>Industry:</strong> &nbsp; {{profile.business}}</p>
+                            <p class="card-text match-card"><strong>Location:</strong> &nbsp; {{profile.locations}}</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Profileuser bio -->
-                    <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
-                        <div class="justify-content-center card-body match-card">
-
+                <!-- Profileuser bio -->
+                <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
+                    <div class="justify-content-center card-body match-card">
                         <div class="card-info">
-                        <h6 class="card-title"><strong>Presentation:</strong></h6>
-                        <p class="card-title">{{profile.description}}</p>
+                            <h6 class="card-title"><strong>Presentation:</strong></h6>
+                            <p class="card-title">{{profile.description}}</p>
                         </div>
-
-                        </div>
-                    </div>                  
+                    </div>
+                </div>                  
                 </div>
 
             </div>
             <br>
-            <br>
 
-            <!-- Edit button -->
-            <div class="d-grid gap-2 d-md-flex justify-content-center">
-                <br>
-                <form action="{% url 'profile_edit' %}">
-                    <input type="submit" value="EDIT PROFILE" class="btn btn-edit" id="edit_profile_tab"
+            <!-- Edit Buttons -->
+           <!--<div class="text-center form-group">
+                <a class="btn btn-secondary" type="button" href="% url 'profile_edit' %}">Edit</a>
+                <a class=" btn btn-danger" type="button" href="{% url 'profile_edit' %}">Delete</a>
+            </div>-->
+
+            <div class="row text-center">
+                <form class="col" action="{% url 'profile_edit' %}">
+                    <input type="submit" value="EDIT" class="btn btn-edit" id="edit_profile_tab"
                         data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
                 </form>
+                <!--<form class="col" action="{% url 'profile_edit' %}">
+                    <input type="submit" value="DELETE" class="btn btn-edit" id="edit_profile_tab"
+                        data-bs-toggle="tab" data-bs-target="#delete_profile" type="tab-button" role="tab" />
+                </form>-->
             </div>
+            <br>
+
+
+            <!-- Edit button -->
+            <!--<div class="d-grid gap-2 d-md-flex justify-content-center">
+                <br>
+                <form action="{% url 'profile_edit' %}">
+                    <input type="submit" value="EDIT" class="btn btn-edit" id="edit_profile_tab"
+                        data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+                </form>
+                <form action="{% url 'profile_edit' %}">
+                    <input type="submit" value="DELETE" class="btn btn-edit" id="edit_profile_tab"
+                        data-bs-toggle="tab" data-bs-target="#delete_profile" type="tab-button" role="tab" />
+                </form>
+            </div>-->
+
             <!-- Delete button -->
-            <div class="d-grid gap-2 d-md-flex justify-content-center">
+            <!--<div class="d-grid gap-2 d-md-flex justify-content-center">
                 <br>
                 <form action="{% url 'profile_edit' %}">
                     <input type="submit" value="DELETE PROFILE" class="btn btn-edit" id="edit_profile_tab"
                         data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
                 </form>
-            </div>
+            </div>-->
             
         </div>
     </div>
@@ -223,35 +243,6 @@
 
 {% endif %}
 
-<script>
-    /*
-    $("#id_countries").change(function () {
-        const url = $("#profile_details").attr("data-cities-url");  // get the url of the `load_cities` view
-        const countriesId = $(this).val();  // get the selected countries ID from the HTML input
-
-        $.ajax({                       // initialize an AJAX request
-            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
-            data: {
-                'countries_id': countriesId       // add the countries id to the GET parameters
-            },
-            success: function (data) {   // `data` is the return of the `load_cities` view function
-                $("#id_cities").html(data);  // replace the contents of the city input with the data that came from the server
-                
-
-                let html_data = '<option value="">---------</option>';
-                data.forEach(function (city) {
-                    html_data += `<option value="${city.id}">${city.name}</option>`
-                });
-                console.log(html_data);
-                $("#id_city").html(html_data);
-
-                
-            }
-        });
-
-    });
-    */
-</script>
 {% endblock %}
 
 <!-- Contact suggestions -->

@@ -22,7 +22,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View # DeleteView
 
 
 # PASSWORD USAGE
@@ -78,26 +78,7 @@ def password_reset_request(request):
 
 # REGISTER AN ACCOUNT
 
-"""
-class RegistrationView(View):
-    def get (det, request):
-        return render(request, 'signup.html')
 
-    def post(self, request):
-
-        messages.success(request, 'Success whatsapp success')
-        return render(request, 'signup.html')
-
-    def post (self, request):
-        # Get user data
-        # Validate
-        # create a user account
-
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-
-"""
 def Register(request):
     # pylint: disable=maybe-no-member
     form = RegisterUserForm()
@@ -124,7 +105,7 @@ def terms(request):
     return render(request, template)
 
 
-# REGISTRATION PROFILEUSER FORMS
+# REGISTRATION FORMS
 
 @login_required
 def Profile(request):
@@ -209,31 +190,6 @@ def ProfileThree(request):
     return render(request, 'profileusers/register_3.html', context)
 
 
-"""
-@login_required
-def RegisterPage(request):
-    profile_form = EditForm()
-    if request.method == 'POST':
-        profile_form = EditForm(request.POST)
-
-        if profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.user = request.user # Profileuser.objects.create(user=instance)
-            
-            profile_form.save()
-            # messages.success(request, 'Your Profile has been updated!')
-            return redirect('login')
-        # else:
-            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
-    else:
-        profile_form = EditForm()
-
-    context = {
-        'profile_form' : profile_form
-    }
-    return render(request, 'profileusers/register_profile.html', context)
-"""
-
 # SINGIN TO ACCOUNT
 def loginPage(request):
     if request.method == 'POST':
@@ -276,6 +232,18 @@ def loginRegisterPage(request):
 
 # PROFILEUSERS
 
+"""
+@login_required
+def all_profiles(request):
+    # pylint: disable=maybe-no-member
+    profiles = Profileuser.objects.all()
+    template = 'profileusers/all_profiles.html'
+    context = {
+        'profiles': profiles,
+    }
+    return render(request, template, context)
+"""
+
 # @login_required
 def profile_details(request):
     # pylint: disable=maybe-no-member
@@ -285,7 +253,6 @@ def profile_details(request):
         'profile': profile,
     }
     return render(request, template, context)
-
 
 @login_required
 def profile_edit(request):
@@ -306,16 +273,33 @@ def profile_edit(request):
     }
     return render(request, 'profileusers/profile_edit.html', context)
 
+
+def profile_delete(request, pk):
+    return redirect('home')
+
 """
-@login_required
-def all_profiles(request):
-    # pylint: disable=maybe-no-member
-    profiles = Profileuser.objects.all()
-    template = 'profileusers/all_profiles.html'
-    context = {
-        'profiles': profiles,
-    }
-    return render(request, template, context)
+class ProfileDeleteView(DeleteView):
+    model = Profileuser
+    success_url = reverse_lazy('home')
+
+
+    def profile_delete(self, queryset=None):
+         Hook to ensure object is owned by request.user. 
+        obj = super(ProfileDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+"""
+"""
+class ProfileDeleteView(DeleteView):
+    model = Profileuser
+    success_url = reverse_lazy('home')
+    slug_field = "user__username"
+
+    def profile_delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.user.delete()  # deleting the default "User" model
+        return HttpResponseRedirect(reverse('home'))
 """
 
 """"
