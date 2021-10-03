@@ -51,6 +51,11 @@
 {% block content %}
 
 <style>
+
+    .profile-card {
+        width: 140px;
+        border-radius: 1px;
+    }
     .card-link {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
@@ -59,6 +64,7 @@
         height: 45px;
         font-weight: bold;
         padding-right: 5px;
+        border-radius: 1px;
         padding-left: 5px;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -111,25 +117,27 @@
         <div class="d-flex align-content-stretch flex-wrap">
 
             {% for profileuser in profileusers %}
-            <div class="card col-xs-6 col-sm-3 col-md-3 border-secondary my-1" max-width="180px">
-                <img class="card-img-top img-fluid text-center profile-pic" max-width="180px" src="{{profileuser.picture.url }}"
-                    alt="Card image cap">
+            {% csrf_token %}
+            <div class="card profile-card col-xs-6 col-sm-3 col-md-3 ms-1 border-secondary my-1">
+                <img class="card-img-top img-fluid text-center profile-pic" max-width="180px"
+                    src="{{profileuser.picture.url }}" alt="Card image cap">
 
                 <!-- Card Body -->
-                <div class="card-body">
+                <div class="card-body text-center">
                     <!-- User Name -->
-                    <div class="row col-12">
-                        <a class=" card-title text-center" href="#">
-                            <p><strong>{{ profileuser.first_name}} {{ profileuser.last_name}}</strong>
+                    <div class="col-12 text-center">
+                        <a class=" card-title text-center" href="{% url 'profile_details' %}">
+                            <p class="text-center"><strong>{{ profileuser.first_name}} {{ profileuser.last_name}}</strong>
                             </p>
                         </a>
                     </div>
-                    <p class=" card-subtitle mb-2 text-center text-muted small">
-                        {{ profileuser.city }}, {{ profileuser.country.name }}
-                    </p>
-                    <p class="card-subtitle mb-2 text-center text-muted small">
+                    <p class="card-subtitle mb-3 text-center text-muted small">
                         {{ profileuser.profession }} at {{ profileuser.company_name}}
                     </p>
+                    <p class=" card-subtitle mb-0 text-center text-muted small">
+                        {{ profileuser.city }}, {{ profileuser.country.name }}
+                    </p>
+                    
                 </div>
 
                 <!-- Card Footer Button-->
@@ -139,12 +147,12 @@
                 </div>
 
             </div>
-            <!--{% if forloop.counter|divisibleby:"4"  %}
-            </div><div class="card-deck">
-            {% endif %}-->
-            {% endfor %}
-        </div>
 
+            {% endfor %}
+            <br>
+        </div>
+        <br>
+        <br>
     </div>
     <br>
     <br>
