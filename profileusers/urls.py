@@ -5,7 +5,7 @@ from .views import PasswordsChangeView
 from . import views
 from .views import (
     MyProfile,
-    ProfileData
+    ProfileData,
     # ProfileDetailView,
     # ProfileDeleteView,
     # RegisterPage,
@@ -50,6 +50,7 @@ urlpatterns = [
     # path('my_profile/', view.MyProfile, name='my_profile'),
     path('profile_data/', ProfileData.as_view(), name='profile_data'),
     path('profile_delete/<pk>/', views.profile_delete, name='profile_delete'),
+    # path('<int:pk>/profile_delete/', ProfileDeleteView.as_view(template_name='auth/user_confirm_delete.html'), name='user_confirm_delete'),
 
     path('profile_details/', views.profile_details, name='profile_details'),
     # path('profile_details/', ProfileDetailView.as_view(), name='profile_details'),

@@ -275,21 +275,31 @@ def profile_edit(request):
 
 
 def profile_delete(request, pk):
-    return redirect('home')
+    profileuser = User.objects.get(pk=pk)
+
+    if request.method == "POST" and request.user.username == profileuser:
+        profileuser.delete()
+        messages.success(request, "Account has been successfully deleted!")
+        return HttpResponseRedirect(reverse('home'))
+    
+    context= {
+        'profileuser': profileuser,
+        }
+    return render(request, 'profileusers/user_confirm_delete.html', context)
 
 """
 class ProfileDeleteView(DeleteView):
-    model = Profileuser
+    model = User
     success_url = reverse_lazy('home')
+    template_name = 'user_confirm_delete'
 
 
-    def profile_delete(self, queryset=None):
-         Hook to ensure object is owned by request.user. 
-        obj = super(ProfileDeleteView, self).get_object()
-        if not obj.owner == self.request.user:
-            raise Http404
-        return obj
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.user.delete()  # deleting the default "User" model
+        return HttpResponseRedirect(reverse('home'))
 """
+
 """
 class ProfileDeleteView(DeleteView):
     model = Profileuser
@@ -302,7 +312,7 @@ class ProfileDeleteView(DeleteView):
         return HttpResponseRedirect(reverse('home'))
 """
 
-""""
+"""
 # PROFILEUSER GIGS
 
 @login_required

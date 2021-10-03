@@ -65,6 +65,7 @@
         font-weight: bold;
         padding-right: 10px;
         padding-left: 10px;
+        border-radius: 1px;
         text-decoration: none;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -132,16 +133,24 @@
         <div class="card-body">
             <div class="col-12">
 
-                <form method="POST">. <!-- {% url 'profile_confirm_delete' pk=instance.pk %} -->
+                <form method="POST">
                     {% csrf_token %}
 
-                    <p>Are you sure you want to delete the account {{profile.username}}</p>
-                    <button type="submit" class="btn btn-dange">Delete</button>
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">DELETE USER ACCOUNT</legend>
+                        <h6 class="text-center">Are you sure you want to delete the account for:</h6><br>
+                        <h4 class="text-center"><strong>"{{user.first_name}} {{user.last_name}}"</strong></h4>
+                    </fieldset>
+                    <br>
+
+                    <div class="text-center form-group">
+                        <button class="btn btn-danger" type="submit">DELETE</button>
+                        <a class="btn btn-secondary btn-cancel text-center" href="{% url 'profile_details' %}"
+                            type="submit">CANCEL</a>
+                    </div>
 
                 </form>
-                <br>
-                <p>{% trrans "No, keep my account %}</p>
-                <a href="{% url 'profile_details' %}" class="btn btn-outline-primay">Retun to site</a>
+
 
             </div>
         </div>
@@ -154,8 +163,8 @@
 
 {% endblock %}
 
-                    
-                    
+
+
 <fieldset class="form-group">
     <legend class="border-bottom mb-4">DELETE PROFILE</legend>
     <h6 class="text-center">Are you sure you want to delete the account for:</h6><br>
@@ -164,8 +173,6 @@
 <br>
 
 <div class="text-center form-group">
-    <button class="btn btn-danger"  type="submit" href="#">DELETE</button>
-    <a class="btn btn-secondary btn-cancel text-center" href="{% url 'profile_details' %}"
-        type="submit">CANCEL</a>
+    <button class="btn btn-danger" type="submit" href="#">DELETE</button>
+    <a class="btn btn-secondary btn-cancel text-center" href="{% url 'profile_details' %}" type="submit">CANCEL</a>
 </div>
-

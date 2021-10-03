@@ -67,12 +67,15 @@
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
         font-size: medium !important;
+        border-radius: 1px;
         font-weight: bold;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .btn-edit {
+        background-color: rgba(9, 143, 221, 0.9) !important;
     }
 
     .btn:hover,
@@ -136,12 +139,18 @@
                         <!--{{ form|crispy }}-->
                     </fieldset>
                     <br>
-                    <div class="row justify-content-center">
+                    <!--<div class="row justify-content-center">
                         <div class="col-3 text-center">
                             <button class="btn btn-edit" type="submit">UPDATE</button>
                             <a href="{% url 'profile_delete' pk=user.pk %}" class="btn btn-outline-primay">Delete</a>
                         </div>
-                    </div>
+                    </div>-->
+
+                    <div class="text-center form-group">
+                        <button class="btn btn-edit" type="submit">UPDATE</button>
+                        <a href="{% url 'profile_delete' pk=user.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+
                 </form>
 
             </div>
