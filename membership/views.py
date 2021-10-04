@@ -10,3 +10,30 @@ def membership_profile(request):
         'membership': membership
     }
     return render(request, template, context)
+
+
+def subscriptions(request):
+    membership = Membership.objects.all()
+    template = 'membership/subscriptions.html'
+    context = {
+        'membership': membership
+    }
+    return render(request, template, context)
+
+
+def my_subscription(request):
+    membership = Membership.objects.all()
+    template = 'membership/my_subscription.html'
+    context = {
+        'membership': membership
+    }
+    return render(request, template, context)
+
+
+def payment_histrory(request):
+    membership = Membership.objects.all()
+    template = 'membership/payment_histrory.html'
+    context = {
+        'membership': membership
+    }
+    return render(request, template, context)
