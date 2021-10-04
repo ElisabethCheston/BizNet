@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models.signals import post_save
+
 import stripe
 
 # Reference: https://www.youtube.com/watch?v=zu2PBUHMEew&t=155s
