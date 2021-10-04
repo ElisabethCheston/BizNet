@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from profileusers.models import Profileuser, Industry, Profession
 from django.urls import reverse
 from django_countries.fields import CountryField
+from membership.models import Membership
 
 
 # Create your models here.
@@ -13,7 +14,6 @@ class Gig(models.Model):
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    liked = models.ManyToManyField(User, default=None, blank=False)
     city = models.CharField(max_length=50, null=True, blank=False)
     country = CountryField(blank_label='Country', null=True, blank=False)
     position = models.TextField(max_length=250, null=True)
@@ -25,6 +25,7 @@ class Gig(models.Model):
     deadline = models.DateTimeField(null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
+    allowed_membership = models.ManyToManyField(Membership)
 
     def __str__(self):
         return str(self.title)
