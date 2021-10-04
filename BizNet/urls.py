@@ -28,7 +28,7 @@ urlpatterns = [
     path('profileusers/', include('profileusers.urls')),
     path('network/', include('network.urls')),
     path('gigs/', include('gigs.urls')),
-    # path('members', include('members.urls')),
+    path('membership', include('membership.urls')),
     path('', include('settings.urls')),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
