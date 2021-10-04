@@ -24,7 +24,6 @@ jsonlines==2.0.0
 jsonpointer==2.1
 linear-tsv==1.1.0
 oauthlib==3.1.1
-openpyxl==3.0.8
 Pillow==8.2.0
 progressbar2==3.53.1
 psycopg2-binary==2.9.1
