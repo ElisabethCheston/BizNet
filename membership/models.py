@@ -40,7 +40,7 @@ def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
 
     user_membership, created = UserMembership.objects.get_o_create(user=instance)
 
-    if user_membership-stripe_customer_id is None or user_membership.stripe_customer_id == '':
+    if user_membership.stripe_customer_id is None or user_membership.stripe_customer_id == '':
         new_customer_id = stripe.Customer.create(email=instance.email)
         user_membership.stripe_customer_id = new_customer_id['id']
         user_membership.save()
