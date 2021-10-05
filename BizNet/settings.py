@@ -78,6 +78,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'BizNet.urls'
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -104,7 +108,18 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
 SITE_ID = 6
+
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+
 
 WSGI_APPLICATION = 'BizNet.wsgi.application'
 
@@ -169,8 +184,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+"""
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+"""
 
 if 'USE_AWS' in os.environ:
     # Cache control:
@@ -196,16 +213,16 @@ if 'USE_AWS' in os.environ:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
-"""
+
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
-STRIPE_CURRENCY = 'usd'
+STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 # STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
-"""
 
+"""
 if DEBUG:
     STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
@@ -213,8 +230,7 @@ if DEBUG:
 else:
     STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-
-
+"""
 
 # Email and accounts
 if 'DEVELOPMENT' in os.environ:
@@ -230,13 +246,7 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+
 
 
 # Default primary key field type
@@ -244,4 +254,3 @@ LOGIN_REDIRECT_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
