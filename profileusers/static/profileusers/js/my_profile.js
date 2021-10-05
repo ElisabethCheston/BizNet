@@ -1,3 +1,10 @@
+    /* --- Start Info Modal --- */
+
+$(document).ready(function () {
+    $(".modal").modal();
+    $("#modal1").modal("open");
+});
+
 /*
 const toFollowModalBody = document.getElementById('to-follow-modal')
 const spinnerBox = document.getElementById('spinner-box')

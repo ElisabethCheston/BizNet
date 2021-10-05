@@ -3,24 +3,20 @@
 
 {% block page_header %}
 
-<!-- Profile tab links -->
+<!-- Nav tabs -->
+
 <div class="tab-container">
-    <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
+    <ul class="nav nav-tab justify-content-evenly" id="gigTabs" role="tablist">
+
         <li class="nav-item" role="presentation">
-            <form action="{% url 'profile_details' %}">
-                <input type="submit" value="MY PROFILE" class="nav-link gig-tab" id="my_profile_tab"
-                    data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'profile_edit' %}">
-                <input type="submit" value="EDIT PROFILE" class="nav-link gig-tab" id="edit_profile_tab"
+            <form action="{% url 'new_gig' %}">
+                <input type="submit" value="NEW" class="nav-link gig-tab" id="edit_profile_tab"
                     data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'my_contacts' %}">
-                <input type="submit" value="MY CONTACTS" class="nav-link gig-tab" id="my_contacts_tab"
+            <form action="{% url 'saved_gig' %}">
+                <input type="submit" value="SAVED" class="nav-link gig-tab" id="my_contacts_tab"
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
@@ -32,22 +28,18 @@
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'create_gig' %}">
-                <input type="submit" value="CREATE GIG" class="nav-link gig-tab active" id="create_gig_tab"
+                <input type="submit" value="CREATE GIG" class="nav-link gig-tab" id="create_gig_tab"
                     data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
             </form>
         </li>
-
     </ul>
     <div class="tab-content">
-        <div class="tab-pane show" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        <div class="tab-pane" id="new_gig" role="tabpanel" aria-labelledby="new_gig_tab"></div>
 
-        <div class="tab-pane" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile_tab"></div>
-
-        <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
-
+        <div class="tab-pane" id="saved_gig" role="tabpanel" aria-labelledby="saved_gig_tab"></div>
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
 
-        <div class="tab-pane active" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
+        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
 
     </div>
 </div>

@@ -7,28 +7,40 @@
 
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="gigTabs" role="tablist">
+
         <li class="nav-item" role="presentation">
-            <button class="nav-link gig-tab active" id="new_gig_tab" data-bs-toggle="tab" data-bs-target="#new_gig"
-                type="tab-button" role="tab"">New</button>
-        </li>
-        <li class=" nav-item" role="presentation">
-                <button class="nav-link gig-tab" id="saved_gig_tab" data-bs-toggle="tab" data-bs-target="#saved_gig"
-                    type="tab-button" role="tab">Saved</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link gig-tab" id="apply_gig_tab" data-bs-toggle="tab" data-bs-target="#apply_gig"
-                type="tab-button" role="tab">Applied</button>
+            <form action="{% url 'new_gig' %}">
+                <input type="submit" value="NEW" class="nav-link gig-tab" id="edit_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+            </form>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link gig-tab" id="hide_gig_tab" data-bs-toggle="tab" data-bs-target="#hide_gig"
-                type="tab-button" role="tab">Hidden</button>
+            <form action="{% url 'saved_gig' %}">
+                <input type="submit" value="SAVED" class="nav-link gig-tab" id="my_contacts_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'my_gigs' %}">
+                <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
+                    data-bs-target="#my_gig" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'create_gig' %}">
+                <input type="submit" value="CREATE GIG" class="nav-link gig-tab" id="create_gig_tab"
+                    data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
+            </form>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane show active" id="new_gig" role="tabpanel" aria-labelledby="new_gig_tab">..NEW...</div>
-        <div class="tab-pane" id="saved_gig" role="tabpanel" aria-labelledby="saved_gig_tab">..SAVED..</div>
-        <div class="tab-pane" id="apply_gig" role="tabpanel" aria-labelledby="apply_gig_tab">.APPLIED...</div>
-        <div class="tab-pane" id="hide_gig" role="tabpanel" aria-labelledby="hide_gig_tab">..HIDDEN..</div>
+        <div class="tab-pane" id="new_gig" role="tabpanel" aria-labelledby="new_gig_tab"></div>
+
+        <div class="tab-pane" id="saved_gig" role="tabpanel" aria-labelledby="saved_gig_tab"></div>
+        <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
+
+        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
+
     </div>
 </div>
 

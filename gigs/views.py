@@ -59,16 +59,14 @@ def my_gigs(request):
     }
     return render(request, template, context)
 
-"""
-def NewGig(request):
-    # pylint: disable=maybe-no-member
-    new_gig = get_object_or_404(Gig)
-    #new_gig = Gig.objects.all()
-    context = {
-        'new_gig': new_gig,
-    }
-    return render(request, 'gigs/new_gig.html', context)
-"""
+
+class NewGigListView(ListView):
+    model = Gig
+    template_name = 'gigs/new_gig.html'
+    context_object_name = 'gigs'
+    ordering = ['-created']
+    paginate_by = 5
+
 
 class GigCreateView(LoginRequiredMixin, CreateView):
     model = Gig
@@ -178,7 +176,7 @@ class GigsData(View):
             gd_list.append(gig_item)
         return JsonResponse({'pf_data': gd_list})
 
-
+"""
 def gig_json(request):
     # pylint: disable=maybe-no-member
     qs = Gig.objects.all()
@@ -187,3 +185,4 @@ def gig_json(request):
         'data': data,
     }
     return JsonResponse(context)
+"""

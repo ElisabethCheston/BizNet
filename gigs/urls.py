@@ -4,7 +4,8 @@ from .views import (
     GigListView, 
     GigCreateView, 
     GigDetailView, 
-    gig_json,
+    NewGigListView,
+    # gig_json,
     GigUpdateView,
     GigDeleteView,
 )
@@ -21,10 +22,10 @@ urlpatterns = [
     path('new/', GigCreateView.as_view(), name='create_gig'),
     path('my_gigs/', views.my_gigs, name='my_gigs'),
 
-    # path('new_gig/', views.NewGig, name='new_gig'),
+    path('new_gig/', NewGigListView.as_view(), name='new_gig'),
     path('saved_gig/', views.SavedGig, name='saved_gig'),
     path('apply_gig/', views.AppliedGig, name='apply_gig'),
     path('hide_gig/', views.HideGig, name='hide_gig'),
      
-    path('gig_json/', gig_json, name='gig_json'), # endpoints
+    # path('gig_json/', gig_json, name='gig_json'), # endpoints
 ]
