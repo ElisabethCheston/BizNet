@@ -361,7 +361,7 @@ def create_gig(request):
         # gigform = gigform()
         """
 
-
+"""
 # CONTACTS
 
 @login_required
@@ -377,7 +377,7 @@ def my_contacts(request):
         # 'get_followers': get_followers,
     }
     return render(request, template, context)
-
+"""
 
 # SUGGEST BUTTON OF PPL TO FOLLOW
 
@@ -386,7 +386,7 @@ def my_contacts(request):
 class MyProfile(TemplateView):
     template_name = 'profileusers/profile_details.html'
 
-
+"""
 class ProfileData(View):
     def get(self, *args, **kwargs): # , *args, **kwargs
         # pylint: disable=maybe-no-member
@@ -408,3 +408,4 @@ class ProfileData(View):
             }
             profile_to_follow_list.append(profile_item)
         return JsonResponse({'pf_data': profile_to_follow_list})
+"""

@@ -33,15 +33,15 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'my_gigs' %}">
-                <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
-                    data-bs-target="#my_gig" type="tab-button" role="tab" />
+            <form action="{% url 'password_change' %}">
+                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab" data-bs-toggle="tab"
+                    data-bs-target="#password_change" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'create_gig' %}">
-                <input type="submit" value="CREATE GIG" class="nav-link gig-tab" id="create_gig_tab"
-                    data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
+            <form action="{% url 'membership_profile' %}">
+                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
             </form>
         </li>
 
@@ -53,9 +53,9 @@
 
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
 
-        <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
+        <div class="tab-pane" id="password_change" role="tabpanel" aria-labelledby="password_change_tab"></div>
 
-        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
+        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
 </div>
