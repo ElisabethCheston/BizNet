@@ -24,6 +24,7 @@
     }
 
     #id_title,
+    #id_city,
     #id_company_name {
         width: 82%;
         text-align: center;
@@ -36,10 +37,8 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
-    #id_city,
-    #city_ascii,
     #id_country {
-        width: 84%;
+        width: 82%;
         text-align: center;
         margin-left: 1%;
         font-size: medium;
@@ -52,7 +51,7 @@
 
     p,
     .link,
-    h2 {
+    h3 {
         text-align: center;
         font-size: medium;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -74,13 +73,13 @@
     /* FONT */
 
     .profile-name {
-        font-size: x-large;
+        font-size: large;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-weight: bold;
     }
 
     .profile-email {
-        font-size: large;
+        font-size: medium;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
@@ -104,16 +103,16 @@
     .save-button:hover,
     .save-button:active,
     .save-button:focus {
-        background-color: rgba(33, 164, 240, 0.8) !important;
+        background-color: rgba(2, 114, 179, 0.8) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
     .back-button,
     .next-button {
-        width: 150px;
+        width: 140px;
         margin: 0 20px;
         display: inline-block;
-        line-height: 60px;
+        line-height: 40px;
     }
 
     .row {
@@ -126,13 +125,13 @@
     .btn {
         color: white;
         border-color: rgba(148, 149, 150, 0.2);
-        background-color: rgba(131, 133, 134, 0.8) !important;
-        width: 40%;
-        height: 50px;
+        background-color: rgba(115, 118, 119, 0.8) !important;
+        width: 38%;
+        height: 40px;
         margin-top: 2%;
         font-weight: bold;
         text-align: center;
-        font-size: medium !important;
+        font-size: small !important;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -141,7 +140,7 @@
     .btn:hover,
     .btn:active,
     .btn:focus {
-        background-color: rgba(94, 95, 95, 0.792) !important;
+        background-color: rgba(76, 78, 78, 0.792) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -150,48 +149,24 @@
     }
 </style>
 
-<div class="register_container" id="justify-center">
+<div class="container-fluid" id="justify-center">
 
-    <!-- Logo -->
-    <div id="justify-center">
-        <div class="col-6 col-lg-4" id="justify-center">
-            <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-                    alt="" width="230" height="55" class="logo img-fluid">
-            </a>
-        </div>
-    </div>
-    <br>
     <div class="d-flex">
         <div class="d-flex" id="justify-center">
-            <h2 id="form-title">PROFILE INFORMATION</h2>
+            <h3 id="form-title">PROFILE INFORMATION</h3>
         </div>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'register_1' %}">
             {% csrf_token %}
-
-            <!-- Avatar -->
-            <div class="row">
-                <div class="col">
-                    <img class="rounded-circle account-img avatar" src="{{profileuser.avatar.url}}"
-                        alt="{{profileuser.user}}">
-                </div>
-            </div>
 
             <!-- First & Last Name -->
             <div class="input-group mb-2">
-                <div class="input-group-append">
-                    <span class="input-group-text"></span>
-                </div>
                 <div class="profile-name">
                     {{user.first_name}} {{user.last_name}}
                 </div>
             </div>
             <!-- Username: Placeholder name Email -->
             <div class="input-group mb-2">
-                <div class="input-group-append">
-                    <span class="input-group-text"></span>
-                </div>
                 <div class="profile-email">
                     {{user.email}}
                 </div>
@@ -223,31 +198,6 @@
             </div>
             <br>
 
-            <!-- Country and City dropdwn-->
-            <!--{% csrf_token %}
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="inputStatus">Country</label>
-                    <select id="id_country" class="form-control-sm custom-select">
-                        <option selected disabled>Choose a Country</option>
-                        {% for country in countries %}
-                        <option value="{{country.country_id}}">{{country.name}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="inputStatus">City</label>
-                    <select id="city_ascii" class="form-control-sm custom-select" name="city">
-                        <option selected disabled>Choose a City</option>
-                    </select>
-                </div>
-            </div>-->
-
-
-            <p>Don´t forget to save.</p>
-
             <!-- Submit button -->
             <div class="d-flex justify-content-center mt-3" id="justify-center">
                 <input class="save-button " type="submit" value="SAVE">
@@ -255,7 +205,7 @@
 
             <!-- Back/Next buttons -->
             <div class="row button-row">
-                <a href="{% url 'register' %}"><input type="button" name="backButton" class="btn back-button"
+                <a href="{% url 'register_1' %}"><input type="button" name="backButton" class="btn back-button"
                         value="BACK"></a>
                 <a href="{% url 'register_2' %}"><input type="button" name="nextButton" id="nextButton"
                         class="btn next-button" value="NEXT"></a>
@@ -272,29 +222,13 @@
         var form_fields = document.getElementsByTagName('input')
 
         form_fields[1].placeholder = ' Title..';
-            form_fields[2].placeholder = ' Company..';
-            form_fields[3].placeholder = ' City...';
+        form_fields[2].placeholder = ' Company..';
+        form_fields[3].placeholder = ' City...';
 
         for (var field in form_fields) {
             form_fields[field].className += 'form-control'
         }
-/*
-        // Get JSON data for Countries and cities dropdown
-        $("#id_country").change(function () {
-            var url = $("#ProfileForm1").attr("data-cities-url");
-            var countryId = $(this).val();
 
-            $.ajax({
-                url: url,
-                data: {
-                    'country': countryId
-                },
-                success: function (data) {
-                    $("#city_ascii").html(data);
-                }
-            });
-        });
-*/
     </script>
 
-    {% endblock %}
+{% endblock %}

@@ -19,6 +19,11 @@
         margin-top: 20px;
     }
 
+    label {
+        display: none;
+    }
+
+
     #id_profession,
     #id_employment,
     #id_status,    
@@ -35,11 +40,11 @@
     }
 
     #id_description {
-        width: 83.5%;
+        width: 84.8%;
         text-align: center;
         margin-left: 1%;
         font-size: medium;
-        height: 95px;
+        height: 90px;
         margin-top: 2%;
         border-color: black;
         border-width: 2px;
@@ -48,7 +53,7 @@
 
     p,
     .link,
-    h2 {
+    h3 {
         text-align: center;
         font-size: medium;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -64,6 +69,20 @@
         margin-top: 8px;
         width: 100%;
         align-items: center;
+    }
+
+
+    /* FONT */
+
+    .profile-name {
+        font-size: x-large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+    }
+
+    .profile-email {
+        font-size: large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
     /* BUTTONS */
@@ -86,16 +105,16 @@
     .save-button:hover,
     .save-button:active,
     .save-button:focus {
-        background-color: rgba(33, 164, 240, 0.8) !important;
+        background-color: rgba(2, 114, 179, 0.8) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
     .back-button,
     .next-button {
-        width: 150px;
+        width: 140px;
         margin: 0 20px;
         display: inline-block;
-        line-height: 60px;
+        line-height: 40px;
     }
 
     .row {
@@ -108,13 +127,13 @@
     .btn {
         color: white;
         border-color: rgba(148, 149, 150, 0.2);
-        background-color: rgba(131, 133, 134, 0.8) !important;
-        width: 40%;
-        height: 50px;
+        background-color: rgba(115, 118, 119, 0.8) !important;
+        width: 38%;
+        height: 40px;
         margin-top: 2%;
         font-weight: bold;
         text-align: center;
-        font-size: medium !important;
+        font-size: small !important;
         box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -123,7 +142,7 @@
     .btn:hover,
     .btn:active,
     .btn:focus {
-        background-color: rgba(94, 95, 95, 0.792) !important;
+        background-color: rgba(76, 78, 78, 0.792) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -134,19 +153,9 @@
 
 <div class="register_container" id="justify-center">
 
-    <!-- Logo -->
-    <div id="justify-center">
-        <div class="col-6 col-lg-4" id="justify-center">
-            <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
-                    alt="" width="230" height="55" class="logo img-fluid">
-            </a>
-        </div>
-    </div>
-    <br>
     <div class="d-flex">
         <div class="d-flex" id="justify-center">
-            <h2 id="form-title">WORK INFORMATION</h2>
+            <h3 id="form-title">WORK INFORMATION</h3>
         </div>
 
         <!-- Form -->
@@ -187,7 +196,7 @@
 
             <!-- Submit button -->
             <div class="d-flex justify-content-center mt-3" id="justify-center">
-                <input class="save-button" type="submit" value="SAVE">
+                <input class="save-button " type="submit" value="SAVE">
             </div>
 
             <!-- Back/Next buttons -->
@@ -198,9 +207,20 @@
                         class="btn next-button" value="NEXT"></a>
             </div>
             <br>
-
         </form>
-
     </div>
 
-    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+        // Query All input fields
+        var form_fields = document.getElementsByTagName('input')
+
+        form_fields[1].placeholder = ' Short presentation..(You can edit this later.)';
+
+        for (var field in form_fields) {
+            form_fields[field].className += 'form-control'
+        }
+        
+    </script>
+{% endblock %}

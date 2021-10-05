@@ -1,15 +1,16 @@
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
-from .models import Profileuser, Industry, Profession, Employment, Status, Skills, Business
+from profileusers.models import Profileuser, Industry, Profession, Employment, Status, Skills, Business
 from gigs.models import Gig
-
-from django.core.files.images import get_image_dimensions
-from django.http import JsonResponse
 import json
 import urllib.parse
 
+from django import forms
+from django.core.files.images import get_image_dimensions
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.http import JsonResponse
 
+
+# -- REGISTRATION USER FORM -- #
 
 class RegisterUserForm(UserCreationForm):
 
@@ -35,6 +36,8 @@ class RegisterUserForm(UserCreationForm):
         return user
 
 
+# -- EDIT FORM IN PROFILE -- #
+
 class ProfileForm(forms.ModelForm):
     industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
     profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
@@ -42,65 +45,40 @@ class ProfileForm(forms.ModelForm):
     employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
     status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Purpose:')
     business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
-    # skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
-    # countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
-    # locations = forms.ModelChoiceField(queryset=Locations.objects.all(), empty_label='Locations:')
 
     class Meta:
         model = Profileuser
         fields = [
             'avatar',
             'picture',
-            #'first_name',
-            #'last_name',
             'title',
             'company_name',
-            #'company_number_vat',
             'industry',
             'profession',
-            # 'skill',
             'description',
-            # 'phone',
-            #'email',
             'country',
             'city',
             'locations',
-            # 'skills',
             'employment',
             'business',
             'status',
         ]
-"""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['city'].queryset = City.objects.none()
- 
-        if 'country' in self.data:
-            try:
-                country_id = int(self.data.get('country'))
-                self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('city')
-            except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty City queryset
-        elif self.instance.pk and self.instance.country:
-            self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
-"""
+
+
+# -- REGISTRATION FORM FOR PROFILE -- #
 
 class ProfileForm1(forms.ModelForm):
-
-    # country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label='Country:')
-    # city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label='City:')
 
     class Meta:
         model = Profileuser
         fields = [
-            'avatar',
+            # 'avatar',
             'picture',
             'title',
             'company_name',
             'country',
             'city',
         ]
-
 
 
 class ProfileForm2(forms.ModelForm):
@@ -121,81 +99,12 @@ class ProfileForm2(forms.ModelForm):
             ]
 
 
-
 class ProfileForm3(forms.ModelForm):
     business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
-    # skills = forms.ModelChoiceField(queryset=Skills.objects.all(), empty_label='Skills:')
-    # countries = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label='Countries:')
-    # youremployment = forms.ModelChoiceField(queryset=yourEmployment.objects.all(), empty_label='Employment')
-    # yourstatus = forms.ModelChoiceField(queryset=yourStatus.objects.all(), empty_label='Am looking for..')
-    # locations = forms.ModelChoiceField(queryset=Locations.objects.all(), empty_label='Locations:')
 
     class Meta:
         model = Profileuser
         fields = [
             'business',
-            # 'skills',
             'locations',
-            # 'youremployment',
-            # 'yourstatus',
         ]
-
-"""
-class GigForm(forms.ModelForm):
-    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
-    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
-
-    class Meta:
-        model = Gig
-        fields = '__all__'
-
-
-    def __init__(self, *args, **kwargs):
-            # get 'user' param from kwargs
-            user = kwargs.pop('username', None)
-            super().__init__(*args, **kwargs)
-            # set class attrs  
-            for field in self.fields.values():
-                field.widget.attrs['class'] = 'form-control'
-            # set 'name_job' queryset
-            # self.fields['name_job'].queryset = TypJob.objects.filter(author=user.username)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['city'].queryset = City.objects.none()
- 
-"""
-
-""""
-class GigForm(forms.ModelForm):
-    # industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
-   # profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
-
-    class Meta:
-        model = Gig
-        fields = [
-            'title',
-            'industry',
-            'profession',
-            'city',
-            'country',
-            'gigdescription',
-            'extrainfo',
-            # 'author',
-            'deadline',
-            # 'updated',
-            # 'created',
-        ]
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'industry': forms.Select(attrs={'class': 'form-control'}),
-            'profession': forms.Select(attrs={'class': 'form-control'}),
-
-            'city': forms.TextInput(attrs={'class': 'form-control'}),
-            'country': forms.Select(attrs={'class': 'form-control'}),
-
-            'gigdescription': forms.TextInput(attrs={'class': 'form-control'}),
-            'extrainfo': forms.Textarea(attrs={'class': 'form-control'}),
-            'deadline': forms.Select(attrs={'class': 'form-control'}),
-        }
-"""

@@ -52,31 +52,36 @@ h2, h3, h4, h5 {
 .tab-container {
   padding-top: 3%;
 }
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
+/* @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'); */
 
 .nav-tab {
     margin-top: 10px;
-    padding-top: 70px;
-    color: rgba(9, 143, 221, 0.9);
+    padding-top: 50px;
+    color: rgba(7, 87, 161, 0.9);
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Tabs */
 
 li.nav-item {
-  color: rgba(9, 143, 221, 0.9);
+  font-weight: bolder;
+  color: rgba(7, 87, 161, 0.9);
 }
+
 .gig-tab {
     border: none;
-    color: rgba(47, 156, 245, 0.79);
-    font-weight: bolder;
-    font-size: medium;
+    color: rgba(7, 87, 161, 0.9);
+    font-weight: lighter;
+    font-size: large;
     background-color: transparent;
 }
-.git-tab:hover,
-.git-tab:active {
+.gig-tab:hover,
+.gig-tab:active {
   color: rgba(47, 156, 245, 0.75);
   text-decoration: rgba(240, 239, 239, 0.2);
 }
+
 [data-tab-content] {
   display: none;
 }
@@ -236,7 +241,7 @@ li.nav-item {
 */
 /* Default */
 
-button, li, a {
+button, a {
   font-family: "Poppins";
   text-transform: uppercase;
   border-radius: 1px;
@@ -345,15 +350,6 @@ button, li, a {
 
 /* SCREEN LAYOUTS */
 
-/* Header Tab container */
-/*
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
-.container {
-    margin-top: 0px;
-}
-*/
-
-/*  Media Queries from Buetiq Ado */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
