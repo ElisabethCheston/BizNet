@@ -24,7 +24,6 @@ urlpatterns = [
     path('register_1/', views.ProfileOne, name='register_1'),
     path('register_2/', views.ProfileTwo, name='register_2'),
     path('register_3/', views.ProfileThree, name='register_3'),
-    # path('profileusers/static/profileusers/json/', views.load_cities, name="ajax_load_cities"),
 
     # PASSWORD
     path('password_change/', PasswordsChangeView.as_view(template_name='profileusers/password_change.html'), name='password_change'),
@@ -49,13 +48,6 @@ urlpatterns = [
     # path('my_profile/', view.MyProfile, name='my_profile'),
     # path('profile_data/', ProfileData.as_view(), name='profile_data'),
     path('profile_delete/<pk>/', views.profile_delete, name='profile_delete'),
-    # path('<int:pk>/profile_delete/', ProfileDeleteView.as_view(template_name='auth/user_confirm_delete.html'), name='user_confirm_delete'),
-
     path('profile_details/', views.profile_details, name='profile_details'),
-    # path('profile_details/', ProfileDetailView.as_view(), name='profile_details'),
-
     path('profile_edit/', views.profile_edit, name='profile_edit'),
-    # path('create_gig/', views.create_gig, name='create_gig'),
-    # path('my_gigs/', views.my_gigs, name='my_gigs'),
-    # path('my_contacts/', views.my_contacts, name='my_contacts'),
 ]

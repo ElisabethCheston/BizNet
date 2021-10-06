@@ -28,8 +28,8 @@
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'password_change' %}">
-                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab" data-bs-toggle="tab"
-                    data-bs-target="#password_change" type="tab-button" role="tab" />
+                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab"
+                    data-bs-toggle="tab" data-bs-target="#password_change" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
@@ -66,6 +66,7 @@
         -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
     .btn-edit {
         background-color: rgba(9, 143, 221, 0.9) !important;
     }
@@ -84,73 +85,72 @@
     }
 </style>
 
-<div class="container-profile justify-center">
+<div class="container-fuid" id="justify-center">
+    <br>
 
-    <!-- Edit Profile -->
-    <div class="card" style="max-width: 840px;">
-        <!--<div class="row">
-            <div class="col">
-                <img class="rounded-circle account-img avatar" src="{{profileuser.avatar}}" alt="{{profileuser.user}}">
-            </div>
-        </div>-->
+    <div class="row">
+        <div class="col-sm-10 col-sx-12 mx-auto">
 
-        
-        <div class="card-body">
-            <div class="col-12">
+            <!-- Edit Profile -->
+            <div class="card" id="justify-center" style="max-width: 740px;">
+                <div class="card-body">
+                    <div class="col-12">
 
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
 
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Profile Information</legend>
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Profile Information</legend>
 
-                        <!--<h5 class="card-title">Name: &nbsp;{{regform.first_name}} {{regform.last_name}}</h5>
+                                <!--<h5 class="card-title">Name: &nbsp;{{regform.first_name}} {{regform.last_name}}</h5>
                         <h6 class="card-title">Password: &nbsp; {{regform.password1}}</h6>
                         {{ profileform|crispy }}-->
 
-                        <div class="card-body">
-                            <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
-                            <h6 class="card-text">City: &nbsp; {{profileform.picture}}</h6>
-                            <h6 class="card-title">Title: &nbsp; {{profileform.title}}</h6>
-                            <h6 class="card-title">Company: &nbsp; {{profileform.company_name}}</h6>
-                            <h6 class="card-text">City: &nbsp; {{profileform.city}}</h6>
-                            <h6 class="card-text">Country: &nbsp; {{profileform.country}}</h6>
-                            <br>
-                            <h6 class="card-title">Industry: &nbsp; {{profileform.industry}}</h6>
-                            <h6 class="card-text">Profession: &nbsp; {{profileform.profession}}</h6>
-                            <p class="card-text">Description: &nbsp; {{profileform.description}}</p>
-                            <h6 class="card-title">Employment Status: &nbsp; {{profileform.employment}}</h6>
-                            <h6 class="card-title">Purpose: &nbsp; {{profileform.status}}</h6>
-                            <br>
-                            <h5 class="card-title">Matching Preferences:</h5>
-                            <h6 class="card-text">Business: &nbsp; {{profileform.business}}</h6>
-                            <h6 class="card-text">Location: &nbsp; {{profileform.locations}}</h6>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                                    <h6 class="card-text">City: &nbsp; {{profileform.picture}}</h6>
+                                    <h6 class="card-title">Title: &nbsp; {{profileform.title}}</h6>
+                                    <h6 class="card-title">Company: &nbsp; {{profileform.company_name}}</h6>
+                                    <h6 class="card-text">City: &nbsp; {{profileform.city}}</h6>
+                                    <h6 class="card-text">Country: &nbsp; {{profileform.country}}</h6>
+                                    <br>
+                                    <h6 class="card-title">Industry: &nbsp; {{profileform.industry}}</h6>
+                                    <h6 class="card-text">Profession: &nbsp; {{profileform.profession}}</h6>
+                                    <p class="card-text">Description: &nbsp; {{profileform.description}}</p>
+                                    <h6 class="card-title">Employment Status: &nbsp; {{profileform.employment}}</h6>
+                                    <h6 class="card-title">Purpose: &nbsp; {{profileform.status}}</h6>
+                                    <br>
+                                    <h5 class="card-title">Matching Preferences:</h5>
+                                    <h6 class="card-text">Business: &nbsp; {{profileform.business}}</h6>
+                                    <h6 class="card-text">Location: &nbsp; {{profileform.locations}}</h6>
 
+                                    <br>
+                                </div>
+                                <!--{{ form|crispy }}-->
+                            </fieldset>
                             <br>
-                        </div>
-                        <!--{{ form|crispy }}-->
-                    </fieldset>
-                    <br>
-                    <!--<div class="row justify-content-center">
+                            <!--<div class="row justify-content-center">
                         <div class="col-3 text-center">
                             <button class="btn btn-edit" type="submit">UPDATE</button>
                             <a href="{% url 'profile_delete' pk=user.pk %}" class="btn btn-outline-primay">Delete</a>
                         </div>
                     </div>-->
 
-                    <div class="text-center form-group">
-                        <button class="btn btn-edit" type="submit">UPDATE</button>
-                        <a href="{% url 'profile_delete' pk=user.pk %}" class="btn btn-danger">Delete</a>
+                            <div class="text-center form-group">
+                                <button class="btn btn-edit" type="submit">UPDATE</button>
+                                <a href="{% url 'profile_delete' pk=user.pk %}" class="btn btn-danger">Delete</a>
+                            </div>
+
+                        </form>
+
+                    </div>
                 </div>
-
-                </form>
-
             </div>
+            <br>
+            <br>
+
         </div>
     </div>
-    <br>
-    <br>
-
 </div>
 
 {% endif %}

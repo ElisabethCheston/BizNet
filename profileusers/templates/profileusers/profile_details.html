@@ -28,8 +28,8 @@
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'password_change' %}">
-                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab" data-bs-toggle="tab"
-                    data-bs-target="#password_change" type="tab-button" role="tab" />
+                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab"
+                    data-bs-toggle="tab" data-bs-target="#password_change" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
@@ -103,265 +103,263 @@
         font-size: small;
         align-items: center;
     }
-    
+
     .match-card {
         background-color: rgba(252, 253, 253, 0.2);
     }
 </style>
 
-<div class="container-profile justify-center">
+<div class="container-fuid" id="justify-center">
+    <br>
 
-    <span class="hello-msg">Welcome {{request.user.first_name}} {{request.user.last_name}}.</span><br><br>
+    <div class="row">
+        <div class="col-sm-10 col-sx-12 mx-auto">
 
-
-<!-- Modal Structure -->
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Payment Plans
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Payment Plans</h5>
-          <button type="button" class="close-button sm" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="x-close">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="monthly">
-                    <div class="row py-4">
-                        <div class="col-sm-4 mb-3 mb-md-0">
-                            <div class="card text-center h-100">
-                                <div class="card-body d-flex flex-column">
-                                    <div class="mb-4">
-                                        <h5>Free plan</h5>
-                                        <span class="display-4">€0</span>
-                                        <span>/mo</span>
-                                    </div>
-                                    <h6>Includes:</h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2">
-                                            User profile
-                                        </li>
-                                        <li class="mb-2">
-                                            View jobs
-                                        </li>
-                                        <li class="mb-2">
-                                            View other profile
-                                        </li>
-                                    </ul>
-                                    <div class="mt-auto">
-                                        <a href="membership/subscriptions.html" class="btn btn-lg btn-outline-primary" selected>Sign up</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 mb-3 mb-md-0">
-                            <div class="card text-center h-100">
-                                <div class="card-body d-flex flex-column">
-                                    <div class="mb-4">
-                                        <h5>Basic plan</h5>
-                                        <span class="display-4">€10</span>
-                                        <span>/mo</span>
-                                    </div>
-                                    <h6>Includes:</h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2">
-                                            User profile
-                                        </li>
-                                        <li class="mb-2">
-                                            View jobs
-                                        </li>
-                                        <li class="mb-2">
-                                            View other profile
-                                        </li>
-                                        <li class="mb-2">
-                                            Create gigs
-                                        </li>
-                                    </ul>
-                                    <div class="mt-auto">
-                                        <a href="profileusers/profile_details/membership/subscriptions.html" class="btn btn-lg btn-outline-primary">Sign up</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 mb-3 mb-md-0">
-                            <div class="card text-center h-100">
-                                <div class="card-body d-flex flex-column">
-                                    <div class="mb-4">
-                                        <h5>Pro plan</h5>
-                                        <span class="display-4">€20</span>
-                                        <span>/mo</span>
-                                    </div>
-                                    <h6>Includes:</h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2">
-                                            User profile
-                                        </li>
-                                        <li class="mb-2">
-                                            View jobs
-                                        </li>
-                                        <li class="mb-2">
-                                            View other profile
-                                        </li>
-                                        <li class="mb-2">
-                                            Create gigs
-                                        </li>
-                                        <li class="mb-2">
-                                            Create a network
-                                        </li>
-                                    </ul>
-                                    <div class="mt-auto">
-                                        <a href="{% url 'subscriptions' %}" class="btn btn-lg btn-outline-primary">Sign up</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-    <div class="card" style="max-width: 740px;">
-        <div class="card-body">
-
-            <!-- Row One -->
-            <div class="col-12 justify-content-center">
-
-                <!-- Profileuser information -->
-                <div class="row justify-content-center">
-                    {% csrf_token %}
-                    <!-- Profileuser pic -->
-                    <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
-
-                            <div class="card-info text-center">
-
-                                {% if profileusers.picture %}
-
-                                <img src="{{ profile.picture.url }}" class="img-fluid justify-content-center profile-img rounded-start"
-                                    alt="{{ profile.username}}">
-
-                                {% else %}
-
-                                <img src="{{ profile.picture.url }}" class="img-fluid justify-content-center profile-img rounded-start"
-                                    alt="{{ user.profile.image.url }}">
-
-                                {% endif %}
-                            </div>
-
-                    </div>
-
-                    <!-- Profileuser fact colum-->
-                    <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
-                        <div class="justify-content-center card-body match-card">
-
-                        <div class="card-info justify-content-center">
-                            <h6 class="card-title g-0"><strong>{{user.first_name}} {{user.last_name}}</strong></h6>
-                            <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}</p>
-                            <p class="card-text"><strong>Company:</strong> &nbsp; {{profile.company_name}}</p>
-                            <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
-                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
-                            <p class="card-text"><strong>Country:</strong> &nbsp; {{profile.country}}</p>
-                            <p class="card-text"><strong>Business:</strong> &nbsp; {{profile.industry}}</p>
-                            <p class="card-text"><strong>Profession:</strong> &nbsp; {{profile.profession}}</p>
-                            <p class="card-text"><strong>Employment Status:</strong> &nbsp {{profile.employment}}</p>
-                            <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}</p>
-                            <br>
-                        </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Row Two -->
-            <div class="row justify-content-center">
-
-                <!-- Matching Preferences -->
-                <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
-                    <div class="justify-content-center card-body match-card">
-                        <div class="card-info">
-                            <h6><strong>Matching Preferences:</strong></h6>
-                            <p class="card-title match-card"><strong>Industry:</strong> &nbsp; {{profile.business}}</p>
-                            <p class="card-text match-card"><strong>Location:</strong> &nbsp; {{profile.locations}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Profileuser bio -->
-                <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
-                    <div class="justify-content-center card-body match-card">
-                        <div class="card-info">
-                            <h6 class="card-title"><strong>Presentation:</strong></h6>
-                            <p class="card-title">{{profile.description}}</p>
-                        </div>
-                    </div>
-                </div>                  
-                </div>
-
-            </div>
+            <span class="hello-msg">Welcome {{request.user.first_name}}
+                {{request.user.last_name}}.
+            </span>
+            <br>
             <br>
 
-            <!-- Edit Buttons -->
-           <!--<div class="text-center form-group">
-                <a class="btn btn-secondary" type="button" href="% url 'profile_edit' %}">Edit</a>
-                <a class=" btn btn-danger" type="button" href="{% url 'profile_edit' %}">Delete</a>
-            </div>-->
+            <!-- Modal Structure -->
+            <div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Payment Plans
+                </button>
 
-            <div class="row text-center">
-                <form class="col" action="{% url 'profile_edit' %}">
-                    <input type="submit" value="EDIT" class="btn btn-edit" id="edit_profile_tab"
-                        data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-                </form>
-                <!--<form class="col" action="{% url 'profile_edit' %}">
-                    <input type="submit" value="DELETE" class="btn btn-edit" id="edit_profile_tab"
-                        data-bs-toggle="tab" data-bs-target="#delete_profile" type="tab-button" role="tab" />
-                </form>-->
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Payment Plans</h5>
+                                <button type="button" class="close-button sm" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" class="x-close">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="monthly">
+                                        <div class="row py-4">
+                                            <div class="col-sm-4 mb-3 mb-md-0">
+                                                <div class="card text-center h-100">
+                                                    <div class="card-body d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <h5>Free plan</h5>
+                                                            <span class="display-4">€0</span>
+                                                            <span>/mo</span>
+                                                        </div>
+                                                        <h6>Includes:</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="mb-2">
+                                                                User profile
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                View jobs
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                View other profile
+                                                            </li>
+                                                        </ul>
+                                                        <div class="mt-auto">
+                                                            <a href="membership/subscriptions.html"
+                                                                class="btn btn-lg btn-outline-primary" selected>Sign
+                                                                up</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 mb-3 mb-md-0">
+                                                <div class="card text-center h-100">
+                                                    <div class="card-body d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <h5>Basic plan</h5>
+                                                            <span class="display-4">€10</span>
+                                                            <span>/mo</span>
+                                                        </div>
+                                                        <h6>Includes:</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="mb-2">
+                                                                User profile
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                View jobs
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                View other profile
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                Create gigs
+                                                            </li>
+                                                        </ul>
+                                                        <div class="mt-auto">
+                                                            <a href="profileusers/profile_details/membership/subscriptions.html"
+                                                                class="btn btn-lg btn-outline-primary">Sign
+                                                                up</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 mb-3 mb-md-0">
+                                                <div class="card text-center h-100">
+                                                    <div class="card-body d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <h5>Pro plan</h5>
+                                                            <span class="display-4">€20</span>
+                                                            <span>/mo</span>
+                                                        </div>
+                                                        <h6>Includes:</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="mb-2">
+                                                                User profile
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                View jobs
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                View other profile
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                Create gigs
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                Create a network
+                                                            </li>
+                                                        </ul>
+                                                        <div class="mt-auto">
+                                                            <a href="{% url 'subscriptions' %}"
+                                                                class="btn btn-lg btn-outline-primary">Sign
+                                                                up</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
 
+            <!-- Profileuser card -->
+            <div class="card" id="justify-center" style="max-width: 740px;">
+                <div class="card-body">
 
-            <!-- Edit button -->
-            <!--<div class="d-grid gap-2 d-md-flex justify-content-center">
-                <br>
-                <form action="{% url 'profile_edit' %}">
-                    <input type="submit" value="EDIT" class="btn btn-edit" id="edit_profile_tab"
-                        data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-                </form>
-                <form action="{% url 'profile_edit' %}">
-                    <input type="submit" value="DELETE" class="btn btn-edit" id="edit_profile_tab"
-                        data-bs-toggle="tab" data-bs-target="#delete_profile" type="tab-button" role="tab" />
-                </form>
-            </div>-->
+                    <!-- Profileuser information -->
+                    <div class="col-12 justify-content-center">
 
-            <!-- Delete button -->
-            <!--<div class="d-grid gap-2 d-md-flex justify-content-center">
-                <br>
-                <form action="{% url 'profile_edit' %}">
-                    <input type="submit" value="DELETE PROFILE" class="btn btn-edit" id="edit_profile_tab"
-                        data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-                </form>
-            </div>-->
-            
+                        <!-- Row One -->
+                        <div class="row justify-content-center">
+                            {% csrf_token %}
+                            <!-- Profileuser pic -->
+                            <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
+
+                                <div class="card-info text-center">
+
+                                    {% if profileusers.picture %}
+
+                                    <img src="{{ profile.picture.url }}"
+                                        class="img-fluid justify-content-center profile-img rounded-start"
+                                        alt="{{ profile.username}}">
+
+                                    {% else %}
+
+                                    <img src="{{ profile.picture.url }}"
+                                        class="img-fluid justify-content-center profile-img rounded-start"
+                                        alt="{{ user.profile.image.url }}">
+
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                            <!-- Profileuser fact colum-->
+                            <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
+                                <div class="justify-content-center card-body match-card">
+                                    <div class="card-info justify-content-center">
+                                        <h6 class="card-title g-0"><strong>{{user.first_name}}
+                                                {{user.last_name}}</strong></h6>
+                                        <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}
+                                        </p>
+                                        <p class="card-text"><strong>Company:</strong> &nbsp;
+                                            {{profile.company_name}}</p>
+                                        <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
+                                        <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
+                                        <p class="card-text"><strong>Country:</strong> &nbsp;
+                                            {{profile.country}}</p>
+                                        <p class="card-text"><strong>Business:</strong> &nbsp;
+                                            {{profile.industry}}</p>
+                                        <p class="card-text"><strong>Profession:</strong> &nbsp;
+                                            {{profile.profession}}</p>
+                                        <p class="card-text"><strong>Employment Status:</strong> &nbsp
+                                            {{profile.employment}}</p>
+                                        <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row Two -->
+                        <div class="row justify-content-center">
+
+                            <!-- Matching Preferences -->
+                            <div class="match-card col-sm-5 col-12" style="max-width: 400px;">
+                                <div class="justify-content-center card-body match-card">
+                                    <div class="card-info">
+                                        <h6><strong>Matching Preferences:</strong></h6>
+                                        <p class="card-title match-card"><strong>Industry:</strong> &nbsp;
+                                            {{profile.business}}</p>
+                                        <p class="card-text match-card"><strong>Location:</strong> &nbsp;
+                                            {{profile.locations}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profileuser bio -->
+                            <div class="match-card col-sm-7 col-12" style="max-width: 480px;">
+                                <div class="justify-content-center card-body match-card">
+                                    <div class="card-info">
+                                        <h6 class="card-title"><strong>Presentation:</strong></h6>
+                                        <p class="card-title">{{profile.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <!-- Edit Buttons -->
+                        <div class="row text-center">
+                            <form class="col" action="{% url 'profile_edit' %}">
+                                <input type="submit" value="EDIT" class="btn btn-edit" id="edit_profile_tab"
+                                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+                            </form>
+                            <form class="col" action="{% url 'profile_edit' %}">
+                                <input type="submit" value="DELETE" class="btn btn-edit" id="edit_profile_tab"
+                                    data-bs-toggle="tab" data-bs-target="#delete_profile" type="tab-button"
+                                    role="tab" />
+                            </form>
+                        </div>
+                        <br>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <br>
-</div>
-</div>
-<br>
-<br>
+    <br>
+    <br>
 </div>
 
 {% endif %}
