@@ -1,4 +1,5 @@
 {% extends "account/base.html" %}
+{% load static %}
 {% load i18n %}
 {% load account socialaccount %}
 
@@ -41,7 +42,11 @@
 
     a,
     p,
-    .link,
+    .link {
+        text-align: center;
+        font-size: smal;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
     h2 {
         text-align: center;
         font-size: medium;

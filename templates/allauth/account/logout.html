@@ -1,5 +1,5 @@
 {% extends "account/base.html" %}
-
+{% load static %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
@@ -19,25 +19,12 @@
     text-align: center;
   }
 
-  /* TEXT & FIELDS */
-/*
-  #id_email,
-  #id_username,
-  #id_password1,
-  #id_password2 {
-    width: 84%;
-    text-align: center;
-    font-size: large;
-    height: 60px;
-    border-style: groove;
-  }
-*/
   a,
   p,
   h2 {
     text-align: center;
     font-size: medium;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   /* FORM */
@@ -65,19 +52,19 @@
     border-color: rgba(148, 149, 150, 0.2);
     background-color: rgba(131, 133, 134, 0.8) !important;
     width: 80%;
-    height: 50px;
+    height: 40px;
     margin-top: 2%;
     font-weight: bold;
     text-align: center;
-    font-size: large !important;
+    font-size: medium !important;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
-  .btn:hover,
-  .btn:active,
-  .btn:focus {
+  .logout_btn:hover,
+  .logout_btn:active,
+  .logout_btn:focus {
     background-color: rgba(94, 95, 95, 0.792) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 
@@ -95,11 +82,9 @@
 
 <div class="container-fluid" id="justify-center">
 
-  <div class="user_card" id="justify-center">
-
     <div class="d-flex form_container" id="justify-center">
       <div class="text-center">
-        <h3>{% trans "Sign Out" %}</h3>
+        <h2>{% trans "SIGN OUT" %}</h2>
         <br>
         <p>{% trans 'Are you sure you want to sign out?' %}</p>
       </div>
@@ -109,13 +94,12 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="text-center logout_btn" id="justify-center" type="submit">{% trans 'Sign Out' %}</button>
+        <button class="text-center logout_btn" id="justify-center" type="submit">{% trans 'SIGN OUT' %}</button>
       </form>
       <br>
       <br>
 
     </div>
-  </div>
 </div>
 
 

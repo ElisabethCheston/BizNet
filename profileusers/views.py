@@ -109,25 +109,30 @@ def terms(request):
 
 @login_required
 def Profile(request):
-    # profile_form1 = ProfileForm1()
+    
+    """
+    profile_form1 = ProfileForm1()
     if request.method == 'POST':
         profile = Profile(request.POST, 
                                 request.FILES, 
                                 instance=request.user.profileuser)
         if profile.is_valid():
             profile.save()
-            # messages.success(request, 'Step 1 of 3 done of creating your profile!')
+            
+            messages.success(request, 'Step 1 of 3 done of creating your profile!')
             return redirect('register_1')
-        # else:
-            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
+        else:
+            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+    
     else:
         profile = Profileuser.objects.create(username=request.user)
-        # profile_form1 = ProfileForm1(instance=request.user.profileuser)
-        # return redirect('register_1')
+        profile_form1 = ProfileForm1(instance=request.user.profileuser)
+        return redirect('register_1')
     context = {
         'profile':profile,
     }
-    return render(request, 'profileusers/profile.html', context)
+    """
+    return render(request, 'profileusers/profile.html')
     
 
 def ProfileOne(request):

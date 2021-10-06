@@ -1,4 +1,5 @@
 {% extends "account/base.html" %}
+{% load static %}
 {% load i18n %}
 {% load account socialaccount %}
 
@@ -27,13 +28,13 @@
     }
 
     a,
-    p,
-    .link,
-    h2 {
-        text-align: center;
-        font-size: small;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
+  p,
+  .link,
+  h2 {
+    text-align: center;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 
     .form-control {
         height: 45px;
@@ -106,7 +107,7 @@
 <div class="container-fluid" id="justify-center">
 
     <div class="d-flex">
-        <h2 id="form-title">LOGIN TO YOUR ACCOUNT</h2>
+        <h2 id="form-title">LOGIN</h2>
     </div>
     <div class="d-flex justify-content-center form_container" id="justify-center">
 
