@@ -3,8 +3,6 @@
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
-
-
 {% block content %}
 <style>
   #justify-center {
@@ -131,29 +129,6 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <!-- Terms and Conditions -->
-        <!--<div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-          </label>
-          <button href="#" role="button" class="btn btn-sm btn-secondary" data-bs-placement="right"
-            data-bs-toggle="popover-term" title="Terms & Conditions" data-bs-content="Documentation related complaints: while the documentation 
-          can most certainly be improved, I am adhering to the debatable principle that keeping open issues 
-          around with respect to documentation is not very helpful in improving things. Please step in and 
-          file a pull request if you feel there is something unclear.
-          Project specific integration trouble: In cases where allauth is just one piece of the puzzle and 
-          for example a stack trace indicates another module crashing, please try to come up stripped version 
-          of the issue where it is clear that allauth is the one that is misbehaving.">
-            Terms & Conditions</button>
-
-          <script>
-            // -- Popover function -- //
-            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover-term"]'))
-            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-              return new bootstrap.Popover(popoverTriggerEl)
-            })
-          </script>
-        </div>-->
 
         <div class="form-check">
           <button class="primaryAction" type="submit">{% trans "Sign Up" %}</button>

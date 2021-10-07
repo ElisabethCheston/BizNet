@@ -9,6 +9,12 @@ from itertools import chain
 import random
 
 
+class TermUser(models.Model):
+    agree = models.BooleanField()
+
+    def __str__(self):
+        return self.title
+
 # DROPDOWN LISTS
 class Industry(models.Model):
     industry_name = models.CharField(max_length=100, null=True, blank=False)

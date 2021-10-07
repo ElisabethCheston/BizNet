@@ -3,7 +3,7 @@ from gigs.models import Gig
 # from gigs.forms import Gig
 from django import forms
 
-from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3
+from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3, TermsForm
 from django.core import serializers
 from django.core.mail import EmailMessage, send_mail, BadHeaderError
 from django.conf import settings
@@ -78,22 +78,27 @@ def password_reset_request(request):
 
 # REGISTER AN ACCOUNT
 
-
 def Register(request):
     # pylint: disable=maybe-no-member
     form = RegisterUserForm()
+    termform = TermsForm()
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
-        if form.is_valid():
+        termform = TermsForm(request.POST)
+        if form.is_valid() and termform.is_valid():
             form.save()
+            termform.save(commit=False)
             user = form.cleaned_data.get('email')
             messages.success(request, 'Account was created for ' + user)
             return redirect('login_register_page')
     else:
         form = RegisterUserForm()
+        termform = TermsForm()
+        messages.warning(request, 'Your account cannot be created.')
 
     context = {
-        'form' : form
+        'form' : form,
+        'termform': termform
     }
     return render(request, 'profileusers/register.html', context)
 
@@ -109,30 +114,25 @@ def terms(request):
 
 @login_required
 def Profile(request):
-    
-    """
-    profile_form1 = ProfileForm1()
+    # profile_form1 = ProfileForm1()
     if request.method == 'POST':
         profile = Profile(request.POST, 
                                 request.FILES, 
                                 instance=request.user.profileuser)
         if profile.is_valid():
             profile.save()
-            
-            messages.success(request, 'Step 1 of 3 done of creating your profile!')
+            # messages.success(request, 'Step 1 of 3 done of creating your profile!')
             return redirect('register_1')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
-    
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         profile = Profileuser.objects.create(username=request.user)
-        profile_form1 = ProfileForm1(instance=request.user.profileuser)
-        return redirect('register_1')
+        # profile_form1 = ProfileForm1(instance=request.user.profileuser)
+        # return redirect('register_1')
     context = {
         'profile':profile,
     }
-    """
-    return render(request, 'profileusers/profile.html')
+    return render(request, 'profileusers/profile.html', context)
     
 
 def ProfileOne(request):
@@ -145,8 +145,8 @@ def ProfileOne(request):
             profile_form1.save()
             # messages.success(request, 'Step 1 of 3 done of creating your profile!')
             # return redirect('register_2')
-        # else:
-            #messages.error(request, 'Update failed. Please check if your inputs are valid.')
+        else:
+            messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
         # profile_form1 = Profileuser.objects.create(user=request.user)
         profile_form1 = ProfileForm1(instance=request.user.profileuser)
