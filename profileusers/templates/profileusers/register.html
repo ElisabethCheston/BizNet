@@ -183,18 +183,16 @@
         <div class="container-term input-group mt-3 justify-content-around">
           
           <label>
-            <input type="checkbox" class="checkbox" value="Terms & Conditions">
-            {{form.agree}} Terms & Conditions
+            <input type="checkbox" class="checkbox" value="checked" required>
+            {{form.agree}} <a href="{% url 'terms' %}">Terms & Conditions</a>
           </label>
         </div>
-
     </div>
 
     <!-- Submit button -->
     <div class="d-flex justify-content-center mt-1" id="justify-center">
       <input class="btn register-button" id="submitControl" type="submit" value="SUBMIT">
     </div>
-
     </form>
 
     <!-- Already got an account? -->
