@@ -1,12 +1,14 @@
+from itertools import chain
+import random
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django_countries.fields import CountryField
 from django.dispatch import receiver
 
-from django_countries.fields import CountryField
-# from multiselectfield import MultiSelectField
-from itertools import chain
-import random
+from profileusers.models import Profileuser, Industry, Profession
+from gigs.models import Gig
+
 
 
 # DROPDOWN LISTS
@@ -60,18 +62,18 @@ class Notification(models.Model):
     notification_type = models.IntegerField(null=True, blank=True)
     to_user = models.ForeignKey(User, related_name='notification_to', on_delete=models.CASCADE, null=True)
     from_user = models.ForeignKey(User, related_name='notification_from', on_delete=models.CASCADE, null=True)
-    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    gig = models.ForeignKey('Gig', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     liked = models.ManyToManyField(User, default=None, blank=False)
     date = models.DateTimeField(default=timezone.now)
     user_has_seen = models.BooleanField(default=False)
-""" 
+
 
 # Create NetworkUsers model.
 class NetworkUsers(models.Model):
-    """
-    Network User Information 
-    """
+
+    # Network User Information 
+
     # Personal information
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='images', default='profileavatar.png')
@@ -98,6 +100,7 @@ class NetworkUsers(models.Model):
     status = models.ForeignKey( Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)        
 
     # Other Information
+    gig = models.ForeignKey('Gig', on_delete=models.SET_NULL, related_name='+', blank=True, null=True)
     follow = models.ManyToManyField(
         User, related_name='follow', blank=True)
     updated = models.DateTimeField(auto_now=True, blank=False)
@@ -107,9 +110,9 @@ class NetworkUsers(models.Model):
     def __str__(self):
         # pylint: disable=maybe-no-member
         return str(self.username)
+"""
 
-
-
+"""
 # FOLLOWING
 
 # People that am following
@@ -151,18 +154,17 @@ class NetworkUsers(models.Model):
 
 # MATCHING PREFERENCES
 
-
 # SUGGESTED CONTACTS
 
 # Suggested contacts
     def get_contact_suggestions(self):
-        """
-        - Get the profiles
-        - Create followers list for login user
-        - Loop through list, find contacts we're not connected to.
-        - Shuffle the list on every refresh
-        - Return 3 available contacts
-        """
+
+        # - Get the profiles
+        # - Create followers list for login user
+        # - Loop through list, find contacts we're not connected to.
+        # - Shuffle the list on every refresh
+        # - Return 3 available contacts
+
         # pylint: disable=maybe-no-member
         profiles = NetworkUsers.objects.all().exclude(user=self.user)
         followers_list = [p for p in self.get_follow()]
@@ -170,7 +172,7 @@ class NetworkUsers(models.Model):
         random.shuffle(available)
         return available[:3]
 
-"""        
+    
 # ALL MY AND MY CONTACTS GIGS
 
 # All my gigs

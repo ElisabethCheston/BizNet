@@ -133,7 +133,7 @@
 
                             <!-- Title -->
                             <div class="row col-12">
-                                <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
+                                <a class=" card-title text-center" href="{{ gig.get_absolute_url }}"><!-- {% url 'gig_detail' gig.id %} -->
                                     <strong>{{ gig.title }}</strong>
                                 </a>
                             </div>

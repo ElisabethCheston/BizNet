@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
     'widget_tweaks',
+    'djstripe',
 
 
     # ALLAUTH
@@ -222,7 +223,12 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 # STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
-
+STRIPE_TEST_PUBLIC_KEY ='pk_test_51IsTFXGb1tfsAqedvH9qYMtwL4wF4Wxk9JM0Kfxx2CaAnSgHDzPA4oKvD5NdDKACIHLB9JKU9uOI9FayWIxI7LLU00r7lftTXz'
+STRIPE_TEST_SECRET_KEY = 'sk_test_51IsTFXGb1tfsAqedHvwPZV0MX9byPkWt05Ne1oZyTsqtBBIuB8xT7Xg806hi8T368bu7YzNl9EpBjydxvnsCqgQA00uQBFD2S7'
+STRIPE_LIVE_MODE = False  # Change to True in production
+DJSTRIPE_USE_NATIVE_JSONFIELD = False
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 """
 if DEBUG:
     STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')

@@ -55,4 +55,5 @@ class Subsciption(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.user_membership.user
+        return self.user_membership.user.username
+        

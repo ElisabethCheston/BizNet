@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
-{% endblock %}
-
 
 {% block page_header %}
 
@@ -14,7 +10,7 @@
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'subscriptions' %}">
-                <input type="submit" value="SUBSCRIPTION" class="nav-link gig-tab" id="subscriptions_tab"
+                <input type="submit" value="Subscriptions" class="nav-link gig-tab" id="subscriptions_tab"
                     data-bs-toggle="tab" data-bs-target="#subscriptions" type="tab-button" role="tab" />
             </form>
         </li>
@@ -22,19 +18,19 @@
             <form action="{% url 'my_subscription' %}">
                 <div class="tab-pane active" id="my_subscription" role="tabpanel" aria-labelledby="my_subscription_tab">
                 </div>
-                <input type="submit" value="MY SUBSCRIPTION" class="nav-link gig-tab active" id="my_subscription_tab"
+                <input type="submit" value="My Subscription" class="nav-link gig-tab active" id="my_subscription_tab"
                     data-bs-toggle="tab" data-bs-target="#my_subscription" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'payment_histrory' %}">
-                <input type="submit" value="PAYMENT HISTORY" class="nav-link gig-tab" id="payment_histrory_tab"
+                <input type="submit" value="Payment History" class="nav-link gig-tab" id="payment_histrory_tab"
                     data-bs-toggle="tab" data-bs-target="#payment_histrory" type="tab-button" role="tab" />
             </form>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" id="subscription" role="tabpanel" aria-labelledby="subscriptions_tab"></div>
+        <div class="tab-pane" id="subscriptions" role="tabpanel" aria-labelledby="subscriptions_tab"></div>
         <div class="tab-pane active" id="my_subscription" role="tabpanel" aria-labelledby="my_subscription_tab"></div>
         <div class="tab-pane" id="payment_histrory" role="tabpanel" aria-labelledby="payment_histrory_tab"></div>
     </div>
@@ -106,40 +102,46 @@
 
 <div class="container-fluid">
     <br>
+    <div class="row">
 
-    <section>
-        <form action="/create-checkout-session" method="POST">
-            <input type="hidden" id="proPrice" name="priceId">
-            <img src="/img/professional.png" width="120" height="120" />
-            <div class="name">Free</div>
-            <div class="price">€0</div>
-            <div class="duration">per month</div>
-            <button id="pro-plan-btn">Select</button>
-        </form>
-    </section>
-    <section>
-        <form action="/create-checkout-session" method="POST">
-            <input type="hidden" id="basicPrice" name="priceId">
-            <img src="/img/starter.png" width="120" height="120" />
-            <div class="name">Basic Plan</div>
-            <div class="price">€10</div>
-            <div class="duration">per month</div>
-            <button id="basic-plan-btn">Select</button>
-        </form>
-    </section>
-    <section>
-        <form action="/create-checkout-session" method="POST">
-            <input type="hidden" id="proPrice" name="priceId">
-            <img src="/img/professional.png" width="120" height="120" />
-            <div class="name">Professional Plan</div>
-            <div class="price">€20</div>
-            <div class="duration">per month</div>
-            <button id="pro-plan-btn">Select</button>
-        </form>
-    </section>
-    <br>
-    <br>
-    <br>
+        <div class="col-sm-10 col-sx-12 mx-auto">
+            <div class="card">
+                <div class=" card-body">
+                    <br>
+                    <br>
+                    <h3 class="h3 mb-3 text-center">My Subscription</h3>
 
+                    <section>
+                        <div class="product Box-root">
+                            <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="14px" height="16px" viewBox="0 0 14 16" version="1.1">
+                                <defs />
+                                <g id="Flow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="0-Default" transform="translate(-121.000000, -40.000000)" fill="#E184DF">
+                                        <path
+                                            d="M127,50 L126,50 C123.238576,50 121,47.7614237 121,45 C121,42.2385763 123.238576,40 126,40 L135,40 L135,56 L133,56 L133,42 L129,42 L129,56 L127,56 L127,50 Z M127,48 L127,42 L126,42 C124.343146,42 123,43.3431458 123,45 C123,46.6568542 124.343146,48 126,48 L127,48 Z"
+                                            id="Pilcrow" />
+                                    </g>
+                                </g>
+                            </svg>-->
+                            <div class="description Box-root">
+                                <h3>Subscription to Starter plan successful!</h3>
+                            </div>
+                        </div>
+                        <form action="/create-portal-session" method="POST">
+                            <input type="hidden" id="session-id" name="session_id" value="" />
+                            <button id="checkout-and-portal-button" type="submit">Manage your billing
+                                information</button>
+                        </form>
+                    </section>
+
+                </div>
+                <br>
+                <br>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
 </div>
 {% endblock %}

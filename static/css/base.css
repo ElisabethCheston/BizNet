@@ -40,7 +40,7 @@ body {
 
 /*HEADER */
 
-h2, h3, h4, h5 {
+h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -124,7 +124,7 @@ li.nav-item {
   padding-bottom: 10%;
 }
 .start-container {
-  background-color: #ffffff !important;
+  background-color: #222121 !important;
   z-index: 1000 !important;
 }
 /*
