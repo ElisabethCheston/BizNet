@@ -5,6 +5,7 @@ cached-property==1.5.2
 click==8.0.1
 datapackage==1.15.2
 dj-database-url==0.5.0
+dj-stripe==2.5.1
 Django==3.2.4
 django-allauth==0.44.0
 django-autoslug==1.9.8
@@ -20,6 +21,7 @@ gunicorn==20.1.0
 ijson==3.1.4
 isodate==0.6.0
 jmespath==0.10.0
+jsonfield==3.1.0
 jsonlines==2.0.0
 jsonpointer==2.1
 linear-tsv==1.1.0

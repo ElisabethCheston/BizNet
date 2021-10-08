@@ -9,6 +9,9 @@ body {
   font-family: "Lato";
 }
 
+.logo {
+  display: url('/media/biznetname.png.jpg');
+}
 /* START PAGE */
 
 /* Start/Home page */
@@ -62,7 +65,7 @@ h1, h2, h3, h4, h5 {
 .nav-tab {
     margin-top: 10px;
     padding-top: 50px;
-    color: rgba(7, 87, 161, 0.9);
+    color: rgba(47, 156, 245, 0.99);
     font-weight: bolder;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -71,19 +74,19 @@ h1, h2, h3, h4, h5 {
 
 li.nav-item {
   font-weight: bolder;
-  color: rgba(7, 87, 161, 0.9);
+  color: rgba(47, 156, 245, 0.99);
 }
 
 .gig-tab {
     border: none;
-    color: rgba(7, 87, 161, 0.9);
+    color: rgba(47, 156, 245, 0.99);
     font-weight: lighter;
     font-size: large;
     background-color: transparent;
 }
 .gig-tab:hover,
 .gig-tab:active {
-  color: rgba(47, 156, 245, 0.75);
+  color: rgba(65, 159, 236, 0.99);
   text-decoration: rgba(240, 239, 239, 0.2);
 }
 
@@ -253,15 +256,15 @@ button, a {
   text-decoration: none;
   font-weight: bold;
   font-size: small;
-  color: rgba(47, 156, 245, 0.69);
+  color: rgba(47, 156, 245, 0.99);
 }
 .btn {
-  background-color: rgba(47, 156, 245, 0.6);
+  background-color: rgba(76, 165, 238, 0.99);
 }
 .btn:hover,
 .btn:active,
 .btn:focus {
-  background-color: rgba(100, 166, 219, 0.6);
+  background-color: rgba(76, 165, 238, 0.9);
 }
 
 /* ICONS */
