@@ -91,14 +91,17 @@
 <body>
 
     <header class="container-fluid fixed-top">
-        <div id="topnav" class="row navbar-light bg-light justify-content-between">
+        <div id="topnav" class="row navbar-light bg-dark justify-content-between">
 
             <!-- BizNet Logo -->
             <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
                 <!--<a href="{% url 'home' %}" class="nav-link main-logo-link">-->
-                <img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
+                    {% load static %} 
+                    <!--<img src="{{STATIC_URL}} gigs/gigs/media/biznetname.png" alt="" width="2100" height="500" class="logo img-fluid">-->
+                    <img src="{{ MEDIA_URL }}{{media.biznetname.url}}" alt="" width="210" height="50" class="logo img-fluid">
+                <!--<img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
                     alt="" width="210" height="50" class="logo img-fluid">
-                </a>
+                </a>-->
             </div>
 
             <!-- Top navbar links  -->
@@ -156,7 +159,7 @@
 
 
     <!-- Fixed footer nav -->
-    <nav class="navbar fixed-bottom navbar-light bg-light nav-2">
+    <nav class="navbar fixed-bottom navbar-light bg-dark nav-2">
         <div class="container-fluid wrapper">
 
             {% if user.is_authenticated %}
