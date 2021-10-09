@@ -5,7 +5,6 @@ from django.views import View
 import stripe
 from django.conf import settings
 from django.http import JsonResponse
-from djstripe.models import Product
 from django.contrib.auth.decorators import login_required
 
 stripe.api_key = settings.STRIPE_SECRET_KEY

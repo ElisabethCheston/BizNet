@@ -29,7 +29,7 @@ urlpatterns = [
     path('gigs/', include('gigs.urls')),
     path('membership', include('membership.urls')),
     path('', include('settings.urls')),
-    path("stripe/", include("djstripe.urls", namespace="djstripe")),
+    # path("stripe/", include("stripe.urls", namespace="stripe")),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

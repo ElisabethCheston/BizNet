@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
     'widget_tweaks',
-    'djstripe',
 
 
     # ALLAUTH
@@ -216,19 +215,15 @@ if 'USE_AWS' in os.environ:
 
 
 # Stripe
-FREE_DELIVERY_THRESHOLD = 50
-STANDARD_DELIVERY_PERCENTAGE = 10
+# FREE_DELIVERY_THRESHOLD = 50
+# STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'eur'
+
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-# STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+STRIPE_LIVE_MODE = True # Change to True in production
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 
-STRIPE_TEST_PUBLIC_KEY ='pk_test_51IsTFXGb1tfsAqedvH9qYMtwL4wF4Wxk9JM0Kfxx2CaAnSgHDzPA4oKvD5NdDKACIHLB9JKU9uOI9FayWIxI7LLU00r7lftTXz'
-STRIPE_TEST_SECRET_KEY = 'sk_test_51IsTFXGb1tfsAqedHvwPZV0MX9byPkWt05Ne1oZyTsqtBBIuB8xT7Xg806hi8T368bu7YzNl9EpBjydxvnsCqgQA00uQBFD2S7'
-STRIPE_LIVE_MODE = False  # Change to True in production
-DJSTRIPE_USE_NATIVE_JSONFIELD = False
-DJSTRIPE_WEBHOOK_SECRET = "whsec_12345"
-DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 """
 if DEBUG:
     STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
@@ -253,11 +248,7 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
