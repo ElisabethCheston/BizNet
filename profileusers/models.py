@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
 from django_countries.fields import CountryField
-# from multiselectfield import MultiSelectField
+
+from membership.models import Membership
+
 from itertools import chain
 import random
 
@@ -69,88 +70,73 @@ class Status(models.Model):
     def __str__(self):
         return self.status_name
 
-"""
-class Country(models.Model):
-    name = models.CharField(max_length=40)
-
-    def __str__(self):
-        return self.name
-
-
-class City(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    name = models.CharField(max_length=40)
-
-    def __str__(self):
-        return self.name
-"""
 
 # Create Profileuser model.
 class Profileuser(models.Model):
     """
     Profile user information 
     """
+    # Personal information
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(
         upload_to='profileavatars', default='profileavatar.png')
     picture = models.ImageField(upload_to='images', default='profileavatar.png')
-    following = models.ManyToManyField(
-        User, related_name='following', blank=True)
-    updated = models.DateTimeField(auto_now=True, blank=False)
-    created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
     first_name = models.CharField(
         max_length=254, blank=False, null=True)
     last_name = models.CharField(
         max_length=254, blank=False, null=True)
+    membership = models.ManyToManyField(Membership)
+    email = models.EmailField(
+        max_length=100, null=False, blank=True)
+    phone = models.CharField(max_length=40, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=False)
+    country = CountryField(blank_label='Country', null=True, blank=False)
+
+    # Work Information
     title = models.CharField(max_length=254, blank=True, default=None, null=True)
     company_name = models.CharField(
         max_length=254, blank=True, null=True)
     company_number_vat = models.CharField(
         max_length=254, blank=True, default=None, null=True)
-
     industry = models.ForeignKey(
         Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     profession = models.ForeignKey(
         Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     skill = models.CharField(max_length=254, blank=True, null=True, default=None)
     description = models.TextField(max_length=250, null=True, verbose_name="Description")
+    status = models.ForeignKey( Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)
 
-    email = models.EmailField(
-        max_length=100, null=False, blank=True)
-    phone = models.CharField(max_length=40, null=True, blank=True)
-    city = models.CharField(max_length=50, null=True, blank=False)
-    country = CountryField(blank_label='Country', null=True, blank=False)
-    # country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
-    # city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
-    
+    # Matching Preference
     business = models.ForeignKey(
         Business, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    skills = models.ForeignKey(
-        Skills, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     employment = models.ForeignKey( Employment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    status = models.ForeignKey( Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)
     locations = CountryField(blank_label='Locations', null=True, blank=False)
+
+    # Other
+    following = models.ManyToManyField(
+        User, related_name='following', blank=True)
+    updated = models.DateTimeField(auto_now=True, blank=False)
+    created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
 
     def __str__(self):
         # pylint: disable=maybe-no-member
-        # return self.user.username
         return str(self.username)
 
             
 # ALL MY AND MY CONTACTS GIGS
 
-# All my gigs
+    # All my gigs
     def my_gigs(self):
         return self.gig_set.all()
 
-# Number of my posted gigs
+    # Number of my posted gigs
     @property
     def num_gigs(self):
         # pylint: disable=maybe-no-member
         return self.gig_set.all().count() 
 
 
-# All created gigs from contacts I follow 
+    # All created gigs from contacts I follow 
     def get_contact_gigs(self):
         # pylint: disable=maybe-no-member
         # Loop through the users to get contacts am following...
@@ -179,18 +165,18 @@ class Profileuser(models.Model):
 
 # FOLLOWING
 
-# People that am following
+    # People that am following
     def get_following(self):
         # pylint: disable=maybe-no-member
         return self.following.all()
 
-# Following list
+    # Following list
     def get_followings_contact(self):
         # pylint: disable=maybe-no-member
         following_list = [p for p in self.get_following()]
         return following_list
 
-# Count of people am following
+    # Count of people am following
     @property
     def following_count(self):
         return self.get_following().count()
@@ -198,7 +184,7 @@ class Profileuser(models.Model):
 
 # FOLLOWERS
 
-# People that are following me
+    # People that are following me
     def get_followers(self):
         # pylint: disable=maybe-no-member
         qs = Profileuser.objects.all()
@@ -210,7 +196,7 @@ class Profileuser(models.Model):
             # ...append them too the followers list
         return followers_list
 
-# Count of people that are following me
+    # Count of people that are following me
     @property
     def followers_count(self):
         return len(self.get_followers())
@@ -221,7 +207,7 @@ class Profileuser(models.Model):
 
 # SUGGESTED CONTACTS
 
-# Suggested contacts
+    # Suggested contacts
     def get_proposal_contact(self):
         """
         - Get the profiles

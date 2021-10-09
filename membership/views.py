@@ -5,6 +5,8 @@ from django.views import View
 import stripe
 from django.conf import settings
 from django.http import JsonResponse
+from djstripe.models import Product
+from django.contrib.auth.decorators import login_required
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -44,6 +46,18 @@ def payment_histrory(request):
     }
     return render(request, template, context)
 
+
+"""
+# Create your views here.
+def homepage(request):
+  return render(request, "home.html")
+
+@login_required
+def checkout(request):
+  products = Product.objects.all()
+  return render(request,"checkout.html",{"products": products})
+"""
+
 """
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
@@ -70,4 +84,3 @@ class CreateCheckoutSessionView(View):
         print(e)
         return "Server error", 500
 """
-

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from profileusers.models import Profileuser
-from gigs.models import Gig
+from gigs.models import Gig, NetworkUsers
 from django.contrib.auth import get_user_model
 
 from . import views
