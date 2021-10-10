@@ -1,2 +1,2 @@
 
-web: gunicorn biz-net.wsgi:application
+web: gunicorn BizNet.wsgi:application
