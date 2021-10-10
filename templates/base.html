@@ -72,7 +72,7 @@
     <!-- Cropper for image avatar -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Stripe Payment js -->
     <script src="https://js.stripe.com/v3/"></script>
 
@@ -91,53 +91,54 @@
 <body>
 
     <header class="container-fluid fixed-top">
-        <div id="topnav" class="row navbar-light bg-dark justify-content-between">
+        <div id="topnav" class="row justify-content-between align-items-center navbar-light bg-dark">
 
             <!-- BizNet Logo -->
-            <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 text-lg-left">
+            <div class="col-6 col-lg-4 text-lg-left">
+                <!-- my-auto py-1 py-lg-0 -->
                 <!--<a href="{% url 'home' %}" class="nav-link main-logo-link">-->
-                    <img src="{% static 'images/biznetname.png' %}" alt="" width="210" height="50" class="logo img-fluid">
+                <img src="{% static 'images/logobiznet.png' %}" alt="" width="210" height="50" class="logo img-fluid">
                 <!--<img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
                     alt="" width="210" height="50" class="logo img-fluid">
                 </a>-->
             </div>
-
             <!-- Top navbar links  -->
-            <div class="col-6 col-lg-4 my-auto py-1 py-lg-0">
-                <ul class="list-inline list-unstyled text-end my-0">
+            <div class="col-6 col-lg-4 wrapper box-right d-flex justify-content-end">
 
-                    <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link " href="#" id="user-options" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user-cog fa-lg"></i></div>
-                                <p class="my-0 icon-text">Setting</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
-                            {% if request.user.is_superuser %}
-                            <a href="" class="dropdown-item">Admin</a>
+                <a id="subscription" class=" btn-sub justify-content-around" href="{% url 'membership_profile' %}"
+                    name="SUBSCRIPTION">
+                    <span class="button-sub mt-2">SUBSCRIPTION</span>
+                    <i class="fas fa-universal-access fa-2x" style="font-size:35px; vertical-align: middle;"></i>
+                </a>
 
-                            {% endif %}
+                <!-- Dropdown button-->
+                <a class="text-black nav-link mt-1" href="#" id="settings" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-cog fa-2x mt-1"></i>
+                </a>
+                <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                    {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                    <a href="" class="dropdown-item">Admin</a>
 
-                            <a href="{% url 'profile_details' %}" class="dropdown-item">My Profile</a>
-                            <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
-                            <a href="{% url 'all_profiles' %}" class="dropdown-item">Network</a>
-                            <a href="{% url 'membership_profile' %}" class="dropdown-item">Membership</a>
-                            <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>                            
-                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                    {% endif %}
 
-                            {% else %}
+                    <a href="{% url 'profile_details' %}" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
+                    <a href="{% url 'all_profiles' %}" class="dropdown-item">Network</a>
+                    <a href="{% url 'membership_profile' %}" class="dropdown-item">Membership</a>
+                    <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
 
-                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                    {% else %}
 
-                            {% endif %}
+                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
 
-                        </div>
-                    </li>
-                </ul>
+                    {% endif %}
+
+                </div>
+
             </div>
         </div>
 
@@ -161,31 +162,38 @@
         <div class="container-fluid wrapper">
 
             {% if user.is_authenticated %}
-            <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href=" {% url 'all_profiles' %}">
+            <a class="flex-sm-fill nav-link align-items-start" href=" {% url 'all_profiles' %}">
                 <div class="icon users text-center">
                     <div class="tooltip">NETWORK</div>
                     <span><i class="fas fa-users"></i></span>
                 </div>
             </a>
-            {% else %}
-            <a class="flex-sm-fill nav-link align-items-start" id="fas" aria-current="page" href="#">
-                <div class="icon users text-center">
-                    <div class="tooltip">NOT AUTHORIZED</div>
-                    <span><i class="fas fa-users"></i></span>
+            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'profile_details' %}">
+                <div class="icon suitcase text-center">
+                    <div class="tooltip">PROFILE</div>
+                    <span><i class="fas fa-user"></i></span>
                 </div>
             </a>
-            {% endif %}
-
-
-            {% if user.is_authenticated %}
-
             <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="{% url 'gig' %}">
                 <div class="icon suitcase text-center">
                     <div class="tooltip">GIGS</div>
                     <span><i class="fas fa-suitcase"></i></span>
                 </div>
             </a>
+
             {% else %}
+            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
+                <div class="icon users text-center">
+                    <div class="tooltip">NOT AUTHORIZED</div>
+                    <span><i class="fas fa-users"></i></span>
+                </div>
+            </a>
+            <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#}">
+                <div class="icon suitcase text-center">
+                    <div class="tooltip">NOT AUTHORIZED</div>
+                    <span><i class="fas fa-user"></i></span>
+                </div>
+            </a>
             <a class="flex-sm-fill text-sm-center nav-link text-center" id="fas" href="#">
                 <div class="icon suitcase text-center">
                     <div class="tooltip">NOT AUTHORIZED</div>

@@ -48,6 +48,11 @@
 
 {% block content %}
 <style>
+
+    btn-link:hover {
+        color:#69718a;
+    }
+    /*
     .btn-link {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
@@ -63,7 +68,6 @@
         -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-    /*
     .btn-link-delete,
     .btn-link-edit {
         height: 35px;
@@ -76,7 +80,7 @@
     .btn-link-edit {
         background-color: rgba(9, 143, 221, 0.9) !important;
     }
-*/
+
     .btn-link:hover,
     .btn-link:active,
     .btn-link:focus {
@@ -102,18 +106,12 @@
         font-size: medium;
         color: rgb(5, 5, 5);
     }
-
-    /*
-.card-body {
-        padding: 20px;
-    }
 */
+
     label {
         display: none;
     }
-    p {
-        border-bottom: none !important;
-    }
+
 </style>
 
 <div class="container-fluid">
@@ -133,7 +131,7 @@
 
                             <!-- Title -->
                             <div class="row col-12">
-                                <a class=" card-title text-center" href="{{ gig.get_absolute_url }}"><!-- {% url 'gig_detail' gig.id %} -->
+                                <a class="card-title text-center" style="font-weight: bolder; text-decoration: none; color: #1f53fc;" href="{{ gig.get_absolute_url }}"><!-- {% url 'gig_detail' gig.id %} -->
                                     <strong>{{ gig.title }}</strong>
                                 </a>
                             </div>
@@ -151,8 +149,10 @@
                                 <img class="rounded-circle avatar" src="{{gig.author.picture.url }}">
                             </div>
                             <div class="col col-auto py-1 text-center">
-                                <p class="text-center small">
+                                <p style="font-size: smaller;">
+                                    <a class="card-title text-small text-center" style="color: #1f53fc; text-decoration: none;" href="{{ network.network_profile_details }}"><!-- {% url 'gig_detail' gig.id %} -->
                                     <strong>{{gig.author.first_name}} {{gig.author.last_name}}</strong>
+                                    </a>
                                 <!--</p>
                                 <p class="card-subtitle mb-2 text-muted small">--> <br>
                                     {{ gig.author.profession }}, {{ gig.author.company_name }}

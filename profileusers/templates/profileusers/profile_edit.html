@@ -57,6 +57,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 <style>
+    /*
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
@@ -84,6 +85,7 @@
     label {
         display: none;
     }
+    */
 </style>
 
 <div class="container-fluid" id="justify-center">
@@ -138,8 +140,10 @@
                     </div>-->
 
                             <div class="text-center form-group">
-                                <button class="btn btn-edit" type="submit">UPDATE</button>
-                                <a href="{% url 'profile_delete' pk=user.pk %}" class="btn btn-danger">Delete</a>
+                                <!--<button class="btn" type="submit">UPDATE</button>-->
+                                <button type="submit" class="btn"
+                                    style="font-weight: bold; border-radius: 1px; background-color: #1f53fc; color: rgb(246,246,247); font-family: Verdana; font-size: medium">EDIT</button>
+                                <a href="{% url 'profile_delete' pk=user.pk %}" style="font-weight: bold;" class="btn btn-danger">DELETE</a>
                             </div>
 
                         </form>
@@ -147,6 +151,8 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
             <br>
             <br>
 
