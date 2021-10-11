@@ -1,0 +1,38 @@
+
+.profile-card {
+    width: 140px;
+    border-radius: 1px;
+}
+h1, h5 {
+    font-weight: bolder;
+    color: rgba(44, 44, 44, 0.96);
+    font-weight: bolder;
+}
+.btn {
+    color: white !important;
+    border-color: rgba(96, 185, 236, 0.2);
+    background-color:#1f53fc !important;
+    font-size: medium !important;
+    border-radius: 1px;
+    height: 40px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding-right: 15px;
+    border-radius: 1px !important;
+    padding-left: 15px;
+    text-decoration: none;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+.btn:hover {
+    color: white;
+    border-color: rgba(96, 185, 236, 0.2);
+    background-color:#4a4e5f !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+ 
+label {
+    display: none;
+}

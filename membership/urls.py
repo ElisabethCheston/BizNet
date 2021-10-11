@@ -7,4 +7,6 @@ urlpatterns = [
     path('subscriptions/', views.subscriptions, name='subscriptions'),
     path('my_subscription/', views.my_subscription, name='my_subscription'),
     path('payment_histrory/', views.payment_histrory, name='payment_histrory'),
+    path("config/", views.stripe_config),
+    path("create-checkout-session/", views.create_checkout_session),
 ]
