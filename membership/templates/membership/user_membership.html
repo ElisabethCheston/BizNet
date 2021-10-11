@@ -1,38 +1,71 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'membership/css/membership.css' %}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'membership/js/membership.js' %}" defer></script>
+{% endblock scripts %}
 
 {% block page_header %}
 
-<!-- Nav tabs -->
-
+<!--  Tab Links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <form action="{% url 'subscriptions' %}">
-                <input type="submit" value="Subscriptions" class="nav-link gig-tab" id="subscriptions_tab"
-                    data-bs-toggle="tab" data-bs-target="#subscriptions" type="tab-button" role="tab" />
+            <form action="{% url 'profile_details' %}">
+                <input type="submit" value="MY PROFILE" class="nav-link gig-tab active" id="my_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'my_subscription' %}">
-                <div class="tab-pane active" id="my_subscription" role="tabpanel" aria-labelledby="my_subscription_tab">
-                </div>
-                <input type="submit" value="My Subscription" class="nav-link gig-tab active" id="my_subscription_tab"
-                    data-bs-toggle="tab" data-bs-target="#my_subscription" type="tab-button" role="tab" />
+            <form action="{% url 'user_subscription' %}">
+                <input type="submit" value="SUBSCRIPTION" class="nav-link gig-tab" id="user_subscription_tab"
+                    data-bs-toggle="tab" data-bs-target="#user_subscription" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'user_membership' %}">
+                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="user_membership_tab"
+                    data-bs-toggle="tab" data-bs-target="#user_membership" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'password_change' %}">
+                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab"
+                    data-bs-toggle="tab" data-bs-target="#password_change" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'payment_histrory' %}">
-                <input type="submit" value="Payment History" class="nav-link gig-tab" id="payment_histrory_tab"
+                <input type="submit" value="PAYMENT HISTORY" class="nav-link gig-tab" id="payment_histrory_tab"
                     data-bs-toggle="tab" data-bs-target="#payment_histrory" type="tab-button" role="tab" />
             </form>
         </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'membership_profile' %}">
+                <input type="submit" value="MEMBERSHIP PROFILE" class="nav-link gig-tab" id="membership_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
+            </form>
+        </li>
+
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" id="subscriptions" role="tabpanel" aria-labelledby="subscriptions_tab"></div>
-        <div class="tab-pane active" id="my_subscription" role="tabpanel" aria-labelledby="my_subscription_tab"></div>
+        <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+
+        <div class="tab-pane" id="user_subscription" role="tabpanel" aria-labelledby="user_subscription_tab"></div>
+
+        <div class="tab-pane" id="user_membership" role="tabpanel" aria-labelledby="user_membership_tab"></div>
+
+        <div class="tab-pane" id="password_change" role="tabpanel" aria-labelledby="password_change_tab"></div>
+
         <div class="tab-pane" id="payment_histrory" role="tabpanel" aria-labelledby="payment_histrory_tab"></div>
+
+
+        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
+
     </div>
 </div>
 
@@ -40,65 +73,7 @@
 
 {% block content %}
 
-<style>
-    .profile-card {
-        width: 140px;
-        border-radius: 1px;
-    }
 
-    .card-link,
-    .btn {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
-        font-size: medium !important;
-        height: 40px;
-        font-weight: bolder;
-        padding-right: 15px;
-        border-radius: 1px;
-        padding-left: 15px;
-        text-decoration: none;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .btn:hover,
-    .btn:active,
-    .btn:focus {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    /*
-    .card-header {
-        background-color: white;
-    }
-
-    .card-title {
-        font-size: large;
-        font-weight: bolder;
-        padding: auto;
-        color: rgba(9, 143, 221, 0.9);
-    }
-
-
-    .gig-text {
-        font-size: medium;
-        color: rgb(5, 5, 5);
-    }
-
-    
-.card-body {
-        padding: 20px;
-    }
-*/
-    label {
-        display: none;
-    }
-</style>
 
 <div class="container-fluid">
     <br>
@@ -125,7 +100,9 @@
                                 </g>-->
                             </svg>
                             <div class="description">
-                                <h3>Basic plan</h3>
+                                <h3>Your Plan</h3>
+                                <p>{{ selected_membership }}</p>
+                                <p>€ {{ selected_membership.monthly_price }}/month</p>
                                 <h5>$10.00 / month</h5>
                             </div>
                         </div>

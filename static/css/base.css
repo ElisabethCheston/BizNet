@@ -389,7 +389,7 @@ span.btn-sub {
   font-size: 14px;
   color:#1f53fc;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .button-sub {
       display: none;
   }

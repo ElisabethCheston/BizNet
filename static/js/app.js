@@ -1,5 +1,5 @@
 // -- Fetch API to make a AJAX request  -- //
-
+/*
 console.log("Sanity Check!");
 
 // Get Stripe publishable key
@@ -7,7 +7,7 @@ fetch("/config/")
   .then((result) => result.json())
   .then((data) => {
     // Initialize Stripe.js
-    const stripe = Stripe(data.publicKey);
+    const stripe = stripe(data.publicKey);
 
     // new
 
@@ -32,6 +32,7 @@ fetch("/config/")
       });
     }
   });
+*/
 
 
 // -- For card info box to collaps. From Bootstraps -- //

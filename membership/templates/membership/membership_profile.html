@@ -2,12 +2,16 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/membership.css' %}">
+<link rel="stylesheet" href="{% static 'membership/css/membership.css' %}">
 {% endblock %}
 
+{% block scripts %}
+<script src="{% static 'membership/js/membership.js' %}" defer></script>
+{% endblock scripts %}
+
 {% block page_header %}
-<!-- Profile tab links -->
-<!--<div class="tab-container">
+<!--  Tab Links -->
+<div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'profile_details' %}">
@@ -16,9 +20,15 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'profile_edit' %}">
-                <input type="submit" value="EDIT PROFILE" class="nav-link gig-tab" id="edit_profile_tab"
-                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
+            <form action="{% url 'user_subscription' %}">
+                <input type="submit" value="SUBSCRIPTION" class="nav-link gig-tab" id="user_subscription_tab"
+                    data-bs-toggle="tab" data-bs-target="#user_subscription" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'user_membership' %}">
+                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="user_membership_tab"
+                    data-bs-toggle="tab" data-bs-target="#user_membership" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
@@ -28,8 +38,14 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
+            <form action="{% url 'payment_histrory' %}">
+                <input type="submit" value="PAYMENT HISTORY" class="nav-link gig-tab" id="payment_histrory_tab"
+                    data-bs-toggle="tab" data-bs-target="#payment_histrory" type="tab-button" role="tab" />
+            </form>
+        </li>
+        <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
-                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
+                <input type="submit" value="MEMBERSHIP PROFILE" class="nav-link gig-tab" id="membership_profile_tab"
                     data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
             </form>
         </li>
@@ -38,14 +54,19 @@
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
 
-        <div class="tab-pane" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile_tab"></div>
+        <div class="tab-pane" id="user_subscription" role="tabpanel" aria-labelledby="user_subscription_tab"></div>
+
+        <div class="tab-pane" id="user_membership" role="tabpanel" aria-labelledby="user_membership_tab"></div>
 
         <div class="tab-pane" id="password_change" role="tabpanel" aria-labelledby="password_change_tab"></div>
+
+        <div class="tab-pane" id="payment_histrory" role="tabpanel" aria-labelledby="payment_histrory_tab"></div>
+
 
         <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
-</div>-->
+</div>
 {% endblock %}
 
 
@@ -94,7 +115,7 @@
                                             <br>
                                             <br>
                                             <form action="/create-checkout-session" method="POST">
-                                                <input type="hidden" name="lookup_key"
+                                                <input type="hidden" id="freePrice" name="lookup_key"
                                                 value="{{PRICE_ID_1}}" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
@@ -126,7 +147,7 @@
                                             </ul>
                                             <br>
                                             <form action="/create-checkout-session" method="POST">
-                                                <input type="hidden" name="lookup_key"
+                                                <input type="hidden" id="basicPrice" name="lookup_key"
                                                 value="{{PRICE_ID_2}}" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
@@ -160,7 +181,7 @@
                                                 </li>
                                             </ul>
                                             <form action="/create-checkout-session" method="POST">
-                                                <input type="hidden" name="lookup_key"
+                                                <input type="hidden" id="proPrice" name="lookup_key"
                                                     value="{{PRICE_ID_3}}" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
@@ -249,3 +270,4 @@
     <br>
 </div>
 {% endblock %}
+
