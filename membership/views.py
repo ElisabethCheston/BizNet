@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.conf import settings
 from django.shortcuts import render
 from django.views import View
@@ -15,7 +15,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @csrf_exempt
 def stripe_config(request):
     if request.method == "GET":
-        stripe_config = {"publicKey": settings.STRIPE_PUBLISHABLE_KEY}
+        stripe_config = {"publicKey": settings.STRIPE_PUBLIC_KEY}
         return JsonResponse(stripe_config, safe=True)
 
 
@@ -53,6 +53,15 @@ def payment_histrory(request):
         'membership': membership
     }
     return render(request, template, context)
+
+# Subscription responces
+def memership_success(request):
+    template = 'membership/profile_details.html'
+    return render(request, template)
+
+def memership_cancel(request):
+    template = 'membership/profile_details.html'
+    return render(request, template)
 
 
 """
@@ -120,3 +129,44 @@ class CreateCheckoutSessionView(View):
         # print(e)
         return "Server error", 500
 """
+
+# Stripe Webhook
+
+@csrf_exempt
+def stripe_webhook(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+    payload = request.body
+    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    # handle the checkout.session.completed event
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+
+        # Fetch all the required data from session
+        client_reference_id = session.get('client_reference_id')
+        stripe_customer_id = session.get('customer')
+        stripe_subscription_id = session.get("subscription")
+
+        # Get the user and create a new StripeCustomer
+        user = User.objects.get(id = client_reference_id)
+        StripeCustomer.objects.create(
+            user=user,
+            stripeCustomerId=stripe_customer_id,
+            stripeSubscriptionId=stripe_subscription_id,
+        )
+        print(user.username + " just subscrbed.")
+
+    return HttpResponse(status=200)
