@@ -11,7 +11,7 @@ h1, h5 {
 .btn {
     color: white !important;
     border-color: rgba(96, 185, 236, 0.2);
-    background-color:#1f53fc !important;
+    background-color:#406daf;
     font-size: medium !important;
     border-radius: 1px;
     height: 40px;
@@ -48,7 +48,7 @@ label {
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: #557AC4;
+        background-color: #406daf;
         font-size: medium !important;
         height: 40px;
         font-weight: bolder;
@@ -66,7 +66,7 @@ label {
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: #6e85b4;
+        background-color: #4b7ac0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -85,7 +85,7 @@ label {
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: #557AC4;
+        background-color: #4b7ac0;
         font-size: medium !important;
         height: 40px;
         font-weight: bolder;
@@ -103,7 +103,7 @@ label {
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color:#768fc0;
+        background-color:#4b7ac0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -134,122 +134,3 @@ label {
         display: none;
     }
 
-    /* Payment History */
-
-    .profile-card {
-        width: 140px;
-        border-radius: 1px;
-    }
-
-    .card-link,
-    .btn {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: #557AC4;
-        font-size: medium !important;
-        height: 40px;
-        font-weight: bolder;
-        padding-right: 15px;
-        border-radius: 1px;
-        padding-left: 15px;
-        text-decoration: none;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .btn:hover,
-    .btn:active,
-    .btn:focus {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: #7890be;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    /*
-    .card-header {
-        background-color: white;
-    }
-
-    .card-title {
-        font-size: large;
-        font-weight: bolder;
-        padding: auto;
-        color: rgba(9, 143, 221, 0.9);
-    }
-
-
-    .gig-text {
-        font-size: medium;
-        color: rgb(5, 5, 5);
-    }
-
-    
-.card-body {
-        padding: 20px;
-    }
-*/
-    label {
-        display: none;
-    }
-
-    /* Success and Cancelation */
-
-    .profile-card {
-        width: 140px;
-        border-radius: 1px;
-    }
-
-    .card-link,
-    .btn {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: #557AC4;
-        font-size: medium !important;
-        height: 40px;
-        font-weight: bolder;
-        padding-right: 15px;
-        border-radius: 1px;
-        padding-left: 15px;
-        text-decoration: none;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .btn:hover,
-    .btn:active,
-    .btn:focus {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: #849bc9;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    /*
-    .card-header {
-        background-color: white;
-    }
-
-    .card-title {
-        font-size: large;
-        font-weight: bolder;
-        padding: auto;
-        color: rgba(9, 143, 221, 0.9);
-    }
-
-
-    .gig-text {
-        font-size: medium;
-        color: rgb(5, 5, 5);
-    }
-
-    
-.card-body {
-        padding: 20px;
-    }
-*/
-    label {
-        display: none;
-    }

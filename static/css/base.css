@@ -78,7 +78,7 @@ a, i {
 .fa-universal-access,
 .fa-users,
 #profileTab {
-  color:#557AC4;
+  color:#406daf;
 }
 
 .card-title:hover,
@@ -149,7 +149,7 @@ color: rgba(170, 173, 175, 0.99) !important;
 /* FONT */
 
 h1, h2, h3, h4, h5 {
-  color:#557AC4;
+  color:#406daf;
 }
 h6, p {
   color: rgba(2, 2, 2, 0.8);
@@ -287,7 +287,7 @@ label {
 .btn {
   color: white;
   border-color: rgba(210, 233, 247, 0.2);
-  background-color:#557AC4;
+  background-color:#406daf;
   font-size: medium !important;
   border-radius: 1px;
   font-weight: bold;
@@ -387,7 +387,7 @@ label {
   background-color: none;
   font-family: Poppins;
   font-size: 14px;
-  color: #557AC4;
+  color: #406daf;
 }
 @media screen and (max-width: 600px) {
   .button-sub {
@@ -411,7 +411,7 @@ label {
 .wrapper .icon {
   position: relative;
   font-size: 24px;
-  color: rgb(119, 165, 235, 0.99);
+  color: #406daf;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -465,7 +465,7 @@ label {
 .wrapper .fa-universal-access:hover .tooltip::before,
 .wrapper .envelope:hover .tooltip,
 .wrapper .envelope:hover .tooltip::before {
-  color: #557AC4;
+  color: #406daf;
   font-weight: bolder;
   font-size: medium;
   border-radius: 60%;
