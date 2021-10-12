@@ -2,11 +2,14 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/membership.css' %}">
+<link rel="stylesheet" href="{% static 'membership/css/membership.css' %}">
 {% endblock %}
 
-{% block page_header %}
+{% block scripts %}
+<script src="{% static 'membership/js/membership.js' %}" defer></script>
+{% endblock scripts %}
 
+{% block page_header %}
 <!--  Tab Links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
@@ -64,7 +67,6 @@
 
     </div>
 </div>
-
 {% endblock %}
 
 
@@ -114,7 +116,7 @@
                                             <br>
                                             <form action="/create-checkout-session" method="POST">
                                                 <input type="hidden" name="lookup_key"
-                                                    value="// TODO: {{price_1JiLjpGb1tfsAqedzLZoPJv3}} replace with `price.lookup_key`" />
+                                                    value="// TODO: {{PRICE_ID_1}} replace with `price.lookup_key`" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
                                         </div>
@@ -146,7 +148,7 @@
                                             <br>
                                             <form action="/create-checkout-session" method="POST">
                                                 <input type="hidden" name="lookup_key"
-                                                    value="// TODO: {{price_1JiLkeGb1tfsAqed9nFLLD3X}} replace with `price.lookup_key`" />
+                                                    value="// TODO: {{PRICE_ID_2}} replace with `price.lookup_key`" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
                                         </div>
@@ -180,7 +182,7 @@
                                             </ul>
                                             <form action="/create-checkout-session" method="POST">
                                                 <input type="hidden" name="lookup_key"
-                                                    value="// TODO: {{price_1JiLlQGb1tfsAqedMa2Uz8Lx}} replace with `price.lookup_key`" />
+                                                    value="{{PRICE_ID_3}} replace with `price.lookup_key`" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
                                         </div>

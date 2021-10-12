@@ -9,7 +9,7 @@ urlpatterns = [
     path('', views.membership_profile, name='membership_profile'),
     path('subscriptions/', views.subscriptions, name='subscriptions'),
     path('user_subscription/', views.get_user_subscription, name='user_subscription'),
-    path('user_membership/', views.get_user_membership, name='user_membership'),
+    path('user_membership/', views.user_membership, name='user_membership'),
     path('', MembershipSelectView.as_view(), name='my_membership'),
 
 

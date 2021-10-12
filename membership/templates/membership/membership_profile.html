@@ -74,19 +74,15 @@
 
 <div class="container-fluid">
     <br>
-    <br>
-    <br>
 
     <!-- Userprofile cards -->
     <div class="row">
         <div class="d-flex text-center flex-wrap">
 
-
-
             <div class="row">
                 <div class="col-md-10 col-xl-8 mx-auto">
-                    <h1 class="text-center">We have a monthly plan for everyone</h1>
-                    <p class="lead text-center mb-2">Whether you're a business or an individual.</p>
+                    <h1 class="text-center"><strong>We have a monthly plan for everyone.</strong></h1>
+                    <p class="lead text-center mb-2"><strong>Whether you're a business or an individual.</strong></p>
 
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="monthly">
@@ -183,8 +179,24 @@
                                             <form action="/create-checkout-session" method="POST">
                                                 <input type="hidden" id="proPrice" name="lookup_key"
                                                     value="{{PRICE_ID_3}}" />
-                                                <button class="btn" id="submitBtn" type="submit">Subscribe</button>
+                                                <button class="pushable btn-grad text-center sm" id="submitBtn" type="submit">
+                                                    <span class="front">
+                                                        Subscribe
+                                                    </span>
+                                                </button>
                                             </form>
+
+                                            <!--<div class="row justify-content-center">
+                                                <form class="col-4" action="{% url 'profile_edit' %}">
+                                                    <button type="submit" class="pushable btn-grad text-center">
+                                                        <span class="front">
+                                                        EDIT
+                                                    </span>
+                                                </button>
+                                                </form>
+                                            </div>-->
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -269,5 +281,18 @@
     <br>
     <br>
 </div>
+
+<script>
+/*
+    document.addEventListener('DOMContentLoaded', async () => {
+  let searchParams = new URLSearchParams(window.location.search);
+  if (searchParams.has('session_id')) {
+    const session_id = searchParams.get('session_id');
+    document.getElementById('session-id').setAttribute('value', session_id);
+  }
+});
+*/
+</script>
+
 {% endblock %}
 

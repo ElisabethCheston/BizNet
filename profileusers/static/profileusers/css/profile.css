@@ -1,21 +1,4 @@
-/*
-#profile-update-form .form-control {
-    color: #000;
-}
 
-#profile-update-form input::placeholder {
-    color: #aab7c4;
-}
-
-#id_default_country,
-#id_default_country option:not(:first-child) {
-    color: #000;
-}
-
-#id_default_country option:first-child {
-    color: #aab7c4;
-}
-*/
 /* Images */
 
 /* js modal */
@@ -31,43 +14,12 @@
   .profile-img {
     width: 250px;
   }
-/*
-  .center {
-    margin: auto;
-    width: 80%;
-    padding: 15px;
+
+  .btn {
+    color: white !important;
+    background-color: rgb(144, 172, 224) !important;
+    font-size: medium;
+    border-radius: 1px;
   }
 
-.card {
-    padding: 3%;
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-}
-
-.card:hover {
-    padding: 3%;
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3%;
-    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.4);
-}
-
-.container {
-    margin: none !important;
-    padding-top: 0% !important;
-    padding-bottom: 2% !important;
-    padding: 3%;
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3%;
-    box-shadow: 0 15px 15px rgba(240, 239, 239, 0.6);
-}
-*/
+ 

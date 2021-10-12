@@ -48,7 +48,7 @@ label {
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
+        background-color: #557AC4;
         font-size: medium !important;
         height: 40px;
         font-weight: bolder;
@@ -66,7 +66,7 @@ label {
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
+        background-color: #6e85b4;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -85,7 +85,7 @@ label {
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
+        background-color: #557AC4;
         font-size: medium !important;
         height: 40px;
         font-weight: bolder;
@@ -103,7 +103,7 @@ label {
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
+        background-color:#768fc0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -145,7 +145,7 @@ label {
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
+        background-color: #557AC4;
         font-size: medium !important;
         height: 40px;
         font-weight: bolder;
@@ -163,7 +163,7 @@ label {
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
+        background-color: #7890be;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -205,7 +205,7 @@ label {
     .btn {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;
+        background-color: #557AC4;
         font-size: medium !important;
         height: 40px;
         font-weight: bolder;
@@ -223,7 +223,7 @@ label {
     .btn:focus {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
+        background-color: #849bc9;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 

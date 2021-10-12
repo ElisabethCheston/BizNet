@@ -44,7 +44,7 @@ def subscriptions(request):
     return render(request, template, context)
 
 
-def get_user_membership(request):
+def user_membership(request):
     user_membership_qs = UserMembership.objects.filter(user=request.user)
     if user_membership_qs.exists():
         return user_membership_qs.first()
@@ -108,6 +108,32 @@ def payment_histrory(request):
     }
     return render(request, template, context)
 
+"""
+def create_checkout_session(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price': '{{PRICE_ID_1}}',
+            'quantity': 1,
+        }, {
+            'price': '{{PRICE_ID_2}}',
+            'quantity': 1,
+        }, {
+            'price': '{{PRICE_ID_3}}',
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url='membership/templates/membership/membership_success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url='membership/templates/membership/membership_cancel',
+    )
+    return render(request, 'membership_profile,html')
+
+context = {
+    'session_id': session.id,
+    'stripe_public_key': settings.STRIPE_PUBLIC_KEY
+}
+"""
 # -- SUBSCRIPTION RESPONCES -- #
 def memership_success(request):
     template = 'membership/profile_details.html'
@@ -156,8 +182,8 @@ def create_checkout_session():
     except Exception as e:
         print(e)
         return "Server error", 500
-"""
-"""
+"""        
+
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == "GET":
@@ -168,23 +194,23 @@ def create_checkout_session(request):
             lookup_keys=[request.form['lookup_key']],
             expand=['data.product']
         )
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=[{
-                'price': '{{PRICE_ID_1}}',
-                'quantity': 1,
-            }, {
-                'price': '{{PRICE_ID_2}}',
-                'quantity': 1,
-            }, {
-                'price': '{{PRICE_ID_3}}',
-                'quantity': 1,
-            }],
-        )
-        return JsonResponse({"sessionId": checkout_session["id"]})
-    except Exception as e:
-        return JsonResponse({"error": str(e)})
-"""
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price': '{{PRICE_ID_1}}',
+                    'quantity': 1,
+                }, {
+                    'price': '{{PRICE_ID_2}}',
+                    'quantity': 1,
+                }, {
+                    'price': '{{PRICE_ID_3}}',
+                    'quantity': 1,
+                }],
+            )
+            return JsonResponse({"sessionId": checkout_session["id"]})
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+
 
 """
 class CreateCheckoutSessionView(View):

@@ -91,13 +91,15 @@
 <body>
 
     <header class="container-fluid fixed-top">
-        <div id="topnav" class="row justify-content-between align-items-center navbar-light bg-dark">
+        <!--<div id="topnav" class="row justify-content-between align-items-center navbar-light bg-dark">-->
+        <div id="topnav" class="row justify-content-between align-items-center">
 
             <!-- BizNet Logo -->
             <div class="col-6 col-lg-4 text-lg-left">
                 <!-- my-auto py-1 py-lg-0 -->
                 <!--<a href="{% url 'home' %}" class="nav-link main-logo-link">-->
-                <img src="{% static 'images/logobiznet.png' %}" alt="" width="210" height="50" class="logo img-fluid">
+                <img src="{% static 'images/logobiznetlight4.png' %}" alt="" width="210" height="50"
+                    class="logo img-fluid">
                 <!--<img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
                     alt="" width="210" height="50" class="logo img-fluid">
                 </a>-->
@@ -105,16 +107,16 @@
             <!-- Top navbar links  -->
             <div class="col-6 col-lg-4 wrapper box-right d-flex justify-content-end">
 
-                <a id="subscription" class=" btn-sub justify-content-around" href="{% url 'membership_profile' %}"
-                    name="SUBSCRIPTION">
-                    <span class="button-sub mt-2">SUBSCRIPTION</span>
-                    <i class="fas fa-universal-access fa-2x" style="font-size:35px; vertical-align: middle;"></i>
+                <a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'membership_profile' %}">
+                    <span class="button-sub"><strong>SUBSCRIPTION</strong></span>
+                    <img src="{% static 'images/arrowup.png' %}" width="35" height="35" class="logo img-fluid">
+                    <!--<i class="fas fa-universal-access fa-2x" style="font-size:35px; vertical-align: middle;"></i>-->
                 </a>
 
                 <!-- Dropdown button-->
-                <a class="text-black nav-link mt-1" href="#" id="settings" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-cog fa-2x mt-1"></i>
+                <a class="nav-link" href="#" id="settings" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fas fa-cog fa-2x"></i>
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="user-options">
                     {% if request.user.is_authenticated %}
@@ -158,7 +160,7 @@
 
 
     <!-- Fixed footer nav -->
-    <nav class="navbar fixed-bottom navbar-light bg-dark nav-2">
+    <nav id="bottom-nav" class="navbar fixed-bottom">
         <div class="container-fluid wrapper">
 
             {% if user.is_authenticated %}

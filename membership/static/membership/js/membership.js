@@ -21,9 +21,6 @@ fetch("config/")
     const proPriceInput = document.querySelector('#proPrice');
     proPriceInput.value = proPrice;
 
-
-    // new
-/*
     // Event Handler
     let submitBtn = document.querySelector("#submitBtn");
     if (submitBtn != null) {
@@ -37,13 +34,13 @@ fetch("config/")
                 console.log(data);
 
             // Redirect to Stripe Checkout
-                return stripe.redirectToCheckout({ sessionId: data.sessionId });
+            return stripe.redirectToCheckout({ sessionId: session_id });
             })
             .then((res) => {
                 console.log(res);
             });
         });
-    } */
+    }
 });
 
 // -- FETCH ERRORS --//

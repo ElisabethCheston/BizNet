@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'membership/css/membership.css' %}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'membership/js/membership.js' %}" defer></script>
+{% endblock scripts %}
 
 {% block page_header %}
-
 <!--  Tab Links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
@@ -61,7 +67,6 @@
 
     </div>
 </div>
-
 {% endblock %}
 
 {% block content %}
