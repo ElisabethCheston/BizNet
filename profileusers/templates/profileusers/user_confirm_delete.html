@@ -44,80 +44,10 @@
 {% endblock %}
 
 {% block content %}
-<style>
-    /*
-    .btn {
-        color: white;
-        /*border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(9, 143, 221, 0.9) !important;*/
-        font-size: small !important;
-        height: 40px;
-        font-weight: bold;
-        padding-right: 10px;
-        padding-left: 10px;
-        border-radius: 1px;
-        text-decoration: none;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-*/
-    /*
-.btn-delete {
-    background-color: rgba(9, 143, 221, 0.9) !important;
-}
-
-.btn-cancel {
-    padding-top: 10px;
-}
-*/
-/*
-    .btn:hover,
-    .btn:active,
-    .btn:focus {
-        color: white;
-        border-color: rgba(117, 119, 121, 0.2);
-        background-color: rgba(163, 165, 165, 0.9) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-delete {
-        background-color: rgba(192, 37, 37, 0.9) !important;
-        color: white;
-    }
-
-    .btn-cancel {
-        background-color: rgba(120, 128, 133, 0.9) !important;
-        color: white;
-        padding-top: 10px;
-    }
-
-    .card-header {
-        /* height: 80px; */
-        background-color: white;
-    }
-
-    .card-title,
-    .card-teext {
-        font-size: large;
-        font-weight: bolder;
-        padding: auto;
-        color: rgba(9, 143, 221, 0.9);
-    }
-
-    .card-body {
-        padding: 20px;
-    }
-*/
-    /*
-    label {
-        display: none;
-    }
-*/
-</style>
 
 <div class="container-fluid" id="justify-center">
-
+<br>
+<br>
     <!-- Edit Profile -->
     <div class="card" style="max-width: 840px;">
 
@@ -128,7 +58,7 @@
                     {% csrf_token %}
 
                     <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">DELETE USER ACCOUNT</legend>
+                        <legend class="border-bottom mb-4 text-center">DELETE USER ACCOUNT</legend>
                         <h6 class="text-center">Are you sure you want to delete the account for:</h6><br>
                         <h4 class="text-center"><strong>"{{user.first_name}} {{user.last_name}}"</strong></h4>
                     </fieldset>
