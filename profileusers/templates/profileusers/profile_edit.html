@@ -50,6 +50,11 @@
 {% block content %}
 {% if user.is_authenticated %}
 
+<style>
+    input#id_description.textinput {
+        height: 150px;
+    }
+</style>
 <div class="container-fluid" id="justify-center">
     <br>
 
@@ -72,22 +77,24 @@
                         {{ profileform|crispy }}-->
 
                                 <div class="card-body">
-                                    <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
-                                    <h6 class="card-text">City: &nbsp; {{profileform.picture}}</h6>
+                                    <h4 class="card-title">{{user.first_name}} {{user.last_name}}</h4>
+                                    <br>
+                                    <h6 class="card-title">{{profileform.picture}}</h6>
+                                    <br>
                                     <h6 class="card-title">Title: &nbsp; {{profileform.title}}</h6>
                                     <h6 class="card-title">Company: &nbsp; {{profileform.company_name}}</h6>
-                                    <h6 class="card-text">City: &nbsp; {{profileform.city}}</h6>
-                                    <h6 class="card-text">Country: &nbsp; {{profileform.country}}</h6>
+                                    <h6 class="card-title">City: &nbsp; {{profileform.city}}</h6>
+                                    <h6 class="card-title">Country: &nbsp; {{profileform.country}}</h6>
                                     <br>
                                     <h6 class="card-title">Industry: &nbsp; {{profileform.industry}}</h6>
-                                    <h6 class="card-text">Profession: &nbsp; {{profileform.profession}}</h6>
-                                    <p class="card-text">Description: &nbsp; {{profileform.description}}</p>
+                                    <h6 class="card-title">Profession: &nbsp; {{profileform.profession}}</h6>
+                                    <h6 class="card-title">Description: &nbsp; {{profileform.description}}</h6>
                                     <h6 class="card-title">Employment Status: &nbsp; {{profileform.employment}}</h6>
                                     <h6 class="card-title">Purpose: &nbsp; {{profileform.status}}</h6>
                                     <br>
-                                    <h5 class="card-title">Matching Preferences:</h5>
-                                    <h6 class="card-text">Business: &nbsp; {{profileform.business}}</h6>
-                                    <h6 class="card-text">Location: &nbsp; {{profileform.locations}}</h6>
+                                    <h5 class="card-title">Matching Preferences</h5>
+                                    <h6 class="card-title">Business: &nbsp; {{profileform.business}}</h6>
+                                    <h6 class="card-title">Location: &nbsp; {{profileform.locations}}</h6>
 
                                     <br>
                                 </div>
