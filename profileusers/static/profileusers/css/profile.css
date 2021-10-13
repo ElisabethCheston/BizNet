@@ -2,6 +2,7 @@
 /* Images */
 
 /* js modal */
+/*
 .not-visible {
   display: none;
 }
@@ -14,7 +15,7 @@
   .profile-img {
     width: 250px;
   }
-
+*/
   .btn {
     color: white !important;
     background-color: #406daf;
@@ -33,7 +34,7 @@
   }
 
   /* LAYOUT */
-
+/*
   .form-container {
     height: 80%;
     width: 96%;
@@ -56,7 +57,7 @@
   li {
     display: none;
   }
-
+*/
   h6 {
     text-align: left;
     font-family: Verdana, Geneva, Tahoma, sans-serif !important;
@@ -75,3 +76,9 @@
     margin: auto;
     padding: 2px;
   }
+
+  /* Form View for Descriptions */
+
+input#id_description.textinput.textinput.form-control {
+    height: 150px;
+}
