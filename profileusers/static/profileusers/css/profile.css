@@ -22,4 +22,56 @@
     border-radius: 1px;
   }
 
- 
+  #justify-center {
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+    border: none !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* LAYOUT */
+
+  .form-container {
+    height: 80%;
+    width: 96%;
+    margin: auto;
+    padding-top: 15%;
+    padding-bottom: 10%;
+    align-items: center;
+  }
+
+  label {
+    font-weight: bold;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  li::marker {
+    color: transparent;
+  }
+
+  li {
+    display: none;
+  }
+
+  h6 {
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    font-weight: 500;
+    font-size: small;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: medium !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    font-weight: bold !important;
+  }
+
+  .password-info {
+    margin: auto;
+    padding: 2px;
+  }

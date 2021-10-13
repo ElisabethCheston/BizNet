@@ -22,12 +22,6 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'profile_edit' %}">
-                <input type="submit" value="EDIT PROFILE" class="nav-link gig-tab" id="edit_profile_tab"
-                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
             <form action="{% url 'password_change' %}">
                 <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab"
                     data-bs-toggle="tab" data-bs-target="#password_change" type="tab-button" role="tab" />
@@ -44,7 +38,6 @@
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
 
-        <div class="tab-pane" id="edit_profile" role="tabpanel" aria-labelledby="edit_profile_tab"></div>
 
         <div class="tab-pane" id="password_change" role="tabpanel" aria-labelledby="password_change_tab"></div>
 
@@ -56,37 +49,6 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<style>
-    /*
-    .btn {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        font-size: medium !important;
-        border-radius: 1px;
-        font-weight: bold;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .btn-edit {
-        background-color: rgba(9, 143, 221, 0.9) !important;
-    }
-
-    .btn:hover,
-    .btn:active,
-    .btn:focus {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    label {
-        display: none;
-    }
-    */
-</style>
 
 <div class="container-fluid" id="justify-center">
     <br>
