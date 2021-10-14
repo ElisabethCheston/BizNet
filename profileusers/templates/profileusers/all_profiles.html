@@ -57,7 +57,7 @@
         border-radius: 1px;
         padding-top: 5px;
     }
-
+/*
     .card-link {
         color: white;
         border-color: rgba(96, 185, 236, 0.2);
@@ -114,10 +114,11 @@
 .card-body {
         padding: 20px;
     }
-*/
+
     label {
         display: none;
     }
+    */
 </style>
 
 <div class="container-fluid" id="justify-center">
@@ -137,7 +138,7 @@
                 <div class="card-body text-center">
                     <!-- User Name -->
                     <div class="col-12 text-center">
-                        <a class=" card-title text-center" href="{% url 'profile_details' %}">
+                        <a class=" card-title text-center" href="{% url 'profile_details' profileuser.pk %}">
                             <p class="text-center"><strong>{{profileuser.first_name}} {{profileuser.last_name}}</strong>
                             </p>
                         </a>
@@ -153,8 +154,8 @@
 
                 <!-- Card Footer Button-->
                 <div class="text-center card-footer">
-                    <a href="#" class="card-link">Add</a>
-                    <a href="#" class="card-link">Hide</a>
+                    <a class="btn" type="button" href="{% url 'profile_details' profileuser.pk %}" class="">View</a>
+                    <!--<a href="#" class="card-link">Hide</a>-->
                 </div>
 
             </div>

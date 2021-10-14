@@ -22,7 +22,12 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, View # DeleteView
+from django.views.generic import (
+    TemplateView, 
+    View, 
+    ListView,
+    DetailView,
+)
 
 
 # PASSWORD USAGE
@@ -205,7 +210,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('profile_details')
+            return redirect('all_profiles')
         else:
             # messages.info(request, 'Username or Password is incorrect!')
             return redirect('login_page')
@@ -248,6 +253,38 @@ def all_profiles(request):
     }
     return render(request, template, context)
 """
+class ProfilesListView(ListView):
+    model = Profileuser
+    template_name = 'profileusers/all_profiles.html'
+    context_object_name = 'profileusers'
+
+    # override the queryset method
+    def get_queryset(self):
+        queryset = Profileuser.objects.order_by('last_name')
+        return Profileuser.objects.order_by('last_name').exclude(username=self.request.user)
+
+
+class NetworkProfileView(DetailView):
+    model = Profileuser
+    template_name = 'profileusers/profile_details.html'
+    # context_object_name = 'profileusers'
+
+    def get_user_profile(self, **kwargs):
+        pk = self. kwargs.get('pk') 
+        view_profile = Profileuser.objects.get(pk=pk)
+        return view_profile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        view_profile = self.get_object()
+        my_profile = Profileuser.objects.get(username=self.request.user)
+        if view_profile in my_profile.following.all():
+            follow = True
+        else:
+            follow = False
+
+        context['follow'] = follow
+        return context
 
 # @login_required
 def profile_details(request):

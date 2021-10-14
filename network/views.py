@@ -15,7 +15,7 @@ from django.views.generic import (
 # Create your views here.
 
 # ALL USERS
-
+"""
 class ProfilesListView(ListView):
     model = Profileuser
     template_name = 'network/all_profiles.html'
@@ -29,11 +29,26 @@ class ProfilesListView(ListView):
 
 class NetworkProfileView(DetailView):
     model = Profileuser
-    template_name = 'network/network_profile_details.html'
+    template_name = 'profileusers/profile_details.html'
+    context_object_name = 'profileusers'
 
+    def get_user_profile(self, **kwargs):
+        pk = self. kwargs.get('pk') 
+        view_profile = Profileuser.objects.get(pk=pk)
+        return view_profile
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super(NetworkProfileView, self).get_context_data(**kwargs)
+        context['post_list'] = Profileuser.objects.filter(user__username__iexact=self.kwargs.get('username'))
+        return context
+"""
+"""
     def get_user_profile(self, username):   
         return get_object_or_404(User, pk=username)
      #I know pk=username is not correct. I am not sure what to put pk=?
+"""     
 """
   # I was able to get the writers other posts using the code below. I did not have to show this code for this question. But just to show you that the pk above has to be username. Or Else the code below won't work(I guess)        
     def get_context_data(self, **kwargs):

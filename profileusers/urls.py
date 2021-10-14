@@ -4,7 +4,9 @@ from django.urls import reverse_lazy
 from .views import PasswordsChangeView
 from . import views
 from .views import (
-    MyProfile,
+    # MyProfile,
+    ProfilesListView,
+    NetworkProfileView,
     # ProfileData,
     # ProfileDetailView,
     # ProfileDeleteView,
@@ -44,10 +46,13 @@ urlpatterns = [
 
     # PROFILEUSER
     # path('', views.all_profiles, name='profiles'),
-    path('my_profile/', MyProfile.as_view(), name='my_profile'),
+    # path('my_profile/', MyProfile.as_view(), name='my_profile'),
     # path('my_profile/', view.MyProfile, name='my_profile'),
     # path('profile_data/', ProfileData.as_view(), name='profile_data'),
     path('profile_delete/<pk>/', views.profile_delete, name='profile_delete'),
     path('profile_details/', views.profile_details, name='profile_details'),
     path('profile_edit/', views.profile_edit, name='profile_edit'),
+
+    path('', ProfilesListView.as_view(), name='all_profiles'),
+    path('<pk>/', NetworkProfileView.as_view(), name='profile_details'),
 ]
