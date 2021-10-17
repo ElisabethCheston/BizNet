@@ -73,7 +73,7 @@ def all_profiles(request):
 class UserDetailView(DetailView):
     model = Profileuser
 
-
+"""
 def network(request):
     # A view to return the network page 
 
@@ -81,9 +81,10 @@ def network(request):
 
 
 def myContacts(request):
-     A view to return the My Contacts page 
+    # A view to return the My Contacts page 
 
-    return render(request, 'network/contacts.html')
+    return render(request, 'network/my_contacts.html')
+
 """
 # CONTACTS
 
@@ -103,14 +104,14 @@ def my_contacts(request):
 
 
 def my_followers(request):
-    """ A view to return the My Contacts page """
+    # A view to return the My Contacts page ""
 
     return render(request, 'network/my_followers.html')
 
 
 # @login_required
 def following_ppl(request):
-    """ A view to return the My Contacts page """
+    # A view to return the My Contacts page 
     # pylint: disable=maybe-no-member
     profile = Profileuser.objects.get(username=request.user)
     template = 'network/my_contacts.html'
@@ -121,7 +122,7 @@ def following_ppl(request):
         # 'get_followers': get_followers,
     }
     return render(request, template, context)
-
+"""
 class ProfileData(View):
     def get(self, *args, **kwargs): # , *args, **kwargs
         # pylint: disable=maybe-no-member

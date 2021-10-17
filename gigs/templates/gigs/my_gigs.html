@@ -116,15 +116,18 @@
 
 <h4>hello</h4>
 <div class="container-fluid">
+    <br>
     <h6 class="small">My Gigs ({{ profile.num_gigs }}):</h6>
     <div class="row">
 
+       
         <!-- gig cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
-            {% for gig in profile.my_gigs %}
-
+<br>
             <div class="card">
                 <div class=" card-body">
+
+                    {% for gig in profile.my_gigs %}
 
                     <div class="row justify-content-between">
 
@@ -182,9 +185,19 @@
 
                     </div>
 
+                    {% endfor %}
+<br>
+                    <div class="row text-center">
+                        <p>Create a new gig:</p>
+                        <form action="{% url 'create_gig' %}">
+                            <input type="submit" value="CREATE GIG" class="btn" id="create_gig_tab"
+                                data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
+                        </form>
+                    </div>
+
+                    <br>
                 </div>
             </div>
-            {% endfor %}
             <br>
             <br>
             <br>

@@ -245,14 +245,14 @@ def loginRegisterPage(request):
 
 def follow_unfollow_profile(request):
     if request.method=='POST':
-        my_profile = Profileuser.objects.get(username=request.user)
+        user_profile = Profileuser.objects.get(username=request.user)
         pk = request.POST.get('profile_pk')
         profileuser = Profileuser.objects.get(pk=pk)
 
-        if profileuser.username in my_profile.following.all():
-            my_profile.following.remove(profileuser.username)
+        if profileuser.username in user_profile.following.all():
+            user_profile.following.remove(profileuser.username)
         else:
-            my_profile.following.add(profileuser.username)
+            user_profile.following.add(profileuser.username)
         return redirect(request.META.get('HTTP_REFERER'))
 
     return redirect('all_profiles')
@@ -282,8 +282,8 @@ class NetworkProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         view_profile = self.get_object()
-        my_profile = Profileuser.objects.get(username=self.request.user)
-        if view_profile in my_profile.following.all():
+        user_profile = Profileuser.objects.get(username=self.request.user)
+        if view_profile in user_profile.following.all():
             follow = True
         else:
             follow = False
