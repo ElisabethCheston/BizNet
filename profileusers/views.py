@@ -329,30 +329,6 @@ def profile_delete(request, pk):
         }
     return render(request, 'profileusers/user_confirm_delete.html', context)
 
-"""
-class ProfileDeleteView(DeleteView):
-    model = User
-    success_url = reverse_lazy('home')
-    template_name = 'user_confirm_delete'
-
-
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.user.delete()  # deleting the default "User" model
-        return HttpResponseRedirect(reverse('home'))
-"""
-
-"""
-class ProfileDeleteView(DeleteView):
-    model = Profileuser
-    success_url = reverse_lazy('home')
-    slug_field = "user__username"
-
-    def profile_delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.user.delete()  # deleting the default "User" model
-        return HttpResponseRedirect(reverse('home'))
-"""
 
 """
 # PROFILEUSER GIGS

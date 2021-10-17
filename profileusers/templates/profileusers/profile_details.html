@@ -206,10 +206,29 @@
 
                 <!-- Save Buttons -->
 
+                {% if follow %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_pk" value="{{object.pk}}">
+                    <button type="submit" class="btn follow-button">Unfollow</button>
+                </form>
+                {% else %}
                 <div class="row text-center">
                     <form class="col" action="{% url 'profile_edit' %}">
                         <button type="submit" class="btn">FOLLOW</button>
                     </form>
+                </div>
+                <br>
+                {% endif %}
+
+                <div class="card-body my-2">
+                    <h5>Have posted:</h5>
+                    {% for gig in profileuser.my_gigs %}
+                    <div class="link">
+                        <a href="{{ gig.get_absolute_url }}">{{ gig }}</a>
+                        
+                    </div>
+                    {% endfor %}
                 </div>
 
                 <br>
