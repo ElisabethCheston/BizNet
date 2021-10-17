@@ -18,7 +18,10 @@ body {
 .logo {
   display: url('/media/biznetname.png.jpg');
 }
-
+.modal,
+.follow_modal {
+  background-color: rgba(247, 245, 245, 0.01) !important;
+}
 
 /* NAVBAR */
 
@@ -34,6 +37,7 @@ body {
 .fa-cog,
 .fa-user,
 .fa-suitcase,
+.fa-user-plus,
 .fa-universal-access,
 .fa-users,
 #profileTab {
@@ -43,6 +47,7 @@ body {
 .card-title:hover,
 .fa-cog:hover,
 .fa-user:hover,
+.fa-user-plus:hover,
 .fa-suitcase:hover,
 .fa-universal-access:hover,
 .fa-users:hover,
@@ -50,6 +55,9 @@ body {
   color:#7e90b6;
 }
 
+.fa-user-plus {
+  font-size: xx-large;
+}
 #settings,
 #subscription {
   text-decoration: none;
