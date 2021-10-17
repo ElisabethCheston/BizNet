@@ -56,12 +56,14 @@
 
 
 <!-- Modal -->
-<div class="modal follow_modal fade" id="follow-btn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="follow-btnLabel" aria-hidden="true" style="font-size: large;">
+<div class="modal follow_modal fade" id="follow-btn" style="font-size: large;"
+data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="follow-btnLabel" aria-hidden="true">
+    <!-- -->
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: rgba(239, 241, 241, 0.85);">
             <div class="modal-header">
-                <h5 class="modal-title" id="follow-btnLabel"></h5>
+                <!--<h5 class="modal-title" id="follow-btnLabel">Follow:</h5>-->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <br>
@@ -69,34 +71,29 @@
             <div class="modal-body">
                 <div class="row text-center">
                     <i class="fas fa-user-plus"></i>
-                                        <br>
-                                        <br>
+                    <br>
+                    <br>
                     <div class="col">
                         Are you sure you want to follow {{ object }}?
                     </div>
 
                     <div class="actions">
-                        <form action="" method="POST">
+                        <form action="{% url 'follow_unfollow_profile' %}" method="POST">
                             {% csrf_token %}
-                            <input type="hidden" name="profile_pk" value="{{object.pk}}">
                             <br>
                             <div class="col">
+                                <input type="hidden" name="profile_pk" value={{object.pk}}>
                                 <button type="submit" id="follow-btn" class="btn">YES</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             </div>
-<br>
-<br>
-<br>
+                            <br>
+                            <br>
+                            <br>
                         </form>
                     </div>
 
                 </div>
-
             </div>
-            <!--<div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" id="follow-btn"  class="btn btn-primary">YES</button>
-            </div>-->
         </div>
     </div>
 </div>
@@ -261,23 +258,20 @@
 
                 <!-- Save Buttons -->
 
-                {% if follow %}
-                <form action="" method="POST">
+                {% if following %}
+                <form action="{% url 'follow_unfollow_profile' %}" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="profile_pk" value="{{object.pk}}">
+                    <input type="hidden" name="profile_pk" value={{profileuser.pk}}>
                     <button type="submit" class="btn follow-button">Unfollow</button>
                 </form>
                 {% else %}
                 <div class="row text-center">
                     <div class="col">
-                        <button type="submit" id="follow-btn" data-bs-toggle="modal" data-bs-target="#follow-btn"
-                            class="btn follow-button">FOLLOW</button>
-
+                        <button type="submit" id="follow-btn"
+                        data-bs-toggle="modal" data-bs-target="#follow-btn"
+                         class="btn follow-button">FOLLOW</button> <!-- -->
                     </div>
                 </div>
-
-
-
                 <br>
                 {% endif %}
 
@@ -307,8 +301,16 @@
 </div>
 
 <script>
+/*
+$(document).ready(function() {
+    $('#follow_btn').click(function() {
+        $('.basic.modal')
+            .modal('show')
+    });
+})
+*/
 
-    var exampleModal = document.getElementById('follow-bt')
+    var exampleModal = document.getElementById('follow-btn')
     exampleModal.addEventListener('show.bs.modal', function (event) {
         // Button that triggered the modal
         var button = event.relatedTarget

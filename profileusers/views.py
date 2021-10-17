@@ -242,17 +242,22 @@ def loginRegisterPage(request):
 
 # PROFILEUSERS
 
-"""
-@login_required
-def all_profiles(request):
-    # pylint: disable=maybe-no-member
-    profiles = Profileuser.objects.all()
-    template = 'profileusers/all_profiles.html'
-    context = {
-        'profiles': profiles,
-    }
-    return render(request, template, context)
-"""
+
+def follow_unfollow_profile(request):
+    if request.method=='POST':
+        my_profile = Profileuser.objects.get(username=request.user)
+        pk = request.POST.get('profile_pk')
+        profileuser = Profileuser.objects.get(pk=pk)
+
+        if profileuser.username in my_profile.following.all():
+            my_profile.following.remove(profileuser.username)
+        else:
+            my_profile.following.add(profileuser.username)
+        return redirect(request.META.get('HTTP_REFERER'))
+
+    return redirect('all_profiles')
+
+
 class ProfilesListView(ListView):
     model = Profileuser
     template_name = 'profileusers/all_profiles.html'

@@ -7,6 +7,7 @@ from .views import (
     # MyProfile,
     ProfilesListView,
     NetworkProfileView,
+    follow_unfollow_profile,
     # ProfileData,
     # ProfileDetailView,
     # ProfileDeleteView,
@@ -54,5 +55,6 @@ urlpatterns = [
     path('profile_edit/', views.profile_edit, name='profile_edit'),
 
     path('', ProfilesListView.as_view(), name='all_profiles'),
+    path('switch-follow/', follow_unfollow_profile, name='follow_unfollow_profile'),
     path('<pk>/', NetworkProfileView.as_view(), name='profile_details'),
 ]
