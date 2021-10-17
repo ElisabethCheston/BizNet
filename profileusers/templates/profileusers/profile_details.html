@@ -47,7 +47,6 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
 
 <div class="container-fluid" id="justify-center">
     <br>
@@ -55,16 +54,99 @@
     <div class="row">
         <div class="col-sm-10 col-sx-12 mx-auto">
 
+            {% if profileuser == current_user %}
+
+            <!-- Profileuser card Signed in User -->
+            <div id="justify-center" class="card" style="max-width: 740px;">
+
+                <!-- Profileuser information -->
+
+
+                <!-- Row One -->
+                <div class="row">
+                    <div class="col-sm-6 col-12 media" style="max-width: 400px;">
+                        <!-- Profile pic -->
+                        <div class="mt-3 card-body">
+
+                            {% if profileusers.picture %}
+
+                            <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
+                                alt="{{ profile.username}}">
+
+                            {% else %}
+
+                            <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
+                                alt="{{ user.profile.image.url }}">
+
+                            {% endif %}
+                        </div>
+
+                        <!-- Matching Preferences -->
+                        <div class="card-body">
+                            <h6><strong>Matching Preferences:</strong></h6>
+                            <p><strong>Industry:</strong> &nbsp;
+                                {{profile.business}}</p>
+                            <p><strong>Location:</strong> &nbsp;
+                                {{profile.locations}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Profileuser fact colum-->
+                    <div class="col-sm-6 col-12" style="max-width: 480px;">
+                        <div class="card-body">
+                            <h4 class="card-title g-0"><strong>{{user.first_name}}
+                                    {{user.last_name}}</strong></h4>
+                            <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}
+                            </p>
+                            <p class="card-text"><strong>Company:</strong> &nbsp;
+                                {{profile.company_name}}</p>
+                            <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
+                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
+                            <p class="card-text"><strong>Country:</strong> &nbsp;
+                                {{profile.country}}</p>
+                            <p class="card-text"><strong>Business:</strong> &nbsp;
+                                {{profile.industry}}</p>
+                            <p class="card-text"><strong>Profession:</strong> &nbsp;
+                                {{profile.profession}}</p>
+                            <p class="card-text"><strong>Employment Status:</strong> &nbsp
+                                {{profile.employment}}</p>
+                            <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Row Two -->
+
+                <!-- Profileuser bio -->
+                <div class="card-body col-12">
+                    <h6><strong>Presentation:</strong></h6>
+                    <p>{{profile.description}}</p>
+                </div>
+
+                <!-- Edit Buttons -->
+
+                <div class="row text-center">
+                    <form class="col" action="{% url 'profile_edit' %}">
+                        <button type="submit" class="btn">EDIT</button>
+                    </form>
+                </div>
+
+                <br>
+            </div>
+
+            {% else %}
+
             <!-- Profileuser card -->
             <div id="justify-center" class="card" style="max-width: 740px;">
                 <!-- Profileuser information -->
 
                 <!-- Row One -->
                 <div class="row">
-                    {% csrf_token %}
                     <div class="col-sm-6 col-12" style="max-width: 400px;">
                         <!-- Profile pic -->
-                        <div class="mt-3 card-body">
+                        <div class="mt-3 card-body justify-center">
 
                             {% if profileusers.picture %}
 
@@ -122,22 +204,18 @@
                     <p>{{object.description}}</p>
                 </div>
 
-                {% if user.is_authenticated %}
-
-                <!-- Edit Button -->
+                <!-- Save Buttons -->
 
                 <div class="row text-center">
                     <form class="col" action="{% url 'profile_edit' %}">
-                        <button type="submit" class="btn">EDIT</button>
+                        <button type="submit" class="btn">FOLLOW</button>
                     </form>
                 </div>
+
                 <br>
-                {% endif %}
-
-                {% endif %}
-
-
             </div>
+
+            {% endif %}
 
         </div>
     </div>
@@ -146,109 +224,6 @@
     <br>
     <br>
 </div>
+
 
 {% endblock %}
-
-{% if request.user.id == profileuser.user.id %}
-
-            <!-- Profileuser User -->
-
-<div class="container-fluid" id="justify-center">
-    <br>
-
-    <div class="row">
-        <div class="col-sm-10 col-sx-12 mx-auto">
-
-            <!--<span class="hello-msg">Welcome {{request.user.first_name}}
-                {{request.user.last_name}}.
-            </span>
-            <br>-->
-
-            <!-- Profileuser card -->
-            <div id="justify-center" class="card" style="max-width: 740px;">
-
-                <!-- Profileuser information -->
-
-                <!-- Row One -->
-                <div class="row">
-                    {% csrf_token %}
-                    <div class="col-sm-6 col-12" style="max-width: 400px;">
-                        <!-- Profile pic -->
-                        <div class="mt-3 card-body">
-
-                            {% if profileusers.picture %}
-
-                            <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
-                                alt="{{ profile.username}}">
-
-                            {% else %}
-
-                            <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
-                                alt="{{ user.profile.image.url }}">
-
-                            {% endif %}
-                        </div>
-
-                        <!-- Matching Preferences -->
-                        <div class="card-body">
-                            <h6><strong>Matching Preferences:</strong></h6>
-                            <p><strong>Industry:</strong> &nbsp;
-                                {{profile.business}}</p>
-                            <p><strong>Location:</strong> &nbsp;
-                                {{profile.locations}}</p>
-                        </div>
-                    </div>
-
-                    <!-- Profileuser fact colum-->
-                    <div class="col-sm-6 col-12" style="max-width: 480px;">
-                        <div class="card-body">
-                            <h4 class="card-title g-0"><strong>{{user.first_name}}
-                                    {{user.last_name}}</strong></h4>
-                            <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}
-                            </p>
-                            <p class="card-text"><strong>Company:</strong> &nbsp;
-                                {{profile.company_name}}</p>
-                            <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
-                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
-                            <p class="card-text"><strong>Country:</strong> &nbsp;
-                                {{profile.country}}</p>
-                            <p class="card-text"><strong>Business:</strong> &nbsp;
-                                {{profile.industry}}</p>
-                            <p class="card-text"><strong>Profession:</strong> &nbsp;
-                                {{profile.profession}}</p>
-                            <p class="card-text"><strong>Employment Status:</strong> &nbsp
-                                {{profile.employment}}</p>
-                            <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Row Two -->
-
-                <!-- Profileuser bio -->
-                <div class="card-body col-12">
-                    <h6><strong>Presentation:</strong></h6>
-                    <p>{{profile.description}}</p>
-                </div>
-
-                <!-- Edit Buttons -->
-
-                <div class="row text-center">
-                    <form class="col" action="{% url 'profile_edit' %}">
-                        <button type="submit" class="btn">EDIT</button>
-                    </form>
-                </div>
-
-                <br>
-            </div>
-
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-</div>
-
-{% endif %}
