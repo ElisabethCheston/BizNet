@@ -13,17 +13,14 @@ class GigForm(forms.ModelForm):
         fields = [
             'title',
             'industry',
-            'profession',
+            # 'profession',
             'city',
             'country',
             'position',
             'overview',
             'requirements',
             'contact',
-            # 'author',
             'deadline',
-            # 'updated',
-            # 'created',
         ]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
@@ -44,33 +41,3 @@ class GigForm(forms.ModelForm):
                     'type': 'date'
                 }),
         }
-
-
-"""
-class GigForm(forms.ModelForm):
-
-    class Meta:
-        model = Gig
-        field = [
-            '__all__',
-        ]
-
-    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
-    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
-
-    class Meta:
-        model = Gig
-        field = [
-            'title',
-            'industry',
-            'profession',
-            'city',
-            'country',
-            'gigdescription',
-            'extrainfo',
-            'author',
-            'deadline',
-            'updated',
-            'created',
-        ]
-        """

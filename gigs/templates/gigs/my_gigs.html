@@ -3,22 +3,13 @@
 
 
 {% block page_header %}
-
-<!-- Nav tabs -->
-
+<!-- Profile tab links -->
 <div class="tab-container">
-    <ul class="nav nav-tab justify-content-evenly" id="gigTabs" role="tablist">
-
+    <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <form action="{% url 'new_gig' %}">
-                <input type="submit" value="NEW" class="nav-link gig-tab" id="edit_profile_tab"
-                    data-bs-toggle="tab" data-bs-target="#edit_profile" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'saved_gig' %}">
-                <input type="submit" value="SAVED" class="nav-link gig-tab" id="my_contacts_tab"
-                    data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
+            <form action="{% url 'profile_details' %}">
+                <input type="submit" value="MY PROFILE" class="nav-link gig-tab active" id="my_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
@@ -28,179 +19,78 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'create_gig' %}">
-                <input type="submit" value="CREATE GIG" class="nav-link gig-tab" id="create_gig_tab"
-                    data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
+            <form action="{% url 'my_contacts' %}">
+                <input type="submit" value="MY CONTACTS" class="nav-link gig-tab" id="my_contacts_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        <li class="nav-item" role="presentation">
+            <form action="{% url 'membership_profile' %}">
+                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
+                    data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
+            </form>
+        </li>
+
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" id="new_gig" role="tabpanel" aria-labelledby="new_gig_tab"></div>
-
-        <div class="tab-pane" id="saved_gig" role="tabpanel" aria-labelledby="saved_gig_tab"></div>
+        <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
-
-        <div class="tab-pane" id="create_gig" role="tabpanel" aria-labelledby="create_gig_tab"></div>
+        <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
+        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
 </div>
-
 {% endblock %}
 
 
 {% block content %}
 
-<style>
-    .btn {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        /* background-color: rgba(9, 143, 221, 0.9) !important; */
-        font-size: small !important;
-        height: 30px;
-        font-weight: bold;
-        padding-right: 5px;
-        padding-left: 5px;
-        text-decoration: none;
-        padding-top: 5px;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    /*
-    .btn-link-delete,
-    .btn-link-edit {
-        height: 35px;
-    }
-
-    .btn-link-delete {
-        background-color: rgba(192, 37, 37, 0.9) !important;
-    }
-
-    .btn-link-edit {
-        background-color: rgba(9, 143, 221, 0.9) !important;
-    }
-*/
-    .btn-link:hover,
-    .btn-link:active,
-    .btn-link:focus {
-        color: white;
-        border-color: rgba(96, 185, 236, 0.2);
-        background-color: rgba(4, 102, 168, 0.9) !important;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    .card-header {
-        background-color: white;
-    }
-
-    .card-title {
-        font-size: large;
-        font-weight: bold;
-        padding: auto;
-        color: rgba(9, 143, 221, 0.9);
-    }
-
-    .card-body {
-        padding: 20px;
-    }
-
-    .card {
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: none;
-    }
-</style>
-
-<h4>hello</h4>
 <div class="container-fluid">
     <br>
-    <h6 class="small">My Gigs ({{ profile.num_gigs }}):</h6>
+
+
     <div class="row">
 
-       
         <!-- gig cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
-<br>
+            <br>
             <div class="card">
                 <div class=" card-body">
 
+                    <h6 class="small text-end">No. Gigs ({{ profile.num_gigs }}):</h6>
+                        
+                    <h5>My Gigs:</h5>
+                    <br>
                     {% for gig in profile.my_gigs %}
 
-                    <div class="row justify-content-between">
+                    <div class="row">
 
                         <div class="col-sm-9 col-sx-12">
 
                             <!-- Title -->
-                            <div class="row col-12">
-                                <a class=" card-title text-center" href="{% url 'gig_detail' gig.id %}">
-                                    <strong>{{ gig.title }}</strong>
-                                </a>
-                            </div>
-
-                            <!--{% if user.is_authenticated %}-->
-                            <br>
-                            <!-- Edit Buttons -->
-                            <div class="text-center form-group">
-                                <a class="btn btn-danger" type="button" href="{% url 'gig_confirm_delete' gig.id %}" class="card-link">Delete</a>
-                                <a class="btn btn-secondary" type="button" href="{% url 'gig' %}" class="card-link">Cancel</a>
-                            </div>
-                            <br>
-                            <!--{% else %}-->
-
-                            <!-- Action Buttons -->
-                            <!--<div class="row my-2">
-                                <div class="col g-2 justify-content-evenly text-center">
-                                    <a class="btn-link" href="#" id="addSavedGig" value="Add to SavedGig"
-                                        class="card-link">Save</a>
-                                    <a class="btn-link" value="Add to AppliedGig" class="card-link">View</a>
-                                    <a class="btn-link" href="#" id="addHideGig" value="Add to HideGig"
-                                        class="card-link">Hide</a>
-                                </div>
-                            </div>
-                            <br>
-                            {% endif %}-->
-
-
-                            <p class=" card-subtitle mb-2 text-center text-muted small">
-                                Deadline: {{ gig.deadline|date:"F d, Y" }}
-                            </p>
+                            <a class=" card-title" href="{% url 'gig_detail' gig.id %}">
+                                <strong>{{ gig.title }}</strong>
+                            </a>
                         </div>
-
-                        <div class="col-sm-3 col-xs-12">
-                            <div class="col text-center">
-                                <img class="rounded-circle avatar" src="{{gig.author.picture.url }}">
-                            </div>
-                            <br>
-                            <div class="col col-auto text-center">
-                                <p class="card-subtitle mb-2 text-muted small">
-                                    {{ gig.profession }} needed in {{ gig.city }}
-                                </p>
-
-                            </div>
-                        </div>
-
-
                     </div>
 
+
                     {% endfor %}
-<br>
-                    <div class="row text-center">
-                        <p>Create a new gig:</p>
-                        <form action="{% url 'create_gig' %}">
-                            <input type="submit" value="CREATE GIG" class="btn" id="create_gig_tab"
-                                data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
-                        </form>
+                    <br>
+                    <br>
+                    <div class="row justify-content-center">
+                        <div class="col-12 text-center">
+                            <p>Create a new gig:</p>
+                            <form action="{% url 'create_gig' %}">
+                                <input type="submit" value="CREATE" class="btn" id="create_gig_tab"
+                                    data-bs-toggle="tab" data-bs-target="#create_gig" type="tab-button" role="tab" />
+                            </form>
+                        </div>
                     </div>
 
                     <br>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
             <br>
 
 

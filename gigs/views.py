@@ -78,7 +78,7 @@ class GigCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class GigUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class GigUpdateView(LoginRequiredMixin, UpdateView): # UserPassesTestMixin
     model = Gig
     form_class = GigForm
     template_name = 'gigs/create_gig.html'
