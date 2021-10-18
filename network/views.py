@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from profileusers.models import Profileuser
 from gigs.models import Gig, NetworkUsers
 from django.contrib.auth import get_user_model
@@ -85,7 +85,7 @@ def myContacts(request):
 
     return render(request, 'network/my_contacts.html')
 
-"""
+
 # CONTACTS
 
 # @login_required
@@ -122,7 +122,7 @@ def following_ppl(request):
         # 'get_followers': get_followers,
     }
     return render(request, template, context)
-"""
+
 class ProfileData(View):
     def get(self, *args, **kwargs): # , *args, **kwargs
         # pylint: disable=maybe-no-member

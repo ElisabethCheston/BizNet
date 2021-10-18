@@ -9,6 +9,13 @@ body {
   font-family: "Lato";
 }
 
+.card-layout {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 80px !important;
+}
+
 .center {
   margin: auto;
   width: 70%;

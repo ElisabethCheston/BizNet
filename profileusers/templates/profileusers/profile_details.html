@@ -52,9 +52,8 @@
 {% block content %}
 
 <!-- Modal -->
-<div class="modal follow_modal fade" id="follow-btn" style="font-size: large;"
-data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-aria-labelledby="follow-btnLabel" aria-hidden="true">
+<div class="modal follow_modal fade" id="follow-btn" style="font-size: large;" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="follow-btnLabel" aria-hidden="true">
     <!-- -->
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: rgba(239, 241, 241, 0.85);">
@@ -96,10 +95,11 @@ aria-labelledby="follow-btnLabel" aria-hidden="true">
 
 
 
-<div class="container-fluid" id="justify-center">
+<div class="container-fluid">
     <br>
-
     <div class="row">
+
+        <!-- Proofile cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
 
             {{object}}
@@ -107,206 +107,211 @@ aria-labelledby="follow-btnLabel" aria-hidden="true">
             {% if profileuser == current_user %}
 
             <!-- Profileuser card Signed in User -->
-            <div id="justify-center" class="card" style="max-width: 740px;">
+            <div class="card">
+                <div class="card-body mx-2 my-4">
 
-                <!-- Profileuser information -->
+                    <!-- Profileuser information -->
 
 
-                <!-- Row One -->
-                <div class="row">
-                    <div class="col-sm-6 col-12 media" style="max-width: 400px;">
-                        <!-- Profile pic -->
-                        <div class="mt-3 card-body">
+                    <!-- Row One -->
+                    <div class="row">
+                        <div class="col-sm-6 col-12 media"> <!--style="max-width: 400px;">-->
+                            <!-- Profile pic -->
+                            <div class="mt-3 card-body">
 
-                            {% if profileusers.picture %}
+                                {% if profileusers.picture %}
 
-                            <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
-                                alt="{{ profile.username}}">
+                                <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
+                                    alt="{{ profile.username}}">
 
-                            {% else %}
+                                {% else %}
 
-                            <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
-                                alt="{{ user.profile.image.url }}">
+                                <img src="{{ profile.picture.url }}" class="img-fluid profile-img rounded-start"
+                                    alt="{{ user.profile.image.url }}">
 
-                            {% endif %}
+                                {% endif %}
+                            </div>
+
+                            <!-- Matching Preferences -->
+                            <div class="card-body">
+                                <h6><strong>Matching Preferences:</strong></h6>
+                                <p><strong>Industry:</strong> &nbsp;
+                                    {{profile.business}}</p>
+                                <p><strong>Location:</strong> &nbsp;
+                                    {{profile.locations}}</p>
+                            </div>
                         </div>
 
-                        <!-- Matching Preferences -->
-                        <div class="card-body">
-                            <h6><strong>Matching Preferences:</strong></h6>
-                            <p><strong>Industry:</strong> &nbsp;
-                                {{profile.business}}</p>
-                            <p><strong>Location:</strong> &nbsp;
-                                {{profile.locations}}</p>
+                        <!-- Profileuser fact colum-->
+                        <div class="col-sm-6 col-12"> <!--style="max-width: 480px;">-->
+                            <div class="card-body">
+                                <h4 class="card-title g-0"><strong>{{user.first_name}}
+                                        {{user.last_name}}</strong></h4>
+                                <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}
+                                </p>
+                                <p class="card-text"><strong>Company:</strong> &nbsp;
+                                    {{profile.company_name}}</p>
+                                <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
+                                <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
+                                <p class="card-text"><strong>Country:</strong> &nbsp;
+                                    {{profile.country}}</p>
+                                <p class="card-text"><strong>Business:</strong> &nbsp;
+                                    {{profile.industry}}</p>
+                                <p class="card-text"><strong>Profession:</strong> &nbsp;
+                                    {{profile.profession}}</p>
+                                <p class="card-text"><strong>Employment Status:</strong> &nbsp
+                                    {{profile.employment}}</p>
+                                <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Profileuser fact colum-->
-                    <div class="col-sm-6 col-12" style="max-width: 480px;">
-                        <div class="card-body">
-                            <h4 class="card-title g-0"><strong>{{user.first_name}}
-                                    {{user.last_name}}</strong></h4>
-                            <p class="card-text"><strong>Title:</strong> &nbsp; {{profile.title}}
-                            </p>
-                            <p class="card-text"><strong>Company:</strong> &nbsp;
-                                {{profile.company_name}}</p>
-                            <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
-                            <p class="card-text"><strong>City:</strong> &nbsp; {{profile.city}}</p>
-                            <p class="card-text"><strong>Country:</strong> &nbsp;
-                                {{profile.country}}</p>
-                            <p class="card-text"><strong>Business:</strong> &nbsp;
-                                {{profile.industry}}</p>
-                            <p class="card-text"><strong>Profession:</strong> &nbsp;
-                                {{profile.profession}}</p>
-                            <p class="card-text"><strong>Employment Status:</strong> &nbsp
-                                {{profile.employment}}</p>
-                            <p class="card-text"><strong>Purpose:</strong> &nbsp {{profile.status}}
-                            </p>
-                        </div>
+
+                    <!-- Row Two -->
+
+                    <!-- Profileuser bio -->
+                    <div class="card-body col-12">
+                        <h6><strong>Presentation:</strong></h6>
+                        <p>{{profile.description}}</p>
                     </div>
+
+                    <!-- Edit Buttons -->
+
+                    <div class="row text-center">
+                        <form class="col" action="{% url 'profile_edit' %}">
+                            <button type="submit" class="btn">EDIT</button>
+                        </form>
+                    </div>
+                    <br>
+
                 </div>
-
-
-                <!-- Row Two -->
-
-                <!-- Profileuser bio -->
-                <div class="card-body col-12">
-                    <h6><strong>Presentation:</strong></h6>
-                    <p>{{profile.description}}</p>
-                </div>
-
-                <!-- Edit Buttons -->
-
-                <div class="row text-center">
-                    <form class="col" action="{% url 'profile_edit' %}">
-                        <button type="submit" class="btn">EDIT</button>
-                    </form>
-                </div>
-
-                <br>
             </div>
 
             {% else %}
 
             <!-- Profileuser card -->
-            <div id="justify-center" class="card" style="max-width: 740px;">
-                <!-- Profileuser information -->
+            <div class="card">
+                <div class="card-body mx-2 my-4">
 
-                <!-- Row One -->
-                <div class="row">
-                    <div class="col-sm-6 col-12" style="max-width: 400px;">
-                        <!-- Profile pic -->
-                        <div class="mt-3 card-body justify-center">
 
-                            {% if profileusers.picture %}
+                    <!-- Profileuser information -->
 
-                            <img src="{{ object.picture.url }}" class="img-fluid profile-img rounded-start"
-                                alt="{{ profile.username}}">
+                    <!-- Row One -->
+                    <div class="row">
+                        <div class="col-sm-6 col-12" style="max-width: 400px;">
+                            <!-- Profile pic -->
+                            <div class="mt-3 card-body justify-center">
 
-                            {% else %}
+                                {% if profileusers.picture %}
 
-                            <img src="{{ object.picture.url }}" class="img-fluid profile-img rounded-start"
-                                alt="{{ user.profile.image.url }}">
+                                <img src="{{ object.picture.url }}" class="img-fluid profile-img rounded-start"
+                                    alt="{{ profile.username}}">
 
-                            {% endif %}
+                                {% else %}
+
+                                <img src="{{ object.picture.url }}" class="img-fluid profile-img rounded-start"
+                                    alt="{{ user.profile.image.url }}">
+
+                                {% endif %}
+                            </div>
+
+                            <!-- Matching Preferences -->
+                            <div class="card-body">
+                                <h6><strong>Matching Preferences:</strong></h6>
+                                <p><strong>Industry:</strong> &nbsp;
+                                    {{object.business}}</p>
+                                <p><strong>Location:</strong> &nbsp;
+                                    {{object.locations}}</p>
+                            </div>
                         </div>
 
-                        <!-- Matching Preferences -->
-                        <div class="card-body">
-                            <h6><strong>Matching Preferences:</strong></h6>
-                            <p><strong>Industry:</strong> &nbsp;
-                                {{object.business}}</p>
-                            <p><strong>Location:</strong> &nbsp;
-                                {{object.locations}}</p>
+                        <!-- Profileuser fact colum-->
+                        <div class="col-sm-6 col-12" style="max-width: 480px;">
+                            <div class="card-body">
+                                <h4 class="card-title g-0"><strong>{{object.first_name}}
+                                        {{object.last_name}}</strong></h4>
+                                <p class="card-text"><strong>Title:</strong> &nbsp; {{object.title}}
+                                </p>
+                                <p class="card-text"><strong>Company:</strong> &nbsp;
+                                    {{object.company_name}}</p>
+                                <p class="card-text "><strong>Email:</strong> &nbsp; {{object.username}}</p>
+                                <p class="card-text"><strong>City:</strong> &nbsp; {{object.city}}</p>
+                                <p class="card-text"><strong>Country:</strong> &nbsp;
+                                    {{object.country}}</p>
+                                <p class="card-text"><strong>Business:</strong> &nbsp;
+                                    {{object.industry}}</p>
+                                <p class="card-text"><strong>Profession:</strong> &nbsp;
+                                    {{object.profession}}</p>
+                                <p class="card-text"><strong>Employment Status:</strong> &nbsp
+                                    {{object.employment}}</p>
+                                <p class="card-text"><strong>Purpose:</strong> &nbsp {{object.status}}
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Profileuser fact colum-->
-                    <div class="col-sm-6 col-12" style="max-width: 480px;">
-                        <div class="card-body">
-                            <h4 class="card-title g-0"><strong>{{object.first_name}}
-                                    {{object.last_name}}</strong></h4>
-                            <p class="card-text"><strong>Title:</strong> &nbsp; {{object.title}}
-                            </p>
-                            <p class="card-text"><strong>Company:</strong> &nbsp;
-                                {{object.company_name}}</p>
-                            <p class="card-text "><strong>Email:</strong> &nbsp; {{user.email}}</p>
-                            <p class="card-text"><strong>City:</strong> &nbsp; {{object.city}}</p>
-                            <p class="card-text"><strong>Country:</strong> &nbsp;
-                                {{object.country}}</p>
-                            <p class="card-text"><strong>Business:</strong> &nbsp;
-                                {{object.industry}}</p>
-                            <p class="card-text"><strong>Profession:</strong> &nbsp;
-                                {{object.profession}}</p>
-                            <p class="card-text"><strong>Employment Status:</strong> &nbsp
-                                {{object.employment}}</p>
-                            <p class="card-text"><strong>Purpose:</strong> &nbsp {{object.status}}
-                            </p>
+                    <!-- Row Two -->
+
+                    <!-- Profileuser bio -->
+                    <div class="card-body col-12">
+                        <h6><strong>Presentation:</strong></h6>
+                        <p>{{object.description}}</p>
+                    </div>
+
+                    <!-- Save Buttons -->
+
+                    {% if follow %}
+                    <form action="{% url 'follow_unfollow_profile' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="profile_pk" value={{profileuser.pk}}>
+                        <button type="submit" class="btn follow-button">Unfollow</button>
+                    </form>
+                    {% else %}
+                    <div class="row text-center">
+                        <div class="col">
+                            <button type="submit" id="follow-btn" data-bs-toggle="modal" data-bs-target="#follow-btn"
+                                class="btn follow-button">FOLLOW</button> <!-- -->
                         </div>
                     </div>
-                </div>
+                    <br>
+                    {% endif %}
 
-                <!-- Row Two -->
+                    <div class="card-body my-2">
+                        <h5>Have posted:</h5>
+                        {% for gig in profileuser.my_gigs %}
+                        <!--<h6 class="small">No. of Gigs ({{ gig.qs.num_gigs }}):</h6>-->
 
-                <!-- Profileuser bio -->
-                <div class="card-body col-12">
-                    <h6><strong>Presentation:</strong></h6>
-                    <p>{{object.description}}</p>
-                </div>
+                        <div class="link">
+                            <a href="{{ gig.get_absolute_url }}">{{ gig.title }}</a>
 
-                <!-- Save Buttons -->
-
-                {% if follow %}
-                <form action="{% url 'follow_unfollow_profile' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="profile_pk" value={{profileuser.pk}}>
-                    <button type="submit" class="btn follow-button">Unfollow</button>
-                </form>
-                {% else %}
-                <div class="row text-center">
-                    <div class="col">
-                        <button type="submit" id="follow-btn"
-                        data-bs-toggle="modal" data-bs-target="#follow-btn"
-                         class="btn follow-button">FOLLOW</button> <!-- -->
+                        </div>
+                        {% endfor %}
                     </div>
+
+                    <br>
                 </div>
-                <br>
-                {% endif %}
-
-                <div class="card-body my-2">
-                    <h5>Have posted:</h5>
-                    {% for gig in profileuser.my_gigs %}
-                    <!--<h6 class="small">My Gigs ({{ profile.num_gigs }}):</h6>-->
-
-                    <div class="link">
-                        <a href="{{ gig.get_absolute_url }}">{{ gig }}</a>
-
-                    </div>
-                    {% endfor %}
-                </div>
-
-                <br>
             </div>
-
             {% endif %}
 
         </div>
+
     </div>
     <br>
     <br>
     <br>
-    <br>
+
 </div>
 
 <script>
-/*
-$(document).ready(function() {
-    $('#follow_btn').click(function() {
-        $('.basic.modal')
-            .modal('show')
-    });
-})
-*/
+    /*
+    $(document).ready(function() {
+        $('#follow_btn').click(function() {
+            $('.basic.modal')
+                .modal('show')
+        });
+    })
+    */
 
     var exampleModal = document.getElementById('follow-btn')
     exampleModal.addEventListener('show.bs.modal', function (event) {

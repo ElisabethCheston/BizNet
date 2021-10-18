@@ -348,7 +348,7 @@ def my_gigs(request):
     }
     return render(request, template, context)
 
-
+    
 @login_required
 def create_gig(request):
     # pylint: disable=maybe-no-member
@@ -384,11 +384,11 @@ def create_gig(request):
         # gigform = gigform()
         """
 
-"""
-# CONTACTS
 
+# CONTACTS
+"""
 @login_required
-def my_contacts(request):
+def myContacts(request):
     # pylint: disable=maybe-no-member
     # profile = get_object_or_404(Profileuser, user=request.user)
     profile = Profileuser.objects.get(username=request.user)
@@ -400,7 +400,7 @@ def my_contacts(request):
         # 'get_followers': get_followers,
     }
     return render(request, template, context)
-"""
+
 
 # SUGGEST BUTTON OF PPL TO FOLLOW
 
@@ -408,7 +408,7 @@ def my_contacts(request):
 
 class MyProfile(TemplateView):
     template_name = 'profileusers/profile_details.html'
-
+"""
 """
 class ProfileData(View):
     def get(self, *args, **kwargs): # , *args, **kwargs

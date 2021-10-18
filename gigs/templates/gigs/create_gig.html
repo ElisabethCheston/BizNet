@@ -45,39 +45,46 @@
 {% block content %}
 
 
-<div class="container-profile justify-center">
+<div class="container-fluid">
+    <br>
+    <div class="row">
 
-    <!-- Edit Profile -->
-    <div class="card" style="max-width: 840px;">
+        <!-- Gig Cards -->
+        <div class="col-sm-10 col-sx-12 mx-auto">
 
-        <div class="card-body">
-            <div class="col-12">
+            <div class="card">
 
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Create Gig</legend>
-                        {{ form|crispy }}
-                    </fieldset>
-                    <br>
+                <div class="card-body mx-4 my-4">
+                    <div class="col-12">
 
-                    <div class="row justify-content-evenly">
-                        <!-- Edit button -->
-                        <div class="text-center form-group">
-                            <button class="btn btn-success" type="submit">SUBMIT</button>
-                            <!--<button class="btn btn-danger" href="{{ gig.get_absolute_url }}" type="button">CANCEL</a>-->
-                        </div>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Create Gig</legend>
+                                {{ form|crispy }}
+                            </fieldset>
+                            <br>
+
+                            <div class="row justify-content-evenly">
+                                <!-- Edit button -->
+                                <div class="text-center form-group">
+                                    <button class="btn btn-success" type="submit">SUBMIT</button>
+                                    <!--<button class="btn btn-danger" href="{{ gig.get_absolute_url }}" type="button">CANCEL</a>-->
+                                </div>
+                            </div>
+
+                        </form>
+
                     </div>
-
-                </form>
-
+                </div>
             </div>
+            <br>
+            <br>
+            <br>
+
         </div>
     </div>
-    <br>
-    <br>
-
 </div>
 
 

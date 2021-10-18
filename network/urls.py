@@ -15,8 +15,8 @@ urlpatterns = [
     # path('<pk>/', NetworkProfileView.as_view(), name='profile_details'),
     # path('', views.all_profiles, name='all_profiles'),
     # path('contacts/', views.myContacts, name='contacts'),
-    # path('my_followers/', views.my_followers, name='my_followers'),
-    # path('following_ppl/', views.following_ppl, name='following_ppl'),
+    path('my_followers/', views.my_followers, name='my_followers'),
+    path('following_ppl/', views.following_ppl, name='following_ppl'),
     path('my_contacts/', views.myContacts, name='my_contacts'),
     path('profile_data/', ProfileData.as_view(), name='profile_data'),
 ]
