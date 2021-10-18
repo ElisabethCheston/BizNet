@@ -262,16 +262,19 @@
                     <!-- Save Buttons -->
 
                     {% if follow %}
+                    <div class="row text-center">
+
                     <form action="{% url 'follow_unfollow_profile' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="profile_pk" value={{profileuser.pk}}>
                         <button type="submit" class="btn follow-button">Unfollow</button>
                     </form>
+                    </div>
                     {% else %}
                     <div class="row text-center">
                         <div class="col">
                             <button type="submit" id="follow-btn" data-bs-toggle="modal" data-bs-target="#follow-btn"
-                                class="btn follow-button">FOLLOW</button> <!-- -->
+                                class="btn unfollow-button">FOLLOW</button> <!-- -->
                         </div>
                     </div>
                     <br>

@@ -283,7 +283,7 @@ class NetworkProfileView(DetailView):
         context = super().get_context_data(**kwargs)
         view_profile = self.get_object()
         user_profile = Profileuser.objects.get(username=self.request.user)
-        if view_profile in user_profile.following.all():
+        if view_profile.username in user_profile.following.all():
             follow = True
         else:
             follow = False
