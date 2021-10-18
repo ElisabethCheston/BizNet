@@ -1,3 +1,6 @@
+var url = data.url + "&output=embed";
+window.location.replace(url);
+
 // -- Fetch API to make a AJAX request  -- //
 /*
 console.log("Sanity Check!");
