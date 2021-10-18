@@ -14,8 +14,8 @@
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
             <form action="{% url 'all_profiles' %}">
-                <input type="submit" value="ALL USERS" class="nav-link gig-tab" id="all_profiles_tab" data-bs-toggle="tab"
-                    data-bs-target="#all_profiles" type="tab-button" role="tab" />
+                <input type="submit" value="ALL USERS" class="nav-link gig-tab" id="all_profiles_tab"
+                    data-bs-toggle="tab" data-bs-target="#all_profiles" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
@@ -54,7 +54,7 @@
 
 <style>
     .profile-card {
-        width: 140px;
+        width: 180px;
         border-radius: 1px;
         padding-top: 5px;
     }
@@ -68,8 +68,8 @@
         margin-right: auto;
         width: 80%;
     }
-
 </style>
+
 
 <div class="container-fluid" id="justify-center">
     <br>
@@ -115,6 +115,33 @@
     </div>
     <br>
     <br>
+    <div id="justify-center">
+        {% if is_paginated %}
+    
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class="btn btn-outline-info mb-4"
+            href="?page={{ num }}">{{num}}</a>
+            {% endif %}
+            {% endfor %}
+    
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginato.num_pages }}">Last</a>
+            {% endif %}
+    
+            {% endif %}
+    </div>
+            <br>
     <br>
 </div>
 {% endblock %}
+
+<!-- Paginations-->
+

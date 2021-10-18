@@ -6,6 +6,7 @@ from django import forms
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3, TermsForm
 from django.core import serializers
 from django.core.mail import EmailMessage, send_mail, BadHeaderError
+from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -262,6 +263,7 @@ class ProfilesListView(ListView):
     model = Profileuser
     template_name = 'profileusers/all_profiles.html'
     context_object_name = 'profileusers'
+    paginate_by = 6
 
     # override the queryset method
     def get_queryset(self):
