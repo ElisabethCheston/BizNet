@@ -10,6 +10,7 @@ fetch("config/")
         const stripe = stripe(data.publicKey);
 */
 
+/*
     .then((freePrice, basicPrice, proPrice) => {
 
     // Initialize Stripe.js
@@ -42,10 +43,12 @@ fetch("config/")
         });
     }
 });
+*/
+
 
 // -- FETCH ERRORS --//
 // -- Reference: https://github.com/stripe-samples/checkout-single-subscription/blob/master/client/script.js -- //
-
+/*
 // If a fetch error occurs, log it to the console and show it in the UI.
 var handleFetchResult = function(result) {
     if (!result.ok) {
@@ -66,3 +69,4 @@ var handleFetchResult = function(result) {
     errorEl.textContent = message;
     errorEl.style.display = "block";
   };
+*/
