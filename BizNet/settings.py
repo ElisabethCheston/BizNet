@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'users.apps.UsersConfig',
-    'feed.apps.FeedConfig',
+    # 'feed.apps.FeedConfig',
     'crispy_forms',
     'storages',
     'widget_tweaks',
