@@ -23,9 +23,9 @@ urlpatterns = [
     path('my_gigs/', views.my_gigs, name='my_gigs'),
 
     path('new_gig/', NewGigListView.as_view(), name='new_gig'),
-    path('saved_gig/', views.SavedGig, name='saved_gig'),
-    path('apply_gig/', views.AppliedGig, name='apply_gig'),
-    path('hide_gig/', views.HideGig, name='hide_gig'),
+    # path('saved_gig/', views.SavedGig, name='saved_gig'),
+    # path('apply_gig/', views.AppliedGig, name='apply_gig'),
+    # path('hide_gig/', views.HideGig, name='hide_gig'),
      
     # path('gig_json/', gig_json, name='gig_json'), # endpoints
 ]

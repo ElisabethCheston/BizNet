@@ -65,7 +65,7 @@ class Notification(models.Model):
     gig = models.ForeignKey('Gig', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     liked = models.ManyToManyField(User, default=None, blank=False)
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateTimeField(auto_now_add=True, blank=False, null=True)
     user_has_seen = models.BooleanField(default=False)
 
 

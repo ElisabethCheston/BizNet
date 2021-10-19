@@ -263,7 +263,7 @@ class ProfilesListView(ListView):
     model = Profileuser
     template_name = 'profileusers/all_profiles.html'
     context_object_name = 'profileusers'
-    paginate_by = 6
+    paginate_by = 4
 
     # override the queryset method
     def get_queryset(self):

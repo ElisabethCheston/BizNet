@@ -7,10 +7,14 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Reference: https://www.youtube.com/watch?v=zu2PBUHMEew&t=155s
+# Reference : https://medium.com/analytics-vidhya/django-and-stripe-subscriptions-part-2-8ddd406458a9
+
+
+
 
 MEMBERSHIP_CHOICES = (
-    ('Pro', 'pro'),
-    ('Basic', 'basic'),
+    ('Yearly', 'yearly'),
+    ('Monthly', 'monthly'),
     ('Free', 'free')
 )
 class Membership(models.Model):
@@ -29,6 +33,7 @@ class Membership(models.Model):
 class UserMembership(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     stripe_customer_id = models.CharField(max_length=40)
+    cancel_at_period_end = models.BooleanField(default=False)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

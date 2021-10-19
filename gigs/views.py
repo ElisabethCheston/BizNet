@@ -47,6 +47,7 @@ class GigListView(ListView):
 class GigDetailView(DetailView):
     model = Gig
 
+
 # PROFILEUSER GIGS
 
 @login_required
@@ -100,7 +101,7 @@ class GigDeleteView(LoginRequiredMixin, DeleteView): # UserPassesTestMixin
 
 
 # CHOICE FOR GIGS
-
+"""
 def SavedGig(request):
     # pylint: disable=maybe-no-member
     save_gig = Gig.objects.all()
@@ -108,7 +109,6 @@ def SavedGig(request):
         'save_gig': save_gig,
     }
     return render(request, 'gigs/saved_gig.html', context)
-
 
 def AppliedGig(request):
     # pylint: disable=maybe-no-member
@@ -118,7 +118,6 @@ def AppliedGig(request):
     }
     return render(request, 'gigs/apply_gig.html', context)
 
-
 def HideGig(request):
     # pylint: disable=maybe-no-member
     hide_gig = Gig.objects.all()
@@ -127,8 +126,6 @@ def HideGig(request):
     }
     return render(request, 'gigs/hide_gig.html', context)
 
-
-"""
 @require_http_methods(['POST'])
 def HideGig(request):
     # pylint: disable=maybe-no-member

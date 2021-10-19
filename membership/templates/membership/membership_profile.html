@@ -10,7 +10,7 @@
 {% endblock scripts %}
 
 {% block page_header %}
-<!--  Tab Links -->
+<!-- Profile tab links -->
 <div class="tab-container">
     <ul class="nav nav-tab justify-content-evenly" id="profileTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -20,32 +20,20 @@
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'user_subscription' %}">
-                <input type="submit" value="SUBSCRIPTION" class="nav-link gig-tab" id="user_subscription_tab"
-                    data-bs-toggle="tab" data-bs-target="#user_subscription" type="tab-button" role="tab" />
+            <form action="{% url 'my_gigs' %}">
+                <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
+                    data-bs-target="#my_gig" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
-            <form action="{% url 'user_membership' %}">
-                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="user_membership_tab"
-                    data-bs-toggle="tab" data-bs-target="#user_membership" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'password_change' %}">
-                <input type="submit" value="CHANGE PASSWORD" class="nav-link gig-tab" id="password_change_tab"
-                    data-bs-toggle="tab" data-bs-target="#password_change" type="tab-button" role="tab" />
-            </form>
-        </li>
-        <li class="nav-item" role="presentation">
-            <form action="{% url 'payment_histrory' %}">
-                <input type="submit" value="PAYMENT HISTORY" class="nav-link gig-tab" id="payment_histrory_tab"
-                    data-bs-toggle="tab" data-bs-target="#payment_histrory" type="tab-button" role="tab" />
+            <form action="{% url 'my_contacts' %}">
+                <input type="submit" value="MY CONTACTS" class="nav-link gig-tab" id="my_contacts_tab"
+                    data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
-                <input type="submit" value="MEMBERSHIP PROFILE" class="nav-link gig-tab" id="membership_profile_tab"
+                <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
                     data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
             </form>
         </li>
@@ -53,16 +41,8 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
-
-        <div class="tab-pane" id="user_subscription" role="tabpanel" aria-labelledby="user_subscription_tab"></div>
-
-        <div class="tab-pane" id="user_membership" role="tabpanel" aria-labelledby="user_membership_tab"></div>
-
-        <div class="tab-pane" id="password_change" role="tabpanel" aria-labelledby="password_change_tab"></div>
-
-        <div class="tab-pane" id="payment_histrory" role="tabpanel" aria-labelledby="payment_histrory_tab"></div>
-
-
+        <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
+        <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
         <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
@@ -74,6 +54,7 @@
 
 <div class="container-fluid">
     <br>
+
 
     <!-- Userprofile cards -->
     <div class="row">
@@ -92,7 +73,7 @@
                                     <div class="card text-center h-100">
                                         <div class="card-body d-flex flex-column">
                                             <div class="mb-4">
-                                                <h5>FREE PLAN</h5>
+                                                <h5>FREE</h5>
                                                 <span class="display-4">€0</span>
                                                 <span>/mo</span>
                                             </div>
@@ -110,7 +91,7 @@
                                             </ul>
                                             <br>
                                             <br>
-                                            <form action="/create-checkout-session" method="POST">
+                                            <form action="#" method="POST"> <!--{% url 'create-checkout-session' %}-->
                                                 <input type="hidden" id="freePrice" name="lookup_key"
                                                 value="{{PRICE_ID_1}}" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
@@ -122,8 +103,8 @@
                                     <div class="card text-center h-100">
                                         <div class="card-body d-flex flex-column">
                                             <div class="mb-4">
-                                                <h5>BASIC PLAN</h5>
-                                                <span class="display-4">€10</span>
+                                                <h5>PREMIUM ACCESS</h5>
+                                                <span class="display-4">€15</span>
                                                 <span>/mo</span>
                                             </div>
                                             <h6>Includes:</h6>
@@ -140,11 +121,15 @@
                                                 <li class="mb-2">
                                                     Create gigs
                                                 </li>
+                                                <li class="mb-2">
+                                                    Create a network
+                                                </li>
                                             </ul>
                                             <br>
-                                            <form action="/create-checkout-session" method="POST">
+                                            <form action="#" method="POST"><!--{% url 'create-checkout-session' %}-->
                                                 <input type="hidden" id="basicPrice" name="lookup_key"
                                                 value="{{PRICE_ID_2}}" />
+                                                <!--<a href="{% url 'create-checkout-session' %}?membership=monthly"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get started</button></a>-->
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
                                             </form>
                                         </div>
@@ -154,9 +139,9 @@
                                     <div class="card text-center h-100">
                                         <div class="card-body d-flex flex-column">
                                             <div class="mb-4">
-                                                <h5>PRO PLAN</h5>
-                                                <span class="display-4">€20</span>
-                                                <span>/mo</span>
+                                                <h5>PREMIUM ACCESS</h5>
+                                                <span class="display-4">€150</span>
+                                                <span>/yr</span>
                                             </div>
                                             <h6>Includes:</h6>
                                             <ul class="list-unstyled">
@@ -176,26 +161,17 @@
                                                     Create a network
                                                 </li>
                                             </ul>
-                                            <form action="/create-checkout-session" method="POST">
+                                            <form action="#" method="POST"> <!--{% url 'create-checkout-session' %}-->
                                                 <input type="hidden" id="proPrice" name="lookup_key"
                                                     value="{{PRICE_ID_3}}" />
+                                                    <!--<a href="{% url 'create-checkout-session' %}?membership=yearly"><button type="button" class="btn btn-lg btn-block btn-primary">Get started</button></a>-->
+
                                                 <button class="pushable btn-grad text-center sm" id="submitBtn" type="submit">
                                                     <span class="front">
                                                         Subscribe
                                                     </span>
                                                 </button>
                                             </form>
-
-                                            <!--<div class="row justify-content-center">
-                                                <form class="col-4" action="{% url 'profile_edit' %}">
-                                                    <button type="submit" class="pushable btn-grad text-center">
-                                                        <span class="front">
-                                                        EDIT
-                                                    </span>
-                                                </button>
-                                                </form>
-                                            </div>-->
-
 
                                         </div>
                                     </div>

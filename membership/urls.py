@@ -6,18 +6,20 @@ from .views import (
 
 
 urlpatterns = [
-    path('', views.membership_profile, name='membership_profile'),
+    path('', MembershipSelectView.as_view(), name='membership'),
+    path('membership_profile', views.membership_profile, name='membership_profile'),
     path('subscriptions/', views.subscriptions, name='subscriptions'),
     path('user_subscription/', views.get_user_subscription, name='user_subscription'),
     path('user_membership/', views.user_membership, name='user_membership'),
-    path('', MembershipSelectView.as_view(), name='my_membership'),
+    # path('', views.membership_list, name='membership_list'),
 
 
     # Stripe
-    path('payment_histrory/', views.payment_histrory, name='payment_histrory'),
+    path('payment_history/', views.payment_history, name='payment_history'),
     path("config/", views.stripe_config),
-    # path("create-checkout-session/", views.create_checkout_session),
-    path("success/", views.memership_success, name='memership_success'),
-    path("cancel/", views.memership_cancel, name='memership_cancel'),
+
+    # path("create-checkout-session/", views.create_checkout_session, name='create_checkout_session'),
+    path("success/", views.success, name='success'),
+    path("cancel/", views.cancel, name='cancel'),
     # path("webhook/", views.stripe_webhook, name='stripe_webhook'),
 ]
