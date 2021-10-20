@@ -130,6 +130,9 @@ class Profileuser(models.Model):
         return str(self.username)
 
 
+    def get_absolute_url(self):
+        return reverse('profile_details', kwargs={'pk': self.pk})
+
          
 # ALL MY AND MY CONTACTS GIGS
 

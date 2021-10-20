@@ -44,15 +44,13 @@
 
 {% block content %}
 <style>
-
     btn-link:hover {
-        color:#557AC4;
+        color: #557AC4;
     }
 
     label {
         display: none;
     }
-
 </style>
 
 <div class="container-fluid">
@@ -72,7 +70,10 @@
 
                             <!-- Title -->
                             <div class="row col-12">
-                                <a class="card-title text-center" style="font-weight: bolder; text-decoration: none; color: #406daf;" href="{{ gig.get_absolute_url }}"><!-- {% url 'gig_detail' gig.id %} -->
+                                <a class="card-title text-center"
+                                    style="font-weight: bolder; text-decoration: none; color: #406daf;"
+                                    href="{{ gig.get_absolute_url }}">
+                                    <!-- {% url 'gig_detail' gig.id %} -->
                                     <strong>{{ gig.title }}</strong>
                                 </a>
                             </div>
@@ -84,16 +85,19 @@
                                 {{ gig.city }}, {{ gig.country.name }}
                             </p>
                         </div>
-
                         <div class="col-sm-3 col-xs-12">
                             <div class="col text-center py-1">
                                 <img class="rounded-circle avatar" src="{{gig.author.picture.url }}">
                             </div>
                             <div class="col col-auto py-1 text-center">
-                                <p style="font-size: smaller;">
-                                    <strong>{{gig.author.first_name}} {{gig.author.last_name}}</strong>
-                                <!--</p>
-                                <p class="card-subtitle mb-2 text-muted small">--> <br>
+
+                                <a class="card-title text-center small"
+                                    style="font-weight: bolder; text-decoration: none;""
+                                    href="{{ profileuser.get_absolute_url}}">
+                                        <strong>{{gig.author.username.first_name}}
+                                            {{gig.author.username.last_name}}</strong>
+                                </a>
+                                <p>
                                     {{ gig.author.profession }}, {{ gig.author.company_name }}
                                 </p>
 

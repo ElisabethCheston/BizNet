@@ -89,7 +89,7 @@
                     <!-- User Name -->
                     <div class="col-12 text-center">
                         <a class=" card-title text-center" href="{% url 'profile_details' profileuser.pk %}">
-                            <p class="text-center"><strong>{{profileuser.first_name}} {{profileuser.last_name}}</strong>
+                            <p class="text-center"><strong>{{profileuser.username.first_name}} {{profileuser.username.last_name}}</strong>
                             </p>
                         </a>
                     </div>
