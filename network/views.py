@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from profileusers.models import Profileuser
-from gigs.models import Gig, NetworkUsers
+from gigs.models import Gig
 from django.contrib.auth import get_user_model
 
 from . import views

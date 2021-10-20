@@ -10,13 +10,12 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 # Reference : https://medium.com/analytics-vidhya/django-and-stripe-subscriptions-part-2-8ddd406458a9
 
 
-
-
 MEMBERSHIP_CHOICES = (
     ('Yearly', 'yearly'),
     ('Monthly', 'monthly'),
     ('Free', 'free')
 )
+
 class Membership(models.Model):
     slug = models.SlugField()
     membership_type = models.CharField(
@@ -53,6 +52,8 @@ def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
 
 post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
 
+
+# -- Subsciption is only created when a member choose a payment plan -- #
 
 class Subsciption(models.Model):
     user_membership = models.ForeignKey(UserMembership, on_delete=models.CASCADE)

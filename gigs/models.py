@@ -6,7 +6,8 @@ from django_countries.fields import CountryField
 from membership.models import Membership
 
 
-# Create your models here.
+# GIG
+
 class Gig(models.Model):
     title = models.CharField(max_length=50, blank=False)
     picture = models.ImageField(upload_to='images', blank=True)
@@ -50,45 +51,3 @@ class Gig(models.Model):
 
     def get_user_liked(self, user):
         pass
-
-# Create NetworkUsers model.
-class NetworkUsers(models.Model):
-
-    # Network User Information 
-
-    # Personal information
-    username = models.OneToOneField(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='images', default='profileavatar.png')
-    first_name = models.CharField(
-        max_length=254, blank=False, null=True)
-    last_name = models.CharField(
-        max_length=254, blank=False, null=True)
-    email = models.EmailField(
-        max_length=100, null=False, blank=True)
-    phone = models.CharField(max_length=40, null=True, blank=True)
-    city = models.CharField(max_length=50, null=True, blank=False)
-    country = CountryField(blank_label='Country', null=True, blank=False)
-
-    # Work Information
-    title = models.CharField(max_length=254, blank=True, default=None, null=True)
-    company_name = models.CharField(
-        max_length=254, blank=True, null=True)
-    industry = models.ForeignKey(
-        Industry, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    profession = models.ForeignKey(
-        Profession, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    description = models.TextField(max_length=250, null=True, verbose_name="Description")
-    employment = models.ForeignKey( Employment, null=True, on_delete=models.SET_NULL, blank=True, default=None)
-    status = models.ForeignKey( Status, null=True, on_delete=models.SET_NULL, blank=True, default=None)        
-
-    # Other Information
-    gig = models.ForeignKey('Gig', on_delete=models.SET_NULL, related_name='+', blank=True, null=True)
-    follow = models.ManyToManyField(
-        User, related_name='follow', blank=True)
-    updated = models.DateTimeField(auto_now=True, blank=False)
-    created = models.DateTimeField(auto_now_add=True, blank=False, null=True)
-
-
-    def __str__(self):
-        # pylint: disable=maybe-no-member
-        return str(self.username)

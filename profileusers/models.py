@@ -10,13 +10,18 @@ from itertools import chain
 import random
 
 
+# TERMS & CONDITIONS
+
 class TermUser(models.Model):
     agree = models.BooleanField()
 
     def __str__(self):
         return self.title
 
+
+
 # DROPDOWN LISTS
+
 class Industry(models.Model):
     industry_name = models.CharField(max_length=100, null=True, blank=False)
     class Meta:
@@ -71,7 +76,9 @@ class Status(models.Model):
         return self.status_name
 
 
-# Create Profileuser model.
+
+# PROFILEUSER
+
 class Profileuser(models.Model):
     """
     Profile user information 
@@ -122,12 +129,14 @@ class Profileuser(models.Model):
         # pylint: disable=maybe-no-member
         return str(self.username)
 
-            
+
+         
 # ALL MY AND MY CONTACTS GIGS
 
     # All my gigs
     def my_gigs(self):
         return self.gig_set.all()
+
 
     # Number of my posted gigs
     @property
@@ -170,11 +179,13 @@ class Profileuser(models.Model):
         # pylint: disable=maybe-no-member
         return self.following.all()
 
+
     # Following list
     def get_followings_contact(self):
         # pylint: disable=maybe-no-member
         following_list = [p for p in self.get_following()]
         return following_list
+
 
     # Count of people am following
     @property
@@ -196,13 +207,11 @@ class Profileuser(models.Model):
             # ...append them too the followers list
         return followers_list
 
+
     # Count of people that are following me
     @property
     def followers_count(self):
         return len(self.get_followers())
-
-
-# MATCHING PREFERENCES
 
 
 # SUGGESTED CONTACTS
@@ -222,22 +231,3 @@ class Profileuser(models.Model):
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
         return available[:3]
-
-"""
-@receiver(post_save, sender=User)
-def create_or_update_profileuser(sender, instance, created, **kwargs):
-    
-    Create or update the profileuser
-    
-    if created:
-        Profileuser.objects.create(user=instance)
-    instance.profileuser.save()
-
-
-def create_profile(sender, **kwargs):
-    user = kwargs["instance"]
-    if kwargs["created"]:
-        user_profile = Profileuser(user=user)
-        user_profile.save()
-post_save.connect(create_profile, sender=User)
-"""

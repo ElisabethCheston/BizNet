@@ -11,7 +11,7 @@ from django.views.generic import  ListView
 from .models import Membership, UserMembership, Subsciption
 # Import from other models
 from profileusers.models import Profileuser
-from gigs.models import Gig, NetworkUsers
+from gigs.models import Gig
 
 import stripe
 
