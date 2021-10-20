@@ -101,45 +101,7 @@ class GigDeleteView(LoginRequiredMixin, DeleteView): # UserPassesTestMixin
 
 
 # CHOICE FOR GIGS
-"""
-def SavedGig(request):
-    # pylint: disable=maybe-no-member
-    save_gig = Gig.objects.all()
-    context = {
-        'save_gig': save_gig,
-    }
-    return render(request, 'gigs/saved_gig.html', context)
 
-def AppliedGig(request):
-    # pylint: disable=maybe-no-member
-    apply_gig = Gig.objects.all()
-    context = {
-        'apply_gig': apply_gig,
-    }
-    return render(request, 'gigs/apply_gig.html', context)
-
-def HideGig(request):
-    # pylint: disable=maybe-no-member
-    hide_gig = Gig.objects.all()
-    context = {
-        'hide_gig': hide_gig,
-    }
-    return render(request, 'gigs/hide_gig.html', context)
-
-@require_http_methods(['POST'])
-def HideGig(request):
-    # pylint: disable=maybe-no-member
-    gd_list = request.POST.get('gd_list')
-    noshow = get_object_or_404(Gig, noshowgig=gd_list)
-    if noshow:
-        an_gig = True
-    else:
-        an_gig = False
-    data = {
-        'an_gig': an_gig
-    }
-    return JsonResponse(data)
-"""
 
 class GigsData(View):
     def get(self, *args, **kwargs):

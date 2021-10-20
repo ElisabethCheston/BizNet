@@ -91,11 +91,11 @@
                                             </ul>
                                             <br>
                                             <br>
-                                            <form action="#" method="POST"> <!--{% url 'create-checkout-session' %}-->
+                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
                                                 <input type="hidden" id="freePrice" name="lookup_key"
                                                 value="{{PRICE_ID_1}}" />
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
-                                            </form>
+                                            </form>-->
                                         </div>
                                     </div>
                                 </div>
@@ -126,12 +126,11 @@
                                                 </li>
                                             </ul>
                                             <br>
-                                            <form action="#" method="POST"><!--{% url 'create-checkout-session' %}-->
+                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
                                                 <input type="hidden" id="basicPrice" name="lookup_key"
                                                 value="{{PRICE_ID_2}}" />
-                                                <!--<a href="{% url 'create-checkout-session' %}?membership=monthly"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get started</button></a>-->
                                                 <button class="btn" id="submitBtn" type="submit">Subscribe</button>
-                                            </form>
+                                            </form>-->
                                         </div>
                                     </div>
                                 </div>
@@ -161,17 +160,15 @@
                                                     Create a network
                                                 </li>
                                             </ul>
-                                            <form action="#" method="POST"> <!--{% url 'create-checkout-session' %}-->
+                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
                                                 <input type="hidden" id="proPrice" name="lookup_key"
                                                     value="{{PRICE_ID_3}}" />
-                                                    <!--<a href="{% url 'create-checkout-session' %}?membership=yearly"><button type="button" class="btn btn-lg btn-block btn-primary">Get started</button></a>-->
-
                                                 <button class="pushable btn-grad text-center sm" id="submitBtn" type="submit">
                                                     <span class="front">
                                                         Subscribe
                                                     </span>
                                                 </button>
-                                            </form>
+                                            </form>-->
 
                                         </div>
                                     </div>
@@ -182,6 +179,7 @@
                     </div>
                     <hr>
 
+                    <!-- Questions -->
                     <div class="text-center my-4">
                         <h2>Frequently asked questions</h2>
                     </div>
@@ -259,16 +257,15 @@
 </div>
 
 <script>
-/*
-    document.addEventListener('DOMContentLoaded', async () => {
-  let searchParams = new URLSearchParams(window.location.search);
-  if (searchParams.has('session_id')) {
-    const session_id = searchParams.get('session_id');
-    document.getElementById('session-id').setAttribute('value', session_id);
-  }
-});
-*/
+    /*
+        document.addEventListener('DOMContentLoaded', async () => {
+      let searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has('session_id')) {
+        const session_id = searchParams.get('session_id');
+        document.getElementById('session-id').setAttribute('value', session_id);
+      }
+    });
+    */
 </script>
 
 {% endblock %}
-
