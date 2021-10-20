@@ -53,69 +53,89 @@
     }
 </style>
 
-<div class="container-fluid">
+<div class="container-fluid" id="justify-center">
     <br>
     <div class="row">
 
         <!-- gig cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
-            <!--{% for gig in gigs.all %}-->
+            {% for gig in gigs.all %}
             {% csrf_token %}
-            <div class="card">
+            <div class="card my-3">
                 <div class=" card-body">
 
                     <div class="row justify-content-between">
 
-                        <div class="col-sm-9 col-sx-12">
+                        <!-- colum 1 -->
 
-                            <!-- Title -->
+                        <div class="col-sm-8 col-sx-12">
                             <div class="row col-12">
                                 <a class="card-title text-center"
-                                    style="font-weight: bolder; text-decoration: none; color: #406daf;"
+                                    style="font-weight: bolder; font-size: large; text-decoration: none; color: #406daf;"
                                     href="{{ gig.get_absolute_url }}">
-                                    <!-- {% url 'gig_detail' gig.id %} -->
                                     <strong>{{ gig.title }}</strong>
                                 </a>
                             </div>
-
-                            <p class="card-subtitle mb-2 py-1 text-center text-muted small">
+                            <p class="card-subtitle mb-1 py-1 text-center text-muted small">
                                 Deadline: {{ gig.deadline|date:"F d, Y" }}
                             </p>
-                            <p class=" card-subtitle mb-2 text-center text-muted small">
+                            <p class="card-subtitle mb-2 text-center text-muted small">
                                 {{ gig.city }}, {{ gig.country.name }}
                             </p>
                         </div>
-                        <div class="col-sm-3 col-xs-12">
-                            <div class="col text-center py-1">
-                                <img class="rounded-circle avatar" src="{{gig.author.picture.url }}">
+
+                        <!-- colum 2 -->
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="col text-center mt-1">
+                                <img class="rounded-circle avatar" src="{{ gig.author.picture.url }}">
                             </div>
                             <div class="col col-auto py-1 text-center">
-
                                 <a class="card-title text-center small"
-                                    style="font-weight: bolder; text-decoration: none;""
-                                    href="{{ profileuser.get_absolute_url}}">
-                                        <strong>{{gig.author.username.first_name}}
-                                            {{gig.author.username.last_name}}</strong>
+                                    style="font-weight: bolder; text-decoration: none;"
+                                    href=" {{ profileusers.get_success_url }}">
+                                    <strong>{{gig.author.username.first_name}} {{gig.author.username.last_name}}</strong>
                                 </a>
-                                <p>
-                                    {{ gig.author.profession }}, {{ gig.author.company_name }}
-                                </p>
-
+                                <p class="small">{{ gig.author.profession }}, {{ gig.author.company_name }}</p>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
+
             </div>
+            {% endfor %}
+
             <br>
-            <!--{% endfor %}-->
         </div>
+    </div>
+
+    <!-- Paginations-->
+    <div id="justify-center" class="text-center">
+        {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class="btn btn-outline-info mb-4"
+            href="?page={{ num }}">{{num}}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginato.num_pages }}">Last</a>
+            {% endif %}
+
+            {% endif %}
     </div>
     <br>
     <br>
-    <br>
+
 </div>
-<br>
 
 {% endblock %}

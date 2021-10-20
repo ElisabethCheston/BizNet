@@ -267,8 +267,8 @@ class ProfilesListView(ListView):
 
     # override the queryset method
     def get_queryset(self):
-        queryset = Profileuser.objects.order_by('last_name')
-        return Profileuser.objects.order_by('last_name').exclude(username=self.request.user)
+        queryset = Profileuser.objects.order_by('-created')
+        return Profileuser.objects.order_by('-created').exclude(username=self.request.user)
 
 
 class NetworkProfileView(DetailView):
@@ -292,6 +292,9 @@ class NetworkProfileView(DetailView):
 
         context['follow'] = follow
         return context
+
+    def get_success_url(self):
+        return reverse('events:profile_details', kwargs={'pk': self.object.profile_id})
 
 # @login_required
 def profile_details(request):
@@ -335,6 +338,7 @@ def profile_delete(request, pk):
         'profileuser': profileuser,
         }
     return render(request, 'profileusers/user_confirm_delete.html', context)
+
 
 
 """

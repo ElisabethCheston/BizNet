@@ -24,23 +24,13 @@ from django.views.generic import (
 )
 
 
-"""
-def gig(request):
-    # pylint: disable=maybe-no-member
-    template = 'gigs/gig.html'
-    context = {
-        # 'greeting': 'Welcome!',
-        'qs': Gig.objects.all()
-    }
-    return render(request, template, context)
-"""
-
 # ALL GIGS
 
 class GigListView(ListView):
     model = Gig
     template_name = 'gigs/gig.html'
     context_object_name = 'gigs'
+    paginate_by = 3
     ordering = ['-created']
 
 

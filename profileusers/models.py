@@ -129,10 +129,6 @@ class Profileuser(models.Model):
         # pylint: disable=maybe-no-member
         return str(self.username)
 
-
-    def get_absolute_url(self):
-        return reverse('profile_details', kwargs={'pk': self.pk})
-
          
 # ALL MY AND MY CONTACTS GIGS
 
