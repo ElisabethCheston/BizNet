@@ -112,7 +112,6 @@
 
                     <!-- Profileuser information -->
 
-
                     <!-- Row One -->
                     <div class="row">
                         <div class="col-sm-6 col-12 media"> <!--style="max-width: 400px;">-->
@@ -166,7 +165,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Row Two -->
 
@@ -229,8 +227,8 @@
                         <!-- Profileuser fact colum-->
                         <div class="col-sm-6 col-12" style="max-width: 480px;">
                             <div class="card-body">
-                                <h4 class="card-title g-0"><strong>{{object.first_name}}
-                                        {{object.last_name}}</strong></h4>
+                                <h4 class="card-title g-0"><strong>{{object.username.first_name}}
+                                        {{object.username.last_name}}</strong></h4>
                                 <p class="card-text"><strong>Title:</strong> &nbsp; {{object.title}}
                                 </p>
                                 <p class="card-text"><strong>Company:</strong> &nbsp;
@@ -282,8 +280,8 @@
 
                     <div class="card-body my-2">
                         <h5>Have posted:</h5>
+ 
                         {% for gig in profileuser.my_gigs %}
-                        <!--<h6 class="small">No. of Gigs ({{ gig.qs.num_gigs }}):</h6>-->
 
                         <div class="link">
                             <a href="{{ gig.get_absolute_url }}">{{ gig.title }}</a>
@@ -303,18 +301,9 @@
     <br>
     <br>
     <br>
-
 </div>
 
 <script>
-    /*
-    $(document).ready(function() {
-        $('#follow_btn').click(function() {
-            $('.basic.modal')
-                .modal('show')
-        });
-    })
-    */
 
     var exampleModal = document.getElementById('follow-btn')
     exampleModal.addEventListener('show.bs.modal', function (event) {
