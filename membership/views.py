@@ -27,7 +27,6 @@ https://stripe.com/docs/billing/integration-builder
 
 """
 
-
 # -- STRIPE -- #
 
 @csrf_exempt
@@ -106,8 +105,11 @@ def get_user_subscription(request):
 class MembershipSelectView(ListView):
     model = Membership
 
-    def get_contex_data (self, *args, **kwargs):
-        context = super().get_contex_data(**kwargs)
+    def get_context_data (self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context)
+        
+"""
         current_membership = get_user_membership(self.membership)
         return context
 
@@ -122,6 +124,7 @@ class MembershipSelectView(ListView):
         )
         if selected_membership_qs.exists():
             selected_membership = selected_membership_qs.first()
+"""
 
     # -- Valitation -- #
 """

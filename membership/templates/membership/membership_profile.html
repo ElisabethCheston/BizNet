@@ -64,8 +64,14 @@
                 <div class="col-md-10 col-xl-8 mx-auto">
                     <h1 class="text-center"><strong>We have a monthly plan for everyone.</strong></h1>
                     <p class="lead text-center mb-2"><strong>Whether you're a business or an individual.</strong></p>
+{{ object }}
+                    {% for object in membership_profile %}
+                    <h3>hello</h3>
 
-                    <div class="tab-content">
+        {{ object.membership_type }}
+        {% endfor %}
+
+                    <!--<div class="tab-content">
                         <div class="tab-pane fade show active" id="monthly">
 
                             <div class="row py-4">
@@ -91,11 +97,9 @@
                                             </ul>
                                             <br>
                                             <br>
-                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
-                                                <input type="hidden" id="freePrice" name="lookup_key"
-                                                value="{{PRICE_ID_1}}" />
-                                                <button class="btn" id="submitBtn" type="submit">Subscribe</button>
-                                            </form>-->
+
+                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -126,11 +130,9 @@
                                                 </li>
                                             </ul>
                                             <br>
-                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
-                                                <input type="hidden" id="basicPrice" name="lookup_key"
-                                                value="{{PRICE_ID_2}}" />
-                                                <button class="btn" id="submitBtn" type="submit">Subscribe</button>
-                                            </form>-->
+
+                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -160,15 +162,8 @@
                                                     Create a network
                                                 </li>
                                             </ul>
-                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
-                                                <input type="hidden" id="proPrice" name="lookup_key"
-                                                    value="{{PRICE_ID_3}}" />
-                                                <button class="pushable btn-grad text-center sm" id="submitBtn" type="submit">
-                                                    <span class="front">
-                                                        Subscribe
-                                                    </span>
-                                                </button>
-                                            </form>-->
+
+
 
                                         </div>
                                     </div>
@@ -176,7 +171,8 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div>-->
+
                     <hr>
 
                     <!-- Questions -->
@@ -269,3 +265,26 @@
 </script>
 
 {% endblock %}
+
+
+                                             <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
+                                                <input type="hidden" id="freePrice" name="lookup_key"
+                                                value="{{PRICE_ID_1}}" />
+                                                <button class="btn" id="submitBtn" type="submit">Subscribe</button>
+                                            </form>-->
+
+                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
+                                                <input type="hidden" id="basicPrice" name="lookup_key"
+                                                value="{{PRICE_ID_2}}" />
+                                                <button class="btn" id="submitBtn" type="submit">Subscribe</button>
+                                            </form>-->
+
+                                            <!--<form action="#" method="POST"> {% url 'create-checkout-session' %}
+                                                <input type="hidden" id="proPrice" name="lookup_key"
+                                                    value="{{PRICE_ID_3}}" />
+                                                <button class="pushable btn-grad text-center sm" id="submitBtn" type="submit">
+                                                    <span class="front">
+                                                        Subscribe
+                                                    </span>
+                                                </button>
+                                            </form>-->

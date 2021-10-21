@@ -1,6 +1,8 @@
 from .models import Gig
 from profileusers.models import Profileuser
 from .forms import GigForm
+from membership.models import Membership
+
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
@@ -37,6 +39,25 @@ class GigListView(ListView):
 class GigDetailView(DetailView):
     model = Gig
 
+
+#### ---- FIX THIS ----- #####
+
+def get(self, request, gig, *args, **kwargs):
+    gig_qs = Gig.objects.filter()
+    if gig_gs.exists():
+        gig = gig_qs.first()
+
+    user_membership = UserMembership.objectsfilter(user=request.user).first()
+    user_membership_type = user_membership.membership.membership_type
+
+    gig_allowed_mem_type = gig.allowed_membership.all()
+
+    context = {
+        'object': None
+    }
+    if gig_allowed_mem_type.filter(membership_type=user_membership_type).exists():
+        
+        return render(request, 'create_gigs.html', context)
 
 # PROFILEUSER GIGS
 
