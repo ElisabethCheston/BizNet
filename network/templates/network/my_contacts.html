@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
+<!--<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">-->
 {% endblock %}
 
-{% block scripts %}
-<!--<script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>-->
-{% endblock scripts %}
+<!--{% block scripts %}
+<script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
+{% endblock scripts %}-->
 
 
 {% block page_header %}
@@ -73,7 +73,17 @@
         justify-content: center;
         background-color: rgba(136, 33, 33, 0.898) !important;
     }
-    /*
+  /*  
+    .followers {
+        color: rgba(206, 6, 6, 0.898);
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .followers:hover {
+        color: rgba(35, 178, 197, 0.898);
+        font-weight: bolder;
+    }
+    
 #wrapper {
     display: flex;
     justify-content: center;
@@ -96,26 +106,26 @@
                     <div class="col-9">
                         <p><b>Following profiles:</b></p>
                     </div>
-                    <div class="col-3 text-center">
+                    <div class="col text-center">
                         <p><b>No:</b></p>
                         <p> {{ profile.following_count }}</p>
                     </div>
                 </div>
 
                 {% for profileuser in profile.get_following %}
-                <div class="row">
-                    <div class="col-9">
-
-                        <p>{{ profileuser.first_name}} {{ profileuser.last_name}}
-                            {{ profileuser.company_name }}
-                        </p>
+                <div class="row justify-content-between">
+                    <div class="col-9 my-2">
+                        <a class="card-title followers" id="followers" href="{% url 'profile_details' profileuser.pk %}">
+                            <p class="card-title""><strong>{{profileuser.first_name}} {{profileuser.last_name}}</strong></p>
+                            <!--<p class="small">{{ profile.profession }}, {{ profile.company_name }}</p>-->
+                        </a>
                     </div>
-                    <div class="col-3 text-center">
-                        <!--<form action="{% url 'follow_unfollow_profile' %}" method="POST">
+                    <div class="col text-center my-2">
+                        <form action="{% url 'follow_unfollow_profile' %}" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="profile_pk" value={{profileuser.pk}}>
                             <button type="submit" class="btn follow-button">Unfollow</button>
-                        </form>-->
+                        </form>
                     </div>
                 </div>
                 {% endfor %}
@@ -123,12 +133,32 @@
             </div>
 
         </div>
-
     </div>
 
 </div>
 <br>
 
+
+<script>
+
+    var exampleModal = document.getElementById('follow-btn')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var recipient = button.getAttribute('data-bs-whatever')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        var modalTitle = exampleModal.querySelector('.modal-title')
+        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+        modalTitle.textContent = 'New message to ' + recipient
+        modalBodyInput.value = recipient
+    })
+
+</script>
 
 {% endblock %}
 

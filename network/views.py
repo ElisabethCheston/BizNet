@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from profileusers.models import Profileuser
 from gigs.models import Gig
+
+from gigs.models import Gig
 from django.contrib.auth import get_user_model
 
 from . import views
@@ -37,26 +39,22 @@ class NetworkProfileView(DetailView):
         view_profile = Profileuser.objects.get(pk=pk)
         return view_profile
 
-
-
     def get_context_data(self, **kwargs):
         context = super(NetworkProfileView, self).get_context_data(**kwargs)
         context['post_list'] = Profileuser.objects.filter(user__username__iexact=self.kwargs.get('username'))
         return context
-"""
-"""
+
     def get_user_profile(self, username):   
         return get_object_or_404(User, pk=username)
      #I know pk=username is not correct. I am not sure what to put pk=?
-"""     
-"""
+
   # I was able to get the writers other posts using the code below. I did not have to show this code for this question. But just to show you that the pk above has to be username. Or Else the code below won't work(I guess)        
     def get_context_data(self, **kwargs):
         context = super(NetworkProfileView, self).get_context_data(**kwargs)
         context['post_list'] = Post.objects.filter(user__username__iexact=self.kwargs.get('username'))
-        return context  """
+        return context  
 
-"""
+
 # @login_required
 def all_profiles(request):
     # pylint: disable=maybe-no-member
@@ -74,6 +72,7 @@ class UserDetailView(DetailView):
     model = Profileuser
 
 """
+
 def network(request):
     # A view to return the network page 
 
@@ -113,11 +112,11 @@ def my_followers(request):
 def following_ppl(request):
     # A view to return the My Contacts page 
     # pylint: disable=maybe-no-member
-    profile = Profileuser.objects.get(username=request.user)
+    follow_ppl = Profileuser.objects.get(username=request.user)
     template = 'network/my_contacts.html'
    
     context = {
-        'profile': profile,
+        'follow_ppl': follow_ppl,
         # 'get_following': get_following,
         # 'get_followers': get_followers,
     }
