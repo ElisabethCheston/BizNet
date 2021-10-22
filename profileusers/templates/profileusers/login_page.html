@@ -28,13 +28,13 @@
     }
 
     a,
-  p,
-  .link,
-  h2 {
-    text-align: center;
-    font-size: medium;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
+    p,
+    .link,
+    h2 {
+        text-align: center;
+        font-size: medium;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
 
     .form-control {
         height: 45px;
@@ -80,10 +80,21 @@
         color: deeppink;
     }
 
+    li::marker {
+        color: transparent;
+        display: none;
+    }
+
+    div.message-text {
+        color: red !important;
+        font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+        font-weight: bolder !important;
+        text-align: center;
+    }
+
     .password_reset {
         border: none;
     }
-
     input {
         width: 84%;
         text-align: center;
@@ -101,10 +112,9 @@
         background-color: rgba(94, 95, 95, 0.192) !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
-
 </style>
 
-<div class="container-fluid" id="justify-center">
+<div class="container-fluid">
 
     <div class="d-flex">
         <h2 id="form-title">LOGIN</h2>
@@ -136,7 +146,7 @@
                 send you an e-mail allowing
                 you to reset it.</p>
 
-                <br>
+            <br>
             <div class="d-flex justify-content-center mt-2" id="justify-center">
                 <input class="btn login-btn" type="submit" value="SIGN IN">
             </div>
@@ -155,9 +165,6 @@
 </div>
 
 <script>
-    /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-  //We start indexing at one because CSRF_token is considered and input field 
-  */
 
     // Query All input fields
     var form_fields = document.getElementsByTagName('input')

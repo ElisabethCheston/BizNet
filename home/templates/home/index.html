@@ -19,6 +19,7 @@
   .index_container {
     padding: 0 1rem;
   }
+
   .btn-primary {
     border-width: 2px;
     color: white;
@@ -33,37 +34,54 @@
     -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+
   .btn:hover,
   .btn:active,
   .btn:focus {
     background-color: rgba(94, 95, 95, 0.75) !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   }
-h1, h3, h4, p {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
-.bizbtn {
-        color: white;
-        border-color: rgba(148, 149, 150, 0.2);
-        background-color:#406daf !important;
-        width: 38%;
-        height: 40px;
-        margin-top: 2%;
-        font-weight: bold;
+  h1,
+  h3,
+  h4,
+  p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  li::marker {
+        color: transparent;
+        display: none;
+    }
+
+    div.message-text {
+        color: red !important;
+        font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+        font-weight: bolder !important;
         text-align: center;
-        font-size: small !important;
-        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-    .bizbtn:hover,
-    .bizbtn:active,
-    .bizbtn:focus {
-      background-color:#4a78becb !important;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    }
+  .bizbtn {
+    color: white;
+    border-color: rgba(148, 149, 150, 0.2);
+    background-color: #406daf !important;
+    width: 38%;
+    height: 40px;
+    margin-top: 2%;
+    font-weight: bold;
+    text-align: center;
+    font-size: small !important;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .bizbtn:hover,
+  .bizbtn:active,
+  .bizbtn:focus {
+    background-color: #4a78becb !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
 </style>
 
 <div class="container-fluid" id="justify-center">
@@ -71,16 +89,16 @@ h1, h3, h4, p {
     A smart platform for small companies who want to grow their business and network.
   </h3>
   <p>
-    BizNet combines smart matching, social network and a marketplace to grow your business, be social and share experiences in a professional context.
+    BizNet combines smart matching, social network and a marketplace to grow your business, be social and share
+    experiences in a professional context.
   </p>
 
   <div class="row button-row">
-    <a href="https://www.biznet.app/""><input type="button" class="btn bizbtn text-center"
-            value="BIZNET"></a>
-</div>
-<br>
-<br>
-<br>
+    <a href="https://www.biznet.app/""><input type=" button" class="btn bizbtn text-center" value="BIZNET"></a>
+  </div>
+  <br>
+  <br>
+  <br>
 
   <!-- Sign In-->
   <form id="justify-center" method="POST" action="{% url 'login_page' %}">

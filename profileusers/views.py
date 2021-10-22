@@ -213,7 +213,7 @@ def loginPage(request):
             login(request, user)
             return redirect('all_profiles')
         else:
-            # messages.info(request, 'Username or Password is incorrect!')
+            messages.info(request, 'Username or Password is incorrect!')
             return redirect('login_page')
   
     template = 'profileusers/login_page.html'
