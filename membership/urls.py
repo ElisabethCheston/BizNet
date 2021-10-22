@@ -7,14 +7,13 @@ from .views import (
 
 urlpatterns = [
     path('', MembershipSelectView.as_view(), name='select'),
-    # path('membership_list', views.membership_list, name='membership_list'),
-
     path('membership_profile', views.membership_profile, name='membership_profile'),
     path('subscriptions/', views.subscriptions, name='subscriptions'),
-    path('user_subscription/', views.get_user_subscription, name='user_subscription'),
-    path('user_membership/', views.user_membership, name='user_membership'),
-    # path('', views.membership_list, name='membership_list'),
+    path('membership_list/', views.membership_list, name='membership_list'),
 
+    path('user_subscription/', views.get_user_subscription, name='user_subscription'),
+    # path('user_membership', views.user_membership, name='user_membership'),
+    # path('', views.membership_list, name='membership_list'),
 
     # Stripe
     path('payment_history/', views.payment_history, name='payment_history'),

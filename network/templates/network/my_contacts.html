@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block extra_css %}
-<!--<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">-->
-{% endblock %}
+<!--{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profileusers/css/profile.css' %}">
+{% endblock %}-->
 
 <!--{% block scripts %}
 <script src="{% static 'profileusers/js/my_profile.js' %}" defer></script>
 {% endblock scripts %}-->
-
 
 {% block page_header %}
 <!-- Profile tab links -->
@@ -54,6 +53,7 @@
 {% block content %}
 
 <style>
+    
     .follow-button {
         height: 30px;
         text-transform: uppercase;
@@ -73,6 +73,7 @@
         justify-content: center;
         background-color: rgba(136, 33, 33, 0.898) !important;
     }
+    
   /*  
     .followers {
         color: rgba(206, 6, 6, 0.898);
@@ -97,10 +98,9 @@
 
         <!-- Contact cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
-
             <div class="card">
+                <div class="card-body">
 
-                <div class="card-body mx-4 my-4">
 
                 <div class="row">
                     <div class="col-9">
@@ -130,6 +130,7 @@
                 </div>
                 {% endfor %}
                 </div>
+
             </div>
 
         </div>
@@ -140,7 +141,7 @@
 
 
 <script>
-
+/*
     var exampleModal = document.getElementById('follow-btn')
     exampleModal.addEventListener('show.bs.modal', function (event) {
         // Button that triggered the modal
@@ -157,26 +158,126 @@
         modalTitle.textContent = 'New message to ' + recipient
         modalBodyInput.value = recipient
     })
-
+*/
 </script>
 
 {% endblock %}
 
-<!-- Followers -->
-<!--<div class="row">
-                    <div class="col">
-                        <div class="row justify-content-between">
-                            <div class="col-9">
-                                <p><b>Followers:</b></p>
-                                {% for profileuser in profile.get_followers %}
-                                <p> {{ profileuser.first_name}} {{ profileuser.last_name}}</p>
-                                {% endfor %}
-                                <br>
+        <!--{% if object is not None %}-->
+
+                <!--{% else %}
+                <div class="col-12">
+                    <h3 class="text-center"><strong>UPGRADE YOUR MEMBERSHIP</strong></h3>
+                    <h6 class="text-center">You have to upgrade your Membership to have
+                        access to this function.</h6>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="monthly">
+                            <div class="row py-3">
+
+                                <div class="col-md-4 mb-md-0 p-2">
+                                    <div class="card card-mem text-center h-100">
+                                        <div class="card-body card-member text-center d-flex flex-column">
+                                            <div class="mb-4">
+                                                <h4>FREE ACCESS</h4>
+                                                <br>
+                                                <span class="display-4">€0</span>
+                                                <span>/mo</span>
+                                            </div>
+                                            <h6 class="mb-3">Includes:</h6>
+                                            <ul class="list-unstyled pb-3 small">
+                                                <li class="mb-1">
+                                                    User profile
+                                                </li>
+                                                <li class="mb-1">
+                                                    View jobs
+                                                </li>
+                                                <li class="mb-1">
+                                                    View other profile
+                                                </li>
+                                            </ul>
+                                            <br>
+                                            <br>
+                                            <div class="text-center form-group mt-1">
+                                                <a class="btn btn-secondary" type="button" href="#">CHOOSE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-md-0 p-2">
+                                    <div class="card card-mem text-center h-100">
+                                        <div class="card-body text-center d-flex flex-column">
+                                            <div class="mb-4">
+                                                <h4>PREMIUM ACCESS</h4>
+                                                <br>
+                                                <span class="display-4">€15</span>
+                                                <span>/mo</span>
+                                            </div>
+                                            <h6 class="mb-3">Includes:</h6>
+                                            <ul class="list-unstyled small">
+                                                <li class="mb-1">
+                                                    User profile
+                                                </li>
+                                                <li class="mb-1">
+                                                    View jobs
+                                                </li>
+                                                <li class="mb-1">
+                                                    View other profile
+                                                </li>
+                                                <li class="mb-1">
+                                                    Create gigs
+                                                </li>
+                                                <li class="mb-1">
+                                                    Create a network
+                                                </li>
+                                            </ul>
+                                            <br>
+                                            <div class="text-center form-group">
+                                                <a class="btn btn-secondary" type="button"
+                                                    href="https://buy.stripe.com/dR617C3CI8UZ0Kc7st">CHOOSE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-md-0 p-2">
+                                    <div class="card card-mem text-center h-100">
+                                        <div class="card-body text-center d-flex flex-column">
+                                            <div class="mb-4">
+                                                <h4>PREMIUM ACCESS</h4>
+                                                <br>
+                                                <span class="display-4">€150</span>
+                                                <span>/yr</span>
+                                            </div>
+                                            <h6 class="mb-3">Includes:</h6>
+                                            <ul class="list-unstyled small">
+                                                <li class="mb-1">
+                                                    User profile
+                                                </li>
+                                                <li class="mb-1">
+                                                    View jobs
+                                                </li>
+                                                <li class="mb-1">
+                                                    View other profile
+                                                </li>
+                                                <li class="mb-1">
+                                                    Create gigs
+                                                </li>
+                                                <li class="mb-1">
+                                                    Create a network
+                                                </li>
+                                            </ul>
+                                            <br>
+                                            <div class="text-center form-group">
+                                                <a class="btn btn-secondary" type="button"
+                                                    href="https://buy.stripe.com/00gaIcehmefj64wdQSt">CHOOSE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="col-3">
-                                <p class="text-center"><b>No:</b></p>
-                                <p class="text-center"> {{profile.followers_count}}</p>
-                            </div>
+
                         </div>
                     </div>
-                </div>-->
+                </div>
+                {% endif %}-->

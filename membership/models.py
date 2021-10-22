@@ -10,14 +10,6 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 # Reference : https://medium.com/analytics-vidhya/django-and-stripe-subscriptions-part-2-8ddd406458a9
 
 
-class BizMember(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    stripeid = models.CharField(max_length=255)
-    stripe_subscription_id = models.CharField(max_length=255)
-    cancel_at_period_end = models.BooleanField(default=False)
-    membership = models.BooleanField(default=False)
-
-
 MEMBERSHIP_CHOICES = (
     ('Yearly', 'yearly'),
     ('Monthly', 'monthly'),

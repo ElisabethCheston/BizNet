@@ -77,6 +77,7 @@ def stripe_webhook(request):
     return HttpResponse(status=200)
 """
 
+
 # -- SUBSCRIPTION -- #
 
 def subscriptions(request):
@@ -87,7 +88,6 @@ def subscriptions(request):
     }
     return render(request, template, context)
 
-
 def get_user_subscription(request):
     user_subscription = Subscription.objects.filter(
         user_membership=user_membership(request))
@@ -97,20 +97,26 @@ def get_user_subscription(request):
 
     template = 'membership/user_subscription.html'
 
-    return render(request, template)
+    return  render(request, template)
 
 
 # -- MEMBERSHIP -- #
+
+def membership_list(request):
+    membership = Membership.objects.all()
+    template = 'membership/membership_list.html'
+    context = {
+        'membership': membership
+    }
+    return render(request, template, context)
 
 class MembershipSelectView(ListView):
     model = Membership
 
     def get_context_data (self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
-        
-"""
-        current_membership = get_user_membership(self.membership)
+        current_membership = get_user_membership(self.request)
+        context['current_membership'] = str(current_membership)
         return context
 
     def post(self, request, **kwargs):
@@ -124,7 +130,6 @@ class MembershipSelectView(ListView):
         )
         if selected_membership_qs.exists():
             selected_membership = selected_membership_qs.first()
-"""
 
     # -- Valitation -- #
 """
@@ -146,6 +151,22 @@ def user_membership(request):
     template = 'membership/user_membership.html'
 
     return render(request, template)
+
+"""
+def get_user_membership(request, *args, **kwargs):
+    member_id = UserMembership.objects.filter(pk=member_pk)
+    if member_pk.exists():
+        membership = member_id.first()
+
+    user_membership = UserMembership.objectsfilter(user=request.user).first()
+    user_membership_type = user_membership.membership.membership_type
+
+    context = {
+        'member_id': member_id
+    }
+        
+    return render(request, 'user_membership.html', context)
+"""
 
 
 def membership_profile(request):

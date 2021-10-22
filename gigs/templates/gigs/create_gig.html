@@ -44,25 +44,19 @@
 
 {% block content %}
 
-
-
 <div class="container-fluid">
     <br>
     <div class="row">
 
-        {% if object is not None %}
-
         <!-- Gig Cards -->
         <div class="col-sm-10 col-sx-12 mx-auto">
-
             <div class="card">
-
                 <div class="card-body mx-4 my-4">
                     <div class="col-12">
 
                         <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
 
+                            {% csrf_token %}
                             <fieldset class="form-group">
                                 <legend class="border-bottom mb-4">Create Gig</legend>
                                 {{ form|crispy }}
@@ -82,48 +76,10 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-
         </div>
-
+        
     </div>
 </div>
-
-
-{% else %}
-
-<div class="container-fluid">
-    <br>
-    <div class="row">
-        <div class="col-sm-10 col-sx-12 mx-auto">
-            <br>
-            <br>
-            <br>
-            <div class="card">
-
-                <div class="card-body mx-4 my-4">
-                    <div class="col-12">
-                        <h2 class="text-center">Upgrade Membership</h2>
-                        <br>
-                        <p class="text-center">You have to upgrade your Membership to be
-                            able to create gigs. Click on the button to choose a new
-                            suubscription.</p>
-                        <br>
-                        <div class="text-center">
-                            <button class="btn text center">Membership</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endif %}
-
-
 {% endblock %}
 
 {% block postloadjs %}

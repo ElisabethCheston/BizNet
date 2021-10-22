@@ -39,11 +39,10 @@ class GigListView(ListView):
 class GigDetailView(DetailView):
     model = Gig
 
-
 #### ---- FIX THIS ----- #####
-
-def get(self, request, gig, *args, **kwargs):
-    gig_qs = Gig.objects.filter()
+"""
+def get(self, request, gig_pk, *args, **kwargs):
+    gig_qs = Gig.objects.filter(pk=gig_pk)
     if gig_gs.exists():
         gig = gig_qs.first()
 
@@ -58,6 +57,8 @@ def get(self, request, gig, *args, **kwargs):
     if gig_allowed_mem_type.filter(membership_type=user_membership_type).exists():
         
         return render(request, 'create_gigs.html', context)
+"""
+
 
 # PROFILEUSER GIGS
 
