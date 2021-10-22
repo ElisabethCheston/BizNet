@@ -81,19 +81,4 @@
     <br>
 </div>
 
-
 {% endblock %}
-
-
-
-<fieldset class="form-group">
-    <legend class="border-bottom mb-4">DELETE PROFILE</legend>
-    <h6 class="text-center">Are you sure you want to delete the account for:</h6><br>
-    <h4 class="text-center"><strong>"{{user.first_name}} {{user.last_name}}"</strong></h4>
-</fieldset>
-<br>
-
-<div class="text-center form-group">
-    <button class="btn btn-danger" type="submit" href="#">DELETE</button>
-    <a class="btn btn-secondary btn-cancel text-center" href="{% url 'profile_details' %}" type="submit">CANCEL</a>
-</div>
