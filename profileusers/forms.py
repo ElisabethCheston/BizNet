@@ -14,8 +14,32 @@ from django.forms.widgets import CheckboxInput
 
 # -- REGISTRATION USER FORM -- #
 
-class RegisterUserForm(UserCreationForm):
+first_name_error = {'required': 'Double check your spelling First name',
+    'invalid': 'First name can not be empty',
+}
+last_name_error = {'required': 'Double check your spelling Last name',
+    'invalid': 'Last name can not be empty',
+}
+username_error = {'required': 'Requirer valid email',
+    'invalid': 'Email is not valid,double check your spelling',
+}
+email_error = {'required': 'Requirer valid email',
+    'invalid': 'Email is not valid, double check your spelling',
+}
+password1_error = {'required': 'Requirer valid password',
+    'invalid': 'Password is not valid',
+}
+password2_error = {'required': 'Requirer valid email',
+    'invalid': 'Password is not valid',
+}
 
+class RegisterUserForm(UserCreationForm):
+    first_name = forms.CharField(error_messages=first_name_error)
+    last_name = forms.CharField(error_messages=last_name_error)
+    username = forms.CharField(error_messages=username_error)
+    email = forms.CharField(error_messages=email_error)
+    password1 = forms.CharField(error_messages=password1_error)
+    password2 = forms.CharField(error_messages=password2_error)
     class Meta:
         model = User
         fields = [
