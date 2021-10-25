@@ -72,6 +72,11 @@ body {
   margin-top: 1px;  
 }
 
+#profile {
+  text-transform: uppercase;
+  color:#406daf;
+  font-weight: bolder;
+}
 /*TABS */
 
 .tab-container {

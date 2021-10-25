@@ -95,42 +95,50 @@
         <div id="topnav" class="row justify-content-between align-items-center">
 
             <!-- BizNet Logo -->
-            <div class="col-6 col-lg-4 text-lg-left">
+            <div class="col-4 col-lg-4 text-lg-left">
                 <!-- my-auto py-1 py-lg-0 -->
                 <!--<a href="{% url 'home' %}" class="nav-link main-logo-link">-->
-                <img src="{% static 'images/biznetlight.png' %}" alt="" width="210" height="50"
-                    class="logo img-fluid">
+                <img src="{% static 'images/biznetlight.png' %}" alt="" width="210" height="50" class="logo img-fluid">
                 <!--<img src="https://static.wixstatic.com/media/e64c63_b290d859fd03448bad1976ef606f894e~mv2.png/v1/fill/w_378,h_88,al_c,lg_1,q_85/Ska%CC%88rmavbild%202021-05-23%20kl_%2020_40_47.webp"
                     alt="" width="210" height="50" class="logo img-fluid">
                 </a>-->
             </div>
             <!-- Top navbar links  -->
-            <div class="col-6 col-lg-4 wrapper box-right d-flex justify-content-end">
+            <div class="col-8 col-lg-4 wrapper box-right d-flex justify-content-end">
 
-                <a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'membership_list' %}">
+                <!--<a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'membership_list' %}">
                     <span class="button-sub" style="font-weight: bolder;"><strong>SUBSCRIPTION > &nbsp;</strong></span>
                     <img src="{% static 'images/sublogo.png' %}" width="27" height="27" class="logo img-fluid">
-                    <!--<i class="fas fa-universal-access fa-2x" style="font-size:35px; vertical-align: middle;"></i>-->
-                </a>
+                    <i class="fas fa-universal-access fa-2x" style="font-size:35px; vertical-align: middle;"></i>
+                </a>-->
 
                 <!-- Dropdown button-->
-                <a class="nav-link" href="#" id="settings" data-toggle="dropdown" aria-haspopup="true"
+                <a class="nav-link text-right" href="#" id="settings" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                    <i class="fas fa-cog fa-2x"></i>
+                    <span class="profile" id="profile"><small>{{request.user.first_name}}
+                            {{request.user.last_name}}</small></span>
+                    <i class="fas fa-caret-down"></i>
+
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="user-options">
                     {% if request.user.is_authenticated %}
+
                     {% if request.user.is_superuser %}
                     <a href="" class="dropdown-item">Admin</a>
                     <a href="" class="dropdown-item">Membership List</a>
-
-
                     {% endif %}
 
                     <a href="{% url 'profile_details' %}" class="dropdown-item">My Profile</a>
                     <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
                     <a href="{% url 'all_profiles' %}" class="dropdown-item">Network</a>
-                    <a href="{% url 'user_subscription' %}" class="dropdown-item">Membership</a>
+
+                    {% if current_membership == 'Free' %}
+                    <a href="{% url 'select' %}" class="dropdown-item">Upgrade to PRO</a>
+                    {% else %}
+                    <a href="{% url 'membership_profile' %}" class="dropdown-item">PRO Account</a>
+                    {% endif %}
+
+
                     <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
 

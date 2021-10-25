@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
+from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView
 
@@ -18,13 +19,14 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+API_KEY = settings.STRIPE_SECRET_KEY
+# logger = logging.getLogger(__name__)
+
 
                 # --  Reference  -- #
-
 """
 https://github.com/sunilale0/django-stripe-subscription
 https://stripe.com/docs/billing/integration-builder
-
 """
 
 # -- STRIPE -- #
@@ -77,6 +79,38 @@ def stripe_webhook(request):
     return HttpResponse(status=200)
 """
 
+@require_POST
+# login_required
+def payment_method(request):
+    stripe.api_key = API_KEY
+    plan = request.POST.get('plan', 'm')
+    automatic = request.POST.get('automatic', 'on')
+    payment_method = request.POST.get('payment_method', 'card')
+    context = {}
+
+    plan_inst = SubscriptionPlan(plan_id=PRICE_LOOKUP_KEY)
+
+    payment_intent = stripe.PaymentIntent.create(
+        amount=plan_inst.amount,
+        currency=plan_inst.currency,
+        payment_method_types=['card']
+    )
+
+    if payment_method == 'card':
+        context['secret_key'] = payment_intent.client_secret
+        context['STRIPE_PUBLIC_KEY'] = SETTINGS.STRIPE_PUBLIC_KEY
+        context['customer_email'] = request.user.email
+        context['payment_intent_id'] = payment_intent.id
+
+        return render(request, 'membership/card.html', context)
+
+def profile(request):
+    logger.info('profile')
+    return render(request, 'my_profile.html')
+
+def card(request):
+    return render(request, 'success.html')
+
 
 # -- SUBSCRIPTION -- #
 
@@ -93,8 +127,8 @@ def get_user_subscription(request):
         user_membership=user_membership(request))
     if user_subscription_qs.exists():
         user_subscription = user_membership_qs.first()
-        return user_subscription
 
+        return user_subscription
     template = 'membership/user_subscription.html'
 
     return  render(request, template)
@@ -109,6 +143,14 @@ def membership_list(request):
         'membership': membership
     }
     return render(request, template, context)
+
+
+def get_user_membership(request):
+    user_membership_qs = UserMembership.objects.filter(user=request.user)
+    if user_membership_qs.exists():
+        return user_membership_qs.first()
+    return None
+
 
 class MembershipSelectView(ListView):
     model = Membership
@@ -131,28 +173,19 @@ class MembershipSelectView(ListView):
         if selected_membership_qs.exists():
             selected_membership = selected_membership_qs.first()
 
-    # -- Valitation -- #
-"""
-    if user_membership.membership == selected_membership:
-        if user_subscription != None:
-            messages.info(request, "You already have this membership. Your \
-                next payment is due {}".format('get this value from stripe'))
-            return HttpResponseRedirect(request.META.get(HTTP_REFERER))
+    # -- Validate Membership -- #
 
-    # assign to the session
-    request.session['selected_membership_type'] = selected_membership.membership_type
-    return HttpResponseRedirect(reverse('memberships:payment'))
-"""
+        if user_membership.membership == selected_membership:
+            if user_subscription != None:
+                messages.info(request, "You already have this membership. Your \
+                    next payment is due {}".format('get this value from stripe'))
+                return HttpResponseRedirect(request.META.get(HTTP_REFERER))
 
-def user_membership(request):
-    user_membership_qs = UserMembership.objects.filter(user=request.user)
-    if user_membership_qs.exists():
-        return user_membership_qs.first()
-    template = 'membership/user_membership.html'
+        # assign to the session
+        request.session['selected_membership_type'] = selected_membership.membership_type
+        return HttpResponseRedirect(reverse('memberships:payment'))
 
-    return render(request, template)
 
-"""
 def get_user_membership(request, *args, **kwargs):
     member_id = UserMembership.objects.filter(pk=member_pk)
     if member_pk.exists():
@@ -166,7 +199,7 @@ def get_user_membership(request, *args, **kwargs):
     }
         
     return render(request, 'user_membership.html', context)
-"""
+
 
 
 def membership_profile(request):
