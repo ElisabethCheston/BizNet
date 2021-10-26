@@ -11,8 +11,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 MEMBERSHIP_CHOICES = (
-    ('Yearly', 'yearly'),
-    ('Monthly', 'monthly'),
+    ('Premium', 'pre'),
     ('Free', 'free')
 )
 class Membership(models.Model):
@@ -52,9 +51,9 @@ def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
 post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
 
 
-# -- Subsciption is only created when a member choose a payment plan -- #
+# -- Subscription is only created when a member choose a payment plan -- #
 
-class Subsciption(models.Model):
+class Subscription(models.Model):
     user_membership = models.ForeignKey(UserMembership, on_delete=models.CASCADE)
     stripe_subscription_id = models.CharField(max_length=40)
     active = models.BooleanField(default=True)

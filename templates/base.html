@@ -106,7 +106,7 @@
             <!-- Top navbar links  -->
             <div class="col-8 col-lg-4 wrapper box-right d-flex justify-content-end">
 
-                <!--<a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'membership_list' %}">
+                <!--<a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'select' %}">
                     <span class="button-sub" style="font-weight: bolder;"><strong>SUBSCRIPTION > &nbsp;</strong></span>
                     <img src="{% static 'images/sublogo.png' %}" width="27" height="27" class="logo img-fluid">
                     <i class="fas fa-universal-access fa-2x" style="font-size:35px; vertical-align: middle;"></i>
@@ -132,7 +132,7 @@
                     <a href="{% url 'gig' %}" class="dropdown-item">Gigs</a>
                     <a href="{% url 'all_profiles' %}" class="dropdown-item">Network</a>
 
-                    {% if current_membership == 'Free' %}
+                    {% if current_membership != 'Free' %}
                     <a href="{% url 'select' %}" class="dropdown-item">Upgrade to PRO</a>
                     {% else %}
                     <a href="{% url 'membership_profile' %}" class="dropdown-item">PRO Account</a>

@@ -61,124 +61,15 @@
                 <div class="card-body">
                     <br>
 
-                    <div class="container">
-                        <br>
-                        <h1>Choose a plan according to your needs</h1>
-                        <hr>
-                        <div class="row">
-                        {% for object in object_list %}
-                        <div class="col-sm-4 col-md-4">
-                        <div class="card" style="width: 18rem;">
-                        <!-- <img class="card-img-top " src="{{ object.image.url }}" alt="Card image cap"> -->
-                        <div class="card-body">
-                        <h5 class="card-title">{{ object.membership_type }}</h5>
-                        <p class="card-text">{{ object.desc | linebreaks }}</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> ${{ object.price }}<small>/month</small></li>
-                        </ul>
-                        <div class="card-body">
-                        {% if object.membership_type != 'Free' %}
-                        <form method="POST" action="{% url 'payment' %}">
-                        {% csrf_token %}
-                        {% if object.membership_type != current_membership %}
-                        <button class="btn btn-warning">Change</button>
-                        {% else %}
-                        <small>Your current plan</small>
-                        {% endif %}
-                        <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                        </form>
-                        {% endif %}
-                        </div>
-                        </div>
-                        </div>
-                        {% endfor %}
-                        </div>
-                        </div>
-
-                        <br>
-                    <!--<form method="POST" action="#">
-                        {% csrf_token %}
-
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option selected>Choose subscription</option>
-                            <option value="1">€ 0 (free)</option>
-                            <option value="2">€ 15 (monthly)</option>
-                            <option value="3">€ 150 (annualy)</option>
-                          </select>
-
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="my-3">
-                        </div>
-                        <button type="submit" class="btn-success mb-2">Continue</button>
-
-                    </form>-->
-                    <br>
-
-<h2>hello</h2>
-                    <!--{% for object in object_list %}
-                    {{object.membership_type}}
-                    {% endfor %}
-
-                    <br>
-                    {% for object in object_list %}
-                    {% if object.membership_type != 'Free' %}
-
-                    <a href="{% url 'select' %}" class="dropdown-item">Upgrade to PRO</a>
-                    {% else %}
-                    
-                    <a href="{% url 'membership_profile' %}" class="dropdown-item">PRO Account</a>
-                    {% endif %}
-                    {% endfor %}-->
-                    <br>
-
-<div class="row">
-    {% for object in object_list %}
-<div class="col-4">
-
-    <h3>{{object.membership_type}}</h3>
-
-    <p>Price: €{{object.monthly_price}}<small>/month</small></p>
-
-    <!--<ul>
-        {% for gigs in object.gig_set.all %}
-        <li>{{ gig.title }}</li>
-        {% endfor %}
-    </ul>-->
-
-
-    {% if object.membership_type != 'Free' %}
-    <form method="POST" action="{% url 'select' %}">
-        {% csrf_token %}
-        {% if object.membership_type != current_membership %}
-
-        <button href="{url 'membership_payment'}" class="btn-warning">Select</button>
-        <br>
-        {% else %}
-        <small>This is your currrent membership</small>
-        {% endif %}
-        <br>
-    </form>
-    {% endif %}
-    <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-</div>
-    {% endfor %}
-</div>
-                    <br>
-                    <br>
-
-
                     <!-- Upgrade Membership -->
 
                     <div class="col-12">
-                        <h3 class="text-center"><strong>UPGRADE YOUR MEMBERSHIP</strong></h3>
-                        <h6 class="text-center">We have a monthly plan for everyone.
-                            Whether you're a business or an individual.</h6>
+                        <h3 class="text-center"><strong>MEMBERSHIP PAYMENT:</strong></h3>
+                        <div class="col-md-4">
+                            <p>Selected membership:}</p>
+                        </div>
 
-                        <div class="tab-content">
+                        <!--<div class="tab-content">
                             <div class="tab-pane fade show active" id="monthly">
                                 <div class="row py-3">
 
@@ -284,74 +175,7 @@
 
                                 </div>
                             </div>
-                        </div>
-
-                        <hr>
-
-                        <!-- Questions -->
-                        <div class="text-center my-4">
-                            <h2>Frequently asked questions</h2>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-5 col-sm-6 mt-3 ml-auto">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="h6 card-title">Do I need a credit card to sign up?</h5>
-                                        <p class="mb-0">At the moment, the only payment method we offer
-                                            is with credit cards or with a debit card.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-sm-6 mt-3 mr-auto">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="h6 card-title">Do you offer a free trial?</h5>
-                                        <p class="mb-0">No. Since we have the FREE plan that gives you axess to
-                                            everything except the possibility to create your own job posts and
-                                            a personal network.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-sm-6 mt-3 ml-auto">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="h6 card-title">What if I decide to cancel my plan?</h5>
-                                        <p class="mb-0">If you wish to cancel your subscription, you just go to your
-                                            membership and choose the free plan.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-sm-6 mt-3 mr-auto">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="h6 card-title">Can I cancel at anytime?</h5>
-                                        <p class="mb-0">Yes, you can at anytime cancel you subscription.
-                                            Note though that you will still be charged the full amount for
-                                            the current month.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-sm-6 mt-3 ml-auto">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="h6 card-title">What if I like to upgrade my plan?</h5>
-                                        <p class="mb-0">If you wish to downgrade, you just click
-                                            on the new payment plan you wish to have under your membership
-                                            tag in settings. The new payment plan will be applied in a few minutes.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-sm-6 mt-3 ml-auto">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="h6 card-title">What if I like to downgrade my plan?</h5>
-                                        <p class="mb-0">If you wish to downgrade, you just click
-                                            on the new payment plan you wish to have under your membership
-                                            tag in settings. The new payment plan will be applied in a few minutes.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <br>
@@ -367,4 +191,3 @@
 
 
     {% endblock %}
-
