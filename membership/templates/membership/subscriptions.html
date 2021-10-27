@@ -19,9 +19,8 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
+        {% if object.membership_type != 'Premium' %}
         {% if object.membership_type != current_membership %}
-
-        {% else %}
 
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
@@ -35,6 +34,9 @@
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        {% else %}
+
+        {% endif %}
         {% endif %}
 
         <li class="nav-item" role="presentation">
@@ -43,17 +45,19 @@
                     data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
             </form>
         </li>
-
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        {% if object.membership_type != 'Premium' %}
         {% if object.membership_type != current_membership %}
-        {% else %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
-        {% endif %}
-        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
+        {% else %}
+        {% endif %}
+        {% endif %}
+
+        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
     </div>
 </div>
 {% endblock %}
@@ -61,43 +65,19 @@
 {% block content %}
 
 
-
 <div class="container-fluid">
     <br>
+    <div class="row">
 
-    <section>
-        <form action="/create-checkout-session" method="POST">
-            <input type="hidden" id="proPrice" name="priceId">
-            <!--<img src="/img/professional.png" width="120" height="120" />-->
-            <div class="name">Free</div>
-            <div class="price">€0</div>
-            <div class="duration">per month</div>
-            <button id="pro-plan-btn">Select</button>
-        </form>
-    </section>
-    <section>
-        <form action="/create-checkout-session" method="POST">
-            <input type="hidden" id="basicPrice" name="priceId">
-            <!--<img src="/img/starter.png" width="120" height="120" />-->
-            <div class="name">Premium Access (Monthly)</div>
-            <div class="price">€15</div>
-            <div class="duration">per month</div>
-            <button id="basic-plan-btn">Select</button>
-        </form>
-    </section>
-    <section>
-        <form action="/create-checkout-session" method="POST">
-            <input type="hidden" id="proPrice" name="priceId">
-            <!--<img src="/img/professional.png" width="120" height="120" />-->
-            <div class="name">Premium Access (Yearly)</div>
-            <div class="price">€150</div>
-            <div class="duration">per year</div>
-            <button id="pro-plan-btn">Select</button>
-        </form>
-    </section>
-    <br>
-    <br>
-    <br>
-
+        <div class="col-sm-10 col-sx-12 mx-auto">
+            <div class="card">
+                <div class=" card-body">
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

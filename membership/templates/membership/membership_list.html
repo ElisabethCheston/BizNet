@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="{% static 'membership/css/membership.css' %}">
 {% endblock %}
 
-{% block scripts %}
-<script src="{% static 'membership/js/membership.js' %}" defer></script>
-{% endblock scripts %}
 
 {% block page_header %}
 <!-- Profile tab links -->
@@ -19,9 +16,8 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
+        {% if object.membership_type != 'Premium' %}
         {% if object.membership_type != current_membership %}
-
-        {% else %}
 
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
@@ -35,6 +31,9 @@
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        {% else %}
+
+        {% endif %}
         {% endif %}
 
         <li class="nav-item" role="presentation">
@@ -43,17 +42,19 @@
                     data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
             </form>
         </li>
-
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        {% if object.membership_type != 'Premium' %}
         {% if object.membership_type != current_membership %}
-        {% else %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
-        {% endif %}
-        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
+        {% else %}
+        {% endif %}
+        {% endif %}
+
+        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
     </div>
 </div>
 {% endblock %}
@@ -68,34 +69,6 @@
         <div class="col-sm-10 col-sx-12 mx-auto">
             <div class="card">
                 <div class="card-body">
-
-        <!--<div class="row">
-            {% for object in object_list %}
-            <div class="col-4">
-
-                <h3>{{object.membership_type}}<br> ACCESS</h3>
-
-                <p>Price: €{{ object.price }}</p>
-                <br>
-
-
-                {% if object.membership_type != 'Free' %}
-                <form method="POST" action="{% url 'select' %}">
-                    {% csrf_token %}
-                    {% if object.membership_type != current_membership %}
-
-                    <button href="{url 'payment'}" class="btn-warning">Select</button>
-                    <br>
-                    {% else %}
-                    <small>This is your currrent membership: {{ object.current_membership }}</small>
-                    <br>
-                    {% endif %}
-                    <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                </form>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>-->
 
                     <!-- Upgrade Membership -->
 
@@ -294,65 +267,31 @@
             </script>
     {% endblock %}
 
-    <!--{% for object in object_list %}
-                    {{object.membership_type}}
-                    {% endfor %}
 
+        <!--<div class="row">
+            {% for object in object_list %}
+            <div class="col-4">
+
+                <h3>{{object.membership_type}}<br> ACCESS</h3>
+
+                <p>Price: €{{ object.price }}</p>
+                <br>
+
+
+                {% if object.membership_type != 'Free' %}
+                <form method="POST" action="{% url 'select' %}">
+                    {% csrf_token %}
+                    {% if object.membership_type != current_membership %}
+
+                    <button href="{url 'payment'}" class="btn-warning">Select</button>
                     <br>
-                    {% for object in object_list %}
-                    {% if object.membership_type != 'Free' %}
-
-                    <a href="{% url 'select' %}" class="dropdown-item">Upgrade to PRO</a>
                     {% else %}
-                    
-                    <a href="{% url 'membership_profile' %}" class="dropdown-item">PRO Account</a>
+                    <small>This is your currrent membership: {{ object.current_membership }}</small>
+                    <br>
                     {% endif %}
-                    {% endfor %}-->
-
-
-                    <!--<div class="row">
-                        {% for object in object_list %}
-                        <div class="col-4">
-
-                            <h3>{{object.membership_type}}</h3>
-                            <h3>{{object.price}}</h3>
- 
-
-                            <p>Price: €{{ object.price }}</p>
-                            <br>
-                            <h6 class="mb-3">Includes:</h6>
-                            <ul class="list-unstyled small">
-                                <li class="mb-1">
-                                    User profile
-                                </li>
-                                <li class="mb-1">
-                                    View jobs
-                                </li>
-                                <li class="mb-1">
-                                    View other profile
-                                </li>
-                                <li class="mb-1">
-                                    Create gigs
-                                </li>
-                                <li class="mb-1">
-                                    Create a network
-                                </li>
-                            </ul>
-
-                            {% if object.membership_type != 'Free' %}
-                            <form method="POST" action="{% url 'select' %}">
-                                {% csrf_token %}
-                                {% if object.membership_type != current_membership %}
-
-                                <button href="{url 'payment'}" class="btn-warning">Select</button>
-                                <br>
-                                {% else %}
-                                <small>This is your currrent membership: {{ object.current_membership }}</small>
-                                <br>
-                                {% endif %}
-                                <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                            </form>
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    </div>-->
+                    <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>-->

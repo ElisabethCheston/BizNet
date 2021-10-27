@@ -194,10 +194,12 @@ h6, p {
 label {
   display: none;
 }
-
+a.btn, button {
+  border-color: none !important;
+}
 .btn {
   color: white !important;
-  border-color: rgba(210, 233, 247, 0.2) !important;
+  border-color: rgba(210, 233, 247, 0.103) !important;
   background-color:#406daf !important;
   font-size: medium !important;
   border-radius: 1px !important;
@@ -208,7 +210,7 @@ label {
 }
 .btn:hover {
   color: white;
-  border-color: rgba(96, 185, 236, 0.2);
+  border-color: rgba(96, 185, 236, 0.068);
   background-color:#768cb8d0;
   font-size: medium !important;
   border-radius: 1px !important;

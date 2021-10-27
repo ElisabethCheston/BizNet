@@ -40,7 +40,7 @@ h1, h5 {
     .card-link,
     .btn {
         color: white;
-        border-color: rgba(96, 185, 236, 0.2);
+        border-color: rgba(96, 185, 236, 0.096);
         background-color: #406daf;
         font-size: medium !important;
         height: 40px;
@@ -58,7 +58,7 @@ h1, h5 {
     .btn:active,
     .btn:focus {
         color: white;
-        border-color: rgba(96, 185, 236, 0.2);
+        border-color: rgba(96, 185, 236, 0.068);
         background-color: #4b7ac0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }

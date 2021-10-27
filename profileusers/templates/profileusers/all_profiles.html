@@ -17,9 +17,8 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
+        {% if object.membership_type != 'Premium' %}
         {% if object.membership_type != current_membership %}
-
-        {% else %}
 
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
@@ -33,6 +32,9 @@
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        {% else %}
+
+        {% endif %}
         {% endif %}
 
         <li class="nav-item" role="presentation">
@@ -41,17 +43,19 @@
                     data-bs-toggle="tab" data-bs-target="#membership_profile" type="tab-button" role="tab" />
             </form>
         </li>
-
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        {% if object.membership_type != 'Premium' %}
         {% if object.membership_type != current_membership %}
-        {% else %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
-        {% endif %}
-        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
+        {% else %}
+        {% endif %}
+        {% endif %}
+
+        <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
     </div>
 </div>
 {% endblock %}
@@ -75,6 +79,7 @@
         margin-right: auto;
         width: 80%;
     }
+
 </style>
 
 
@@ -94,11 +99,21 @@
                 <div class="card-body text-center">
                     <!-- User Name -->
                     <div class="col-12 text-center">
+                        {% if object.membership_type != 'Premium' %}
+                        {% if object.membership_type != current_membership %}
                         <a class=" card-title text-center" href="{% url 'profile_details' profileuser.pk %}">
-                            <p class="text-center"><strong>{{profileuser.username.first_name}}
+                            <p class="text-center card-title"><strong>{{profileuser.username.first_name}}
                                     {{profileuser.username.last_name}}</strong>
                             </p>
                         </a>
+                        {% else %}
+                        <a class=" card-title text-center" href="#">
+                            <p class="text-center card-title"><strong>{{profileuser.username.first_name}}
+                                    {{profileuser.username.last_name}}</strong>
+                            </p>
+                        </a>
+                        {% endif %}
+                        {% endif %}
                     </div>
                     <p class="card-subtitle mb-3 text-center text-muted small">
                         <strong>{{ profileuser.profession }} at {{ profileuser.company_name}}</strong>
@@ -109,11 +124,21 @@
 
                 </div>
 
+                {% if object.membership_type != 'Premium' %}
+                {% if object.membership_type != current_membership %}
+
                 <!-- Card Footer Button-->
                 <div class="text-center card-footer">
                     <a class="btn" type="button" href="{% url 'profile_details' profileuser.pk %}" class="">View</a>
                 </div>
+                {% else %}
+                <!-- Card Footer Button-->
+                <div class="text-center card-footer">
+                    <a class="btn" type="button" href="#" class="">View</a>
+                </div>
 
+                {% endif %}
+                {% endif %}
             </div>
             {% endfor %}
         </div>
@@ -151,4 +176,3 @@
     <br>
 </div>
 {% endblock %}
-
