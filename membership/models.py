@@ -28,7 +28,7 @@ class Membership(models.Model):
 
 
 class UserMembership(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     stripe_customer_id = models.CharField(max_length=40)
     cancel_at_period_end = models.BooleanField(default=False)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)

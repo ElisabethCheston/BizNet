@@ -226,10 +226,8 @@ STRIPE_LIVE_MODE = True # Change to True in production
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 PRICE_ID_1 = os.environ.get('PRICE_ID_1', '')
 PRICE_ID_2 = os.environ.get('PRICE_ID_2', '')
-PRICE_ID_3 = os.environ.get('PRICE_ID_3', '')
+# PRICE_ID_3 = os.environ.get('PRICE_ID_3', '')
 PRICE_LOOKUP_KEY = os.environ.get('PRICE_LOOKUP_KEY', '')
-
-
 
 """
 if DEBUG:

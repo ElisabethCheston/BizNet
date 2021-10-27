@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.decorators.http import require_POST
@@ -20,7 +20,6 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 API_KEY = settings.STRIPE_SECRET_KEY
-# logger = logging.getLogger(__name__)
 
 
                 # --  Reference  -- #
@@ -37,7 +36,10 @@ def stripe_config(request):
         stripe_config = {"publicKey": settings.STRIPE_PUBLIC_KEY}
         return JsonResponse(stripe_config, safe=True)
 
+
+
 # Stripe Webhook
+
 """
 @csrf_exempt
 def stripe_webhook(request):
@@ -103,118 +105,157 @@ def payment_method(request):
         context['payment_intent_id'] = payment_intent.id
 
         return render(request, 'membership/card.html', context)
-
-def profile(request):
-    logger.info('profile')
-    return render(request, 'my_profile.html')
-
-def card(request):
-    return render(request, 'success.html')
+"""
 """
 
-# -- SUBSCRIPTION -- #
-"""
-def subscriptions(request):
-    membership = Membership.objects.all()
-    template = 'membership/subscriptions.html'
-    context = {
-        'membership': membership
-    }
-    return render(request, template, context)
+@app.route('/webhook', methods=['POST'])
+def webhook_received():
+    # Replace this endpoint secret with your endpoint's unique secret
+    # If you are testing with the CLI, find the secret by running 'stripe listen'
+    # If you are using an endpoint defined with the API or dashboard, look in your webhook settings
+    # at https://dashboard.stripe.com/webhooks
+    webhook_secret = 'whsec_12345'
+    request_data = json.loads(request.data)
+    if webhook_secret:
+        # Retrieve the event by verifying the signature using the raw body and secret if webhook signing is configured.
+        signature = request.headers.get('stripe-signature')
+        try:
+            event = stripe.Webhook.construct_event(
+                payload=request.data, sig_header=signature, secret=webhook_secret)
+            data = event['data']
+        except Exception as e:
+            return e
+        # Get the type of webhook event sent - used to check the status of PaymentIntents.
+        event_type = event['type']
+    else:
+        data = request_data['data']
+        event_type = request_data['type']
+    data_object = data['object']
+    print('event ' + event_type)
+    if event_type == 'checkout.session.completed':
+        print('🔔 Payment succeeded!')
+    elif event_type == 'customer.subscription.trial_will_end':
+        print('Subscription trial will end')
+    elif event_type == 'customer.subscription.created':
+        print('Subscription created %s', event.id)
+    elif event_type == 'customer.subscription.updated':
+        print('Subscription created %s', event.id)
+    elif event_type == 'customer.subscription.deleted':
+        # handle subscription cancelled automatically based
+        # upon your subscription settings. Or if the user cancels it.
+        print('Subscription canceled: %s', event.id)
+    return jsonify({'status': 'success'})
 """
 
 # -- MEMBERSHIP -- #
-"""
-def membership_list(request):
-    membership = Membership.objects.all()
-    template = 'membership/membership_list.html'
-    context = {
-        'membership': membership
-    }
-    return render(request, template, context)
-"""
 
 def get_user_membership(request):
-   user_membership_qs = UserMembership.objects.filter(user = request.user)
-   if user_membership_qs.exists():
-       return user_membership_qs.first()
+    user_membership_qs = UserMembership.objects.filter(user = request.user)
+    if user_membership_qs.exists():
+        return user_membership_qs.first()
+    return None
 
-   return None
 
 def get_user_subscription(request): 
-   user_subscription_qs =  Subscription.objects.filter(
-       user_membership = get_user_membership(request))
-   if user_subscription_qs.exists():
-       user_subscription = user_subscription_qs.first()
-       return user_subscription
-   return None 
+    user_subscription_qs =  Subscription.objects.filter(
+        user_membership = get_user_membership(request))
+    if user_subscription_qs.exists():
+        user_subscription = user_subscription_qs.first()
+        return user_subscription
+    return None 
+
 
 def get_selected_membership(request):
-   membership_type = request.session['selected_membership_type']   
-   selected_membership_qs = Membership.objects.filter(
-           membership_type=membership_type)
-   if selected_membership_qs.exists():
-       return selected_membership_qs.first()
-   return None 
+    membership_type = request.session['selected_membership_type']   
+    selected_membership_qs = Membership.objects.filter(
+        membership_type=membership_type)
+    if selected_membership_qs.exists():
+        return selected_membership_qs.first()
+    return None
+
 
 class MembershipSelectView(ListView):
-   model = Membership
-   def get_context_data(self, *args, **kwargs):
-       context = super().get_context_data(**kwargs)
-       current_membership = get_user_membership(self.request)
-       context['current_membership'] = str(current_membership.membership)
-       return context
+    model = Membership
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_membership = get_user_membership(self.request)
+        context.update({
+            "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
+        })
+        context['current_membership'] = str(current_membership.membership)
+        return context
 
-   def post(self, request, **kwargs):
-       selected_membership_type = request.POST.get('membership_type')  
-       user_membership = get_user_membership(request)
-       user_subscription = get_user_subscription(request)      
-       selected_membership_qs =Membership.objects.filter(
-           membership_type = selected_membership_type) 
-       if selected_membership_qs.exists():
-           selected_membership = selected_membership_qs.first()
+    def post(self, request, **kwargs):
+        selected_membership_type = request.POST.get('membership_type')  
+        user_membership = get_user_membership(request)
+        user_subscription = get_user_subscription(request)      
+        selected_membership_qs =Membership.objects.filter(
+            membership_type = selected_membership_type) 
+        if selected_membership_qs.exists():
+            selected_membership = selected_membership_qs.first()
 
            #validation
 
-       if user_membership.membership == selected_membership:
-           if user_subscription != None:
-               messages.info(request, "you already have this membership. your \
-                   next payment is due {}".format('get this value from stripe'))
-               return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        if user_membership.membership == selected_membership:
+            if user_subscription != None:
+                messages.info(request, "You already have this membership.")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-       request.session['selected_membership_type'] = selected_membership.membership_type       
-       return HttpResponseRedirect(reverse('membership_payment'))
+        request.session['selected_membership_type'] = selected_membership.membership_type       
+        return HttpResponseRedirect(reverse('payment'))
 
 
 def PaymentView(request):
-   user_membership = get_user_membership(request)
-   selected_membership = get_selected_membership(request)
-   publishKey = settings.STRIPE_PUBLIC_KEY
+    user_membership = get_user_membership(request)
 
-   context = {
-       'publishKey': publishKey,
-       'selected_membership': selected_membership
-   }
-   return render(request, "membership/membership_payment.html", context)
+    selected_membership = get_selected_membership(request)
+    publishKey = settings.STRIPE_PUBLIC_KEY
 
-
-
-"""
-def get_user_membership(request, member_pk, *args, **kwargs):
-    member_id = UserMembership.objects.filter(pk=member_pk)
-    if member_pk.exists():
-        membership = member_id.first()
-
-    user_membership = UserMembership.objectsfilter(user=request.user).first()
-    user_membership_type = user_membership.membership.membership_type
-
+    if request.method == "POST":
+        try:
+            tolken = request.POST['stripeToken']
+            subscription = stripe.Subscription.create(
+                customer=user_membership.stripe_customer_id,
+                items=[
+                    {
+                        "plan": selected_membership.stripe_plan_id,
+                    },
+                ],
+                source=tolken # 42424242424242
+            )
+            return redirect(reverse('membership:update-transactions',
+            kwargs={
+                'subscription_id': subscription.id
+            }))
+        except stripe.CardError as e:
+            messages.info(request, "Your card has been declined")
     context = {
-        'member_id': member_id
+        'publishKey': publishKey,
+        'selected_membership': selected_membership
     }
-        
-    return render(request, 'user_membership.html', context)
-"""
+    return render(request, "membership/membership_payment.html", context)
 
+
+def updateTransactionRecords(request, subscription_id):
+
+    user_membership = get_user_membership(request)
+    selected_membership = get_selected_membership(request)
+
+    user_membership.membership = selected_membership
+    user_membership.save()
+
+    sub, created = Subscription.objects.get_or_create(user_membership=user_membership)
+    sub.stripe_subscription_id = subscription_id
+    sub.active = True
+    sub.save()
+
+    try:
+        del request.session ['selected_membership_type']
+    except:
+        pass
+
+    messages.info(request, "Successfully created {} membership". format(selected_membership))
+    return redirect('/membership_profile')
 
 def membership_profile(request):
     membership = Membership.objects.all()
@@ -223,6 +264,16 @@ def membership_profile(request):
         'membership': membership
     }
     return render(request, template, context)
+
+
+def profile_view(request):
+    user_membership = get_user_membership(request)
+    user_subscription = get_user_subscription(request)
+    context = {
+        'user_membership': user_membership,
+        'user_subscription': user_subscription,
+    }
+    return render(request, "membership/membership_profile.html", context)
 
 
 # -- PAYMENT HISTORY -- #
@@ -237,113 +288,37 @@ def payment_history(request):
 
 
 # -- CHECKOUT -- #
-"""
- def create_checkout_session(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
-        line_items=[{
-            'price': '{{PRICE_ID_1}}',
-            'quantity': 1,
-        }, {
-            'price': '{{PRICE_ID_2}}',
-            'quantity': 1,
-        }, {
-            'price': '{{PRICE_ID_3}}',
-            'quantity': 1,
-        }],
-        mode='payment',
-        success_url='membership/templates/membership/membership_success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url='membership/templates/membership/membership_cancel',
-    )
-    return render(request, 'membership_profile,html')
-
-    context = {
-        'session_id': session.id,
-        'stripe_public_key': settings.STRIPE_PUBLIC_KEY
-    }
-"""
-"""
-# @app.route('/create-checkout-session', methods=['POST'])
-def create_checkout_session():
-    try:
-        prices = stripe.Price.list(
-            lookup_keys=[request.form['lookup_key']],
-            expand=['data.product']
-        )
+# @csrf_exempt
+class CreateCheckoutSession(View):
+    def post (self, request, *args, **kwargs):
+        YOUR_DOMAIN = "https://biz-net.herokuapp.com/membership/"
         checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
+            # client_reference_id = request.user.id if request.user.is_authenticated else None,
+            
+            payment_method_types= ["card"],
             line_items=[
                 {
-                    'price': prices.data[0].id,
-                    'quantity': 1,
+                    'price_data': {
+                        'currency': 'eur',
+                        'unit_amount': 2000,
+                        'price': settings.STRIPE_PRICE_ID_2,
+                        "quantity": 1,
+                    },
                 },
             ],
-            mode='subscription',
-            success_url='https://biz-net.herokuapp.com/' +
-            '/success.html?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url=YOUR_DOMAIN + '/cancel.html',
+            mode = "payment",
+            success_url=YOUR_DOMAIN + "success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=YOUR_DOMAIN + "cancel/",            
         )
-        return redirect(checkout_session.url, code=303)
-    except Exception as e:
-        print(e)
-        return "Server error", 500
-"""        
-"""
-@csrf_exempt
-def create_checkout_session(request):
-    if request.method == "GET":
-        domain_url = 'https://biz-net.herokuapp.com/'
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        try:
-            prices = stripe.Price.list(
-            lookup_keys=[request.form['lookup_key']],
-            expand=['data.product']
-        )
-            checkout_session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
-                line_items=[{
-                    'price': '{{PRICE_ID_1}}',
-                    'quantity': 1,
-                }, {
-                    'price': '{{PRICE_ID_2}}',
-                    'quantity': 1,
-                }, {
-                    'price': '{{PRICE_ID_3}}',
-                    'quantity': 1,
-                }],
-            )
-            return JsonResponse({"sessionId": checkout_session["id"]})
+        
+        return JsonResponse({
+            "id": checkout_session.id
+            })
+"""            
         except Exception as e:
             return JsonResponse({"error": str(e)})
+"""
 
-"""
-"""
-class CreateCheckoutSessionView(View):
-    def post(self, request, *args, **kwargs):
-        YOUR_DOMAIN = 'https://biz-net.herokuapp.com'
-        prices = stripe.Price.list(
-            lookup_keys=[request.form['lookup_key']],
-            expand=['data.product']
-        )
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=[
-                {
-                    'price': prices.data[0].id,
-                    'quantity': 1,
-                },
-            ],
-            mode='subscription',
-            success_url=YOUR_DOMAIN +
-            '/success.html?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url=YOUR_DOMAIN + '/cancel.html',
-        )
-        return redirect(checkout_session.url, code=303)
-    # except Exception as e:
-        # print(e)
-        return "Server error", 500
-"""
 
 
 # -- SUBSCRIPTION RESPONCES -- #
