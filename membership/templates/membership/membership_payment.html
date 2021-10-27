@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'membership/js/membership.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block page_header %}
@@ -59,7 +58,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container-fluid">
     <br>
     <br>
@@ -85,15 +83,16 @@
                             </div>
                         </div>
                         <br>
-                        <!-- can't do this -->
-                        <!--<script src="https://js.stripe.com/v3/"></script>-->
 
                         <form action="." method="post" id="payment-form">
                             {% csrf_token %}
                             <div id="checkoutMethods">
                                 <div style="margin: 10px;">
                                     <!--<h2>Checkout with Braintree</h2>
-                                    <div id="bt-dropin"></div>-->
+                                    <div id="bt-dropin">
+                                        <a href="https://buy.stripe.com/6oE7w05KQb37akM6or" type="button">Pay</a>
+                                    </div>-->
+
                                     <h2>Checkout</h2>
                                     <div class="form-row py-2">
                                         <label for="card-element">
@@ -122,8 +121,7 @@
                                 </div>
                             </div>
                         <div class="text-center" style="padding-top: 30px;">
-                            <button class="btn text-center ">Submit Payment</button>
-
+                            <button class="btn text-center" id="checkout-button">Submit Payment</button>
                         </div>
                     </form>
                 </div>
@@ -141,78 +139,33 @@
 </div>
 </div>
 
-<!--<script src="{% static 'membership/js/membership.js' %}" defer></script>-->
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-
 <script>
 /*
-    var form = document.querySelector('#payment-form');
-    var client_token = '{{ client_token }}';
-
-    braintree.dropin.create({
-        authorization: client_token,
-        container: '#bt-dropin',
-        paypal: {
-            flow: 'vault'
-        }
-    }, function (createErr, instance) {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            instance.requestPaymentMethod(function (err, payload) {
-                if (err) {
-                    console.log('Error', err);
-                    return;
+    var stripe = Stripe("{{STRIPE_PUBLIC_KEY}}");
+    // var stripe = "";
+    var checkoutButton = document.getElementById("checkout-button");
+    checkoutButton.addEventListener("click", function () {
+        fetch("{% url 'create_checkout_session' %}", {
+            method: "POST",
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                return stripe.redirectToCheckout({ sessionId: sesstion.id });
+            })
+            .then(function (result) {
+                // If redirectedToCheckout fail due to a browser or network 
+                // error, display the local error message.
+                if (result.error) {
+                    alert(result.error.message);
                 }
-
-                // Add the nonce to the form and submit
-                document.querySelector('#nonce').value = payload.nonce;
-                form.submit();
+            })
+            .catch(function (error) {
+                console.error("Error:", console.error);
             });
-        });
     });
 */
-    
-    /* -- script for toggling display of the form -- */
-
-        function toggleDisplay() {
-          var x = document.getElementById("collapseStripe");
-          if (x.style.display === "none") {
-              x.style.display = "block";
-          } else {
-              x.style.display = "none";
-          }
-        };
-    
-    /*
-        var stripe = "";
-        var checkoutButton = document.getElementById("checkout-button");
-        checkoutButton.addEventListener("click", function () {
-            fetch("{% url 'create_checkout_session' %}", {
-                method: "POST",
-            })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (session) {
-                    return stripe.redirectToCheckout({ sessionId: sesstion.id });
-                })
-                .then(function (result) {
-                    // If redirectedToCheckout fail due to a browser or network error, display the locak error.
-                    if (result.error) {
-                        alert(result.error.message);
-                    }
-                })
-                .catch(function (error) {
-                    console.error("Error:", console.error);
-                });
-    
-        });
-        */
-
 </script>
 
 {% endblock %}

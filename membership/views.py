@@ -216,8 +216,7 @@ def PaymentView(request):
             tolken = request.POST['stripeToken']
             subscription = stripe.Subscription.create(
                 customer=user_membership.stripe_customer_id,
-                items=[
-                    {
+                items=[{
                         "plan": selected_membership.stripe_plan_id,
                     },
                 ],
@@ -228,7 +227,7 @@ def PaymentView(request):
                 'subscription_id': subscription.id
             }))
         except stripe.CardError as e:
-            messages.info(request, "Your card has been declined")
+            messages.info(request, "Your card has been declined.")
     context = {
         'publishKey': publishKey,
         'selected_membership': selected_membership
@@ -293,7 +292,7 @@ class CreateCheckoutSession(View):
     def post (self, request, *args, **kwargs):
         YOUR_DOMAIN = "https://biz-net.herokuapp.com/membership/"
         checkout_session = stripe.checkout.Session.create(
-            # client_reference_id = request.user.id if request.user.is_authenticated else None,
+            client_reference_id = request.user.id if request.user.is_authenticated else None,
             
             payment_method_types= ["card"],
             line_items=[
@@ -307,7 +306,7 @@ class CreateCheckoutSession(View):
                 },
             ],
             mode = "payment",
-            success_url=YOUR_DOMAIN + "success?session_id={CHECKOUT_SESSION_ID}",
+            success_url=YOUR_DOMAIN + "success/", # success?session_id={CHECKOUT_SESSION_ID}",
             cancel_url=YOUR_DOMAIN + "cancel/",            
         )
         

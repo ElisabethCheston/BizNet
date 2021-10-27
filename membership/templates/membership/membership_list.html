@@ -142,7 +142,7 @@
                                                         <form method="POST" action="{% url 'select' %}">
                                                             {% csrf_token %}
                                                             {% if object.membership_type != current_membership %}
-                                                            <button href="{url 'payment'}" class="btn">SELECT</button>
+                                                            <button class="btn" id="checkout-button" >SELECT</button>
                                                             {% else %}
                                                             <strong><small style="color:crimson">You have this membership! {{ object.current_membership }}</small></strong>
                                                             {% endif %}
@@ -238,14 +238,18 @@
         <br>
         <br>
     </div>
-
+{% csrf_token %}
     <script>
 
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
                 var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
                 var checkoutButton = document.getElementById("checkout-button");
                 checkoutButton.addEventListener("click", function () {
                     fetch("{% url 'create_checkout_session' %}", {
                         method: "POST",
+                        headers: {
+                            'X-CSFToken': csrftoken
+                        }
                     })
                         .then(function (response) {
                             return response.json();
