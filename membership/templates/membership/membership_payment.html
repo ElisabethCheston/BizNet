@@ -19,6 +19,10 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
+        {% if object.membership_type != current_membership %}
+
+        {% else %}
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
                 <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
@@ -31,6 +35,8 @@
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        {% endif %}
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
                 <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
@@ -41,8 +47,11 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        {% if object.membership_type != current_membership %}
+        {% else %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
+        {% endif %}
         <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
@@ -65,12 +74,15 @@
                     <!-- Upgrade Membership -->
                         <h3 class="text-center"><strong>PREMIUM PAYMENT:</strong></h3>
                         <br>
-                        <div class="col-md-4" style="margin: 10px;">
+                        <div class="col-md-12" style="margin: 10px;">
                             <br>
-                            <p>Selected membership: {{ selected_membership }}</p>
-                            <h3>Premium</h3>
-                            <!--<p>Price:<strong> € {{ selected_membership.price }}</strong></p>-->
-                            <h5>€95.00</h5>
+                            <h5>Selected membership: </h5>
+
+                            <div class="text-center">
+                            <br>
+                                <h3>{{ selected_membership }}</h3>
+                            <h5><strong>€{{ selected_membership.price }}.00</strong></h5>
+                            </div>
                         </div>
                         <br>
                         <!-- can't do this -->
@@ -136,7 +148,7 @@
     crossorigin="anonymous"></script>
 
 <script>
-
+/*
     var form = document.querySelector('#payment-form');
     var client_token = '{{ client_token }}';
 
@@ -162,7 +174,7 @@
             });
         });
     });
-
+*/
     
     /* -- script for toggling display of the form -- */
 
@@ -175,8 +187,8 @@
           }
         };
     
-    
-        var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+    /*
+        var stripe = "";
         var checkoutButton = document.getElementById("checkout-button");
         checkoutButton.addEventListener("click", function () {
             fetch("{% url 'create_checkout_session' %}", {
@@ -199,6 +211,7 @@
                 });
     
         });
+        */
 
 </script>
 

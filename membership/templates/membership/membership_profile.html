@@ -19,6 +19,10 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
+        {% if object.membership_type != current_membership %}
+
+        {% else %}
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
                 <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
@@ -31,6 +35,8 @@
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        {% endif %}
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
                 <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
@@ -41,8 +47,11 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        {% if object.membership_type != current_membership %}
+        {% else %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
+        {% endif %}
         <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
@@ -56,7 +65,6 @@
 
 <div class="container-fluid">
     <br>
-    <br>
     <div class="row">
 
         <!-- Membership Cards -->
@@ -64,13 +72,11 @@
             <div class="card">
                 <div class="card-body text-center">
 
-
                     <!-- Upgrade Membership -->
-
                     <h3>My Membership</h3>
-
                     <br>
-                    <div class="row">
+
+                    <!--<div class="row">
                         {% for object in object_list %}
                         <div class="col-4">
 
@@ -99,44 +105,44 @@
                             {% endif %}
                         </div>
                         {% endfor %}
-                    </div>
+                    </div>-->
+
+                    <!--{% if object.membership_type != 'Free' %}
+                        {% if object.membership_type != current_membership %}
+                        <button href="{url 'payment'}" class="btn">SELECT</button>
+                        {% else %}
+                        <strong><small style="color:crimson">You have this membership! {{ object.current_membership }}</small></strong>
+                        {% endif %}
+                        <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+                    {% endif %}-->
+
                     <br>
-                    <!--{% for get_user_subscription in membership %}
-                    {% if current_membership == subscription_id %}
-
-                    {{ get_user_subscription }}
-
-                    {% endif %}
-                    {% endfor %}-->
-                    <br>
-
-                    {% if current_membership != 'Premium' %}
+                    {% if object.membership_type != current_membership %}
 
                     <p>You currently do not have the Premium Membership.
-
-                        To get the bennifits for Premium signup for it below.</p>
+                         To get the bennifits for Premium signup for it below.</p>
                     <br>
                     <br>
                     <div class="text-center">
-                        <button class="btn text-center">PREMIUM</button>
-
+                        <a type="button" id="subscription" class="btn justify-content-around mt-2" href="{% url 'select' %}">
+                            <span><strong>PREMIUM</strong></span>
+                        </a>
                     </div>
+
                     {% else %}
+
                     <p>You currently have the Premium Membership! </p>
 
-
                     {% endif %}
+
 
                 </div>
             </div>
             <br>
-
         </div>
         <br>
         <br>
     </div>
-    <br>
-    <br>
     <br>
 </div>
 <script>

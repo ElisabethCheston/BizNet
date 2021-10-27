@@ -19,6 +19,10 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
+        {% if object.membership_type != current_membership %}
+
+        {% else %}
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
                 <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
@@ -31,6 +35,8 @@
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
         </li>
+        {% endif %}
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
                 <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
@@ -41,8 +47,11 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
+        {% if object.membership_type != current_membership %}
+        {% else %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
+        {% endif %}
         <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
 
     </div>
@@ -53,7 +62,6 @@
 
 <div class="container-fluid">
     <br>
-    <br>
     <div class="row">
 
         <!-- Membership Cards -->
@@ -61,10 +69,7 @@
             <div class="card">
                 <div class="card-body">
 
-
-                    <br>
-
-        <div class="row">
+        <!--<div class="row">
             {% for object in object_list %}
             <div class="col-4">
 
@@ -90,9 +95,7 @@
                 {% endif %}
             </div>
             {% endfor %}
-
-</div>
-                    <br>
+        </div>-->
 
                     <!-- Upgrade Membership -->
 
@@ -112,10 +115,11 @@
                                                     <h4>FREE <br> ACCESS</h4>
                                                     <br>
                                                     <span class="display-4">€0</span>
-                                                    <span>/mo</span>
+                                                    <span>/fee</span>
+
                                                 </div>
-                                                <h6 class="mb-3">Includes:</h6>
-                                                <ul class="list-unstyled pb-3 small">
+                                                <h5 class="mb-3">Includes:</h5>
+                                                <ul class="list-unstyled pb-5">
                                                     <li class="mb-1">
                                                         User profile
                                                     </li>
@@ -128,9 +132,7 @@
                                                 </ul>
                                                 <br>
                                                 <br>
-                                                <!--<div class="text-center form-group mt-1">
-                                                    <a class="btn btn-secondary" type="button" href="#">CHOOSE</a>
-                                                </div>-->
+
                                             </div>
                                         </div>
                                     </div>
@@ -142,10 +144,10 @@
                                                     <h4>PREMIUM <br> ACCESS</h4>
                                                     <br>
                                                     <span class="display-4">€95</span>
-                                                    <span>/yr</span>
+                                                    <span>/fee</span>
                                                 </div>
-                                                <h6 class="mb-3">Includes:</h6>
-                                                <ul class="list-unstyled small">
+                                                <h5 class="mb-3">Includes:</h5>
+                                                <ul class="list-unstyled pb-5">
                                                     <li class="mb-1">
                                                         User profile
                                                     </li>
@@ -162,13 +164,20 @@
                                                         Create a network
                                                     </li>
                                                 </ul>
-                                                <br>
-
-                                                <div class="text-center form-group">
-                                                    <a type="button" class="btn" href="{% url 'payment' %}">Go To
-                                                        Pay</a>
-
-                                                </div>
+                                                    {% for object in object_list %}
+                                                        {% if object.membership_type != 'Free' %}
+                                                        <form method="POST" action="{% url 'select' %}">
+                                                            {% csrf_token %}
+                                                            {% if object.membership_type != current_membership %}
+                                                            <button href="{url 'payment'}" class="btn">SELECT</button>
+                                                            {% else %}
+                                                            <strong><small style="color:crimson">You have this membership! {{ object.current_membership }}</small></strong>
+                                                            {% endif %}
+                                                            <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+                                                        </form>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                        
                                             </div>
                                         </div>
                                     </div>
