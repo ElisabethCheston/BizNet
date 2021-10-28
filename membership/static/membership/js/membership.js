@@ -1,6 +1,6 @@
 // Create a Stripe client.
 
-  // var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+  // var stripe = Stripe(publishKey);
   var stripe = Stripe("STRIPE_PUBLIC_KEY");
 
   // Create an instance of Elements.

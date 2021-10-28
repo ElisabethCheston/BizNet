@@ -9,10 +9,9 @@ from django.urls import reverse
 from django.views import View
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import  ListView
+from django.views.generic import  ListView, TemplateView
 
 from .models import Membership, UserMembership, Subscription
-# Import from other models
 from profileusers.models import Profileuser
 from gigs.models import Gig
 
@@ -21,7 +20,7 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-API_KEY = settings.STRIPE_SECRET_KEY
+# API_KEY = settings.STRIPE_SECRET_KEY
 
 
                 # --  Reference  -- #
@@ -37,7 +36,6 @@ def stripe_config(request):
     if request.method == "GET":
         stripe_config = {"publicKey": settings.STRIPE_PUBLIC_KEY}
         return JsonResponse(stripe_config, safe=True)
-
 
 
 # Stripe Webhook
@@ -196,7 +194,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
         if selected_membership_qs.exists():
             selected_membership = selected_membership_qs.first()
 
-           #validation
+           # -- Validation -- #
 
         if user_membership.membership == selected_membership:
             if user_subscription != None:
@@ -206,6 +204,25 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
         request.session['selected_membership_type'] = selected_membership.membership_type       
         return HttpResponseRedirect(reverse('payment'))
 
+"""
+class CreateCheckoutSessionView(View):
+    def post(self, request, *args, **kwargs):
+        price = Price.objects.get(id=self.kwargs["pk"])
+        YOUR_DOMAIN = "https://8000-jade-chinchilla-jzzdluo0.ws-eu18.gitpod.io/"  # change in production
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price': price.stripe_price_id,
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=YOUR_DOMAIN + '/success/',
+            cancel_url=YOUR_DOMAIN + '/cancel/',
+        )
+        return redirect(checkout_session.url)
+"""
 
 @login_required
 def PaymentView(request):
@@ -232,15 +249,16 @@ def PaymentView(request):
             Create the subscription using only the customer as we don't need to pass their
             credit card source anymore
             '''
-
             subscription = stripe.Subscription.create(
                 customer=user_membership.stripe_customer_id,
                 items=[
-                    { "plan": selected_membership.stripe_plan_id },
+                    { 
+                        "plan": selected_membership.stripe_plan_id,
+                        'quantity': 1, 
+                        },
                 ]
             )
-
-            return redirect(reverse('memberships:update-transactions',
+            return redirect(reverse('update-transactions',
                                     kwargs={
                                         'subscription_id': subscription.id
                                     }))
@@ -253,6 +271,29 @@ def PaymentView(request):
         'selected_membership': selected_membership
     }
     return render(request, "membership/membership_payment.html", context)
+
+"""
+class StripeIntentView(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            req_json = json.loads(request.body)
+            customer = stripe.Customer.create(email=req_json['email'])
+            price = Price.objects.get(id=self.kwargs["pk"])
+            intent = stripe.PaymentIntent.create(
+                amount=price.price,
+                currency='eur',
+                customer=customer['id'],
+                metadata={
+                    "price_id": price.id
+                }
+            )
+            return JsonResponse({
+                'clientSecret': intent['client_secret']
+            })
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+
+"""
 
 
 @login_required
@@ -272,11 +313,16 @@ def updateTransactionRecords(request, subscription_id):
         del request.session['selected_membership_type']
     except:
         pass
-
+        
     messages.info(request, 'Successfully created {} membership'.format(
         selected_membership))
-    return redirect(reverse('memberships:select'))
+    return redirect(reverse('select'))
 
+
+# -- WEBHOOK -- #
+
+
+# -- PROFILEUSER INFO -- #
 
 @login_required
 def cancelSubscription(request):
@@ -315,6 +361,7 @@ def membership_profile(request):
     return render(request, template, context)
 
 
+
 # -- PAYMENT HISTORY -- #
 
 def payment_history(request):
@@ -327,13 +374,10 @@ def payment_history(request):
 
 
 
-
 # -- SUBSCRIPTION RESPONCES -- #
 
-def success(request):
-    template = 'membership/profile_details.html'
-    return render(request, template)
+class SuccessView(TemplateView):
+    template_name = "success.html"
 
-def cancel(request):
-    template = 'membership/profile_details.html'
-    return render(request, template)
+class CancelView(TemplateView):
+    template_name = "cancel.html"

@@ -16,8 +16,9 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
-        {% if object.membership_type != 'Premium' %}
-        {% if object.membership_type != current_membership %}
+        {% if user_subscription != 'Free' %}
+        {% if user_subscription.active != False %}
+
 
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
@@ -45,8 +46,9 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
-        {% if object.membership_type != 'Premium' %}
-        {% if object.membership_type != current_membership %}
+        {% if user_subscription != 'Free' %}
+        {% if user_subscription.active != False %}
+
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
 
@@ -79,12 +81,11 @@
 
                     <form method="POST" action="{% url 'select' %}">
                         {% csrf_token %}
-                        {% if object.membership_type != current_membership %}
+                        <!--{% if user_subscription.active != False %}
 
 
                         <p>You currently do not have the Premium Membership. To get the bennifits for Premium signup for
                             it below.</p>
-                        <!--<button href="{url 'select'}" class="btn">SELECT</button>-->
                         <p>You don't have an active membership plan. Check them out here
                             <a type="button" href="{% url 'select' %}">SELECT</a>
                         </p>
@@ -93,19 +94,19 @@
                         <strong><small style="color:crimson">You have the Premium membership! {{
                                 object.current_membership }}</small></strong>
                         <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                        {% endif %}
+                        {% endif %}-->
 
                     </form>
 
                     {% endif %}
 
                     {% if user_subscription != 'Free' %}
-                    <h4>Current Membership: {{ user_membership.membership.membership_type }} <small>since {{
-                            user_subscription.get_created_date }}</small></h4>
+                    <h4>Current Membership: {{user_membership.membership.membership_type}} <small>
+                        <!--since {{user_subscription.get_created_date }}</small></h4>-->
+                            {% if user_subscription.active != False %}
 
-                    {% if user_subscription.active != False %}
-                    <p>Next payment due: {{ user_subscription.get_next_billing_date }}</p>
-                    <a href="{% url 'cancel' %}">Cancel subscription</a>
+                    <!--<p>Next payment due: {{ user_subscription.get_next_billing_date }}</p>
+                    <a href="{% url 'cancel' %}">Cancel subscription</a>-->
 
                     {% else %}
                     <p>You don't have an active membership plan. Check them out here
