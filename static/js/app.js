@@ -1,41 +1,4 @@
 
-// -- Fetch API to make a AJAX request  -- //
-/*
-console.log("Sanity Check!");
-
-// Get Stripe publishable key
-fetch("/config/")
-  .then((result) => result.json())
-  .then((data) => {
-    // Initialize Stripe.js
-    const stripe = stripe(data.publicKey);
-
-    // new
-
-    // Event Handler
-    let submitBtn = document.querySelector("#submitBtn");
-    if (submitBtn != null) {
-      submitBtn.addEventListener("click", () => {
-        // Get Checkout Session ID
-        fetch("/create-checkout-session/")
-          .then((result) => {
-            return result.json();
-          })
-          .then((data) => {
-            console.log(data);
-
-            // Redirect to Stripe Checkout
-            return stripe.redirectToCheckout({ sessionId: data.sessionId });
-          })
-          .then((res) => {
-            console.log(res);
-          });
-      });
-    }
-  });
-*/
-
-
 // -- For card info box to collaps. From Bootstraps -- //
 var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
 /*
@@ -49,13 +12,6 @@ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
 })
-
-/*
-// -- For tabs from Bootstraps -- //
-function activaTab(tab) {
-  $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-};
-*/
 
 
 // -- Activate welcome message -- //

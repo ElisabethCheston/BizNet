@@ -81,19 +81,38 @@
                         {% csrf_token %}
                         {% if object.membership_type != current_membership %}
 
-                        <strong><small style="color:crimson">You have this membership! {{ object.current_membership }}</small></strong>
-                        <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                        {% else %}
-                        <p>You currently do not have the Premium Membership. To get the bennifits for Premium signup for it below.</p>
+
+                        <p>You currently do not have the Premium Membership. To get the bennifits for Premium signup for
+                            it below.</p>
                         <!--<button href="{url 'select'}" class="btn">SELECT</button>-->
+                        <p>You don't have an active membership plan. Check them out here
+                            <a type="button" href="{% url 'select' %}">SELECT</a>
+                        </p>
+                        {% else %}
+
+                        <strong><small style="color:crimson">You have the Premium membership! {{
+                                object.current_membership }}</small></strong>
+                        <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
                         {% endif %}
 
                     </form>
 
                     {% endif %}
 
-                </b>
+                    {% if user_subscription != 'Free' %}
+                    <h4>Current Membership: {{ user_membership.membership.membership_type }} <small>since {{
+                            user_subscription.get_created_date }}</small></h4>
 
+                    {% if user_subscription.active != False %}
+                    <p>Next payment due: {{ user_subscription.get_next_billing_date }}</p>
+                    <a href="{% url 'cancel' %}">Cancel subscription</a>
+
+                    {% else %}
+                    <p>You don't have an active membership plan. Check them out here
+                        <a href="{% url 'select' %}"></a>
+                    </p>
+                    {% endif %}
+                    {% endif %}
 
                     <!--{% if object.membership_type != current_membership %}
 

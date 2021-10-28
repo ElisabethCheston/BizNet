@@ -16,9 +16,7 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
-        {% if object.membership_type != 'Premium' %}
-        {% if object.membership_type != current_membership %}
-
+        {% if user_subscription != None %}
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
                 <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
@@ -33,7 +31,6 @@
         </li>
         {% else %}
 
-        {% endif %}
         {% endif %}
 
         <li class="nav-item" role="presentation">
@@ -238,37 +235,6 @@
         <br>
         <br>
     </div>
-{% csrf_token %}
-    <script>
-
-                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-                var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
-                var checkoutButton = document.getElementById("checkout-button");
-                checkoutButton.addEventListener("click", function () {
-                    fetch("{% url 'create_checkout_session' %}", {
-                        method: "POST",
-                        headers: {
-                            'X-CSFToken': csrftoken
-                        }
-                    })
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (session) {
-                            return stripe.redirectToCheckout({ sessionId: sesstion.id });
-                        })
-                        .then(function (result) {
-                            // If redirectedToCheckout fail duue to a browser or network error, display the locak error.
-                            if (result.error) {
-                                alert(result.error.message);
-                            }
-                        })
-                        .catch(function (error) {
-                            console.error("Error:", console.error);
-                        });
-                });
-    
-            </script>
     {% endblock %}
 
 

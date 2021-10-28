@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponseRedirect
 
 from django.shortcuts import render, redirect
@@ -174,7 +176,7 @@ def get_selected_membership(request):
     return None
 
 
-class MembershipSelectView(ListView):
+class MembershipSelectView(LoginRequiredMixin, ListView):
     model = Membership
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -205,29 +207,47 @@ class MembershipSelectView(ListView):
         return HttpResponseRedirect(reverse('payment'))
 
 
+@login_required
 def PaymentView(request):
     user_membership = get_user_membership(request)
-
-    selected_membership = get_selected_membership(request)
+    try:
+        selected_membership = get_selected_membership(request)
+    except:
+        return redirect(reverse("select"))
     publishKey = settings.STRIPE_PUBLIC_KEY
 
     if request.method == "POST":
         try:
-            tolken = request.POST['stripeToken']
+            token = request.POST['stripeToken']
+
+            '''
+            The source for the customer
+            '''
+
+            customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
+            customer.source = token # 4242424242424242
+            customer.save()
+
+            '''
+            Create the subscription using only the customer as we don't need to pass their
+            credit card source anymore
+            '''
+
             subscription = stripe.Subscription.create(
                 customer=user_membership.stripe_customer_id,
-                items=[{
-                        "plan": selected_membership.stripe_plan_id,
-                    },
-                ],
-                source=tolken # 42424242424242
+                items=[
+                    { "plan": selected_membership.stripe_plan_id },
+                ]
             )
-            return redirect(reverse('membership:update-transactions',
-            kwargs={
-                'subscription_id': subscription.id
-            }))
-        except stripe.CardError as e:
-            messages.info(request, "Your card has been declined.")
+
+            return redirect(reverse('memberships:update-transactions',
+                                    kwargs={
+                                        'subscription_id': subscription.id
+                                    }))
+
+        except:
+            messages.info(request, "An error has occurred, investigate it in the console")
+
     context = {
         'publishKey': publishKey,
         'selected_membership': selected_membership
@@ -235,44 +255,64 @@ def PaymentView(request):
     return render(request, "membership/membership_payment.html", context)
 
 
+@login_required
 def updateTransactionRecords(request, subscription_id):
-
     user_membership = get_user_membership(request)
     selected_membership = get_selected_membership(request)
-
     user_membership.membership = selected_membership
     user_membership.save()
 
-    sub, created = Subscription.objects.get_or_create(user_membership=user_membership)
+    sub, created = Subscription.objects.get_or_create(
+        user_membership=user_membership)
     sub.stripe_subscription_id = subscription_id
     sub.active = True
     sub.save()
 
     try:
-        del request.session ['selected_membership_type']
+        del request.session['selected_membership_type']
     except:
         pass
 
-    messages.info(request, "Successfully created {} membership". format(selected_membership))
-    return redirect('/membership_profile')
+    messages.info(request, 'Successfully created {} membership'.format(
+        selected_membership))
+    return redirect(reverse('memberships:select'))
+
+
+@login_required
+def cancelSubscription(request):
+    user_sub = get_user_subscription(request)
+
+    if user_sub.active is False:
+        messages.info(request, "You dont have an active membership")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    sub = stripe.Subscription.retrieve(user_sub.stripe_subscription_id)
+    sub.delete()
+
+    user_sub.active = False
+    user_sub.save()
+
+    free_membership = Membership.objects.get(membership_type='Free')
+    user_membership = get_user_membership(request)
+    user_membership.membership = free_membership
+    user_membership.save()
+
+    messages.info(
+        request, "Successfully cancelled membership. We have sent an email")
+    # sending an email here
+
+    return redirect(reverse('memberships:select'))
+
 
 def membership_profile(request):
-    membership = Membership.objects.all()
-    template = 'membership/membership_profile.html'
-    context = {
-        'membership': membership
-    }
-    return render(request, template, context)
-
-
-def profile_view(request):
     user_membership = get_user_membership(request)
     user_subscription = get_user_subscription(request)
+    template = 'membership/membership_profile.html'
     context = {
         'user_membership': user_membership,
         'user_subscription': user_subscription,
     }
-    return render(request, "membership/membership_profile.html", context)
+    return render(request, template, context)
 
 
 # -- PAYMENT HISTORY -- #
@@ -285,38 +325,6 @@ def payment_history(request):
     }
     return render(request, template, context)
 
-
-# -- CHECKOUT -- #
-# @csrf_exempt
-class CreateCheckoutSession(View):
-    def post (self, request, *args, **kwargs):
-        YOUR_DOMAIN = "https://biz-net.herokuapp.com/membership/"
-        checkout_session = stripe.checkout.Session.create(
-            client_reference_id = request.user.id if request.user.is_authenticated else None,
-            
-            payment_method_types= ["card"],
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'eur',
-                        'unit_amount': 2000,
-                        'price': settings.STRIPE_PRICE_ID_2,
-                        "quantity": 1,
-                    },
-                },
-            ],
-            mode = "payment",
-            success_url=YOUR_DOMAIN + "success/", # success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url=YOUR_DOMAIN + "cancel/",            
-        )
-        
-        return JsonResponse({
-            "id": checkout_session.id
-            })
-"""            
-        except Exception as e:
-            return JsonResponse({"error": str(e)})
-"""
 
 
 
