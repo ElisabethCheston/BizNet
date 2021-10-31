@@ -74,14 +74,23 @@
                 <div class="card-body text-center">
 
                     <!-- Upgrade Membership -->
-                    <h3>My Membership</h3>
+                    <h4>Current Membership: {{user_membership.membership.membership_type}} </h4>
+                    <br>
+                    <p class="small">You have been a Biznet member since {{user.date_joined}} </p>
+                    <p class="small">Your membership no: {{ user_membership.stripe_customer_id }}</p>
+
                     <br>
                     <br>
-                    {% if object.membership_type != 'Premium' %}
+                    <p>To have full access to all services, upgrade to <a href="{% url 'select' %}">Premium</a>
+                        Membership! </p>
+                    <br>
+
+
+                    <!--{% if object.membership_type != 'Premium' %}
 
                     <form method="POST" action="{% url 'select' %}">
                         {% csrf_token %}
-                        <!--{% if user_subscription.active != False %}
+                        {% if user_subscription.active != False %}
 
 
                         <p>You currently do not have the Premium Membership. To get the bennifits for Premium signup for
@@ -94,26 +103,26 @@
                         <strong><small style="color:crimson">You have the Premium membership! {{
                                 object.current_membership }}</small></strong>
                         <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                        {% endif %}-->
+                        {% endif %}
 
                     </form>
 
-                    {% endif %}
+                    {% endif %}-->
 
-                    {% if user_subscription != 'Free' %}
-                    <h4>Current Membership: {{user_membership.membership.membership_type}} <small>
-                        <!--since {{user_subscription.get_created_date }}</small></h4>-->
-                            {% if user_subscription.active != False %}
-
-                    <!--<p>Next payment due: {{ user_subscription.get_next_billing_date }}</p>
-                    <a href="{% url 'cancel' %}">Cancel subscription</a>-->
+                    {% for membership_type in membership %}
+                    {% if membership_type != 'Free' %}
+                    <p>You have the Premium Membership and access to view all members and create gigs.</p>
 
                     {% else %}
+
+                    <p>ou have the Free Membership. To have access to view all members and create
+                        your own gigs, you have to upgade to Premium.</p>
+
                     <p>You don't have an active membership plan. Check them out here
-                        <a href="{% url 'select' %}"></a>
+                        <a href="{% url 'membership_list' %}">{{user_membership.membership.membership_type}}</a>
                     </p>
                     {% endif %}
-                    {% endif %}
+                    {% endfor %}
 
                     <!--{% if object.membership_type != current_membership %}
 

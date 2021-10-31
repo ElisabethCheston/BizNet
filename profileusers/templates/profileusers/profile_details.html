@@ -18,8 +18,7 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
-        {% if object.membership_type != 'Premium' %}
-        {% if object.membership_type != current_membership %}
+        <!--{% if current_membership !=  "Free" %}-->
 
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
@@ -27,16 +26,17 @@
                     data-bs-target="#my_gig" type="tab-button" role="tab" />
             </form>
         </li>
+
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_contacts' %}">
                 <input type="submit" value="MY CONTACTS" class="nav-link gig-tab" id="my_contacts_tab"
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
-        </li>
+        <!--</li>
         {% else %}
+            <p>Upgrade your subscription.</p>
+            {% endif %}-->
 
-        {% endif %}
-        {% endif %}
 
         <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
