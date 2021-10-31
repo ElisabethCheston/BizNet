@@ -84,8 +84,7 @@
                 <div class="card-body text-center">
                     <!-- User Name -->
                     <div class="col-12 text-center">
-                        {% if object.membership_type != 'Premium' %}
-                        {% if object.membership_type != current_membership %}
+                        {% if object.membership_type != "Free" %}
                         <a class=" card-title text-center" href="{% url 'profile_details' profileuser.pk %}">
                             <p class="text-center card-title"><strong>{{profileuser.username.first_name}}
                                     {{profileuser.username.last_name}}</strong>
@@ -98,8 +97,8 @@
                             </p>
                         </a>
                         {% endif %}
-                        {% endif %}
                     </div>
+
                     <p class="card-subtitle mb-3 text-center text-muted small">
                         <strong>{{ profileuser.profession }} at {{ profileuser.company_name}}</strong>
                     </p>
