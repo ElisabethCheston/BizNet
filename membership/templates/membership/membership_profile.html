@@ -74,17 +74,13 @@
                 <div class="card-body text-center">
 
                     <!-- Upgrade Membership -->
-                    <h4>Current Membership: {{user_membership.membership.membership_type}} </h4>
+                    <h3>Current Membership: {{user_membership.membership.membership_type}} </h3>
                     <br>
                     <p class="small">You have been a Biznet member since {{user.date_joined}} </p>
                     <p class="small">Your membership no: {{ user_membership.stripe_customer_id }}</p>
 
                     <br>
                     <br>
-                    <p>To have full access to all services, upgrade to <a href="{% url 'select' %}">Premium</a>
-                        Membership! </p>
-                    <br>
-
 
                     <!--{% if object.membership_type != 'Premium' %}
 
@@ -109,24 +105,10 @@
 
                     {% endif %}-->
 
-                    {% for membership_type in membership %}
-                    {% if membership_type != 'Free' %}
-                    <p>You have the Premium Membership and access to view all members and create gigs.</p>
 
-                    {% else %}
+                    {% if object.membership_type != "Free" %}
 
-                    <p>ou have the Free Membership. To have access to view all members and create
-                        your own gigs, you have to upgade to Premium.</p>
-
-                    <p>You don't have an active membership plan. Check them out here
-                        <a href="{% url 'membership_list' %}">{{user_membership.membership.membership_type}}</a>
-                    </p>
-                    {% endif %}
-                    {% endfor %}
-
-                    <!--{% if object.membership_type != current_membership %}
-
-                    <p>You currently do not have the Premium Membership. To get the bennifits for Premium signup for it below.</p>
+                    <p>You currently do not have the Premium Membership. To get the benefits for Premium sign up for it below.</p>
 
                     <div class="text-center">
                         <a type="button" id="subscription" class="btn justify-content-around mt-2" href="{% url 'select' %}">
@@ -138,7 +120,7 @@
 
                     <p>You currently have the Premium Membership! </p>
 
-                    {% endif %}-->
+                    {% endif %}
 
 
 
