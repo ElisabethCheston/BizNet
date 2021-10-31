@@ -18,26 +18,18 @@
                     data-bs-toggle="tab" data-bs-target="#my_profile" type="tab-button" role="tab" />
             </form>
         </li>
-        <!--{% if current_membership !=  "Free" %}-->
-
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_gigs' %}">
                 <input type="submit" value="MY GIGS" class="nav-link gig-tab" id="my_gig_tab" data-bs-toggle="tab"
                     data-bs-target="#my_gig" type="tab-button" role="tab" />
             </form>
         </li>
-
         <li class="nav-item" role="presentation">
             <form action="{% url 'my_contacts' %}">
                 <input type="submit" value="MY CONTACTS" class="nav-link gig-tab" id="my_contacts_tab"
                     data-bs-toggle="tab" data-bs-target="#my_contacts" type="tab-button" role="tab" />
             </form>
-        <!--</li>
-        {% else %}
-            <p>Upgrade your subscription.</p>
-            {% endif %}-->
-
-
+        </li>
         <li class="nav-item" role="presentation">
             <form action="{% url 'membership_profile' %}">
                 <input type="submit" value="MEMBERSHIP" class="nav-link gig-tab" id="membership_profile_tab"
@@ -47,15 +39,8 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="my_profile" role="tabpanel" aria-labelledby="my_profile_tab"></div>
-        {% if object.membership_type != 'Premium' %}
-        {% if object.membership_type != current_membership %}
         <div class="tab-pane" id="my_gig" role="tabpanel" aria-labelledby="my_gig_tab"></div>
         <div class="tab-pane" id="my_contacts" role="tabpanel" aria-labelledby="my_contacts_tab"></div>
-
-        {% else %}
-        {% endif %}
-        {% endif %}
-
         <div class="tab-pane" id="membership_profile" role="tabpanel" aria-labelledby="membership_profile_tab"></div>
     </div>
 </div>
