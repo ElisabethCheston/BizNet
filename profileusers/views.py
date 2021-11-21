@@ -1,6 +1,6 @@
 from .models import Profileuser
 from gigs.models import Gig
-from membership.models import Membership
+# from gigs.forms import Gig
 from django import forms
 
 from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3, TermsForm
