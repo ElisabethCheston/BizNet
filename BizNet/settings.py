@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'profileusers',
     'settings',
     'membership',
+    'bag',
 ]
 
 MIDDLEWARE = [

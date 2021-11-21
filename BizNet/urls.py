@@ -28,6 +28,7 @@ urlpatterns = [
     path('network/', include('network.urls')),
     path('gigs/', include('gigs.urls')),
     path('membership/', include('membership.urls')),
+    path('bag/', include('bag.urls')),
     path('', include('settings.urls')),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

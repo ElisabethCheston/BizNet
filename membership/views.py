@@ -11,11 +11,12 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView, TemplateView
 
-from .models import Membership, UserMembership, Subscription
+from .models import Membership, UserMembership
 from profileusers.models import Profileuser
 from gigs.models import Gig
 
 import stripe
+import json
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -149,6 +150,18 @@ def webhook_received():
 
 # -- MEMBERSHIP -- #
 
+def membership_detail(request, membership_id):
+    """ A view to show individual membership details """
+
+    membership = get_object_or_404(membership, pk=membership_id)
+
+    context = {
+        'membership': membership,
+    }
+
+    return render(request, 'memberships/membership_detail.html', context)
+
+
 def get_user_membership(request):
     user_membership_qs = UserMembership.objects.filter(user = request.user)
     if user_membership_qs.exists():
@@ -157,10 +170,10 @@ def get_user_membership(request):
 
 
 def get_user_subscription(request): 
-    user_subscription_qs =  Subscription.objects.filter(
+    user_subscription =  Subscription.objects.filter(
         user_membership = get_user_membership(request))
-    if user_subscription_qs.exists():
-        user_subscription = user_subscription_qs.first()
+    if user_subscription.exists():
+        user_subscription = user_subscription.first()
         return user_subscription
     return None 
 
@@ -188,7 +201,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
     def post(self, request, **kwargs):
         selected_membership_type = request.POST.get('membership_type')  
         user_membership = get_user_membership(request)
-        user_subscription = get_user_subscription(request)      
+        # user_subscription = get_user_subscription(request)      
         selected_membership_qs =Membership.objects.filter(
             membership_type = selected_membership_type) 
         if selected_membership_qs.exists():
@@ -197,36 +210,40 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
            # -- Validation -- #
 
         if user_membership.membership == selected_membership:
-            if user_subscription != None:
+            if user_membership != Free:
                 messages.info(request, "You already have this membership.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
         request.session['selected_membership_type'] = selected_membership.membership_type       
         return HttpResponseRedirect(reverse('payment'))
 
-"""
-class CreateCheckoutSessionView(View):
-    def post(self, request, *args, **kwargs):
-        price = Price.objects.get(id=self.kwargs["pk"])
-        YOUR_DOMAIN = "https://8000-jade-chinchilla-jzzdluo0.ws-eu18.gitpod.io/"  # change in production
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=[
-                {
-                    'price': price.stripe_price_id,
-                    'quantity': 1,
-                },
-            ],
-            mode='payment',
-            success_url=YOUR_DOMAIN + '/success/',
-            cancel_url=YOUR_DOMAIN + '/cancel/',
-        )
-        return redirect(checkout_session.url)
-"""
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
+
+
 
 @login_required
 def PaymentView(request):
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
     user_membership = get_user_membership(request)
+
+    if request.method == 'POST':
+        bag = request.session.get('bag', {})
     try:
         selected_membership = get_selected_membership(request)
     except:
@@ -237,37 +254,38 @@ def PaymentView(request):
         try:
             token = request.POST['stripeToken']
 
-            '''
-            The source for the customer
-            '''
+            # The source for the customer
 
             customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
             customer.source = token # 4242424242424242
             customer.save()
 
-            '''
+            """
             Create the subscription using only the customer as we don't need to pass their
             credit card source anymore
-            '''
+            """
+
             subscription = stripe.Subscription.create(
                 customer=user_membership.stripe_customer_id,
                 items=[
                     { 
-                        "plan": selected_membership.stripe_plan_id,
+                        "price": selected_membership.stripe_price_id,
                         'quantity': 1, 
                         },
                 ]
             )
+            """
             return redirect(reverse('update-transactions',
                                     kwargs={
                                         'subscription_id': subscription.id
                                     }))
-
+            """
         except:
             messages.info(request, "An error has occurred, investigate it in the console")
 
     context = {
-        'publishKey': publishKey,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
         'selected_membership': selected_membership
     }
     return render(request, "membership/membership_payment.html", context)
@@ -278,13 +296,14 @@ class StripeIntentView(View):
         try:
             req_json = json.loads(request.body)
             customer = stripe.Customer.create(email=req_json['email'])
-            price = Price.objects.get(id=self.kwargs["pk"])
+            stripe_price_id = self.kwargs["pk"]
+            membership = Membership.objects.get(id=stripe_price_id)
             intent = stripe.PaymentIntent.create(
                 amount=price.price,
                 currency='eur',
                 customer=customer['id'],
                 metadata={
-                    "price_id": price.id
+                    "stripe_price_id": membership.id
                 }
             )
             return JsonResponse({
@@ -292,12 +311,10 @@ class StripeIntentView(View):
             })
         except Exception as e:
             return JsonResponse({'error': str(e)})
-
 """
 
-
 @login_required
-def updateTransactionRecords(request, subscription_id):
+def updateTransactionRecords(request):
     user_membership = get_user_membership(request)
     selected_membership = get_selected_membership(request)
     user_membership.membership = selected_membership
@@ -318,7 +335,7 @@ def updateTransactionRecords(request, subscription_id):
         selected_membership))
     return redirect(reverse('select'))
 
-
+"""
 # -- WEBHOOK -- #
 
 
@@ -349,17 +366,16 @@ def cancelSubscription(request):
 
     return redirect(reverse('memberships:select'))
 
-
+"""
 def membership_profile(request):
     user_membership = get_user_membership(request)
-    user_subscription = get_user_subscription(request)
+    # user_subscription = get_user_subscription(request)
     template = 'membership/membership_profile.html'
     context = {
         'user_membership': user_membership,
-        'user_subscription': user_subscription,
+        # 'user_subscription': user_subscription,
     }
     return render(request, template, context)
-
 
 
 # -- PAYMENT HISTORY -- #
