@@ -59,7 +59,7 @@
 
                     <div class="col-12">
                         <h3 class="text-center"><strong>UPGRADE YOUR MEMBERSHIP</strong></h3>
-                        <h6 class="text-center">If you like to get more out of your membership 
+                        <h6 class="text-center">If you like to get more out of your membership
                             then upgrade to Premium.</h6>
 
                         <div class="tab-content">
@@ -122,20 +122,22 @@
                                                         Create a network
                                                     </li>
                                                 </ul>
-                                                    {% for object in object_list %}
-                                                        {% if object.membership_type != 'Free' %}
-                                                        <form method="POST" action="{% url 'select' %}">
-                                                            {% csrf_token %}
-                                                            {% if object.membership_type != current_membership %}
-                                                            <button class="btn" id="checkout-button" >SELECT</button>
-                                                            {% else %}
-                                                            <strong><small style="color:crimson">You have this membership! {{ object.current_membership }}</small></strong>
-                                                            {% endif %}
-                                                            <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                                                        </form>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                        
+                                                {% for object in object_list %}
+                                                {% if object.membership_type != 'Free' %}
+                                                <form method="POST" action="{% url 'select' %}">
+                                                    {% csrf_token %}
+                                                    {% if object.membership_type != current_membership %}
+                                                    <button class="btn" id="checkout-button">SELECT</button>
+                                                    {% else %}
+                                                    <strong><small style="color:crimson">You have this membership! {{
+                                                            object.current_membership }}</small></strong>
+                                                    {% endif %}
+                                                    <input type="hidden" name="membership_type"
+                                                        value="{{ object.membership_type }}">
+                                                </form>
+                                                {% endif %}
+                                                {% endfor %}
+
                                             </div>
                                         </div>
                                     </div>
@@ -223,33 +225,41 @@
         <br>
         <br>
     </div>
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+    </div>
     {% endblock %}
 
+    {% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('.btt-link').click(function (e) {
+            window.scrollTo(0, 0)
+        })
+    </script>
 
-        <!--<div class="row">
-            {% for object in object_list %}
-            <div class="col-4">
+    <script type="text/javascript">
+        $('#sort-selector').change(function () {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
 
-                <h3>{{object.membership_type}}<br> ACCESS</h3>
+            var selectedVal = selector.val();
+            if (selectedVal != "reset") {
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
 
-                <p>Price: €{{ object.price }}</p>
-                <br>
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
 
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
 
-                {% if object.membership_type != 'Free' %}
-                <form method="POST" action="{% url 'select' %}">
-                    {% csrf_token %}
-                    {% if object.membership_type != current_membership %}
-
-                    <button href="{url 'payment'}" class="btn-warning">Select</button>
-                    <br>
-                    {% else %}
-                    <small>This is your currrent membership: {{ object.current_membership }}</small>
-                    <br>
-                    {% endif %}
-                    <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
-                </form>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>-->
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
+    {% endblock %}
