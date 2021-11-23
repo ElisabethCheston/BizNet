@@ -7,7 +7,7 @@ from django_countries.fields import CountryField
 from django.dispatch import receiver
 
 from profileusers.models import Profileuser, Profession, Business, Status, Employment
-from membership.models import Membership
+from profileusers.models import Membership
 from gigs.models import Gig
 
 

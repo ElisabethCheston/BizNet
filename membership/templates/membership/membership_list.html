@@ -64,85 +64,89 @@
 
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="monthly">
-                                <div class="row py-3">
 
-                                    <div class="col-md-6 mb-md-0 p-2">
-                                        <div class="card card-mem text-center h-100">
-                                            <div class="card-body card-member text-center d-flex flex-column">
-                                                <div class="mb-4">
-                                                    <h4>FREE <br> ACCESS</h4>
-                                                    <br>
-                                                    <span class="display-4">€0</span>
-                                                    <span>/fee</span>
-
+                                <div class="row">
+                                    {% for product in products %}
+                                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="card h-100 border-0">
+                                            <a href="{% url 'membership_detail' product.id %}">
+                                                
+                                                <!--{% if product.image %}
+                                                <a href="{% url 'membership_detail' product.id %}">
+                                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                                </a>
+                                                {% else %}
+                                                <a href="{% url 'membership_detail' product.id %}">
+                                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                                </a>
+                                                {% endif %}-->
+                                                <br>
+                                                <div class="text-center card-body pb-0">
+                                                    <h5 class="mb-0"><strong>{{product.membership_type}}</strong></h5>
                                                 </div>
-                                                <h5 class="mb-3">Includes:</h5>
-                                                <ul class="list-unstyled pb-5">
-                                                    <li class="mb-1">
-                                                        User profile
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        View jobs
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        View other profile
-                                                    </li>
-                                                </ul>
-                                                <br>
-                                                <br>
-
-                                            </div>
+                                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                                    <div class="row">
+                                                        <div class="text-center col">
+                                                            <p class="lead mb-0 text-left font-weight-bold">€{{product.price}}</p>
+                                                            <!--{% if product.category %}
+                                                            <p class="small mt-1 mb-0">
+                                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                                                </a>
+                                                            </p>
+                                                            {% endif %}
+                                                            {% if product.rating %}
+                                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                                                            {% else %}
+                                                                <small class="text-muted">No Rating</small>
+                                                            {% endif %}-->
+                                                            
+                                                            {% if request.user.is_superuser %}
+                                                            <small class="ml-3">
+                                                                <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                                                                <a class="text-danger"
+                                                                    href="{% url 'delete_product' product.id %}">Delete</a>
+                                                            </small>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col{% if s %}-12 mt-2{% endif %}">
+                                                            <!--<a href="{% url 'add_to_bag' product.id %}" class="btn btn-outline-black rounded-0 mt-5">
+                                                                <span class="icon">
+                                                                    <i class="fas fa-chevron-left"></i>
+                                                                </span>
+                                                                <span class="text-uppercase">Keep Shopping</span>
+                                                            </a>-->
+                                                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                                        </div>
+                                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6 mb-md-0 p-2">
-                                        <div class="card card-mem text-center h-100">
-                                            <div class="card-body text-center d-flex flex-column">
-                                                <div class="mb-4">
-                                                    <h4>PREMIUM <br> ACCESS</h4>
-                                                    <br>
-                                                    <span class="display-4">€95</span>
-                                                    <span>/fee</span>
-                                                </div>
-                                                <h5 class="mb-3">Includes:</h5>
-                                                <ul class="list-unstyled pb-5">
-                                                    <li class="mb-1">
-                                                        User profile
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        View jobs
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        View other profile
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        Create gigs
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        Create a network
-                                                    </li>
-                                                </ul>
-                                                {% for object in object_list %}
-                                                {% if object.membership_type != 'Free' %}
-                                                <form method="POST" action="{% url 'select' %}">
-                                                    {% csrf_token %}
-                                                    {% if object.membership_type != current_membership %}
-                                                    <button class="btn" id="checkout-button">SELECT</button>
-                                                    {% else %}
-                                                    <strong><small style="color:crimson">You have this membership! {{
-                                                            object.current_membership }}</small></strong>
-                                                    {% endif %}
-                                                    <input type="hidden" name="membership_type"
-                                                        value="{{ object.membership_type }}">
-                                                </form>
-                                                {% endif %}
-                                                {% endfor %}
-
-                                            </div>
-                                        </div>
+                                    {% if forloop.counter|divisibleby:1 %}
+                                    <div class="col-12 d-sm-none mb-5">
+                                        <hr>
                                     </div>
-
+                                    {% endif %}
+                                    {% if forloop.counter|divisibleby:2 %}
+                                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                                        <hr>
+                                    </div>
+                                    {% endif %}
+                                    {% if forloop.counter|divisibleby:3 %}
+                                    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                                        <hr>
+                                    </div>
+                                    {% endif %}
+                                    {% if forloop.counter|divisibleby:4 %}
+                                    <div class="col-12 d-none d-xl-block mb-5">
+                                        <hr>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
+
                             </div>
                         </div>
 
@@ -225,11 +229,7 @@
         <br>
         <br>
     </div>
-    <div class="btt-button shadow-sm rounded-0 border border-black">
-        <a class="btt-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>	
-    </div>
+
     {% endblock %}
 
     {% block postloadjs %}

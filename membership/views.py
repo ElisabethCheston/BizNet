@@ -6,16 +6,18 @@ from django.http import JsonResponse, HttpResponseRedirect
 
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.models import User
 from django.views import View
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView, TemplateView
+from profileusers.models import Profileuser, Industry, Profession, Employment, Status, Membership
 
-from .models import Membership, UserMembership
-from .forms import MembershipForm
+# from .models import Subscription
+# from .forms import SubscriptionForm
 
-from profileusers.models import Profileuser
 from gigs.models import Gig
+from bag.contexts import bag_contents
 
 import stripe
 import json
@@ -164,10 +166,11 @@ def membership_detail(request, membership_id):
     return render(request, 'memberships/membership_detail.html', context)
 
 
+"""
 def get_user_membership(request):
-    user_membership_qs = UserMembership.objects.filter(user = request.user)
-    if user_membership_qs.exists():
-        return user_membership_qs.first()
+    user_membership = UserMembership.objects.filter(user = request.user)
+    if user_membership.exists():
+        return user_membership.first()
     return None
 
 
@@ -187,10 +190,11 @@ def get_selected_membership(request):
     if selected_membership_qs.exists():
         return selected_membership_qs.first()
     return None
-
-
+"""
+"""
 class MembershipSelectView(LoginRequiredMixin, ListView):
     model = Membership
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         current_membership = get_user_membership(self.request)
@@ -210,14 +214,106 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
             selected_membership = selected_membership_qs.first()
 
            # -- Validation -- #
-
         if user_membership.membership == selected_membership:
             if user_membership != Free:
                 messages.info(request, "You already have this membership.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-        request.session['selected_membership_type'] = selected_membership.membership_type       
+        request.session['bag'] = selected_membership.membership_type # selected_membership_type
+
         return HttpResponseRedirect(reverse('payment'))
+        """
+
+def all_products(request):
+    # A view to show all products, including sorting and search queries
+
+    products = Membership.objects.all()
+    query = None
+
+    context = {
+        'products': products,
+        'search_term': query,
+    }
+    return render(request, 'membership/membership_list.html', context)
+
+
+def product_detail(request, product_id):
+    # A view to show individual product details
+
+    product = get_object_or_404(Membership, pk=product_id)
+
+    context = {
+        'product': product,
+    }
+    return render(request, 'membership/membership_detail.html', context)
+
+
+@login_required
+def add_product(request):
+    # Add a product to the store
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+    else:
+        form = ProductForm()
+        
+    template = 'membership/add_product.html'
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def edit_product(request, product_id):
+    # Edit a product in the store
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Membership, pk=product_id)
+    if request.method == 'POST':
+        form = SubscriptionFormForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+    else:
+        form = SubscriptionFormForm(instance=product)
+        messages.info(request, f'You are editing {product.membership_type}')
+
+    template = 'membership/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_product(request, product_id):
+    # Delete a product from the store
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('select'))
+
+    product = get_object_or_404(Membership, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product deleted!')
+    return redirect(reverse('products'))
+
 
 
 @require_POST
@@ -236,8 +332,92 @@ def cache_checkout_data(request):
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
+@login_required
+def PaymentView(request):
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    if request.method == 'POST':
+        bag = request.session.get('bag', {})
 
+        form_data = {
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+        }
+
+        order_form = SubscriptionForm(form_data)
+        if order_form.is_valid():
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save()
+            for item_id, item_data in bag.items():
+                try:
+                    product = Membership.objects.get(id=item_id)
+                    if isinstance(item_data, int):
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=item_data,
+                        )
+
+                except Membership.DoesNotExist:
+                    messages.error(request, (
+                        "One of the products in your bag wasn't found in our database. "
+                        "Please call us for assistance!")
+                    )
+                    order.delete()
+                    return redirect(reverse('view_bag'))
+
+            # Save the info to the user's profile if all is well
+            request.session['save_info'] = 'save-info' in request.POST
+            return redirect(reverse('checkout_success', args=[order.order_number]))
+        else:
+            messages.error(request, 'There was an error with your form. \
+                Please double check your information.')
+
+    else:
+        bag = request.session.get('bag', {})
+        if not bag:
+            messages.error(request, "There's nothing in your bag at the moment")
+            return redirect(reverse('select'))
+
+        current_bag = bag_contents(request)
+        total = current_bag['grand_total']
+        stripe_total = round(total * 100)
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
+        # Attempt to prefill the form with any info the user maintains in their profile
+        if request.user.is_authenticated:
+            try:
+                profile = Subscription.objects.get(user=request.user)
+                order_form = SubscriptionForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                })
+            except Subscription.DoesNotExist:
+                order_form = SubscriptionForm()
+        else:
+            order_form = SubscriptionForm()
+
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe public key is missing. \
+            Did you forget to set it in your environment?')
+
+    template = 'membership/membership_payment.html'
+    context = {
+        'order_form': order_form,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+
+    return render(request, template, context)
+
+"""
 @login_required
 def PaymentView(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -262,10 +442,8 @@ def PaymentView(request):
             customer.source = token # 4242424242424242
             customer.save()
 
-            """
-            Create the subscription using only the customer as we don't need to pass their
-            credit card source anymore
-            """
+            # Create the subscription using only the customer as we don't need to pass their
+            # credit card source anymore
 
             subscription = stripe.Subscription.create(
                 customer=user_membership.stripe_customer_id,
@@ -276,12 +454,10 @@ def PaymentView(request):
                         },
                 ]
             )
-            """
-            return redirect(reverse('update-transactions',
-                                    kwargs={
-                                        'subscription_id': subscription.id
-                                    }))
-            """
+
+            # return redirect(reverse('update-transactions', kwargs={
+                                        # 'subscription_id': subscription.id}))
+
         except:
             messages.info(request, "An error has occurred, investigate it in the console")
 
@@ -291,7 +467,7 @@ def PaymentView(request):
         'selected_membership': selected_membership
     }
     return render(request, "membership/membership_payment.html", context)
-
+"""
 """
 class StripeIntentView(View):
     def post(self, request, *args, **kwargs):
@@ -371,11 +547,11 @@ def cancelSubscription(request):
 """
 def membership_profile(request):
     user_membership = get_user_membership(request)
-    # user_subscription = get_user_subscription(request)
+    # selected_membership = get_selected_membership(request)
     template = 'membership/membership_profile.html'
     context = {
         'user_membership': user_membership,
-        # 'user_subscription': user_subscription,
+        # 'selected_membership': selected_membership,
     }
     return render(request, template, context)
 

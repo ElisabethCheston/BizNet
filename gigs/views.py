@@ -1,7 +1,7 @@
 from .models import Gig
 from profileusers.models import Profileuser
 from .forms import GigForm
-from membership.models import Membership
+from profileusers.models import Membership
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required

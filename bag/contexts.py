@@ -1,44 +1,35 @@
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from membership.models import Membership
+from profileusers.models import Membership
+
+
 
 def bag_contents(request):
 
-    bag_memberships = []
+    bag_items = []
     total = 0
-    membership_count = 0
-    bag = request.session.get('bag', {})
+    product_count = 0
+    bag = request.session.get('bag', {}) # selected_membership_type
 
-    for membership_id, membership_data in bag.memberships():
-        if isinstance(membership_data, int):
-            membership = get_object_or_404(Membership, pk=membership_id)
-            total += membership_data * membership.price
-            membership_count += membership_data
-            bag_memberships.append({
-                'membership_id': membership_id,
-                'quantity': membership_data,
-                'membership': membership,
+    """
+    for item_id, item_data in bag.items(): # Fix Items!
+        if isinstance(item_data, int):
+            product = get_product_or_404(Membership, pk=item_id)
+            total += item_data * membership.price
+            product_count += item_data
+            bag_items.append({
+                'pk': pk,
+                'quantity': item_data,
+                'product': product,
             })
         else:
-            membership = get_object_or_404(Membership, pk=membership_id)
-            for size, quantity in membership_data['memberships_by_size'].memberships():
-                total += quantity * membership.price
-                membership_count += quantity
-                bag_memberships.append({
-                    'membership_id': membership_id,
-                    'quantity': quantity,
-                    'membership': membership,
-                    'size': size,
-                })
-    
-    grand_total = delivery + total
-    
-    context = {
-        'bag_memberships': bag_memberships,
-        'total': total,
-        'membership_count': membership_count,
-        'grand_total': grand_total,
-    }
+            product = get_product_or_404(Membership, pk=item_id)
+        """
 
+    context = {
+        'bag_items': bag_items,
+        'total': total,
+        'product_count': product_count,
+    }
     return context

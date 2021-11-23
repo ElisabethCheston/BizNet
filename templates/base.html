@@ -106,15 +106,30 @@
             <!-- Top navbar links  -->
             <div class="col-8 col-lg-4 wrapper box-right d-flex justify-content-end">
 
-                <a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'view_bag' %}">
+                <!--<a id="subscription" class=" btn-sub justify-content-around mt-2" href="{% url 'view_bag' %}">
                     <span class="button-sub" style="font-weight: bolder;"><strong>PREMIUM > &nbsp;</strong></span>
                     <img src="{% static 'images/sublogo.png' %}" width="27" height="27" class="logo img-fluid">
                     {% if grand_total %}
-                                        ${{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                        $0.00
-                                    {% endif %}
-                </a>
+                    ${{ grand_total|floatformat:2 }}
+                    {% else %}
+                    $0.00
+                    {% endif %}
+                </a>-->
+
+                <li class="list-inline-item">
+                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                        <div class="text-center">
+                            <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                            <p class="my-0">
+                                {% if grand_total %}
+                                    ${{ grand_total|floatformat:2 }}
+                                {% else %}
+                                    $0.00
+                                {% endif %}
+                            </p>
+                        </div>
+                    </a>
+                </li>
 
                 <!-- Dropdown button-->
                 <a class="nav-link text-right" href="#" id="settings" data-toggle="dropdown" aria-haspopup="true"

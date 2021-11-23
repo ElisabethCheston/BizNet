@@ -10,3 +10,5 @@ admin.site.register(Skills)
 admin.site.register(Business)
 admin.site.register(Employment)
 admin.site.register(Status)
+
+
