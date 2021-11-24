@@ -34,8 +34,8 @@ urlpatterns = [
     # path('', views.membership_list, name='membership_list'),
 
     # Stripe
-    path('payment_history/', views.payment_history, name='payment_history'),
+    # path('payment_history/', views.payment_history, name='payment_history'),
     path("config/", views.stripe_config),
 
-    # path("webhook/", views.stripe_webhook, name='stripe_webhook'),
+    # path("wh/", views.stripe_webhook, name='stripe_webhook'),
 ]

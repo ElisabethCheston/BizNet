@@ -156,19 +156,18 @@ def webhook_received():
 # -- MEMBERSHIP -- #
 
 def all_membership(request):
-    """ A view to show all products, including sorting and search queries """
+    # A view to show all products
 
     products = Membership.objects.all()
 
     context = {
         'products': products,
     }
-
     return render(request, 'membership/membership_list.html', context)
 
 
 def membership_detail(request, membership_id):
-    """ A view to show individual membership details """
+    # A view to show individual membership details
 
     membership = get_object_or_404(membership, pk=product_id)
 
@@ -178,14 +177,13 @@ def membership_detail(request, membership_id):
     return render(request, 'memberships/membership_detail.html', context)
 
 
-"""
 def get_user_membership(request):
     user_membership = UserMembership.objects.get(user = 'user')
     if user_membership.exists():
         return user_membership.first()
     return None
 
-
+"""
 def get_user_subscription(request): 
     user_subscription = Subscription.objects.filter(
         user_membership = get_user_membership(request))
@@ -193,7 +191,7 @@ def get_user_subscription(request):
         user_subscription = user_subscription.first()
         return user_subscription
     return None 
-
+"""
 
 def get_selected_membership(request):
     membership_type = request.session['selected_membership']   
@@ -203,7 +201,7 @@ def get_selected_membership(request):
         return selected_membership_qs.first()
     return None
 
-"""
+
 class MembershipSelectView(LoginRequiredMixin, ListView):
     model = Membership
 
@@ -327,7 +325,6 @@ def delete_product(request, product_id):
     return redirect(reverse('products'))
 
 
-
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -429,7 +426,6 @@ def PaymentView(request):
 
     return render(request, template, context)
 
-"""
 @login_required
 def PaymentView(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -525,7 +521,6 @@ def updateTransactionRecords(request):
         selected_membership))
     return redirect(reverse('select'))
 
-"""
 # -- WEBHOOK -- #
 
 
@@ -541,7 +536,7 @@ def membership_profile(request):
     }
     return render(request, template, context)
 
-
+"""
 @login_required
 def cancelSubscription(request):
     user_sub = get_user_subscription(request)
@@ -578,7 +573,7 @@ def payment_history(request):
     }
     return render(request, template, context)
 
-
+"""
 ###
 # -- SUBSCRIPTION RESPONCES -- #
 

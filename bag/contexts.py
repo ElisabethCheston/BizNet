@@ -12,20 +12,20 @@ def bag_contents(request):
     product_count = 0
     bag = request.session.get('bag', {}) # selected_membership_type
 
-    """
     for item_id, item_data in bag.items(): # Fix Items!
         if isinstance(item_data, int):
-            product = get_product_or_404(Membership, pk=item_id)
-            total += item_data * membership.price
+            product = get_object_or_404(Membership, pk=item_id)
+            total += item_data * product.price
             product_count += item_data
             bag_items.append({
-                'pk': pk,
+                'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
             })
+            """
         else:
             product = get_product_or_404(Membership, pk=item_id)
-        """
+            """
 
     context = {
         'bag_items': bag_items,

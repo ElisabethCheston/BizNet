@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col text-center">
                         {% if bag_items %}
                         <div class="d-block d-md-none">
                             <div class="row">
@@ -80,7 +80,7 @@
                             {% for items in bag_items %}
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-2">
-                                    {% include "membership/membership-payment.html" %}
+                                    <!--{% include "membership/membership-payment.html" %}-->
                                 </div>
                                 <div class="col-12 col-sm-6 order-sm-last">
                                     <p class="my-0">Price Each: ${{ item.product.price }}</p>
@@ -118,9 +118,6 @@
                                 {% for items in bag_items %}
                                 <tr>
                                     <td class="py-3">
-                                        {% include "bag/product-info.html" %}
-                                    </td>
-                                    <td class="py-3">
                                         <p class="my-0">${{ items.product.price }}</p>
                                     </td>
                                     <td class="py-3 w-25">
@@ -144,12 +141,9 @@
                             </table>
                         </div>
                         {% else %}
-                        <p class="text-center lead mb-5">Your bag is empty.</p>
+                        <p class="text-center">Your bag is empty.</p>
                         <a href="{% url 'select' %}" class="text-center btn btn-outline-black rounded-0 btn-lg">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-center text-uppercase">Checkout</span>
+                            <span class="text-center text-uppercase">Upgrade</span>
                         </a>
                         {% endif %}
                     </div>
