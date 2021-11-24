@@ -22,10 +22,9 @@ def bag_contents(request):
                 'quantity': item_data,
                 'product': product,
             })
-            """
+
         else:
             product = get_product_or_404(Membership, pk=item_id)
-            """
 
     context = {
         'bag_items': bag_items,

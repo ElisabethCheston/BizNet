@@ -65,6 +65,7 @@
                 <div class="row">
                     <div class="col text-center">
                         {% if bag_items %}
+                        
                         <div class="d-block d-md-none">
                             <div class="row">
                                 <div class="col">
@@ -80,7 +81,7 @@
                             {% for items in bag_items %}
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-2">
-                                    <!--{% include "membership/membership-payment.html" %}-->
+                                   
                                 </div>
                                 <div class="col-12 col-sm-6 order-sm-last">
                                     <p class="my-0">Price Each: ${{ item.product.price }}</p>
@@ -142,7 +143,7 @@
                         </div>
                         {% else %}
                         <p class="text-center">Your bag is empty.</p>
-                        <a href="{% url 'select' %}" class="text-center btn btn-outline-black rounded-0 btn-lg">
+                        <a href="{% url 'bag' %}" class="text-center btn btn-outline-black rounded-0 btn-lg">
                             <span class="text-center text-uppercase">Upgrade</span>
                         </a>
                         {% endif %}
@@ -159,29 +160,31 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $('.btt-link').click(function (e) {
-        window.scrollTo(0, 0)
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
     })
 </script>
-{% include 'membership/includes/quantity_input_script.html' %}
+{% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
     // Update quantity on click
-    $('.update-link').click(function (e) {
+    $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
-    // Remove membership_type and reload on click
-    $('.remove-membership_type').click(function (e) {
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
-        var membership_typeId = $(this).attr('id').split('remove_')[1];
-        var url = `/bag/remove/${membership_typeId}/`;
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('product_size');
+        var url = `/bag/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
 
         $.post(url, data)
-            .done(function () {
-                location.reload();
-            });
+         .done(function() {
+             location.reload();
+         });
     })
 </script>
 {% endblock %}
