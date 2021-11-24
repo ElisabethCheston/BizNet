@@ -14,7 +14,7 @@ from django.views.generic import  ListView, TemplateView
 from profileusers.models import Profileuser, Industry, Profession, Employment, Status
 
 from .models import Subscription
-from .forms import SubscriptionForm
+from .forms import MembershipForm
 
 from gigs.models import Gig
 from bag.contexts import bag_contents
@@ -155,28 +155,39 @@ def webhook_received():
 
 # -- MEMBERSHIP -- #
 
+def all_membership(request):
+    """ A view to show all products, including sorting and search queries """
+
+    products = Membership.objects.all()
+
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'membership/membership_list.html', context)
+
+
 def membership_detail(request, membership_id):
     """ A view to show individual membership details """
 
-    membership = get_object_or_404(membership, pk=membership_id)
+    membership = get_object_or_404(membership, pk=product_id)
 
     context = {
         'membership': membership,
     }
-
     return render(request, 'memberships/membership_detail.html', context)
 
 
 """
 def get_user_membership(request):
-    user_membership = UserMembership.objects.filter(user = request.user)
+    user_membership = UserMembership.objects.get(user = 'user')
     if user_membership.exists():
         return user_membership.first()
     return None
 
 
 def get_user_subscription(request): 
-    user_subscription =  Subscription.objects.filter(
+    user_subscription = Subscription.objects.filter(
         user_membership = get_user_membership(request))
     if user_subscription.exists():
         user_subscription = user_subscription.first()
@@ -191,7 +202,7 @@ def get_selected_membership(request):
     if selected_membership_qs.exists():
         return selected_membership_qs.first()
     return None
-"""
+
 """
 class MembershipSelectView(LoginRequiredMixin, ListView):
     model = Membership
@@ -220,12 +231,8 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
                 messages.info(request, "You already have this membership.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-<<<<<<< HEAD
         request.session['bag'] = selected_membership.membership_type # selected_membership_type
 
-=======
-        request.session['selected_membership'] = selected_membership.membership_type       
->>>>>>> 0ad3775 (Setup Admin membership view.)
         return HttpResponseRedirect(reverse('payment'))
         """
 
@@ -287,7 +294,7 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(Membership, pk=product_id)
     if request.method == 'POST':
-        form = SubscriptionFormForm(request.POST, request.FILES, instance=product)
+        form = MembershipForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product!')
@@ -295,7 +302,7 @@ def edit_product(request, product_id):
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
-        form = SubscriptionFormForm(instance=product)
+        form = MembershipForm(instance=product)
         messages.info(request, f'You are editing {product.membership_type}')
 
     template = 'membership/edit_product.html'
@@ -524,6 +531,17 @@ def updateTransactionRecords(request):
 
 # -- PROFILEUSER INFO -- #
 
+def membership_profile(request):
+    # user_membership = get_user_membership(request)
+    # selected_membership = get_selected_membership(request)
+    template = 'membership/membership_profile.html'
+    context = {
+        # 'user_membership': user_membership,
+        # 'selected_membership': selected_membership,
+    }
+    return render(request, template, context)
+
+
 @login_required
 def cancelSubscription(request):
     user_sub = get_user_subscription(request)
@@ -549,17 +567,6 @@ def cancelSubscription(request):
 
     return redirect(reverse('memberships:select'))
 
-"""
-def membership_profile(request):
-    user_membership = get_user_membership(request)
-    # selected_membership = get_selected_membership(request)
-    template = 'membership/membership_profile.html'
-    context = {
-        'user_membership': user_membership,
-        # 'selected_membership': selected_membership,
-    }
-    return render(request, template, context)
-
 
 # -- PAYMENT HISTORY -- #
 
@@ -572,7 +579,7 @@ def payment_history(request):
     return render(request, template, context)
 
 
-
+###
 # -- SUBSCRIPTION RESPONCES -- #
 
 class SuccessView(TemplateView):
@@ -583,7 +590,6 @@ class CancelView(TemplateView):
 
 
 # -- ADMIN   -- #
-"""
 @login_required
 def add_membership(request):
     # Add a membership to the store
@@ -650,4 +656,3 @@ def delete_membership(request, membership_id):
     membership.delete()
     messages.success(request, 'Membership deleted!')
     return redirect(reverse('membership_list'))
-"""

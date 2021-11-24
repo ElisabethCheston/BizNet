@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import Subscription
+from .models import Membership
 
 
-class SubscriptionForm(forms.ModelForm):
+class MembershipForm(forms.ModelForm):
 
     class Meta:
-        model = Subscription
+        model = Membership
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

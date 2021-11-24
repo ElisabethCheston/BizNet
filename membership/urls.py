@@ -3,7 +3,7 @@ from . import views
 from .views import (
     # MembershipSelectView,
     # PaymentView,
-    updateTransactionRecords,
+    # updateTransactionRecords,
     # CreateCheckoutSessionView,
     SuccessView,
     CancelView,
@@ -11,17 +11,17 @@ from .views import (
 
 
 urlpatterns = [
-    path('', views.all_products, name='select'),
+    path('', views.all_membership, name='select'),
     path('<int:product_id>/', views.membership_detail, name='membership_detail'),
-    path('add/', views.add_product, name='add_product'),
-    path('edit/<int:product_id>/', views.edit_product, name='edit_product'),
-    path('delete/<int:product_id>/', views.delete_product, name='delete_product'),
+    path('add/', views.add_membership, name='add_membership'),
+    path('edit/<int:product_id>/', views.edit_membership, name='edit_membership'),
+    path('delete/<int:product_id>/', views.delete_membership, name='delete_membership'),
 
     # path('', MembershipSelectView.as_view(), name='select'),
     path('membership_profile', views.membership_profile, name='membership_profile'),
     # path('subscription/', views.Subscription, name='subscription'),
     # path('payment/', PaymentView, name='payment'),
-    path('update-transactions/', updateTransactionRecords, name='update-transactions'),
+    # path('update-transactions/', updateTransactionRecords, name='update-transactions'),
 
 
     path("membership_detail/", views.membership_detail, name='membership_detail'),

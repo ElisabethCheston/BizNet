@@ -46,6 +46,12 @@
 
 {% block content %}
 
+<style>
+    .product_desc, a {
+        text-decoration: none !important;
+        f
+    }
+</style>
 <div class="container-fluid">
     <br>
     <div class="row">
@@ -71,39 +77,27 @@
                                         <div class="card h-100 border-0">
                                             <a href="{% url 'membership_detail' product.id %}">
                                                 
-                                                <!--{% if product.image %}
-                                                <a href="{% url 'membership_detail' product.id %}">
-                                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                                </a>
-                                                {% else %}
-                                                <a href="{% url 'membership_detail' product.id %}">
-                                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                                </a>
-                                                {% endif %}-->
                                                 <br>
+                                                
                                                 <div class="text-center card-body pb-0">
-                                                    <h5 class="mb-0"><strong>{{product.membership_type}}</strong></h5>
+                                                    <h5 class="mb-0 text-uppercase"><strong>{{product.membership_type}}</strong></h5>
                                                 </div>
-<<<<<<< HEAD
-                                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                                <div class="text-center card-body pb-0">
+                                                    <h6 class="mb-0 product_desc"><strong>{{product.description}}</strong></h5>
+                                                    <h6 class="mb-0 product_desc"><strong>{{product.description1}}</strong></h5>
+                                                    <h6 class="mb-0 product_desc"><strong>{{product.description2}}</strong></h5>
+                                                    <h6 class="mb-0 product_desc"><strong>{{product.description3}}</strong></h5>
+                                                    <h6 class="mb-0 product_desc"><strong>{{product.description4}}</strong></h5>
+
+                                                    
+                                                </div>
+                                                <div class="card-footer text-center bg-white pt-0 border-0">
                                                     <div class="row">
-                                                        <div class="text-center col">
-                                                            <p class="lead mb-0 text-left font-weight-bold">€{{product.price}}</p>
-                                                            <!--{% if product.category %}
-                                                            <p class="small mt-1 mb-0">
-                                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                                                                </a>
-                                                            </p>
-                                                            {% endif %}
-                                                            {% if product.rating %}
-                                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                                                            {% else %}
-                                                                <small class="text-muted">No Rating</small>
-                                                            {% endif %}-->
+                                                        <div class="text-center">
+                                                            <p class="lead mb-0 text-center font-weight-bold">€{{product.price}}</p>
                                                             
                                                             {% if request.user.is_superuser %}
-                                                            <small class="ml-3">
+                                                            <small class="ml-3 text-center">
                                                                 <a href="{% url 'edit_product' product.id %}">Edit</a> |
                                                                 <a class="text-danger"
                                                                     href="{% url 'delete_product' product.id %}">Delete</a>
@@ -111,93 +105,12 @@
                                                             {% endif %}
                                                         </div>
                                                         <div class="col{% if s %}-12 mt-2{% endif %}">
-                                                            <!--<a href="{% url 'add_to_bag' product.id %}" class="btn btn-outline-black rounded-0 mt-5">
-                                                                <span class="icon">
-                                                                    <i class="fas fa-chevron-left"></i>
-                                                                </span>
-                                                                <span class="text-uppercase">Keep Shopping</span>
-                                                            </a>-->
                                                             <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                                                         </div>
                                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                                     </div>
                                                 </div>
                                             </a>
-=======
-                                                <h5 class="mb-3">Includes:</h5>
-                                                <ul class="list-unstyled pb-5">
-                                                    <li class="mb-1">
-                                                        User profile
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        View jobs
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        View other profile
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        Create gigs
-                                                    </li>
-                                                    <li class="mb-1">
-                                                        Create a network
-                                                    </li>
-                                                </ul>
-                                                {% for object in object_list %}
-                                                {% if object.membership_type != 'Free' %}
-                                                <form method="POST" action="{% url 'select' %}">
-                                                    {% csrf_token %}
-                                                    {% if object.membership_type != current_membership %}
-                                                    <button class="btn" id="checkout-button">SELECT</button>
-                                                    {% else %}
-                                                    <strong><small style="color:crimson">You have this membership! {{
-                                                            object.current_membership }}</small></strong>
-                                                    {% endif %}
-                                                    <input type="hidden" name="membership_type"
-                                                        value="{{ object.membership_type }}">
-                                                </form>
-                                                {% endif %}
-                                                {% endfor %}
-                                                <form class="form" action="{% url 'add_to_bag' membership.id %}" method="POST">
-                                                    {% csrf_token %}
-                                                    <div class="form-row">
-                                                        <div class="col-12">
-                                                            <p class="mt-3"><strong>Quantity:</strong></p>
-                                                            <div class="form-group w-50">
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <button class="decrement-qty btn btn-black rounded-0" 
-                                                                            data-item_id="{{ membership.id }}" id="decrement-qty_{{ membership.id }}">
-                                                                            <span class="icon">
-                                                                                <i class="fas fa-minus"></i>
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <input class="form-control qty_input" type="number"
-                                                                        name="quantity" value="1" min="1" max="99"
-                                                                        data-item_id="{{ membership.id }}"
-                                                                        id="id_qty_{{ membership.id }}">
-                                                                    <div class="input-group-append">
-                                                                        <button class="increment-qty btn btn-black rounded-0"
-                                                                            data-item_id="{{ membership.id }}" id="increment-qty_{{ membership.id }}">
-                                                                            <span class="icon">
-                                                                                <i class="fas fa-plus"></i>
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                            
-                                                        <div class="col{% if s %}-12 mt-2{% endif %}">
-                                                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-                                                        </div>
-                                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-
-                                                    </div>
-                                                </form>
-
-                                            </div>
->>>>>>> 0ad3775 (Setup Admin membership view.)
                                         </div>
                                     </div>
                                     {% if forloop.counter|divisibleby:1 %}
@@ -305,10 +218,6 @@
         <br>
         <br>
     </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 0ad3775 (Setup Admin membership view.)
     {% endblock %}
 
     {% block postloadjs %}

@@ -13,6 +13,11 @@ class Membership(models.Model):
     membership_type = models.CharField(
         default='Free', 
         max_length=30)
+    description = models.TextField(default='')
+    description1 = models.TextField(default='')
+    description2 = models.TextField(default='')
+    description3 = models.TextField(default='')
+    description4 = models.TextField(default='')
     price = models.IntegerField(default=15)
     stripe_price_id = models.CharField(
         default='PRICE_ID_1', 
@@ -25,7 +30,6 @@ class Membership(models.Model):
 
 class UserMembership(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    membership = models.ManyToManyField(Membership)
     stripe_customer_id = models.CharField(max_length=40)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=100, default="")
@@ -48,8 +52,10 @@ def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
         user.stripe_customer_id = new_customer_id['id']
         user.membership = free_membership
         user.save()
-
+"""
 post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
+"""
+
 # -- Subscription is only created when a member choose a payment plan -- #
 class Subscription(models.Model):
     user_profile = models.ForeignKey(UserMembership, on_delete=models.SET_NULL,
