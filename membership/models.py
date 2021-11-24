@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 # from profileusers.models import Profileuser, Industry, Profession, Employment, Status, Membership
 
 import stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Reference: https://www.youtube.com/watch?v=zu2PBUHMEew&t=155s
 # Reference : https://medium.com/analytics-vidhya/django-and-stripe-subscriptions-part-2-8ddd406458a9
@@ -31,7 +30,7 @@ class UserMembership(models.Model):
     membership = models.ManyToManyField(Membership)
     # stripe_customer_id = models.CharField(max_length=40)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
-    status = models.CharField(max_length=100, default="active")
+    status = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return self.user.username

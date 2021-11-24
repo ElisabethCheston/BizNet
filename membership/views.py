@@ -184,7 +184,7 @@ def get_user_subscription(request):
 
 
 def get_selected_membership(request):
-    membership_type = request.session['selected_membership_type']   
+    membership_type = request.session['selected_membership']   
     selected_membership_qs = Membership.objects.filter(
         membership_type=membership_type)
     if selected_membership_qs.exists():
@@ -205,11 +205,11 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
         return context
 
     def post(self, request, **kwargs):
-        selected_membership_type = request.POST.get('membership_type')  
+        selected_membership = request.POST.get('membership_type')  
         user_membership = get_user_membership(request)
         # user_subscription = get_user_subscription(request)      
         selected_membership_qs =Membership.objects.filter(
-            membership_type = selected_membership_type) 
+            membership_type = selected_membership) 
         if selected_membership_qs.exists():
             selected_membership = selected_membership_qs.first()
 
@@ -219,8 +219,12 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
                 messages.info(request, "You already have this membership.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+<<<<<<< HEAD
         request.session['bag'] = selected_membership.membership_type # selected_membership_type
 
+=======
+        request.session['selected_membership'] = selected_membership.membership_type       
+>>>>>>> 0ad3775 (Setup Admin membership view.)
         return HttpResponseRedirect(reverse('payment'))
         """
 
@@ -505,7 +509,7 @@ def updateTransactionRecords(request):
     sub.save()
 
     try:
-        del request.session['selected_membership_type']
+        del request.session['selected_membership']
     except:
         pass
         
