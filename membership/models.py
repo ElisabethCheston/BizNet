@@ -2,14 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models.signals import post_save
-# from profileusers.models import Profileuser, Industry, Profession, Employment, Status, Membership
 
 import stripe
 
 # Reference: https://www.youtube.com/watch?v=zu2PBUHMEew&t=155s
 # Reference : https://medium.com/analytics-vidhya/django-and-stripe-subscriptions-part-2-8ddd406458a9
 
-"""
 class Membership(models.Model):
     slug = models.SlugField()
     membership_type = models.CharField(
@@ -28,7 +26,7 @@ class Membership(models.Model):
 class UserMembership(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     membership = models.ManyToManyField(Membership)
-    # stripe_customer_id = models.CharField(max_length=40)
+    stripe_customer_id = models.CharField(max_length=40)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=100, default="")
 
@@ -52,11 +50,9 @@ def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
         user.save()
 
 post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
-"""
-"""
 # -- Subscription is only created when a member choose a payment plan -- #
-class Order(models.Model):
-    user_profile = models.ForeignKey(Profileuser, on_delete=models.SET_NULL,
+class Subscription(models.Model):
+    user_profile = models.ForeignKey(UserMembership, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='orders')
     order_number = models.CharField(max_length=32, null=False, editable=False)
     first_name = models.CharField(
@@ -113,4 +109,3 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'Premium {self.product.PRICE_ID_2} on order {self.order.order_number}'
-"""

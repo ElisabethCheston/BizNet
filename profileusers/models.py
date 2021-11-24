@@ -4,6 +4,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
 
+from membership.models import Membership
+
+
 from itertools import chain
 import random
 
@@ -74,20 +77,6 @@ class Status(models.Model):
         return self.status_name
 
 
-class Membership(models.Model):
-    slug = models.SlugField()
-    membership_type = models.CharField(
-        default='Free', 
-        max_length=30)
-    price = models.IntegerField(default=15)
-    stripe_price_id = models.CharField(
-        default='PRICE_ID_1', 
-        max_length=50)
-    
-
-    def __str__(self):
-        return self.membership_type
-
 # PROFILEUSER
 
 class Profileuser(models.Model):
@@ -104,7 +93,6 @@ class Profileuser(models.Model):
     last_name = models.CharField(
         max_length=254, blank=False, null=True)
     membership = models.ManyToManyField(Membership)
-    stripe_customer_id = models.CharField(max_length=40, default='')
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
@@ -242,16 +230,3 @@ class Profileuser(models.Model):
         available = [p.user for p in profiles if p.user not in followers_list]
         random.shuffle(available)
         return available[:3]
-
-
-def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
-    user, created = Profileuser.objects.get_or_create(
-        user=instance)
-
-    if user.stripe_customer_id is None or user.stripe_customer_id == '':
-        new_customer_id = stripe.Customer.create(email=instance.email)
-        free_membership = Membership.objects.get(membership_type='Free')
-        user.stripe_customer_id = new_customer_id['id']
-        user.membership = free_membership
-        user.save()
-

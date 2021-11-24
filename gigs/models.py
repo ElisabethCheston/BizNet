@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from profileusers.models import Profileuser, Industry, Profession, Employment, Status
 from django.urls import reverse
 from django_countries.fields import CountryField
-from profileusers.models import Membership
+from membership.models import Membership
 
 
 # GIG

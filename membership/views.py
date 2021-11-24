@@ -11,13 +11,15 @@ from django.views import View
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView, TemplateView
-from profileusers.models import Profileuser, Industry, Profession, Employment, Status, Membership
+from profileusers.models import Profileuser, Industry, Profession, Employment, Status
 
-# from .models import Subscription
-# from .forms import SubscriptionForm
+from .models import Subscription
+from .forms import SubscriptionForm
 
 from gigs.models import Gig
 from bag.contexts import bag_contents
+from membership.models import Membership
+
 
 import stripe
 import json
@@ -25,7 +27,6 @@ import json
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-# API_KEY = settings.STRIPE_SECRET_KEY
 
 
                 # --  Reference  -- #
