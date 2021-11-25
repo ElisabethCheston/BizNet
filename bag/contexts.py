@@ -10,9 +10,9 @@ def bag_contents(request):
     bag_items = []
     total = 0
     product_count = 0
-    bag = request.session.get('bag', {}) # selected_membership_type
+    bag = request.session.get('bag', {})
 
-    for item_id, item_data in bag.items(): # Fix Items!
+    for item_id, item_data in bag.items():
         if isinstance(item_data, int):
             product = get_object_or_404(Membership, pk=item_id)
             total += item_data * product.price
