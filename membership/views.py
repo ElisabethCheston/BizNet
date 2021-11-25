@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponseRedirect
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.views import View
@@ -166,15 +166,15 @@ def all_membership(request):
     return render(request, 'membership/membership_list.html', context)
 
 
-def membership_detail(request, membership_id):
+def membership_detail(request, product_id):
     # A view to show individual membership details
 
-    membership = get_object_or_404(membership, pk=product_id)
+    product = get_object_or_404(Membership, pk=product_id)
 
     context = {
-        'membership': membership,
+        'product': product,
     }
-    return render(request, 'memberships/membership_detail.html', context)
+    return render(request, 'membership/membership_detail.html', context)
 
 
 def get_user_membership(request):

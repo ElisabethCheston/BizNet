@@ -76,30 +76,30 @@
                                     {% for product in products %}
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                         <div class="card h-100 border-0">
-                                            <!--<a href="{% url 'membership_detail' product.id %}">-->
+                                            <a href="{% url 'membership_detail' product.id %}">
 
                                             <br>
 
                                             <div class="text-center card-body pb-0">
-                                                <h5 class="mb-0 text-uppercase">
+                                                <h3 class="mb-0 text-uppercase">
                                                     <strong>{{product.membership_type}}</strong>
-                                                </h5>
+                                                </h3>
                                             </div>
-                                            <div class="text-center card-body pb-0">
-                                                <h6 class="mb-0 product_desc"><strong>{{product.description}}</strong>
-                                                    </h5>
-                                                    <h6 class="mb-0 product_desc">
-                                                        <strong>{{product.description1}}</strong>
-                                                        </h5>
-                                                        <h6 class="mb-0 product_desc">
-                                                            <strong>{{product.description2}}</strong>
-                                                            </h5>
-                                                            <h6 class="mb-0 product_desc">
-                                                                <strong>{{product.description3}}</strong>
-                                                                </h5>
-                                                                <h6 class="mb-0 product_desc">
-                                                                    <strong>{{product.description4}}</strong>
-                                                                    </h5>
+                                            <div class="text-center card-body p-4">
+                                                <h5 class="mb-0 product_desc"><strong>{{product.description}}</strong>
+                                                </h5>
+                                                <h5 class="mb-0 product_desc">
+                                                    <strong>{{product.description1}}</strong>
+                                                </h5>
+                                                <h5 class="mb-0 product_desc">
+                                                    <strong>{{product.description2}}</strong>
+                                                </h5>
+                                                <h5 class="mb-0 product_desc">
+                                                    <strong>{{product.description3}}</strong>
+                                                </h5>
+                                                <h5 class="mb-0 product_desc">
+                                                    <strong>{{product.description4}}</strong>
+                                                </h5>
 
                                             </div>
                                             <div class="card-footer text-center bg-white pt-0 border-0">
@@ -116,63 +116,11 @@
                                                         </small>
                                                         {% endif %}
                                                     </div>
-                                                    <!--<div class="col{% if s %}-12 mt-2{% endif %}">
-                                                        <input type="submit"
-                                                            class="btn btn-black rounded-0 text-uppercase mt-5"
-                                                            value="Add to Bag">
-                                                    </div>
-                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">-->
+
                                                 </div>
                                             </div>
-                                            <form class="form text-center" action="{% url 'add_to_bag' product.id %}"
-                                                method="POST">
-                                                {% csrf_token %}
-                                                <div class="row">
-                                                    <div class="text-center">
-                                                        <div class="col-12">
-                                                            <p class="mt-3"><strong>Quantity:</strong></p>
-                                                            <div class="form-group w-50">
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <button
-                                                                            class="decrement-qty btn btn-black rounded-0"
-                                                                            data-item_id="{{ product.id }}"
-                                                                            id="decrement-qty_{{ product.id }}">
-                                                                            <span class="icon">
-                                                                                <i class="fas fa-minus"></i>
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <input class="form-control qty_input" type="number"
-                                                                        name="quantity" value="1" min="1" max="99"
-                                                                        data-item_id="{{ product.id }}"
-                                                                        id="id_qty_{{ product.id }}">
-                                                                    <div class="input-group-append">
-                                                                        <button
-                                                                            class="increment-qty btn btn-black rounded-0"
-                                                                            data-item_id="{{ product.id }}"
-                                                                            id="increment-qty_{{ product.id }}">
-                                                                            <span class="icon">
-                                                                                <i class="fas fa-plus"></i>
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="text-center">
-                                                        <input type="submit"
-                                                            class="btn btn-black rounded-0 text-uppercase mt-5"
-                                                            value="Add to Bag">
-                                                    </div>
-                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                                </div>
-                                            </form>
                                             <br>
-                                            <!--</a>-->
+                                            </a>
                                         </div>
                                     </div>
                                     {% if forloop.counter|divisibleby:1 %}
@@ -282,6 +230,7 @@
     </div>
     {% endblock %}
 
+    {% include 'membership/includes/quantity_input_script.html' %}
     {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript">
@@ -318,5 +267,5 @@
             }
         })
     </script>
-    {% include 'membership/includes/quantity_input_script.html' %}
+
     {% endblock %}
