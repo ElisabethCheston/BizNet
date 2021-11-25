@@ -61,8 +61,7 @@
                         <hr>
                     </div>
 
-                    <div class="row">
-                        <div class="justify-content-center">
+                    <div class="row justify-content-center">
                             <div class="pt-4">
                                 {% if bag_items %}
                                 <div class="d-block d-md-none">
@@ -71,7 +70,7 @@
                                             {% include "bag/bag-total.html" %}
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row justify-content-center">
                                         <div class="col">
                                             {% include "bag/checkout-buttons.html" %}
                                             <!--<p class="text-muted mb-5">A summary of your bag contents is below</p>-->
@@ -92,11 +91,6 @@
                                             {% include "bag/quantity-form.html" %}
                                         </div>
                                     </div>
-                                    <!--<div class="row">
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>-->
                                     {% endfor %}
                                     <div class="btt-button shadow-sm rounded-0 border border-black">
                                         <a class="btt-link d-flex h-100">
@@ -146,16 +140,19 @@
                                     </table>
                                 </div>
                                 {% else %}
-                                <p class="lead mb-5">Your bag is empty.</p>
-                                <a href="{% url 'select' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="text-uppercase">BACK</span>
-                                </a>
+                                <div class="col-12">
+                                    <div class="row justify-content-center">
+                                        <p class="lead mb-5 text-center">Your bag is empty.</p>
+                                        <a href="{% url 'select' %}" class="btn rounded-0 btn-lg">
+                                            <span class="icon">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </span>
+                                            <span class="text-uppercase">BACK</span>
+                                        </a>
+                                    </div>
+                                </div>
                                 {% endif %}
                             </div>
-                        </div>
                     </div>
 
 

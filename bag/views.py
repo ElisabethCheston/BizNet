@@ -17,10 +17,8 @@ def add_to_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
-
     size = None
-    if 'product_size' in request.POST:
-        size = request.POST['product_size']
+    # if 'product_size' in request.POST: size = request.POST['product_size']
     bag = request.session.get('bag', {})
 
     if size:
@@ -37,14 +35,13 @@ def add_to_bag(request, item_id):
     else:
         if item_id in list(bag.keys()):
             bag[item_id] += quantity
-            messages.success(request, f'Updated {product.membership_type} quantity to {bag[item_id]}')
+            messages.success(request, f'Updated {product.membership_type} membership quantity to {bag[item_id]}')
         else:
             bag[item_id] = quantity
-            messages.success(request, f'Added {product.membership_type} to your bag')
+            messages.success(request, f'Added {product.membership_type} membership to your bag')
 
 
     request.session['bag'] = bag
-    print(request.session['bag'])
     return redirect(redirect_url)
     
 
@@ -54,8 +51,7 @@ def adjust_bag(request, item_id):
     product = get_object_or_404(Membership, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     size = None
-    if 'product_size' in request.POST:
-        size = request.POST['product_size']
+    # if 'product_size' in request.POST: size = request.POST['product_size']
     bag = request.session.get('bag', {})
 
     if size:
@@ -85,8 +81,7 @@ def remove_from_bag(request, item_id):
     try:
         product = get_object_or_404(Membership, pk=item_id)
         size = None
-        if 'product_size' in request.POST:
-            size = request.POST['product_size']
+        # if 'product_size' in request.POST: size = request.POST['product_size']
         bag = request.session.get('bag', {})
 
         if size:
