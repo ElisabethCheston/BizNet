@@ -13,7 +13,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView, TemplateView
 from profileusers.models import Profileuser, Industry, Profession, Employment, Status
 
-from .models import Subscription
 from .forms import MembershipForm
 
 from gigs.models import Gig

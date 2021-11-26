@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Membership, UserMembership, Subscription
+from .models import Membership, UserMembership
 
 
 class MembershipAdmin(admin.ModelAdmin):
@@ -22,4 +22,3 @@ class UserMembershipAdmin(admin.ModelAdmin):
 
 admin.site.register(Membership, MembershipAdmin)
 admin.site.register(UserMembership, UserMembershipAdmin)
-admin.site.register(Subscription)
