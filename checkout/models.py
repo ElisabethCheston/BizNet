@@ -16,12 +16,11 @@ class Subscription(models.Model):
         max_length=254, blank=False, null=True)
     last_name = models.CharField(
         max_length=254, blank=False, null=True)
-    membership = models.ManyToManyField(Membership)
+    membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, blank=False, default='')
     stripe_customer_id = models.CharField(max_length=40, default='')
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
@@ -51,7 +50,7 @@ class Subscription(models.Model):
         return self.order_number
 
 
-class OrderLineItem(models.Model):
+class SubscriptionLineItem(models.Model):
     order = models.ForeignKey(Subscription, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Membership, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
@@ -65,4 +64,5 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Premium {self.product.PRICE_ID_2} on order {self.order.order_number}'
+        return f'SKU {self.product.sku} on order {self.subscription.order_number}'
+

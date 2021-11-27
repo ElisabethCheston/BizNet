@@ -2,19 +2,19 @@
     {% csrf_token %}
     <div class="form-group">
         <div class="input-group">
-            <div class="input-group-prepend">
+            <!--<div class="input-group-prepend">
                 <button class="decrement-qty btn btn-sm btn-black rounded-0" 
                     data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
                     </span>
                 </button>
-            </div>
+            </div>-->
             <input class="form-control form-control-sm qty_input" type="number"
                 name="quantity" value="{{ item.quantity }}" min="1" max="1"
                 data-item_id="{{ item.item_id }}"
                 id="id_qty_{{ item.item_id }}">
-            <div class="input-group-append">
+            <!--<div class="input-group-append">
                 <button class="increment-qty btn btn-sm btn-black rounded-0"
                     data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                     <span>
@@ -24,7 +24,7 @@
             </div>
             {% if item.product.has_sizes %}
                 <input type="hidden" name="product_size" value="{{ item.size }}">
-            {% endif %}
+            {% endif %}-->
         </div>
     </div>
 </form>
