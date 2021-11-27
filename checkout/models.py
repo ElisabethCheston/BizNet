@@ -12,9 +12,7 @@ class Subscription(models.Model):
     user_profile = models.ForeignKey(UserMembership, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='orders')
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    first_name = models.CharField(
-        max_length=254, blank=False, null=True)
-    last_name = models.CharField(
+    full_name = models.CharField(
         max_length=254, blank=False, null=True)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, blank=False, default='')
     stripe_customer_id = models.CharField(max_length=40, default='')

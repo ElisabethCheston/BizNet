@@ -6,8 +6,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
     list_display = (
         'user_profile', 
         'order_number', 
-        'first_name', 
-        'last_name', 
+        'full_name', 
         'membership', 
         'stripe_customer_id', 
         'email', 
