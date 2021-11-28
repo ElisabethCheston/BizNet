@@ -307,15 +307,12 @@ a.btn, button {
 /* SCREEN LAYOUTS */
 
 /* Slightly larger container on xl screens */
-/*
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
   }
 }
-*/
 /* fixed top navbar only on medium and up */
-/*
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
         position: fixed;
@@ -325,7 +322,6 @@ a.btn, button {
         z-index: 1030;
     }
 }
-*/
 /* BAG */
 
 .icon {
@@ -427,9 +423,8 @@ input[name='q']::placeholder {
 /* TOAST BOOTSTRAP */
 
 .message-container {
-  /*position: fixed;*/
-  width: auto;
-  top: 75px;
+  position: fixed;
+  top: 72px;
   right: 15px;
   z-index: 99999999999;
 }
@@ -488,14 +483,26 @@ input[name='q']::placeholder {
 }
 
 .bag-notification-wrapper {
-  height: 80px;
+  height: 100px;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+  .fixed-top-desktop-only {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+  }
 
-
+  .header-container {
+      padding-top: 164px;
+  }
+}
 
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {

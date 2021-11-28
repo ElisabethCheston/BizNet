@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import Membership # , UserMembership
+from .models import Membership, UserMembership
 
 
 class MembershipForm(forms.ModelForm):
@@ -12,7 +12,7 @@ class MembershipForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-"""
+
 class UserMembershipForm(forms.ModelForm):
 
     class Meta:
@@ -21,4 +21,3 @@ class UserMembershipForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-"""

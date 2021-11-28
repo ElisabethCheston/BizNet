@@ -13,9 +13,9 @@ from .views import (
 urlpatterns = [
     path('', views.all_membership, name='select'),
     path('<product_id>/', views.membership_detail, name='membership_detail'),
-    # path('add/', views.add_membership, name='add_membership'),
-    # path('edit/<int:product_id>/', views.edit_membership, name='edit_membership'),
-    # path('delete/<int:product_id>/', views.delete_membership, name='delete_membership'),
+    path('add/', views.add_membership, name='add_membership'),
+    path('edit/<int:product_id>/', views.edit_membership, name='edit_membership'),
+    path('delete/<int:product_id>/', views.delete_membership, name='delete_membership'),
 
     # path('', MembershipSelectView.as_view(), name='select'),
     path('membership_profile', views.membership_profile, name='membership_profile'),

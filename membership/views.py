@@ -217,7 +217,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
         selected_membership = request.POST.get('membership_type')  
         user_membership = get_user_membership(request)
         # user_subscription = get_user_subscription(request)      
-        selected_membership_qs =Membership.objects.filter(
+        selected_membership_qs = Membership.objects.filter(
             membership_type = selected_membership) 
         if selected_membership_qs.exists():
             selected_membership = selected_membership_qs.first()
@@ -231,30 +231,6 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
         request.session['bag'] = selected_membership.membership_type # selected_membership_type
 
         return HttpResponseRedirect(reverse('payment'))
-        """
-
-def all_products(request):
-    # A view to show all products, including sorting and search queries
-
-    products = Membership.objects.all()
-    query = None
-
-    context = {
-        'products': products,
-        'search_term': query,
-    }
-    return render(request, 'membership/membership_list.html', context)
-
-
-def product_detail(request, product_id):
-    # A view to show individual product details
-
-    product = get_object_or_404(Membership, pk=product_id)
-
-    context = {
-        'product': product,
-    }
-    return render(request, 'membership/membership_detail.html', context)
 
 
 @login_required
@@ -262,10 +238,10 @@ def add_product(request):
     # Add a product to the store
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('select'))
 
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = MembershipForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
             messages.success(request, 'Successfully added product!')
@@ -273,7 +249,7 @@ def add_product(request):
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
-        form = ProductForm()
+        form = MembershipForm()
         
     template = 'membership/add_product.html'
     context = {
@@ -287,7 +263,7 @@ def edit_product(request, product_id):
     # Edit a product in the store
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('select'))
 
     product = get_object_or_404(Membership, pk=product_id)
     if request.method == 'POST':
@@ -323,7 +299,7 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
-
+"""
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -600,7 +576,7 @@ def add_membership(request):
         else:
             messages.error(request, 'Failed to add membership. Please ensure the form is valid.')
     else:
-        form = ProductForm()
+        form = MembershipForm()
         
     template = 'membership/add_membership.html'
     context = {
@@ -644,7 +620,7 @@ def delete_membership(request, membership_id):
     # Delete a membership from the store
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('select'))
 
     membership = get_object_or_404(Membership, pk=membership_id)
     membership.delete()
