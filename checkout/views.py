@@ -23,7 +23,7 @@ def checkout(request):
 
     if not bag:
         messages.error(request, "There's nothing in your bag at the moment")
-        return redirect(reverse('products'))
+        return redirect(reverse('select'))
 
     current_bag = bag_contents(request)
     total = current_bag['grand_total']
@@ -76,7 +76,7 @@ def checkout(request):
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")
-            return redirect(reverse('products'))
+            return redirect(reverse('select'))
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -117,7 +117,7 @@ def checkout(request):
 
                 except Membership.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "Membership don't seem to exist in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
@@ -134,7 +134,7 @@ def checkout(request):
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")
-            return redirect(reverse('products'))
+            return redirect(reverse('select'))
 
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
@@ -153,7 +153,7 @@ def checkout(request):
                     'full_name': profile.user.get_full_name(),
                     'email': profile.user.email,
                 })
-            except UserProfile.DoesNotExist:
+            except UserMembership.DoesNotExist:
                 order_form = SubscriptionForm()
         else:
             order_form = SubscriptionForm()
@@ -180,17 +180,18 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Subscription, order_number=order_number)
 
     if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
+        profile = UserMembership.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
 
         # Save the user's info
-
+        """
         if save_info:
-            user_membership_form = UserMembershipForm(profile_data, instance=profile)
+            user_membership_form = UserMembershipForm(membership_type, instance=profile)
             if user_membership_form.is_valid():
                 user_membership_form.save()
+        """
 
     messages.success(request, f'Subscription payment successfully processed! \
         Your subscription number is {order_number}. A confirmation \

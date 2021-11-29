@@ -7,7 +7,12 @@ class MembershipForm(forms.ModelForm):
 
     class Meta:
         model = Membership
-        fields = '__all__'
+        fields = [
+            'slug',
+            'membership_type',
+            'stripe_price_id',
+            'price',            
+            ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -17,7 +22,11 @@ class UserMembershipForm(forms.ModelForm):
 
     class Meta:
         model = UserMembership
-        fields = '__all__'
+        fields = [
+            'user',
+            'stripe_customer_id',
+            'membership',
+            ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
