@@ -15,7 +15,6 @@ class SubscriptionAdmin(admin.ModelAdmin):
         'date',
         'order_total',
         'grand_total',
-        'original_bag',
         'stripe_pid'
         )
 
@@ -27,7 +26,6 @@ class SubscriptionAdmin(admin.ModelAdmin):
         'email',
         'order_total',
         'grand_total',
-        'original_bag',
         'stripe_pid'
         )
 
@@ -37,7 +35,6 @@ class SubscriptionAdmin(admin.ModelAdmin):
         'full_name',
         'order_total', 
         'grand_total', 
-        'original_bag',
         'stripe_pid',
     )
 

@@ -1,0 +1,1 @@
+Membership confirmation for BizNet. Yourr memmbership number is {{ order.order_number }}

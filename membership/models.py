@@ -11,7 +11,7 @@ import stripe
 class Membership(models.Model):
     slug = models.SlugField()
     membership_type = models.CharField(
-        default='Free', 
+        default='', 
         max_length=30)
     description = models.TextField(default='')
     description1 = models.TextField(default='')
@@ -20,7 +20,7 @@ class Membership(models.Model):
     description4 = models.TextField(default='')
     price = models.IntegerField(default=15)
     stripe_price_id = models.CharField(
-        default='PRICE_ID_1', 
+        default='', 
         max_length=50)
     
 

@@ -1,0 +1,16 @@
+Hello {{ order.full_name }}!
+
+This is a confirmation of your membership at BizNet. Your order information is below:
+
+Membership Number: {{ order.order_number }}
+Membership Date: {{ order.date }}
+
+Membership Total: ${{ order.order_total }}
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your membership!
+
+Sincerely,
+
+BizNet
