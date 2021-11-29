@@ -52,7 +52,6 @@ def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
         user.stripe_customer_id = new_customer_id['id']
         user.membership = free_membership
         user.save()
-"""
+
 post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
-"""
 
