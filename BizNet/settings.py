@@ -239,15 +239,6 @@ PRICE_ID_2 = os.environ.get('PRICE_ID_2', '')
 # PRICE_ID_3 = os.environ.get('PRICE_ID_3', '')
 PRICE_LOOKUP_KEY = os.environ.get('PRICE_LOOKUP_KEY', '')
 
-"""
-if DEBUG:
-    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
-    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-
-else:
-    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
-    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-"""
 
 # Email and accounts
 if 'DEVELOPMENT' in os.environ:

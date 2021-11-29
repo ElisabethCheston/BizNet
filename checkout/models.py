@@ -10,7 +10,7 @@ from membership.models import Membership, UserMembership
 # -- Subscription is only created when a member choose a payment plan -- #
 class Subscription(models.Model):
     user_profile = models.ForeignKey(UserMembership, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='orders')
+                                     null=True, blank=True, related_name='subscription')
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(
         max_length=254, blank=False, null=True)

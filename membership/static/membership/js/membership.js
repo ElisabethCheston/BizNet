@@ -1,3 +1,4 @@
+/*
 // Create a Stripe client.
 
   // var stripe = Stripe(publishKey);
@@ -78,3 +79,4 @@
     // Submit the form
     form.submit();
   }
+*/
