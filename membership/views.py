@@ -37,13 +37,13 @@ https://stripe.com/docs/billing/integration-builder
 """
 
 # -- STRIPE -- #
-
+"""
 @csrf_exempt
 def stripe_config(request):
     if request.method == "GET":
         stripe_config = {"publicKey": settings.STRIPE_PUBLIC_KEY}
         return JsonResponse(stripe_config, safe=True)
-
+"""
 
 # -- MEMBERSHIP -- #
 
@@ -388,8 +388,6 @@ def updateTransactionRecords(request):
     messages.info(request, 'Successfully created {} membership'.format(
         selected_membership))
     return redirect(reverse('select'))
-
-# -- WEBHOOK -- #
 
 
 # -- PROFILEUSER INFO -- #

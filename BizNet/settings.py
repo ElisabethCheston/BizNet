@@ -232,12 +232,9 @@ if 'USE_AWS' in os.environ:
 STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-STRIPE_LIVE_MODE = True # Change to True in production
-STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 PRICE_ID_1 = os.environ.get('PRICE_ID_1', '')
 PRICE_ID_2 = os.environ.get('PRICE_ID_2', '')
-# PRICE_ID_3 = os.environ.get('PRICE_ID_3', '')
-PRICE_LOOKUP_KEY = os.environ.get('PRICE_LOOKUP_KEY', '')
 
 
 # Email and accounts

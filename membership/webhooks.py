@@ -1,3 +1,4 @@
+"""
 # This is your Stripe CLI webhook secret for testing your endpoint locally.
 endpoint_secret = 'STRIPE_WEBHOOK_SECRET'
 
@@ -380,3 +381,4 @@ def webhook():
       print('Unhandled event type {}'.format(event['type']))
 
     return jsonify(success=True)
+"""
