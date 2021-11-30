@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 import stripe
 
@@ -30,28 +31,18 @@ class Membership(models.Model):
 
 class UserMembership(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    stripe_customer_id = models.CharField(max_length=40)
+    stripe_customer_id = models.CharField(max_length=50)
     membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True)
-    status = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return self.user.username
-    
-    @property
-    def is_active(self):
-        return self.status == "active" or self.status == "trialing"
-        
 
-def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
-    user, created = UserMembership.objects.get_or_create(
-        user=instance)
-
-    if user.stripe_customer_id is None or user.stripe_customer_id == '':
-        new_customer_id = stripe.Customer.create(email=instance.email)
-        free_membership = Membership.objects.get(membership_type='Free')
-        user.stripe_customer_id = new_customer_id['id']
-        user.membership = free_membership
-        user.save()
-
-post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
-
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    """
+    Create or update the user profile
+    """
+    if created:
+        UserMembership.objects.create(user=instance)
+    # Existing users: just save the profile
+    instance.usermembership.save()
