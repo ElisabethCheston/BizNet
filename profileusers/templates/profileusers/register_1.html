@@ -25,12 +25,33 @@
 
     #id_title,
     #id_city,
-    #id_company_name {
+    #id_company_name,
+    #id_profession,
+    #id_employment,
+    #id_status,    
+    #id_industry,
+    #id_business,
+    #id_skills,
+    #id_youremployment,
+    #id_yourstatus,
+    #id_locations {
         width: 82%;
         text-align: center;
         margin-left: 1%;
         font-size: medium;
         height: 43px;
+        margin-top: 2%;
+        border-color: black;
+        border-width: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #id_description {
+        width: 82%;
+        text-align: center;
+        margin-left: 1%;
+        font-size: medium;
+        height: 90px;
         margin-top: 2%;
         border-color: black;
         border-width: 2px;
@@ -103,7 +124,7 @@
     .save-button:hover,
     .save-button:active,
     .save-button:focus {
-        background-color:#5e7eaf;
+        background-color: #5e7eaf;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     }
 
@@ -175,42 +196,106 @@
             <!-- Title -->
             <div class="input-group mb-2">
                 <div class="input-group-append">
-                    {{profile_form1.title}}
+                    {{profileform.title}}
                 </div>
             </div>
             <!-- Company -->
             <div class="input-group mb-2">
                 <div class="input-group-append">
-                    {{profile_form1.company_name}}
+                    {{profileform.company_name}}
                 </div>
             </div>
             <!-- Country -->
             <div class="input-group mb-2">
                 <div class="input-group-append">
-                    {{profile_form1.country}}
+                    {{profileform.country}}
                 </div>
             </div>
             <!--  City -->
             <div class="input-group mb-2">
                 <div class="input-group-append">
-                    {{profile_form1.city}}
+                    {{profileform.city}}
+                </div>
+            </div>
+            <br>
+            <!-- Industry -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.industry}}
+                </div>
+            </div>
+            <!--  Profession -->
+            <!--<div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.profession}}
+                </div>
+            </div>-->
+            <br>
+            <!--  Description -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.description}}
+                </div>
+            </div>
+            <!-- Employment -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.employment}}
+                </div>
+            </div>
+            <!-- Status -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.status}}
+                </div>
+            </div>
+            <br>
+
+            <!-- Industry -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.business}}
+                </div>
+            </div>
+            <!-- Skill -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.skills}}
+                </div>
+            </div>
+            <!-- Status -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.yourstatus}}
+                </div>
+            </div>
+            <!-- Location -->
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    {{profileform.locations}}
                 </div>
             </div>
             <br>
 
             <!-- Submit button -->
             <div class="d-flex justify-content-center mt-3" id="justify-center">
-                <input class="save-button " type="submit" value="SAVE">
+                <a href="{% url 'profile_details' %}">Save
+                    <!--<input class="save-button " type="submit" value="SAVE">-->
+                </a>
             </div>
 
             <!-- Back/Next buttons -->
-            <div class="row button-row">
+            <!--<div class="row button-row">
                 <a href="{% url 'register_1' %}"><input type="button" name="backButton" class="btn back-button"
                         value="BACK"></a>
-                <a href="{% url 'register_2' %}"><input type="button" name="nextButton" id="nextButton"
-                        class="btn next-button" value="NEXT"></a>
+                <a href="{% url 'profile_details' %}"><input type="button" name="nextButton" id="nextButton"
+                        class="btn next-button"></a>
             </div>
-            <br>
+            <br>-->
+
+
+
+
         </form>
 
     </div>
@@ -224,6 +309,7 @@
         form_fields[1].placeholder = ' Title..';
         form_fields[2].placeholder = ' Company..';
         form_fields[3].placeholder = ' City...';
+        /*form_fields[1].placeholder = ' Short presentation..(You can edit this later.)';*/
 
         for (var field in form_fields) {
             form_fields[field].className += 'form-control'
@@ -231,4 +317,4 @@
 
     </script>
 
-{% endblock %}
+    {% endblock %}

@@ -52,6 +52,13 @@
 {% block content %}
 {% if user.is_authenticated %}
 
+<style>
+    .textinput,
+    .form-control,
+    .form-control-file {
+        margin-top: 3px;
+    }
+</style>
 
 <div class="container-fluid" id="justify-center">
     <br>
@@ -64,7 +71,7 @@
                 <div class="card-body">
                     <div class="col-12">
 
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data" action="{% url 'profile_edit' %}">
                             {% csrf_token %}
 
                             <fieldset class="form-group">
@@ -85,7 +92,7 @@
                                     <h6 class="card-title">Country: &nbsp; {{profileform.country}}</h6>
                                     <br>
                                     <h6 class="card-title">Industry: &nbsp; {{profileform.industry}}</h6>
-                                    <h6 class="card-title">Profession: &nbsp; {{profileform.profession}}</h6>
+                                    <!--<h6 class="card-title">Profession: &nbsp; {{profileform.profession}}</h6>-->
                                     <h6 class="card-title">Description: &nbsp; {{profileform.description}}</h6>
                                     <h6 class="card-title">Employment Status: &nbsp; {{profileform.employment}}</h6>
                                     <h6 class="card-title">Purpose: &nbsp; {{profileform.status}}</h6>
@@ -110,7 +117,8 @@
                                 <!--<button class="btn" type="submit">UPDATE</button>-->
                                 <button type="submit" class="btn"
                                     style="font-weight: bold; border-radius: 1px; background-color: #1f53fc; color: rgb(246,246,247); font-family: Verdana; font-size: medium">SAVE</button>
-                                <a href="{% url 'profile_delete' pk=user.pk %}" style="font-weight: bold;" class="btn btn-danger">DELETE</a>
+                                <a href="{% url 'profile_delete' pk=user.pk %}" style="font-weight: bold;"
+                                    class="btn btn-danger">DELETE</a>
                             </div>
 
                         </form>

@@ -24,9 +24,9 @@ urlpatterns = [
 
     # PROFILE REGISTER SETUP
     path('profile/', views.Profile, name='profile'),
-    path('register_1/', views.ProfileOne, name='register_1'),
-    path('register_2/', views.ProfileTwo, name='register_2'),
-    path('register_3/', views.ProfileThree, name='register_3'),
+    # path('register_1/', views.ProfileOne, name='register_1'),
+    # path('register_2/', views.ProfileTwo, name='register_2'),
+    # path('register_3/', views.ProfileThree, name='register_3'),
 
     # PASSWORD
     path('password_change/', PasswordsChangeView.as_view(template_name='profileusers/password_change.html'), name='password_change'),

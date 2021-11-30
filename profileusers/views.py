@@ -3,7 +3,7 @@ from gigs.models import Gig
 # from gigs.forms import Gig
 from django import forms
 
-from .forms import ProfileForm, RegisterUserForm, ProfileForm1, ProfileForm2, ProfileForm3, TermsForm
+from .forms import ProfileForm, RegisterUserForm, TermsForm # , ProfileForm1, ProfileForm2, ProfileForm3
 from django.core import serializers
 from django.core.mail import EmailMessage, send_mail, BadHeaderError
 from django.core.paginator import Paginator
@@ -128,7 +128,7 @@ def Profile(request):
         if profile.is_valid():
             profile.save()
             # messages.success(request, 'Step 1 of 3 done of creating your profile!')
-            return redirect('register_1')
+            return redirect('profie_edit')
         # else:
             # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
@@ -140,24 +140,24 @@ def Profile(request):
     }
     return render(request, 'profileusers/profile.html', context)
     
-
+"""
 def ProfileOne(request):
-    profile_form1 = ProfileForm1()
+    profileform1 = ProfileForm1()
     if request.method == 'POST':
-        profile_form1 = ProfileForm1(request.POST, 
+        profileform1 = ProfileForm1(request.POST, 
                                 request.FILES, 
                                 instance=request.user.profileuser)
-        if profile_form1.is_valid():
-            profile_form1.save()
-            # messages.success(request, 'Step 1 of 3 done of creating your profile!')
+        if profileform1.is_valid():
+            profileform1.save()
+            messages.success(request, 'Awesome! Lets look at your profile!')
             # return redirect('register_2')
-        else:
-            messages.error(request, 'Update failed. Please check if your inputs are valid.')
+        # else:
+            # messages.error(request, 'Update failed. Please check if your inputs are valid.')
     else:
-        # profile_form1 = Profileuser.objects.create(user=request.user)
-        profile_form1 = ProfileForm1(instance=request.user.profileuser)
+        # profileform1 = Profileuser.objects.create(user=request.user)
+        profileform1 = ProfileForm1(instance=request.user.profileuser)
     context = {
-        'profile_form1':profile_form1,
+        'profileform1':profileform1,
     }
 
     return render(request, 'profileusers/register_1.html', context)
@@ -199,7 +199,7 @@ def ProfileThree(request):
         'profile_form3' : profile_form3
     }
     return render(request, 'profileusers/register_3.html', context)
-
+"""
 
 # SINGIN TO ACCOUNT
 def loginPage(request):
@@ -324,6 +324,7 @@ def profile_edit(request):
         'profileform':profileform,
     }
     return render(request, 'profileusers/profile_edit.html', context)
+
 
 
 def profile_delete(request, pk):

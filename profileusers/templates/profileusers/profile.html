@@ -94,7 +94,7 @@
             <h2 id="form-title">LET'S CREATE YOUR PROFILE</h2>
 
 
-            <form method="POST" enctype="multipart/form-data" action="{% url 'register_1' %}">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'profile_edit' %}">
                 {% csrf_token %}
 
 
@@ -111,8 +111,14 @@
                 <br>
 
                 <!-- Submit button -->
-                <div class="d-flex justify-content-center mt-3" id="justify-center">
+                <!--<div class="d-flex justify-content-center mt-3" id="justify-center">
                     <input class="btn register-button" type="submit" value="START">
+                </div>-->
+
+                <div class="d-flex justify-content-center mt-3" id="justify-center">
+                    <a href="{% url 'profile_edit' %}">Save
+                        <!--<input class="save-button " type="submit" value="SAVE">-->
+                    </a>
                 </div>
 
                 <br>

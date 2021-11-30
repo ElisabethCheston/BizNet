@@ -54,12 +54,6 @@ class TermsForm(forms.ModelForm):
 # -- EDIT FORM IN PROFILE -- #
 
 class ProfileForm(forms.ModelForm):
-    industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
-    profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
-    description = forms.CharField(label='description',widget=forms.TextInput(attrs={'placeholder':'Description: Who are of You'}))
-    employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Purpose:')
-    business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
 
     class Meta:
         model = Profileuser
@@ -69,7 +63,7 @@ class ProfileForm(forms.ModelForm):
             'title',
             'company_name',
             'industry',
-            'profession',
+            # 'profession',
             'description',
             'country',
             'city',
@@ -81,35 +75,38 @@ class ProfileForm(forms.ModelForm):
 
 
 # -- REGISTRATION FORM FOR PROFILE -- #
-
+"""
 class ProfileForm1(forms.ModelForm):
-
-    class Meta:
-        model = Profileuser
-        fields = [
-            'picture',
-            'title',
-            'company_name',
-            'country',
-            'city',
-        ]
-
-
-class ProfileForm2(forms.ModelForm):
     industry = forms.ModelChoiceField(queryset=Industry.objects.all(), empty_label='Industry:')
     profession = forms.ModelChoiceField(queryset=Profession.objects.all(), empty_label='Profession:')
     description = forms.CharField(label='description',widget=forms.TextInput(attrs={'placeholder':'Description: Who are of You'}))
     employment = forms.ModelChoiceField(queryset=Employment.objects.all(), empty_label='Employment Status:')
     status = forms.ModelChoiceField(queryset=Status.objects.all(), empty_label='Purpose:')
+    business = forms.ModelChoiceField(queryset=Business.objects.all(), empty_label='Business:')
+
+    class Meta:
+        model = Profileuser
+        fields = [
+            'title',
+            'company_name',
+            'country',
+            'city',
+            'industry',
+            # 'profession',
+            'description',
+            'employment',
+            'status',
+            'business',
+            'locations',
+        ]
+
+class ProfileForm2(forms.ModelForm):
+    
     
     class Meta:
         model = Profileuser
         fields = [
-            'industry',
-            'profession',
-            'description',
-            'employment',
-            'status',
+            
             ]
 
 
@@ -122,3 +119,5 @@ class ProfileForm3(forms.ModelForm):
             'business',
             'locations',
         ]
+
+"""
