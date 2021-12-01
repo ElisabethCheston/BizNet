@@ -102,7 +102,7 @@
   </p>
 
   <div class="row button-row">
-    <a href="https://www.biznet.app/""><input type=" button" class="btn bizbtn text-center" value="BIZNET"></a>
+    <a href="https://www.biznet.app/"><input type=" button" class="btn bizbtn text-center" value="BIZNET"></a>
   </div>
   <br>
   <br>
@@ -112,7 +112,7 @@
   <form method="POST" action="{% url 'login_page' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn-primary col-12" type="submit">Sign In</button>
+    <button class=" btn btn-primary col-12" type="submit">Sign In</button>
   </form>
 
   <!-- Signup with social accounts -->
@@ -127,7 +127,7 @@
   <form class="signup" method="POST" action="{% url 'register' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn-primary col-12" type="submit">Create Account</button>
+    <button class="btn btn-primary col-12" type="submit">Create Account</button>
   </form>
 </div>
 <br>

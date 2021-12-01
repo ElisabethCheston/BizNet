@@ -249,8 +249,8 @@ a.btn, button {
   position: relative;
   font-size: 24px;
   color: #406daf;
-  display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   flex-direction: column;
   cursor: pointer;
@@ -326,6 +326,7 @@ a.btn, button {
         z-index: 1030;
     }
 }
+
 /* BAG */
 
 .icon {
@@ -509,6 +510,7 @@ input[name='q']::placeholder {
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
+
 @media (max-width: 991px) {
   .header-container {
       padding-top: 116px;

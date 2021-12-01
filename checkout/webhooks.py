@@ -204,6 +204,24 @@ def webhook(request):
         'transfer.updated': handler.transfer.updated,
     }
 
+    # handle the checkout.session.completed event
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+
+        # Fetch all the required data from session
+        client_reference_id = session.get('client_reference_id')
+        stripe_customer_id = session.get('customer')
+        stripe_price_id = session.get("membership")
+
+        # Get the user and create a new StripeCustomer
+        user = User.objects.get(id = client_reference_id)
+        UserMembership.objects.create(
+            user=user,
+            stripeCustomerId=stripe_customer_id,
+            stripeSubscriptionId=stripe_price_id,
+        )
+        print(user.username + " just subscrbed.")
+
     # Get the webhook type from Stripe
     event_type = event['type']
 

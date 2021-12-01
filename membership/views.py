@@ -12,13 +12,16 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView, TemplateView
 from profileusers.models import Profileuser, Industry, Profession, Employment, Status
-
-from .forms import MembershipForm
+from .models import Membership, UserMembership
+from .forms import MembershipForm, UserMembershipForm
 
 from gigs.models import Gig
 from bag.contexts import bag_contents
-from membership.models import Membership
+from profileusers.forms import ProfileForm
+
 from checkout.models import Subscription
+from checkout.forms import SubscriptionForm
+
 
 
 
@@ -59,10 +62,9 @@ def all_membership(request):
 
 
 def membership_detail(request, product_id):
+
     # A view to show individual membership details
-
     product = get_object_or_404(Membership, pk=product_id)
-
     context = {
         'product': product,
     }
@@ -224,9 +226,10 @@ def updateTransactionRecords(request):
 def membership_profile(request):
     """ Display the user's profile. """
 
-    """
     profile = get_object_or_404(UserMembership, user=request.user)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
 
+    """
     if request.method == 'POST':
         form = UserMembershipForm(request.POST, instance=profile)
         if form.is_valid():
@@ -236,16 +239,15 @@ def membership_profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserMembershipForm(instance=profile)
-    orders = profile.orders.all()
     """
+    # orders = profile.orders.all()
 
     template = 'membership/membership_profile.html'
     context = {
         # 'form': form,
-        # 'orders': orders,
+        'profile': profile,
         # 'on_profile_page': True,
-        # 'user_membership': user_membership,
-        # 'selected_membership': selected_membership,
+        # 'membership_type': membership_type,
     }
     return render(request, template, context)
 

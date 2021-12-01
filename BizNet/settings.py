@@ -238,6 +238,8 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 PRICE_ID_1 = os.environ.get('PRICE_ID_1', '')
 PRICE_ID_2 = os.environ.get('PRICE_ID_2', '')
+STRIPE_PRICE_ID = os.environ.get('STRIPE_PRICE_ID', '')
+
 
 
 # Email and accounts

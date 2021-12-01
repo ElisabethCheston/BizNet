@@ -14,15 +14,19 @@ def bag_contents(request):
 
     for item_id, item_data in bag.items():
         if isinstance(item_data, int):
+            price: settings.STRIPE_PRICE_ID
+            item_data = 1
             product = get_object_or_404(Membership, pk=item_id)
             total += item_data * product.price
+            
             product_count += item_data
             bag_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
             })
-
+            
+        """
         else:
             product = get_object_or_404(Membership, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
@@ -34,6 +38,7 @@ def bag_contents(request):
                     'product': product,
                     'size': size,
                 })
+        """
     
     grand_total = total
     
