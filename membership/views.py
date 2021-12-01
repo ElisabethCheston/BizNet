@@ -192,180 +192,6 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
-"""
-@require_POST
-def cache_checkout_data(request):
-    try:
-        pid = request.POST.get('client_secret').split('_secret')[0]
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save_info'),
-            'username': request.user,
-        })
-        return HttpResponse(status=200)
-    except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-            processed right now. Please try again later.')
-        return HttpResponse(content=e, status=400)
-
-@login_required
-def PaymentView(request):
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
-
-    if request.method == 'POST':
-        bag = request.session.get('bag', {})
-
-        form_data = {
-            'full_name': request.POST['full_name'],
-            'email': request.POST['email'],
-        }
-
-        order_form = SubscriptionForm(form_data)
-        if order_form.is_valid():
-            order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_pid = pid
-            order.original_bag = json.dumps(bag)
-            order.save()
-            for item_id, item_data in bag.items():
-                try:
-                    product = Membership.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-
-                except Membership.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
-                        "Please call us for assistance!")
-                    )
-                    order.delete()
-                    return redirect(reverse('view_bag'))
-
-            # Save the info to the user's profile if all is well
-            request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
-        else:
-            messages.error(request, 'There was an error with your form. \
-                Please double check your information.')
-
-    else:
-        bag = request.session.get('bag', {})
-        if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
-            return redirect(reverse('select'))
-
-        current_bag = bag_contents(request)
-        total = current_bag['grand_total']
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
-        # Attempt to prefill the form with any info the user maintains in their profile
-        if request.user.is_authenticated:
-            try:
-                profile = Subscription.objects.get(user=request.user)
-                order_form = SubscriptionForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
-                })
-            except Subscription.DoesNotExist:
-                order_form = SubscriptionForm()
-        else:
-            order_form = SubscriptionForm()
-
-    if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. \
-            Did you forget to set it in your environment?')
-
-    template = 'membership/membership_payment.html'
-    context = {
-        'order_form': order_form,
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-    }
-
-    return render(request, template, context)
-
-@login_required
-def PaymentView(request):
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
-    user_membership = get_user_membership(request)
-
-    if request.method == 'POST':
-        bag = request.session.get('bag', {})
-    try:
-        selected_membership = get_selected_membership(request)
-    except:
-        return redirect(reverse("select"))
-    publishKey = settings.STRIPE_PUBLIC_KEY
-
-    if request.method == "POST":
-        try:
-            token = request.POST['stripeToken']
-
-            # The source for the customer
-
-            customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
-            customer.source = token # 4242424242424242
-            customer.save()
-
-            # Create the subscription using only the customer as we don't need to pass their
-            # credit card source anymore
-
-            subscription = stripe.Subscription.create(
-                customer=user_membership.stripe_customer_id,
-                items=[
-                    { 
-                        "price": selected_membership.stripe_price_id,
-                        'quantity': 1, 
-                        },
-                ]
-            )
-
-            # return redirect(reverse('update-transactions', kwargs={
-                                        # 'subscription_id': subscription.id}))
-
-        except:
-            messages.info(request, "An error has occurred, investigate it in the console")
-
-    context = {
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-        'selected_membership': selected_membership
-    }
-    return render(request, "membership/membership_payment.html", context)
-"""
-"""
-class StripeIntentView(View):
-    def post(self, request, *args, **kwargs):
-        try:
-            req_json = json.loads(request.body)
-            customer = stripe.Customer.create(email=req_json['email'])
-            stripe_price_id = self.kwargs["pk"]
-            membership = Membership.objects.get(id=stripe_price_id)
-            intent = stripe.PaymentIntent.create(
-                amount=price.price,
-                currency='eur',
-                customer=customer['id'],
-                metadata={
-                    "stripe_price_id": membership.id
-                }
-            )
-            return JsonResponse({
-                'clientSecret': intent['client_secret']
-            })
-        except Exception as e:
-            return JsonResponse({'error': str(e)})
-"""
 
 @login_required
 def updateTransactionRecords(request):
@@ -397,6 +223,8 @@ def updateTransactionRecords(request):
 
 def membership_profile(request):
     """ Display the user's profile. """
+
+    """
     profile = get_object_or_404(UserMembership, user=request.user)
 
     if request.method == 'POST':
@@ -409,12 +237,13 @@ def membership_profile(request):
     else:
         form = UserMembershipForm(instance=profile)
     orders = profile.orders.all()
+    """
 
     template = 'membership/membership_profile.html'
     context = {
-        'form': form,
-        'orders': orders,
-        'on_profile_page': True,
+        # 'form': form,
+        # 'orders': orders,
+        # 'on_profile_page': True,
         # 'user_membership': user_membership,
         # 'selected_membership': selected_membership,
     }

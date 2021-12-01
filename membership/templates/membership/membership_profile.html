@@ -56,48 +56,62 @@
             <div class="card">
                 <div class="card-body text-center">
 
+                    <h4>MEMBERSHIP INFORMATION</h4>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <div class="order-confirmation-wrapper p-2 border">
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <p class="text-muted mb-0 text-black font-weight-bold">Subscription By:</p>
+                                    </div>
+                                    <div class="col-12 col-md-8 text-md-right">
+                                        <p class="mb-0">{{ order.full_name }}</p>
+                                    </div>
+                                </div>
+                                <br>
+                                {% for item in order.lineitems.all %}
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <p class="text-muted mb-0 text-black font-weight-bold">Subscription Type:</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p class="mb-0 text-black font-weight-bold">
+                                            {{ item.product.membership_type }} Membership
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+                                {% endfor %}
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <p class="text-muted mb-0 text-black font-weight-bold">Subscription Number:</p>
+                                    </div>
+                                    <div class="col-12 col-md-8 text-md-right">
+                                        <p class="mb-0">{{ order.order_number }}</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <p class="text-muted mb-0 text-black font-weight-bold">Subscription Date:</p>
+                                    </div>
+                                    <div class="col-12 col-md-8 text-md-right">
+                                        <p class="mb-0">{{ order.date }}</p>
+                                    </div>
+                                </div>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Upgrade Membership -->
                     <h3>Current Membership: {{user_membership.membership.membership_type}} </h3>
                     <br>
                     <p class="small">You have been a Biznet member since {{user.date_joined}} </p>
-                    <p class="small">Your membership no: {{ user_membership.stripe_customer_id }}</p>
-
+                    <p class="small">Your membership no: {{ user_membership.stripe_pid }}</p>
                     <br>
-                    <br>
-
-                    {% for order in orders %}
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="text-muted mb-0 text-black font-weight-bold">Subscription Type:</p>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0 text-black font-weight-bold">
-                                {{ item.product.membership_type }} Membership
-                            </p>
-                        </div>
-                    </div>
-                    <br>
-                    {% endfor %}
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="text-muted mb-0 text-black font-weight-bold">Subscription Number:</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.order_number }}</p>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="text-muted mb-0 text-black font-weight-bold">Subscription Date:</p>
-                        </div>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.date }}</p>
-                        </div>
-                    </div>
-                    <br>
-                    {% endif %}
-
 
                     {% if object.membership_type != "Free" %}
 
@@ -118,7 +132,6 @@
                     {% endif %}
 
 
-
                 </div>
             </div>
             <br>
@@ -130,3 +143,62 @@
 </div>
 
 {% endblock %}
+
+<!-- Upgrade Membership -->
+<h3>Current Membership: {{user_membership.membership.membership_type}} </h3>
+<br>
+<p class="small">You have been a Biznet member since {{user.date_joined}} </p>
+<p class="small">Your membership no: {{ user_membership.stripe_customer_id }}</p>
+
+<br>
+<br>
+
+{% for order in orders %}
+<div class="row">
+    <div class="col-12 col-md-4">
+        <p class="text-muted mb-0 text-black font-weight-bold">Subscription Type:</p>
+    </div>
+    <div class="col-12 col-md-4">
+        <p class="mb-0 text-black font-weight-bold">
+            {{ item.product.membership_type }} Membership
+        </p>
+    </div>
+</div>
+<br>
+{% endfor %}
+<div class="row">
+    <div class="col-12 col-md-4">
+        <p class="text-muted mb-0 text-black font-weight-bold">Subscription Number:</p>
+    </div>
+    <div class="col-12 col-md-8 text-md-right">
+        <p class="mb-0">{{ order.order_number }}</p>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <p class="text-muted mb-0 text-black font-weight-bold">Subscription Date:</p>
+    </div>
+    <div class="col-12 col-md-8 text-md-right">
+        <p class="mb-0">{{ order.date }}</p>
+    </div>
+</div>
+<br>
+
+
+{% if object.membership_type != "Free" %}
+
+<p>You currently do not have the Premium Membership. To get the benefits for Premium sign up for it
+    below.</p>
+
+<div class="text-center">
+    <a type="button" id="subscription" class="btn justify-content-around mt-2" href="{% url 'select' %}">
+        <span><strong>PREMIUM</strong></span>
+    </a>
+</div>
+
+{% else %}
+
+<p>You currently have the Premium Membership! </p>
+
+{% endif %}

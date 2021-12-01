@@ -65,12 +65,14 @@ body {
 .fa-user-plus {
   font-size: xx-large;
 }
+/*
 #settings,
 #subscription {
   text-decoration: none;
   background: transparent;
   margin-top: 1px;  
 }
+*/
 
 #profile {
   text-transform: uppercase;
