@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 
-from membership.models import Membership
+from profileusers.models import Membership
 
 # Create your views here.
 

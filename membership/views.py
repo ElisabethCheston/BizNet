@@ -11,9 +11,7 @@ from django.views import View
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import  ListView, TemplateView
-from profileusers.models import Profileuser, Industry, Profession, Employment, Status
-from .models import Membership, UserMembership
-from .forms import MembershipForm, UserMembershipForm
+from profileusers.models import Profileuser, Industry, Profession, Employment, Status, Membership
 
 from gigs.models import Gig
 from bag.contexts import bag_contents
@@ -71,16 +69,16 @@ def membership_detail(request, product_id):
     return render(request, 'membership/membership_detail.html', context)
 
 
-def get_user_membership(request):
-    user_membership = UserMembership.objects.get(user = 'user')
-    if user_membership.exists():
-        return user_membership.first()
+def get_usermembership(request):
+    usermembership = Profileuser.objects.get(user = 'user')
+    if usermembership.exists():
+        return usermembership.first()
     return None
 
 
 def get_user_subscription(request): 
     user_subscription = Subscription.objects.filter(
-        user_membership = get_user_membership(request))
+        usermembership = get_usermembership(request))
     if user_subscription.exists():
         user_subscription = user_subscription.first()
         return user_subscription
@@ -101,7 +99,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_membership = get_user_membership(self.request)
+        current_membership = get_usermembership(self.request)
         context.update({
             "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
         })
@@ -110,7 +108,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
 
     def post(self, request, **kwargs):
         selected_membership = request.POST.get('membership_type')  
-        user_membership = get_user_membership(request)
+        usermembership = get_usermembership(request)
         # user_subscription = get_user_subscription(request)      
         selected_membership_qs = Membership.objects.filter(
             membership_type = selected_membership) 
@@ -118,8 +116,8 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
             selected_membership = selected_membership_qs.first()
 
            # -- Validation -- #
-        if user_membership.membership == selected_membership:
-            if user_membership != Free:
+        if usermembership.membership == selected_membership:
+            if usermembership != Free:
                 messages.info(request, "You already have this membership.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -197,13 +195,13 @@ def delete_product(request, product_id):
 
 @login_required
 def updateTransactionRecords(request):
-    user_membership = get_user_membership(request)
+    usermembership = get_usermembership(request)
     selected_membership = get_selected_membership(request)
-    user_membership.membership = selected_membership
-    user_membership.save()
+    usermembership.membership = selected_membership
+    usermembership.save()
 
     sub, created = Subscription.objects.get_or_create(
-        user_membership=user_membership)
+        usermembership=usermembership)
     sub.stripe_subscription_id = subscription_id
     sub.active = True
     sub.save()
@@ -220,13 +218,13 @@ def updateTransactionRecords(request):
 
 # -- PROFILEUSER INFO -- #
 
-    # user_membership = get_user_membership(request)
+    # usermembership = get_usermembership(request)
     # selected_membership = get_selected_membership(request)
 
 def membership_profile(request):
     """ Display the user's profile. """
 
-    profile = get_object_or_404(UserMembership, user=request.user)
+    profile = get_object_or_404(Profileuser, username=request.user)
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     """
@@ -267,9 +265,9 @@ def cancelSubscription(request):
     user_sub.save()
 
     free_membership = Membership.objects.get(membership_type='Free')
-    user_membership = get_user_membership(request)
-    user_membership.membership = free_membership
-    user_membership.save()
+    usermembership = get_usermembership(request)
+    usermembership.membership = free_membership
+    usermembership.save()
 
     messages.info(
         request, "Successfully cancelled membership. We have sent an email")

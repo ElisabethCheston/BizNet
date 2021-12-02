@@ -30,7 +30,7 @@ urlpatterns = [
     path('cancel/', CancelView.as_view(), name='cancel'),
     path('success/', SuccessView.as_view(), name='success'),
     # path('user_subscription/', views.get_user_subscription, name='user_subscription'),
-    # path('user_membership', views.user_membership, name='user_membership'),
+    # path('usermembership', views.usermembership, name='usermembership'),
     # path('', views.membership_list, name='membership_list'),
 
     # Stripe

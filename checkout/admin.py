@@ -29,15 +29,4 @@ class SubscriptionAdmin(admin.ModelAdmin):
         'stripe_pid'
         )
 
-    list_display = (
-        'user_profile', 
-        'order_number', 
-        'full_name',
-        'order_total', 
-        'grand_total', 
-        'stripe_pid',
-    )
-
-    ordering = ('-date',)
-
 admin.site.register(Subscription, SubscriptionAdmin)

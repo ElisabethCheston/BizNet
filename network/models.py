@@ -6,8 +6,7 @@ from django.db.models.signals import post_save
 from django_countries.fields import CountryField
 from django.dispatch import receiver
 
-from profileusers.models import Profileuser, Profession, Business, Status, Employment
-from membership.models import Membership
+from profileusers.models import Profileuser, Profession, Business, Status, Employment, Membership
 from gigs.models import Gig
 
 

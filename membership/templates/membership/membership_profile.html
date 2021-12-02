@@ -65,10 +65,10 @@
                     </div>
 
                     <!-- Upgrade Membership -->
-                    <h5>Current Membership: {{user_membership.membership.membership_type}} </h5>
+                    <h5>Current Membership: {{usermembership.membership.membership_type}} </h5>
                     <br>
                     <p class="small">You have been a Biznet member since {{user.date_joined}} </p>
-                    <!--<p class="small">Your membership no: {{ user_membership.stripe_pid }}</p>-->
+                    <!--<p class="small">Your membership no: {{ usermembership.stripe_pid }}</p>-->
                     <br>
 
                     {% if object.membership_type != "Premium" %}
@@ -103,10 +103,10 @@
 {% endblock %}
 
 <!-- Upgrade Membership -->
-<h3>Current Membership: {{user_membership.membership.membership_type}} </h3>
+<h3>Current Membership: {{usermembership.membership.membership_type}} </h3>
 <br>
 <p class="small">You have been a Biznet member since {{user.date_joined}} </p>
-<p class="small">Your membership no: {{ user_membership.stripe_customer_id }}</p>
+<p class="small">Your membership no: {{ usermembership.stripe_customer_id }}</p>
 
 <br>
 <br>

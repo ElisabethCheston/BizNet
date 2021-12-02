@@ -4,8 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
 
-from membership.models import Membership
-
 
 from itertools import chain
 import random
@@ -77,6 +75,32 @@ class Status(models.Model):
         return self.status_name
 
 
+MEMBERSHIP_CHOICES = (
+    ('Premium', 'pre'),
+    ('Free', 'free')
+)
+
+class Membership(models.Model):
+    slug = models.SlugField(null=True, blank=True)
+    membership_type = models.CharField(
+    choices=MEMBERSHIP_CHOICES, default='Free',
+    max_length=30
+      )
+    description = models.TextField(default='')
+    description1 = models.TextField(default='')
+    description2 = models.TextField(default='')
+    description3 = models.TextField(default='')
+    description4 = models.TextField(default='')
+    price = models.IntegerField(default=15)
+    stripe_price_id = models.CharField(
+        default='', 
+        max_length=50)
+    
+
+    def __str__(self):
+        return self.membership_type
+
+
 # PROFILEUSER
 
 class Profileuser(models.Model):
@@ -92,7 +116,9 @@ class Profileuser(models.Model):
         max_length=254, blank=False, null=True)
     last_name = models.CharField(
         max_length=254, blank=False, null=True)
-    membership = models.ManyToManyField(Membership)
+    membership = models.ForeignKey(
+        Membership, related_name='usermembership', on_delete=models.SET_NULL, null=True)
+    stripe_customer_id = models.CharField(max_length=50, default='')
     email = models.EmailField(
         max_length=100, null=False, blank=True)
     phone = models.CharField(max_length=40, null=True, blank=True)
@@ -128,6 +154,11 @@ class Profileuser(models.Model):
     def __str__(self):
         # pylint: disable=maybe-no-member
         return str(self.username)
+    
+    @property
+    def get_full_name(self):
+        first_name = self.user.first_name
+        last_name = self.user.last_name
 
 
 # ALL MY AND MY CONTACTS GIGS

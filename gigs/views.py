@@ -1,7 +1,6 @@
 from .models import Gig
-from profileusers.models import Profileuser
+from profileusers.models import Profileuser, Membership
 from .forms import GigForm
-from profileusers.models import Membership
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -46,15 +45,15 @@ def get(self, request, gig_pk, *args, **kwargs):
     if gig_gs.exists():
         gig = gig_qs.first()
 
-    user_membership = UserMembership.objectsfilter(user=request.user).first()
-    user_membership_type = user_membership.membership.membership_type
+    usermembership = UserMembership.objectsfilter(user=request.user).first()
+    usermembership_type = usermembership.membership.membership_type
 
     gig_allowed_mem_type = gig.allowed_membership.all()
 
     context = {
         'object': None
     }
-    if gig_allowed_mem_type.filter(membership_type=user_membership_type).exists():
+    if gig_allowed_mem_type.filter(membership_type=usermembership_type).exists():
         
         return render(request, 'create_gigs.html', context)
 """

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Membership, UserMembership
+from profileusers.models import Membership
 
 
 class MembershipAdmin(admin.ModelAdmin):
@@ -11,14 +11,4 @@ class MembershipAdmin(admin.ModelAdmin):
 
     ordering = ('membership_type',)
 
-class UserMembershipAdmin(admin.ModelAdmin):
-    list_display = (
-        'user',
-        'membership',
-        'stripe_customer_id',
-    )
-
-    ordering = ('user',)
-
 admin.site.register(Membership, MembershipAdmin)
-admin.site.register(UserMembership, UserMembershipAdmin)

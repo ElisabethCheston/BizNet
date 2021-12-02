@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 from .models import Subscription, SubscriptionLineItem
-from membership.models import Membership, UserMembership
+from profileusers.models import Membership, Profileuser
 
 import json
 import time
@@ -46,8 +46,8 @@ class StripeWH_Handler:
         # Update profile information if save_info was checked
         profile = None
         username = intent.metadata.username
-        if username != 'UserMembership':
-            profile = UserMembership.objects.get(user__username=username)
+        if username != 'Profileuser':
+            profile = Profileuser.objects.get(user__username=username)
             if save_info:
                 profile.save()
 

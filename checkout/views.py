@@ -6,8 +6,8 @@ from django.conf import settings
 from .forms import SubscriptionForm
 from .models import Subscription, SubscriptionLineItem
 
-from membership.models import Membership, UserMembership
-from membership.forms import UserMembershipForm
+from profileusers.models import Membership, Profileuser
+# from membership.forms import UserMembershipForm
 from bag.contexts import bag_contents
 
 import stripe
@@ -115,7 +115,7 @@ def checkout(request):
                             order_line_item.save()
                     """
 
-                except Membership.DoesNotExist:
+                except Profileuser.DoesNotExist:
                     messages.error(request, (
                         "Membership don't seem to exist in our database. "
                         "Please call us for assistance!")
@@ -148,12 +148,12 @@ def checkout(request):
         # Attempt to prefill the form with any info the user maintains in their profile
         if request.user.is_authenticated:
             try:
-                profile = UserMembership.objects.get(user=request.user)
+                profile = Profileuser.objects.get(username=request.user)
                 order_form = SubscriptionForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
+                    'full_name': profile.username.get_full_name(),
+                    'email': profile.username.email,
                 })
-            except UserMembership.DoesNotExist:
+            except Profileuser.DoesNotExist:
                 order_form = SubscriptionForm()
         else:
             order_form = SubscriptionForm()
@@ -180,7 +180,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Subscription, order_number=order_number)
 
     if request.user.is_authenticated:
-        profile = UserMembership.objects.get(user=request.user)
+        profile = Profileuser.objects.get(username=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
@@ -188,9 +188,9 @@ def checkout_success(request, order_number):
         # Save the user's info
         """
         if save_info:
-            user_membership_form = UserMembershipForm(membership_type, instance=profile)
-            if user_membership_form.is_valid():
-                user_membership_form.save()
+            usermembership_form = UserMembershipForm(membership_type, instance=profile)
+            if usermembership_form.is_valid():
+                usermembership_form.save()
         """
 
     messages.success(request, f'Subscription payment successfully processed! \
