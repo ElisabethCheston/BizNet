@@ -215,7 +215,7 @@ def webhook(request):
 
         # Get the user and create a new StripeCustomer
         user = User.objects.get(id = client_reference_id)
-        UserMembership.objects.create(
+        Profileuser.objects.create(
             user=user,
             stripeCustomerId=stripe_customer_id,
             stripeSubscriptionId=stripe_price_id,

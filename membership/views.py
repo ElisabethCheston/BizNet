@@ -69,16 +69,16 @@ def membership_detail(request, product_id):
     return render(request, 'membership/membership_detail.html', context)
 
 
-def get_usermembership(request):
-    usermembership = Profileuser.objects.get(user = 'user')
-    if usermembership.exists():
-        return usermembership.first()
+def get_user_membership(request):
+    user_membership = Profileuser.objects.get(user = 'user')
+    if user_membership.exists():
+        return user_membership.first()
     return None
 
 
 def get_user_subscription(request): 
     user_subscription = Subscription.objects.filter(
-        usermembership = get_usermembership(request))
+        user_membership = get_user_membership(request))
     if user_subscription.exists():
         user_subscription = user_subscription.first()
         return user_subscription
@@ -99,7 +99,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_membership = get_usermembership(self.request)
+        current_membership = get_user_membership(self.request)
         context.update({
             "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
         })
@@ -108,7 +108,7 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
 
     def post(self, request, **kwargs):
         selected_membership = request.POST.get('membership_type')  
-        usermembership = get_usermembership(request)
+        user_membership = get_user_membership(request)
         # user_subscription = get_user_subscription(request)      
         selected_membership_qs = Membership.objects.filter(
             membership_type = selected_membership) 
@@ -116,8 +116,8 @@ class MembershipSelectView(LoginRequiredMixin, ListView):
             selected_membership = selected_membership_qs.first()
 
            # -- Validation -- #
-        if usermembership.membership == selected_membership:
-            if usermembership != Free:
+        if user_membership.membership == selected_membership:
+            if user_membership != Free:
                 messages.info(request, "You already have this membership.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -195,13 +195,13 @@ def delete_product(request, product_id):
 
 @login_required
 def updateTransactionRecords(request):
-    usermembership = get_usermembership(request)
+    user_membership = get_user_membership(request)
     selected_membership = get_selected_membership(request)
-    usermembership.membership = selected_membership
-    usermembership.save()
+    user_membership.membership = selected_membership
+    user_membership.save()
 
     sub, created = Subscription.objects.get_or_create(
-        usermembership=usermembership)
+        user_membership=user_membership)
     sub.stripe_subscription_id = subscription_id
     sub.active = True
     sub.save()
@@ -218,7 +218,7 @@ def updateTransactionRecords(request):
 
 # -- PROFILEUSER INFO -- #
 
-    # usermembership = get_usermembership(request)
+    # user_membership = get_user_membership(request)
     # selected_membership = get_selected_membership(request)
 
 def membership_profile(request):
@@ -229,14 +229,14 @@ def membership_profile(request):
 
     """
     if request.method == 'POST':
-        form = UserMembershipForm(request.POST, instance=profile)
+        form = User_MembershipForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
-        form = UserMembershipForm(instance=profile)
+        form = User_MembershipForm(instance=profile)
     """
     # orders = profile.orders.all()
 
@@ -265,9 +265,9 @@ def cancelSubscription(request):
     user_sub.save()
 
     free_membership = Membership.objects.get(membership_type='Free')
-    usermembership = get_usermembership(request)
-    usermembership.membership = free_membership
-    usermembership.save()
+    user_membership = get_user_membership(request)
+    user_membership.membership = free_membership
+    user_membership.save()
 
     messages.info(
         request, "Successfully cancelled membership. We have sent an email")

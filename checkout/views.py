@@ -103,7 +103,6 @@ def checkout(request):
                         )
                         order_line_item.save()
 
-                    """
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = SubscriptionLineItem(
@@ -113,7 +112,6 @@ def checkout(request):
                                 product_size=size,
                             )
                             order_line_item.save()
-                    """
 
                 except Profileuser.DoesNotExist:
                     messages.error(request, (

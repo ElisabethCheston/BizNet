@@ -18,7 +18,6 @@ class TermUser(models.Model):
         return self.title
 
 
-
 # DROPDOWN LISTS
 
 class Industry(models.Model):
@@ -199,7 +198,6 @@ class Profileuser(models.Model):
     
     class Meta:
         ordering = ('-created',)
-
 
 
 # FOLLOWING
